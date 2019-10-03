@@ -1,0 +1,40 @@
+@import '~@carbon/grid/scss/prefix';
+@import '~@carbon/layout/scss/breakpoint';
+@import '~@carbon/layout/scss/spacing';
+@import '~@carbon/themes/scss/themes';
+@import '~@carbon/type/scss/font-family';
+@import '~@carbon/type/scss/styles';
+@import '~@carbon/grid/scss/grid';
+
+@import '@carbon/themes/scss/themes';
+$carbon--theme: $carbon--theme--g90;
+@include carbon--theme();
+
+@import '~carbon-components/scss/components/toggle/toggle';
+
+.#{$prefix}--popup {
+    padding-top: $carbon--grid-gutter / 2;
+    padding-bottom: $carbon--grid-gutter / 2;
+    width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
+    background: $ui-background;
+    
+    &__title {
+        @include carbon--type-style('productive-heading-05');
+        color: $text-01;
+        margin-bottom: $carbon--spacing-07;
+    }
+    
+    &__section {
+        margin-bottom: $carbon--spacing-05;
+        
+        &-title {
+            @include carbon--type-style('productive-heading-03');
+            color: $text-01;
+            margin-bottom: $carbon--spacing-05;
+        }
+    }
+    
+    .#{$prefix}--form-item {
+        margin-bottom: $carbon--spacing-05;
+    }
+}
