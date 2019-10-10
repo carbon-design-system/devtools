@@ -1,11 +1,20 @@
+$prefix: 'bx-dev';
+$carbonPrefix: 'bx';
+
+@import '@carbon/type/scss/type';
+@import '~@carbon/type/scss/styles';
+@import '@carbon/type/scss/font-face/mono';
+
+@include carbon--type-reset();
+@include carbon--font-face-mono();
+
 @import '~@carbon/grid/scss/prefix';
 @import "~@carbon/layout/scss/breakpoint";
 @import "~@carbon/layout/scss/mini-unit";
 @import "~@carbon/grid/scss/grid";
 @import "~@carbon/colors/scss/colors";
+@import "~@carbon/themes/scss/themes";
 @import "~@carbon/motion/scss/motion";
-
-$z-index: 77777777777;
 
 $transition-in: .3s carbon--motion('entrance');
 $transition-out: .15s carbon--motion('exit');
@@ -34,16 +43,6 @@ $grid-mini-unit-border-size: $grid-border-size;
 $grid-mini-unit-border-color: $grid-border-color;
 $grid-mini-unit-border-opacity: $grid-opacity;
 
-html,
-body {
-    padding: 0;
-    margin: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 body {
     position: relative;
     
@@ -59,36 +58,31 @@ body {
         width: auto;
         display: block;
         pointer-events: none;
-        z-index: $z-index;
+        z-index: 999999999;
 
         background-attachment: scroll;
 
-        background-size: $carbon--mini-unit-size $carbon--mini-unit-size;
+        background-size: carbon--mini-units(1) carbon--mini-units(1);
         background-image:
-        linear-gradient(to right, rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) 1px, transparent 1px);
+        linear-gradient(to right, rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) $grid-mini-unit-border-size, transparent $grid-mini-unit-border-size),
+        linear-gradient(to bottom, rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) $grid-mini-unit-border-size, transparent $grid-mini-unit-border-size);
 
         opacity: 0;
-        // transition: opacity $transition-out;
     }
 
-    &.#{$prefix}--grid--fixed::after {
+    .#{$prefix}--grid--fixed &::after {
         background-attachment: fixed;
     }
 
-    &.#{$prefix}--grid--mini-unit {
-        &::after {
-            opacity: 1;
-            // transition: opacity $transition-in;
-        }
+    .#{$prefix}--grid--mini-unit &::after {
+        opacity: 1;
     }
 
-    &.#{$prefix}--grid--hide,
+    .#{$prefix}--grid--hide &,
     html:active &,
     &:active {
         &::after {
             opacity: 0;
-            // transition: opacity $transition-out;
         }
     }
 }
@@ -96,7 +90,7 @@ body {
 .#{$prefix}--grid {
     &-container {
         position: absolute;
-        z-index: $z-index;
+        z-index: 9999999999;
         height: auto;
         width: auto;
         top: 0;
@@ -106,80 +100,100 @@ body {
         
         pointer-events: none;
         opacity: 1;
-        // transition: opacity $transition-in;
+
+        * {
+          box-sizing: border-box;
+        }
 
         .#{$prefix}--grid--hide &,
         html:active &,
         body:active & {
             opacity: 0;
-            // transition: opacity $transition-out;
+        }
+        
+        .#{$prefix}--grid--breakpoint-label &::after {
+            @include carbon--theme($carbon--theme--g90) {
+                @include carbon--type-style('code-01');
+                @include carbon--font-family('mono');
+
+                position: fixed;
+                background: $ui-background;
+                padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
+                color: $text-01;
+                bottom: 0;
+                right: 0;
+                z-index: 9999999999;
+                
+                @include carbon--breakpoint('sm') {
+                    content: 'Breakpoint: Small';
+                }
+                
+                @include carbon--breakpoint('md') {
+                    content: 'Breakpoint: Medium';
+                }
+                
+                @include carbon--breakpoint('lg') {
+                    content: 'Breakpoint: Large';
+                }
+                
+                @include carbon--breakpoint('xlg') {
+                    content: 'Breakpoint: X-Large';
+                }
+                
+                @include carbon--breakpoint('max') {
+                    content: 'Breakpoint: Max';
+                }
+            }
         }
 
-        [class^="#{$prefix}--col-"]::before {
+        [class*="#{$prefix}--col-"]::before {
             display: block;
             content: ''
         }
 
-        [class^="#{$prefix}--col-"] {
-            background-color: transparent;
-            box-shadow: none;
-            // transition: background-color $transition-out, box-shadow $transition-out;
-
-            &::before {
-                background-color: transparent;
-                box-shadow: none;
-                // transition: background-color $transition-out, box-shadow $transition-out;
-            }
-        }
-
         &.#{$prefix}--grid--inner {
-            [class^="#{$prefix}--col-"] {
+            [class*="#{$prefix}--col-"] {
                 &::before {
                     background-color: rgba($grid-inner-color, $grid-inner-opacity);
-                    // transition: background-color $transition-in;
                 }
             }
         }
 
         &.#{$prefix}--grid--outer {
-            [class^="#{$prefix}--col-"] {
+            [class*="#{$prefix}--col-"] {
                 &::before {
                     box-shadow:
                         $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
                         ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
-                    // transition: box-shadow $transition-in;
                 }
             }
         }
 
         &.#{$prefix}--grid--inner-border {
-            [class^="#{$prefix}--col-"] {
+            [class*="#{$prefix}--col-"] {
                 &::before {
                     box-shadow:
                         $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
                         ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
-                    // transition: box-shadow $transition-in;
                 }
             }
         }
 
         &.#{$prefix}--grid--outer.#{$prefix}--grid--inner-border {
-            [class^="#{$prefix}--col-"] {
+            [class*="#{$prefix}--col-"] {
                 &::before {
                     box-shadow:
                         $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
                         ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
                         $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
                         ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
-                    // transition: box-shadow $transition-in;
                 }
             }
         }
 
         &.#{$prefix}--grid--outer-border {
-            [class^="#{$prefix}--col-"] {
+            [class*="#{$prefix}--col-"] {
                 box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
-                // transition: box-shadow $transition-in;
                 
                 &:first-child {
                     box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity),
@@ -194,14 +208,91 @@ body {
         position: fixed;
         left: 0;
         top: 0;
-        z-index: $z-index;
+        z-index: 9999999999;
         
         &,
         .#{$prefix}--grid,
         .#{$prefix}--row,
-        [class^="#{$prefix}--col-"],
-        [class^="#{$prefix}--col-"]::before {
+        [class*="#{$prefix}--col-"],
+        [class*="#{$prefix}--col-"]::before {
             height: 100vh;
+        }
+    }
+}
+
+.#{$carbonPrefix}--grid {
+    $gutter-overlay-left: $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity);
+    $gutter-overlay-right: ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
+
+    [class*="#{$carbonPrefix}--col"] {
+        position: relative;
+        z-index: 99;
+        
+        &::after {
+            pointer-events: none;
+            opacity: 0;
+            z-index: 99;
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            @include carbon--theme($carbon--theme--g100) {
+                @include carbon--type-style('code-01');
+                @include carbon--font-family('mono');
+
+                background: rgba($grid-inner-border-color, 1);
+                color: $text-01;
+                padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
+            }
+        }
+
+        .#{$prefix}--grid--hover &:hover {
+            &::after {
+                opacity: 1;
+                z-index: 999;
+            }
+
+            &:hover {
+                z-index: 999;
+            }
+        }
+
+        .#{$prefix}--grid--hide &:hover {
+            &::after {
+                opacity: 0;
+                z-index: 99;
+            }
+
+            &:hover {
+                z-index: 99;
+            }
+        }
+    }
+
+    .#{$prefix}--grid--hover & {
+        [class*="bx--col"]:hover {
+            box-shadow: 0 0 0 $grid-inner-border-size rgba($grid-inner-border-color, $grid-inner-border-opacity);
+        }
+    }
+
+    .#{$prefix}--grid--hide & {
+        [class*="bx--col"]:hover {
+            box-shadow: none;
+        }
+    }
+
+    .#{$carbonPrefix}--col {
+        
+        &::after { content: '.#{$carbonPrefix}--col'; }
+        
+        @each $size, $breakpoint in $carbon--grid-breakpoints {
+            @include carbon--breakpoint($size) {
+                &-#{$size} {
+                    @for $i from 1 through map-get($breakpoint, 'columns') {
+                        &-#{$i}::after { content: '.#{$carbonPrefix}--col-#{$size}-#{$i}'; }
+                    }
+                }
+            }
         }
     }
 }
