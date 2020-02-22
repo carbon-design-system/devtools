@@ -1,55 +1,61 @@
 import { settings } from 'carbon-components';
 const { prefix } = settings;
+import { getMessage, storageChanged, getStorage } from '../utilities';
 
 import './index.scss';
 
-const GRID_HTML = `
-<div class="${prefix}--grid-overlay">
-    <div class="${prefix}--grid">
-        <div class="${prefix}--row">
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-            <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
-        </div>
-    </div>
-</div>`;
-
 const html = document.querySelector('html');
-const body = document.querySelector('body');
-const gridContainer = document.createElement('div');
+const gridContainerClassName = `${prefix}--grid-container`;
 
-html.classList.add(`${prefix}--grid--hide`);
-gridContainer.classList.add(`${prefix}--grid-container`)
-gridContainer.innerHTML = GRID_HTML;
+let body;
+let gridContainer = document.querySelector('.' + gridContainerClassName);
 
-body.appendChild(gridContainer);
+init();
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.onLoad === true) {
-        html.classList.remove(`${prefix}--grid--hide`);
-        setDefaults();
+function init () {
+    const GRID_HTML = `
+    <div class="${prefix}--grid-overlay">
+        <div class="${prefix}--grid">
+            <div class="${prefix}--row">
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+                <div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>
+            </div>
+        </div>
+    </div>`;
+
+    setDefaults();
+
+    console.log(gridContainer);
+    
+    if (!gridContainer) {
+        body = document.querySelector('body');
+        gridContainer = document.createElement('div');
+        gridContainer.classList.add(gridContainerClassName)
+        gridContainer.innerHTML = GRID_HTML;
+        body.appendChild(gridContainer);
     }
-});
+}
 
-chrome.storage.onChanged.addListener((changes, namespace) => {
+storageChanged((changes, namespace) => {
     updateGrid(changes);
 });
 
 function setDefaults() {
-    chrome.storage.local.get(null, result => {
+    getStorage(null, result => {
         updateGrid(result);
     });
 }

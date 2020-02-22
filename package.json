@@ -9,11 +9,15 @@
     "start": "webpack-dev-server --open"
   },
   "dependencies": {
-    "@carbon/motion": "^10.4.0",
-    "@carbon/themes": "^10.6.1",
-    "@carbon/type": "^10.5.1",
-    "carbon-components": "^10.6.4",
-    "carbon-components-react": "^7.6.4",
+    "@carbon/colors": "^10.7.2",
+    "@carbon/grid": "^10.8.3",
+    "@carbon/ibmdotcom-utilities": "^1.4.0-rc.0",
+    "@carbon/layout": "^10.7.3",
+    "@carbon/motion": "^10.5.2",
+    "@carbon/themes": "^10.9.3",
+    "@carbon/type": "^10.8.3",
+    "carbon-components": "^10.9.3",
+    "carbon-components-react": "^7.9.3",
     "cssnano": "^4.1.10",
     "dotenv-webpack": "^1.7.0",
     "postcss-import": "^12.0.1",
@@ -25,9 +29,6 @@
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
-    "@carbon/colors": "^10.4.1",
-    "@carbon/grid": "^10.6.0",
-    "@carbon/layout": "^10.5.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
@@ -52,5 +53,13 @@
     "Development"
   ],
   "author": "James Dow",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.ibm.com/james-dow/ibm-dotcom-devtools"
+  },
+  "bugs": {
+    "url": "https://github.ibm.com/james-dow/ibm-dotcom-devtools/issues/new",
+    "email": "james.dow@us.ibm.com"
+  }
 }

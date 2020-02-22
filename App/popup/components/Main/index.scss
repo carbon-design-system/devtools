@@ -1,0 +1,20 @@
+@import '~carbon-components/scss/components/toggle/toggle';
+
+.#{$prefix}--popup-main {
+    // padding-top: $carbon--grid-gutter / 2;
+    // padding-bottom: $carbon--grid-gutter / 2;
+    
+    &__section {
+        margin-bottom: $carbon--spacing-05;
+        
+        &-title {
+            @include carbon--type-style('productive-heading-03');
+            color: $text-01;
+            margin-bottom: $carbon--spacing-05;
+        }
+    }
+    
+    .#{$prefix}--form-item {
+        margin-bottom: $carbon--spacing-05;
+    }
+}

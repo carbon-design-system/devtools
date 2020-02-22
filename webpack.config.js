@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
+    watch: true,
     mode: 'production',
     performance: { hints: false },
     entry: {
@@ -15,6 +16,14 @@ module.exports = {
         popup: [
             './App/setPrefix.js',
             './App/popup/index.js'
+        ],
+        validate: [
+            // './App/setPrefix.js',
+            './App/validate/index.js'
+        ],
+        background: [
+            // './App/setPrefix.js',
+            './App/background/index.js'
         ]
     },
     devtool: 'source-map', // any "source-map"-like devtool is possible
