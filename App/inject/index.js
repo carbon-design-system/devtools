@@ -5,10 +5,12 @@ import { getMessage, storageChanged, getStorage } from '../utilities';
 import './index.scss';
 
 const html = document.querySelector('html');
+const body = html.querySelector('body');
 const gridContainerClassName = `${prefix}--grid-container`;
 
-let body;
 let gridContainer = document.querySelector('.' + gridContainerClassName);
+
+html.classList.add(`${prefix}--grid--hide`);
 
 init();
 
@@ -38,11 +40,8 @@ function init () {
     </div>`;
 
     setDefaults();
-
-    console.log(gridContainer);
     
     if (!gridContainer) {
-        body = document.querySelector('body');
         gridContainer = document.createElement('div');
         gridContainer.classList.add(gridContainerClassName)
         gridContainer.innerHTML = GRID_HTML;

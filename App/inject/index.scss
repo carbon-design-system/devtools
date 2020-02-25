@@ -2,7 +2,7 @@ $prefix: 'bx-dev';
 $carbonPrefix: 'bx';
 
 @import '@carbon/type/scss/type';
-@import '~@carbon/type/scss/styles';
+@import '@carbon/type/scss/styles';
 @import '@carbon/type/scss/font-face/mono';
 
 @include carbon--type-reset();
@@ -15,9 +15,10 @@ $carbonPrefix: 'bx';
 @import "~@carbon/colors/scss/colors";
 @import "~@carbon/themes/scss/themes";
 @import "~@carbon/motion/scss/motion";
+@import "carbon-components/src/globals/scss/motion";
 
-$transition-in: .3s carbon--motion('entrance');
-$transition-out: .15s carbon--motion('exit');
+$transition-in: $duration--moderate-02 carbon--motion(standard, productive);
+$transition-fade: $duration--fast-02 carbon--motion(standard, productive);
 
 $grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
 $grid-opacity: .5;
@@ -25,7 +26,7 @@ $grid-border-size: 1px;
 $grid-border-color: $grid-color;
 $grid-border-opacity: 1;
 
-$grid-inner-color:  $grid-color;
+$grid-inner-color: $grid-color;
 $grid-inner-opacity: $grid-opacity;
 $grid-inner-border-size: $grid-border-size;
 $grid-inner-border-color: $grid-border-color;
@@ -43,9 +44,11 @@ $grid-mini-unit-border-size: $grid-border-size;
 $grid-mini-unit-border-color: $grid-border-color;
 $grid-mini-unit-border-opacity: $grid-opacity;
 
+
 body {
     position: relative;
     
+    // mini unit grid
     &::after {
         content: '';
         position: absolute;
@@ -68,6 +71,7 @@ body {
         linear-gradient(to bottom, rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) $grid-mini-unit-border-size, transparent $grid-mini-unit-border-size);
 
         opacity: 0;
+        transition: opacity $transition-fade;
     }
 
     .#{$prefix}--grid--fixed &::after {
@@ -87,7 +91,32 @@ body {
     }
 }
 
+// 2x grid
 .#{$prefix}--grid {
+
+    &-overlay {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 9999999999;
+        
+        &,
+        .#{$prefix}--grid,
+        .#{$prefix}--row,
+        [class*="#{$prefix}--col-"],
+        [class*="#{$prefix}--col-"]::before {
+            height: 100vh;
+            transition: height $transition-in;
+            
+            .#{$prefix}--grid--hide & {
+                height: 0;
+                top: auto;
+                bottom: 0;
+            }
+        }
+    }
+
     &-container {
         position: absolute;
         z-index: 9999999999;
@@ -100,18 +129,19 @@ body {
         
         pointer-events: none;
         opacity: 1;
+        transition: opacity $transition-fade;
 
         * {
           box-sizing: border-box;
         }
 
-        .#{$prefix}--grid--hide &,
         html:active &,
         body:active & {
             opacity: 0;
         }
         
-        .#{$prefix}--grid--breakpoint-label &::after {
+        // breakpoint label
+        &::after {
             @include carbon--theme($carbon--theme--g90) {
                 @include carbon--type-style('code-01');
                 @include carbon--font-family('mono');
@@ -120,9 +150,18 @@ body {
                 background: $ui-background;
                 padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
                 color: $text-01;
-                bottom: 0;
                 right: 0;
                 z-index: 9999999999;
+                transition: bottom $transition-in;
+
+                .#{$prefix}--grid--breakpoint-label & {
+                    bottom: 0;
+                }
+                
+                &,
+                .#{$prefix}--grid--hide & {
+                    bottom: -32px;
+                }
                 
                 @include carbon--breakpoint('sm') {
                     content: 'Breakpoint: Small';
@@ -146,19 +185,34 @@ body {
             }
         }
 
-        [class*="#{$prefix}--col-"]::before {
-            display: block;
-            content: ''
-        }
+        [class*="#{$prefix}--col-"] {
+            &,
+            &::before {
+                transition:
+                    height $transition-in,
+                    box-shadow $transition-in,
+                    background-color $transition-fade;
+            }
 
-        &.#{$prefix}--grid--inner {
-            [class*="#{$prefix}--col-"] {
-                &::before {
-                    background-color: rgba($grid-inner-color, $grid-inner-opacity);
-                }
+            &::before {
+                content: '';
+                display: block;
             }
         }
 
+        // column
+        &.#{$prefix}--grid--inner {
+            [class*="#{$prefix}--col-"]::before {
+                background-color: rgba($grid-inner-color, $grid-inner-opacity);
+            }
+        }
+        &:not(#{$prefix}--grid--inner) {
+            [class*="#{$prefix}--col-"]::before {
+                background-color: rgba($grid-inner-color, 0);
+            }
+        }
+
+        // gutter
         &.#{$prefix}--grid--outer {
             [class*="#{$prefix}--col-"] {
                 &::before {
@@ -169,6 +223,7 @@ body {
             }
         }
 
+        // column border
         &.#{$prefix}--grid--inner-border {
             [class*="#{$prefix}--col-"] {
                 &::before {
@@ -179,6 +234,7 @@ body {
             }
         }
 
+        // gutter + column border
         &.#{$prefix}--grid--outer.#{$prefix}--grid--inner-border {
             [class*="#{$prefix}--col-"] {
                 &::before {
@@ -191,6 +247,7 @@ body {
             }
         }
 
+        // gutter divider
         &.#{$prefix}--grid--outer-border {
             [class*="#{$prefix}--col-"] {
                 box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
@@ -202,85 +259,83 @@ body {
             }
         }
     }
-
-    &-overlay {
-        width: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 9999999999;
-        
-        &,
-        .#{$prefix}--grid,
-        .#{$prefix}--row,
-        [class*="#{$prefix}--col-"],
-        [class*="#{$prefix}--col-"]::before {
-            height: 100vh;
-        }
-    }
 }
 
-.#{$carbonPrefix}--grid {
-    $gutter-overlay-left: $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity);
-    $gutter-overlay-right: ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
 
+// column hover identifier
+.#{$carbonPrefix}--grid {
     [class*="#{$carbonPrefix}--col"] {
+        $padding: carbon--mini-units(1);
+        $height: carbon--mini-units(4) - ($padding * 2);
+
         position: relative;
         z-index: 99;
+        transition: box-shadow $transition-fade;
         
+        // border base
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+            min-height: $height + ($padding * 2);
+            z-inde: 999;
+            pointer-events: none;
+        }
+        
+        // label base
         &::after {
             pointer-events: none;
-            opacity: 0;
-            z-index: 99;
+            z-index: 999;
             position: absolute;
             left: 0;
             top: 0;
+            height: 0;
+            overflow: hidden;
+            transition: height $transition-fade, padding $transition-fade;
 
-            @include carbon--theme($carbon--theme--g100) {
-                @include carbon--type-style('code-01');
-                @include carbon--font-family('mono');
+            @include carbon--type-style('code-01');
+            @include carbon--font-family('mono');
 
-                background: rgba($grid-inner-border-color, 1);
-                color: $text-01;
-                padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
-            }
+            background: rgba($grid-inner-border-color, 1);
+            color: $text-04;
+            padding: 0 ($carbon--grid-gutter / 2);
         }
 
+        // label transition
         .#{$prefix}--grid--hover &:hover {
             &::after {
-                opacity: 1;
-                z-index: 999;
-            }
-
-            &:hover {
-                z-index: 999;
+                height: $height;
+                padding-top: $padding;
+                padding-bottom: $padding;
             }
         }
 
         .#{$prefix}--grid--hide &:hover {
             &::after {
-                opacity: 0;
-                z-index: 99;
-            }
-
-            &:hover {
-                z-index: 99;
+                height: 0;
+                padding: 0;
             }
         }
     }
 
+    // border definition
     .#{$prefix}--grid--hover & {
-        [class*="bx--col"]:hover {
+        [class*="bx--col"]:hover::before {
             box-shadow: 0 0 0 $grid-inner-border-size rgba($grid-inner-border-color, $grid-inner-border-opacity);
         }
     }
 
     .#{$prefix}--grid--hide & {
-        [class*="bx--col"]:hover {
+        [class*="bx--col"]:hover::before {
             box-shadow: none;
         }
     }
 
+    // label content
     .#{$carbonPrefix}--col {
         
         &::after { content: '.#{$carbonPrefix}--col'; }
