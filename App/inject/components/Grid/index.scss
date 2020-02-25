@@ -1,0 +1,14 @@
+$grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
+$grid-opacity: .5;
+$grid-border-size: 1px;
+$grid-border-color: $grid-color;
+$grid-border-opacity: 1;
+
+@import '2x';
+@import 'mini-unit';
+@import 'column-identifier';
+
+body {
+    position: relative;
+    @include mini-unit();
+}

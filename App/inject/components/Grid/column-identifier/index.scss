@@ -1,0 +1,93 @@
+$column-identifier-border-size: $grid-border-size;
+$column-identifier-border-color: $grid-border-color;
+$column-identifier-border-opacity: $grid-border-opacity;
+
+// column hover identifier
+.#{$carbonPrefix}--grid {
+    [class*="#{$carbonPrefix}--col"] {
+        $padding: carbon--mini-units(1);
+        $height: carbon--mini-units(4) - ($padding * 2);
+
+        position: relative;
+        z-index: 99;
+        transition: box-shadow $transition-fade;
+        
+        // border base
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+            min-height: $height + ($padding * 2);
+            z-inde: 999;
+            pointer-events: none;
+        }
+        
+        // label base
+        &::after {
+            pointer-events: none;
+            z-index: 999;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 0;
+            overflow: hidden;
+            transition: height $transition-fade, padding $transition-fade;
+
+            @include carbon--type-style('code-01');
+            @include carbon--font-family('mono');
+
+            background: rgba($column-identifier-border-color, 1);
+            color: $text-04;
+            padding: 0 ($carbon--grid-gutter / 2);
+        }
+
+        // label transition
+        .#{$prefix}--grid--hover &:hover {
+            &::after {
+                height: $height;
+                padding-top: $padding;
+                padding-bottom: $padding;
+            }
+        }
+
+        .#{$prefix}--grid--hide &:hover {
+            &::after {
+                height: 0;
+                padding: 0;
+            }
+        }
+    }
+
+    // border definition
+    .#{$prefix}--grid--hover & {
+        [class*="bx--col"]:hover::before {
+            box-shadow: 0 0 0 $column-identifier-border-size rgba($column-identifier-border-color, $column-identifier-border-opacity);
+        }
+    }
+
+    .#{$prefix}--grid--hide & {
+        [class*="bx--col"]:hover::before {
+            box-shadow: none;
+        }
+    }
+
+    // label content
+    .#{$carbonPrefix}--col {
+        
+        &::after { content: '.#{$carbonPrefix}--col'; }
+        
+        @each $size, $breakpoint in $carbon--grid-breakpoints {
+            @include carbon--breakpoint($size) {
+                &-#{$size} {
+                    @for $i from 1 through map-get($breakpoint, 'columns') {
+                        &-#{$i}::after { content: '.#{$carbonPrefix}--col-#{$size}-#{$i}'; }
+                    }
+                }
+            }
+        }
+    }
+}
