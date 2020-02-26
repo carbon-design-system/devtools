@@ -1,115 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-
 import { Toggle } from 'carbon-components-react';
+import { settings } from 'carbon-components';
+import { getMessage, sendMessage } from '../utilities';
+import { Loading, Empty, Main } from './components';
 
 import './index.scss';
 
+const { prefix } = settings;
+
+sendMessage({ popup: true });
+
 function Popup () {
+    const [onCarbon, setCarbon] = useState('loading'); // 'loading', true, false
+    let Content = Loading;
+
+    useEffect(() => {
+        getMessage((msg) => {
+            setCarbon(msg.runningCarbon);
+        });
+    }, []);
+    
+    if (onCarbon === true) {
+        Content = Main;
+    } else if (onCarbon === false) {
+        Content = Empty;
+    }
+    
     return (
-        <article className="bx--popup bx--grid">
-            <div className="bx--row">
-                <div class="bx--col">
-                    <h1 className="bx--popup__title">IBM Dotcom Devtools</h1>
+        <article className={`${prefix}--popup ${prefix}--grid`}>
+            <header className={`${prefix}--row ${prefix}--popup__header`}>
+                <div className={`${prefix}--col`}>
+                    <h1 className={`${prefix}--popup__heading`}>IBM.com Devtools</h1>
                 </div>
-            </div>
-            <div className="bx--row bx--popup__section">
-                <div class="bx--col">
-                    <Toggle
-                        labelText="All grids"
-                        labelA="Off"
-                        labelB="On"
-                        onToggle={toggleGrids}
-                    />
-                </div>
-            </div>
-            <div className="bx--row">
-                <div class="bx--col">
-                    <h2 className="bx--popup__section-title">2x grid options</h2>
-                </div>
-            </div>
-            <div className="bx--row">
-                <div class="bx--col-sm-2">
-                    <Toggle
-                        defaultToggled
-                        labelText="Columns"
-                        labelA="Off"
-                        labelB="On"
-                        onToggle={toggle2xColumns}
-                    />
-                </div>
-                <div class="bx--col-sm-2">
-                    <Toggle
-                        labelText="Gutters"
-                        labelA="Off"
-                        labelB="On"
-                        onToggle={toggle2xGutters}
-                    />
-                </div>
-                <div class="bx--col-sm-2">
-                    <Toggle
-                        labelText="Borders"
-                        labelA="Off"
-                        labelB="On"
-                        onToggle={toggle2xBorders}
-                    />
-                </div>
-            </div>
-            <div className="bx--row">
-                <div class="bx--col">
-                    <h2 className="bx--popup__section-title">Mini unit grid options</h2>
-                </div>
-            </div>
-            <div className="bx--row">
-                <div class="bx--col">
-                    <Toggle
-                        labelText="Borders"
-                        labelA="Off"
-                        labelB="On"
-                        onToggle={toggleMiniUnitBorders}
-                    />
-                </div>
-                <div class="bx--col">
-                    <Toggle
-                        labelText="Fixed"
-                        labelA="Off"
-                        labelB="On"
-                        onToggle={toggleMiniUnitFixed}
-                    />
-                </div>
-            </div>
+            </header>
+            <main>
+                <Content />
+            </main>
         </article>
     );
-}
-
-function toggleGrids (e) {
-    sendMessage({ toggleGrids: e });
-}
-
-function toggle2xColumns (e) {
-    sendMessage({ toggle2xColumns: e });
-}
-
-function toggle2xGutters (e) {
-    sendMessage({ toggle2xGutters: e });
-}
-
-function toggle2xBorders (e) {
-    sendMessage({ toggle2xBorders: e });
-}
-
-function toggleMiniUnitBorders (e) {
-    sendMessage({ toggleMiniUnitBorders: e });
-}
-
-function toggleMiniUnitFixed (e) {
-    sendMessage({ toggleMiniUnitFixed: e });
-}
-
-function sendMessage (msg) {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, msg);
-    });
 }
 
 const body = document.querySelector('body');

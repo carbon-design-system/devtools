@@ -1,0 +1,38 @@
+$grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
+$grid-opacity: .5;
+$grid-border-size: 1px;
+$grid-border-color: $grid-color;
+$grid-border-opacity: 1;
+
+@import '2x';
+@import 'mini-unit';
+@import 'column-label';
+
+body {
+    position: relative;
+}
+
+.#{$prefix}--grid-container {
+    position: absolute;
+    z-index: 9999999999;
+    height: auto;
+    width: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity $transition-fade;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    // hide grid on click
+    html:active &,
+    body:active & {
+        opacity: 0;
+    }
+}

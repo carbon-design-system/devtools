@@ -5,10 +5,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    mode: 'development',
+    watch: true,
+    mode: 'production',
+    performance: { hints: false },
     entry: {
-        inject: './App/inject/index.js',
-        popup: './App/popup/index.js'
+        inject: [
+            './App/setPrefix.js',
+            './App/inject/index.js'
+        ],
+        popup: [
+            './App/setPrefix.js',
+            './App/popup/index.js'
+        ],
+        validate: [
+            // './App/setPrefix.js',
+            './App/validate/index.js'
+        ],
+        background: [
+            // './App/setPrefix.js',
+            './App/background/index.js'
+        ]
     },
     devtool: 'source-map', // any "source-map"-like devtool is possible
     module: {
@@ -22,6 +38,7 @@ module.exports = {
                         sourceMap: true,
                     },
                 },
+                'postcss-loader',
                 {
                     loader: 'sass-loader',
                     options: {
@@ -30,7 +47,7 @@ module.exports = {
                             includePaths: ['./node_modules'],
                         }
                     },
-                },
+                }
             ],
         },
         {

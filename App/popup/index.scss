@@ -1,40 +1,41 @@
+$prefix: 'bx-dev';
+
 @import '~@carbon/grid/scss/prefix';
 @import '~@carbon/layout/scss/breakpoint';
 @import '~@carbon/layout/scss/spacing';
 @import '~@carbon/themes/scss/themes';
 @import '~@carbon/type/scss/font-family';
 @import '~@carbon/type/scss/styles';
+@import '~@carbon/type/scss/font-face/sans';
 @import '~@carbon/grid/scss/grid';
+@import '~@carbon/themes/scss/themes';
 
-@import '@carbon/themes/scss/themes';
 $carbon--theme: $carbon--theme--g90;
-@include carbon--theme();
 
-@import '~carbon-components/scss/components/toggle/toggle';
+@include carbon--font-face-sans;
+@include carbon--theme;
 
-.#{$prefix}--popup {
-    padding-top: $carbon--grid-gutter / 2;
-    padding-bottom: $carbon--grid-gutter / 2;
+@import 'components/Loading';
+@import 'components/Empty';
+@import 'components/Main';
+
+body {
     width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
     background: $ui-background;
-    
-    &__title {
-        @include carbon--type-style('productive-heading-05');
-        color: $text-01;
-        margin-bottom: $carbon--spacing-07;
-    }
-    
-    &__section {
+    color: $text-01;
+}
+
+.#{$prefix}--popup {
+    margin-bottom: $carbon--spacing-05;
+
+    &__header {
+        background-color: $ui-01;
+        padding-top: $carbon--spacing-03;
+        padding-bottom: $carbon--spacing-03;
         margin-bottom: $carbon--spacing-05;
-        
-        &-title {
-            @include carbon--type-style('productive-heading-03');
-            color: $text-01;
-            margin-bottom: $carbon--spacing-05;
-        }
     }
-    
-    .#{$prefix}--form-item {
-        margin-bottom: $carbon--spacing-05;
+
+    &__heading {
+        @include carbon--type-style('productive-heading-01');
     }
 }
