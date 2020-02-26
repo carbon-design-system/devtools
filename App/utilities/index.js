@@ -6,3 +6,4 @@ export * from './setStorage';
 export * from './getStorage';
 export * from './storageChanged';
 export * from './storageTrueFalse';
+export * from './onCommand';

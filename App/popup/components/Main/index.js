@@ -151,7 +151,7 @@ function Main () {
             
             <div className={`${prefix}--row`}>
                 <div className={`${prefix}--col`}>
-                    <h2 className={`${prefix}--popup-main__section-title`}>Mini-unit grid options</h2>
+                    <h2 className={`${prefix}--popup-main__section-title`}>Mini-unit options</h2>
                 </div>
             </div>
             <div className={`${prefix}--row`}>
