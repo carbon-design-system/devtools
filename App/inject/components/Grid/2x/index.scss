@@ -15,7 +15,7 @@ $grid-outer-border-opacity: $grid-border-opacity;
     // full-width transition effect
     transition: max-width $transition-fade;
 
-    &-overlay {
+    &-2x {
         position: fixed;
         left: 0;
         top: 0;
@@ -24,6 +24,7 @@ $grid-outer-border-opacity: $grid-border-opacity;
         height: 100vh;
         transition: height $transition-in;
         
+        &--hide,
         .#{$prefix}--grid--hide & {
             height: 0;
             top: auto;
@@ -36,32 +37,80 @@ $grid-outer-border-opacity: $grid-border-opacity;
         [class*="#{$prefix}--col-"]::before {
             height: 100%;
         }
-    }
-
-    &-container {
-        position: absolute;
-        z-index: 9999999999;
-        height: auto;
-        width: auto;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
         
-        pointer-events: none;
-        opacity: 1;
-        transition: opacity $transition-fade;
+        [class*="#{$prefix}--col-"] {
+            &,
+            &::before {
+                transition:
+                    box-shadow $transition-in,
+                    background-color $transition-fade;
+            }
 
-        * {
-          box-sizing: border-box;
+            &::before {
+                content: '';
+                display: block;
+            }
         }
 
-        // hide grid on click
-        html:active &,
-        body:active & {
-            opacity: 0;
+        // column
+        &--inner {
+            [class*="#{$prefix}--col-"]::before {
+                background-color: rgba($grid-inner-color, $grid-inner-opacity);
+            }
         }
-        
+        &:not(.#{$prefix}--grid-2x--inner) {
+            [class*="#{$prefix}--col-"]::before {
+                background-color: rgba($grid-inner-color, 0);
+            }
+        }
+
+        // gutter
+        &--outer {
+            [class*="#{$prefix}--col-"] {
+                &::before {
+                    box-shadow:
+                        $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
+                        ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
+                }
+            }
+        }
+
+        // column border
+        &--inner-border {
+            [class*="#{$prefix}--col-"] {
+                &::before {
+                    box-shadow:
+                        $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
+                        ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
+                }
+            }
+        }
+
+        // gutter + column border
+        &--outer.#{$prefix}--grid-2x--inner-border {
+            [class*="#{$prefix}--col-"] {
+                &::before {
+                    box-shadow:
+                        $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
+                        ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
+                        $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
+                        ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
+                }
+            }
+        }
+
+        // gutter divider
+        &--outer-border {
+            [class*="#{$prefix}--col-"] {
+                box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
+                
+                &:first-child {
+                    box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity),
+                    ($grid-outer-border-size * -1) 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
+                }
+            }
+        }
+
         // breakpoint label
         &::after {
             @include carbon--theme($carbon--theme--g90) {
@@ -76,15 +125,17 @@ $grid-outer-border-opacity: $grid-border-opacity;
                 z-index: 9999999999;
                 transition: bottom $transition-in;
 
-                .#{$prefix}--grid--breakpoint-label & {
+                .#{$prefix}--grid-2x--breakpoint-label & {
                     bottom: 0;
                 }
                 
                 &,
+                .#{$prefix}--grid-2x--hide &,
                 .#{$prefix}--grid--hide & {
                     bottom: -32px;
                 }
                 
+                // can we loop through breakpoints?
                 @include carbon--breakpoint('sm') {
                     content: 'Breakpoint: Small';
                 }
@@ -103,79 +154,6 @@ $grid-outer-border-opacity: $grid-border-opacity;
                 
                 @include carbon--breakpoint('max') {
                     content: 'Breakpoint: Max';
-                }
-            }
-        }
-
-        [class*="#{$prefix}--col-"] {
-            &,
-            &::before {
-                transition:
-                    box-shadow $transition-in,
-                    background-color $transition-fade;
-            }
-
-            &::before {
-                content: '';
-                display: block;
-            }
-        }
-
-        // column
-        &.#{$prefix}--grid--inner {
-            [class*="#{$prefix}--col-"]::before {
-                background-color: rgba($grid-inner-color, $grid-inner-opacity);
-            }
-        }
-        &:not(#{$prefix}--grid--inner) {
-            [class*="#{$prefix}--col-"]::before {
-                background-color: rgba($grid-inner-color, 0);
-            }
-        }
-
-        // gutter
-        &.#{$prefix}--grid--outer {
-            [class*="#{$prefix}--col-"] {
-                &::before {
-                    box-shadow:
-                        $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-                        ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
-                }
-            }
-        }
-
-        // column border
-        &.#{$prefix}--grid--inner-border {
-            [class*="#{$prefix}--col-"] {
-                &::before {
-                    box-shadow:
-                        $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
-                        ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
-                }
-            }
-        }
-
-        // gutter + column border
-        &.#{$prefix}--grid--outer.#{$prefix}--grid--inner-border {
-            [class*="#{$prefix}--col-"] {
-                &::before {
-                    box-shadow:
-                        $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-                        ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-                        $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
-                        ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
-                }
-            }
-        }
-
-        // gutter divider
-        &.#{$prefix}--grid--outer-border {
-            [class*="#{$prefix}--col-"] {
-                box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
-                
-                &:first-child {
-                    box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity),
-                    ($grid-outer-border-size * -1) 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
                 }
             }
         }

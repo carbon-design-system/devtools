@@ -10,6 +10,7 @@ function Main () {
     const [onDataState, setOnDataState] = useState(false);
     const [toggleGridsState, setToggleGridsState] = useState(true);
 
+    const [toggle2xGridState, setToggle2xGridState] = useState(true);
     const [toggle2xColumnsState, setToggle2xColumnsState] = useState(false);
     const [toggle2xGuttersState, setToggle2xGuttersState] = useState(false);
     const [toggle2xBordersState, setToggle2xBordersState] = useState(false);
@@ -17,12 +18,15 @@ function Main () {
     const [toggle2xBreakpointLabelState, setToggle2xBreakpointLabelState] = useState(false);
     const [toggle2xHoverState, setToggle2xHoverState] = useState(false);
 
-    const [toggleMiniUnitBordersState, setToggleMiniUnitBordersState] = useState(false);
+    const [toggleMiniUnitGridState, setToggleMiniUnitGridState] = useState(false);
+    const [toggleMiniUnitBordersState, setToggleMiniUnitBordersState] = useState(true);
+    const [toggleMiniUnitCellsState, setToggleMiniUnitCellsState] = useState(false);
     const [toggleMiniUnitFixedState, setToggleMiniUnitFixedState] = useState(false);
 
     const ds = {
         toggleGridsState: toggleGridsState,
 
+        toggle2xGridState: toggle2xGridState,
         toggle2xColumnsState: toggle2xColumnsState,
         toggle2xGuttersState: toggle2xGuttersState,
         toggle2xBordersState: toggle2xBordersState,
@@ -30,7 +34,9 @@ function Main () {
         toggle2xBreakpointLabelState: toggle2xBreakpointLabelState,
         toggle2xHoverState: toggle2xHoverState,
 
+        toggleMiniUnitGridState: toggleMiniUnitGridState,
         toggleMiniUnitBordersState: toggleMiniUnitBordersState,
+        toggleMiniUnitCellsState: toggleMiniUnitCellsState,
         toggleMiniUnitFixedState: toggleMiniUnitFixedState
     };
     
@@ -58,13 +64,26 @@ function Main () {
             </div>
             <div className={`${prefix}--row`}>
                 <div className={`${prefix}--col`}>
-                    <h2 className={`${prefix}--popup-main__section-title`}>Overlay grid options</h2>
+                    <h2 className={`${prefix}--popup-main__section-title`}>2x grid options</h2>
                 </div>
             </div>
             <div className={`${prefix}--row`}>
                 <div className={`${prefix}--col-sm-2`}>
                     <ToggleSmall
                         disabled={!toggleGridsState}
+                        toggled={toggle2xGridState}
+                        labelText="Grid"
+                        labelA="Off"
+                        labelB="On"
+                        onToggle={setToggle2xGridState}
+                        id="toggle2xGrid"
+                    />
+                </div>
+            </div>
+            <div className={`${prefix}--row`}>
+                <div className={`${prefix}--col-sm-2`}>
+                    <ToggleSmall
+                        disabled={!toggleGridsState || !toggle2xGridState}
                         toggled={toggle2xColumnsState}
                         labelText="Columns"
                         labelA="Off"
@@ -75,7 +94,7 @@ function Main () {
                 </div>
                 <div className={`${prefix}--col-sm-2`}>
                     <ToggleSmall
-                        disabled={!toggleGridsState}
+                        disabled={!toggleGridsState || !toggle2xGridState}
                         toggled={toggle2xGuttersState}
                         labelText="Gutters"
                         labelA="Off"
@@ -86,7 +105,7 @@ function Main () {
                 </div>
                 <div className={`${prefix}--col-sm-2`}>
                     <ToggleSmall
-                        disabled={!toggleGridsState}
+                        disabled={!toggleGridsState || !toggle2xGridState}
                         toggled={toggle2xBordersState}
                         labelText="Borders"
                         labelA="Off"
@@ -97,7 +116,7 @@ function Main () {
                 </div>
                 <div className={`${prefix}--col-sm-2`}>
                     <ToggleSmall
-                        disabled={!toggleGridsState}
+                        disabled={!toggleGridsState || !toggle2xGridState}
                         toggled={toggle2xFullWidthState}
                         labelText="Full width"
                         labelA="Off"
@@ -108,7 +127,7 @@ function Main () {
                 </div>
                 <div className={`${prefix}--col-sm-2`}>
                     <ToggleSmall
-                        disabled={!toggleGridsState}
+                        disabled={!toggleGridsState || !toggle2xGridState}
                         toggled={toggle2xBreakpointLabelState}
                         labelText="Breakpoint label"
                         labelA="Off"
@@ -119,9 +138,9 @@ function Main () {
                 </div>
                 <div className={`${prefix}--col-sm-2`}>
                     <ToggleSmall
-                        disabled={!toggleGridsState}
+                        disabled={!toggleGridsState || !toggle2xGridState}
                         toggled={toggle2xHoverState}
-                        labelText="Hover"
+                        labelText="Column label (hover)"
                         labelA="Off"
                         labelB="On"
                         onToggle={setToggle2xHoverState}
@@ -132,13 +151,37 @@ function Main () {
             
             <div className={`${prefix}--row`}>
                 <div className={`${prefix}--col`}>
-                    <h2 className={`${prefix}--popup-main__section-title`}>Mini unit grid options</h2>
+                    <h2 className={`${prefix}--popup-main__section-title`}>Mini-unit grid options</h2>
                 </div>
             </div>
             <div className={`${prefix}--row`}>
                 <div className={`${prefix}--col`}>
                     <ToggleSmall
                         disabled={!toggleGridsState}
+                        toggled={toggleMiniUnitGridState}
+                        labelText="Grid"
+                        labelA="Off"
+                        labelB="On"
+                        onToggle={setToggleMiniUnitGridState}
+                        id="toggleMiniUnitGrid"
+                    />
+                </div>
+                <div className={`${prefix}--col`}>
+                    <ToggleSmall
+                        disabled={!toggleGridsState || !toggleMiniUnitGridState}
+                        toggled={toggleMiniUnitCellsState}
+                        labelText="Cells"
+                        labelA="Off"
+                        labelB="On"
+                        onToggle={setToggleMiniUnitCellsState}
+                        id="toggleMiniUnitCells"
+                    />
+                </div>
+            </div>
+            <div className={`${prefix}--row`}>
+                <div className={`${prefix}--col`}>
+                    <ToggleSmall
+                        disabled={!toggleGridsState || !toggleMiniUnitGridState}
                         toggled={toggleMiniUnitBordersState}
                         labelText="Borders"
                         labelA="Off"
@@ -149,7 +192,7 @@ function Main () {
                 </div>
                 <div className={`${prefix}--col`}>
                     <ToggleSmall
-                        disabled={!toggleGridsState}
+                        disabled={!toggleGridsState || !toggleMiniUnitGridState}
                         toggled={toggleMiniUnitFixedState}
                         labelText="Fixed"
                         labelA="Off"
@@ -173,8 +216,15 @@ function Main () {
     function setDefaults() {
         getStorage(null, data => {
             let defaultsSet = false;
+            
+            console.log(data)
 
             if (data) {
+                if (data.toggle2xGridState) {
+                    setToggle2xGridState(data.toggle2xGridState);
+                    defaultsSet = true;
+                }
+
                 if (data.toggle2xColumnsState) {
                     setToggle2xColumnsState(data.toggle2xColumnsState);
                     defaultsSet = true;
@@ -200,6 +250,21 @@ function Main () {
                     defaultsSet = true;
                 }
 
+                if (data.toggle2xHoverState) {
+                    setToggle2xHoverState(data.toggle2xHoverState);
+                    defaultsSet = true;
+                }
+
+                if (data.toggleMiniUnitGridState) {
+                    setToggleMiniUnitGridState(data.toggleMiniUnitGridState);
+                    defaultsSet = true;
+                }
+
+                if (data.toggleMiniUnitCellsState) {
+                    setToggleMiniUnitCellsState(data.toggleMiniUnitCellsState);
+                    defaultsSet = true;
+                }
+
                 if (data.toggleMiniUnitBordersState) {
                     setToggleMiniUnitBordersState(data.toggleMiniUnitBordersState);
                     defaultsSet = true;
@@ -207,11 +272,6 @@ function Main () {
 
                 if (data.toggleMiniUnitFixedState) {
                     setToggleMiniUnitFixedState(data.toggleMiniUnitFixedState);
-                    defaultsSet = true;
-                }
-
-                if (data.toggle2xHoverState) {
-                    setToggle2xHoverState(data.toggle2xHoverState);
                     defaultsSet = true;
                 }
             }

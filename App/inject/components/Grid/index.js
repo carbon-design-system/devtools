@@ -2,6 +2,7 @@ import { settings } from 'carbon-components';
 import { storageChanged, getStorage, storageTrueFalse } from '../../../utilities';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';
+import { manageColumnLabel } from './column-label';
 
 const { prefix } = settings;
 const html = document.querySelector('html');
@@ -21,13 +22,14 @@ function initGrid () {
     }
 
     const GRID_HTML = `
-        <div class="${prefix}--grid-overlay">
+        <div class="${prefix}--grid-2x">
             <div class="${prefix}--grid">
                 <div class="${prefix}--row">
                     ${columns.join('')}
                 </div>
             </div>
-        </div>`;
+        </div>
+        <div class="${prefix}--grid-mini-unit ${prefix}--grid-mini-unit--hide"></div>`;
     
     if (!gridContainer) {
         gridContainer = document.createElement('div');

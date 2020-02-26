@@ -6,9 +6,33 @@ $grid-border-opacity: 1;
 
 @import '2x';
 @import 'mini-unit';
-@import 'column-identifier';
+@import 'column-label';
 
 body {
     position: relative;
-    @include mini-unit();
+}
+
+.#{$prefix}--grid-container {
+    position: absolute;
+    z-index: 9999999999;
+    height: auto;
+    width: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity $transition-fade;
+
+    * {
+      box-sizing: border-box;
+    }
+
+    // hide grid on click
+    html:active &,
+    body:active & {
+        opacity: 0;
+    }
 }

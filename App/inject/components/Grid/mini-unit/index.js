@@ -4,25 +4,36 @@ import { storageTrueFalse } from '../../../../utilities';
 const { prefix } = settings;
 
 function manageMiniUnitGrid (result) {
-    const html = document.querySelector('html');
+    const miniUnitGrid = document.querySelector(`.${prefix}--grid-mini-unit`);
 
     // MINI UNIT GRID
     // ---
-    // show or hide mini unit grid
-    storageTrueFalse(result.toggleMiniUnitBordersState, () => {
-        html.classList.add(`${prefix}--grid--mini-unit`);
+    // ** show or hide mini unit grid
+    storageTrueFalse(result.toggleMiniUnitGridState, () => {
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--hide`);
     }, () => {
-        html.classList.remove(`${prefix}--grid--mini-unit`);
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--hide`);
     });
-    
-    // show or hide mini unit border
-    // show or hide mini unit inner
+
+    // ** show or hide mini unit cells
+    storageTrueFalse(result.toggleMiniUnitCellsState, () => {
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--cell`);
+    }, () => {
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--cell`);
+    });
+
+    // show or hide mini unit borders
+    storageTrueFalse(result.toggleMiniUnitBordersState, () => {
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--border`);
+    }, () => {
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--border`);
+    });
 
     // Toggle between fixing or scrolling mini unit grid
     storageTrueFalse(result.toggleMiniUnitFixedState, () => {
-        html.classList.add(`${prefix}--grid-mini-unit--fixed`);
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--fixed`);
     }, () => {
-        html.classList.remove(`${prefix}--grid-mini-unit--fixed`);
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--fixed`);
     });
 }
 
