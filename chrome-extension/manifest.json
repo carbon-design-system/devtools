@@ -19,5 +19,9 @@
     },
     "browser_action": {
         "default_popup": "/static/popup/index.html"
+    },
+    "options_ui": {
+        "page": "/static/options/index.html",
+        "open_in_tab": false
     }
 }

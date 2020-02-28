@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Toggle } from 'carbon-components-react';
 import { settings } from 'carbon-components';
-import { getMessage, sendMessage } from '../utilities';
-import { Loading, Empty, Main } from './components';
+import { getMessage, sendMessage, getStorage } from '../utilities';
+import { Loading, Empty, Main, MoreOptions } from './components';
 
 import './index.scss';
 
@@ -13,11 +13,16 @@ sendMessage({ popup: true });
 
 function Popup () {
     const [onCarbon, setCarbon] = useState('loading'); // 'loading', true, false
+
     let Content = Loading;
 
     useEffect(() => {
-        getMessage((msg) => {
+        getMessage(msg => {
             setCarbon(msg.runningCarbon);
+        });
+        
+        getStorage(['generalTheme'], data => {
+            document.body.setAttribute('class', `${prefix}--popup--${data}`);
         });
     }, []);
     
@@ -32,6 +37,9 @@ function Popup () {
             <header className={`${prefix}--row ${prefix}--popup__header`}>
                 <div className={`${prefix}--col`}>
                     <h1 className={`${prefix}--popup__heading`}>IBM.com Devtools</h1>
+                </div>
+                <div className={`${prefix}--col`}>
+                    <MoreOptions />
                 </div>
             </header>
             <main>

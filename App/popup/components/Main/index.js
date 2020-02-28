@@ -216,8 +216,6 @@ function Main () {
     function setDefaults() {
         getStorage(null, data => {
             let defaultsSet = false;
-            
-            console.log(data)
 
             if (data) {
                 if (data.toggle2xGridState) {

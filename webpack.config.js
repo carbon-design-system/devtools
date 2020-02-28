@@ -9,21 +9,25 @@ module.exports = {
     mode: 'production',
     performance: { hints: false },
     entry: {
-        inject: [
-            './App/setPrefix.js',
-            './App/inject/index.js'
-        ],
         popup: [
-            './App/setPrefix.js',
+            // './App/setPrefix.js',
             './App/popup/index.js'
+        ],
+        options: [
+            // './App/setPrefix.js',
+            './App/options/index.js'
+        ],
+        background: [
+            // './App/setPrefix.js',
+            './App/background/index.js'
         ],
         validate: [
             // './App/setPrefix.js',
             './App/validate/index.js'
         ],
-        background: [
-            // './App/setPrefix.js',
-            './App/background/index.js'
+        inject: [
+            './App/setPrefix.js',
+            './App/inject/index.js'
         ]
     },
     devtool: 'source-map', // any "source-map"-like devtool is possible
@@ -72,9 +76,9 @@ module.exports = {
             chunkFilename: '[id]/index.css',
         }),
         new HtmlWebpackPlugin({
-            title: 'Injected – IBM Dotcom Devtools',
-            chunks: ['inject'],
-            filename: 'inject/index.html'
+            title: 'Options – IBM Dotcom Devtools',
+            chunks: ['options'],
+            filename: 'options/index.html'
         }),
         new HtmlWebpackPlugin({
             title: 'Popup – IBM Dotcom Devtools',
