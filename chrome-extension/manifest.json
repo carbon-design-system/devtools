@@ -1,6 +1,6 @@
 {
     "name": "IBM.com Devtools",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "manifest_version": 2,
     "description": "Basic toolset to aide in the development of IBM.com pages.",
     "permissions": [
