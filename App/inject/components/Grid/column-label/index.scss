@@ -56,12 +56,12 @@ $column-identifier-border-opacity: $grid-border-opacity;
             }
         }
 
-        // .#{$prefix}--grid--hide &:hover {
-        //     &::after {
-        //         height: 0;
-        //         padding: 0;
-        //     }
-        // }
+        .#{$prefix}--grid--hide &:hover {
+            &::after {
+                height: 0;
+                padding: 0;
+            }
+        }
 
         // hide label on click
         .#{$prefix}--grid--hide-col-label &,
