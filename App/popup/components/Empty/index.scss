@@ -1,20 +1,26 @@
 @import '~carbon-components/scss/components/link/link';
 
-.#{$prefix}--popup-empty {
-    margin-top: $carbon--spacing-06;
-    margin-bottom: $carbon--spacing-07;
+// @mixin empty--theme { }
 
-    &__heading,
-    &__copy {
-        margin-bottom: $spacing-03;
-        width: 90%;
-    }
+@mixin empty {
+    @include link;
 
-    &__heading {
-        @include carbon--type-style('productive-heading-03');
-    }
+    .#{$prefix}--popup-empty {
+        margin-top: $carbon--spacing-06;
+        margin-bottom: $carbon--spacing-07;
 
-    &__copy {
-        @include carbon--type-style('body-long-01');
+        &__heading,
+        &__copy {
+            margin-bottom: $spacing-03;
+            width: 90%;
+        }
+
+        &__heading {
+            @include carbon--type-style('productive-heading-03');
+        }
+
+        &__copy {
+            @include carbon--type-style('body-long-01');
+        }
     }
 }

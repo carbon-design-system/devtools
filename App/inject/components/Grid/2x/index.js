@@ -1,7 +1,9 @@
 import { settings } from 'carbon-components';
-import { storageTrueFalse } from '../../../../utilities';
+import { storageTrueFalse, getStorage, storageChanged } from '../../../../utilities';
+import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
+const themeList = Object.keys(themes);
 
 function manage2xGrid (result) {
     const html = document.querySelector('html');
@@ -59,6 +61,18 @@ function manage2xGrid (result) {
     }, () => {
         html.classList.remove(`${prefix}--grid-2x--breakpoint-label`);
     });
+
+    // set theme
+    getStorage(['generalTheme'], setThemeClass);
+
+    storageChanged(() => {
+        getStorage(['generalTheme'], setThemeClass);
+    });
+
+    function setThemeClass (data) {
+        grid2x.classList.remove(...themeList.map(theme => `${prefix}--grid-2x--${theme}`)); // remove any first
+        grid2x.classList.add(`${prefix}--grid-2x--${data}`);
+    }
 }
 
 export { manage2xGrid };
