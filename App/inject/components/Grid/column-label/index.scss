@@ -12,7 +12,7 @@ $column-identifier-border-opacity: $grid-border-opacity;
         position: relative;
         
         // border base
-        &::before {
+        &::after {
             content: '';
             display: block;
             height: 100%;
@@ -27,29 +27,44 @@ $column-identifier-border-opacity: $grid-border-opacity;
             transition: box-shadow $transition-fade, opacity $transition-fade;
         }
         
-        // label base
-        &::after {
+        .#{$prefix}--label-column {
             pointer-events: none;
-            z-index: 999;
             position: absolute;
             left: 0;
             top: 0;
-            height: 0;
-            overflow: hidden;
-            opacity: 1;
-            transition: height $transition-fade, padding $transition-fade, opacity $transition-fade;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            
+            &::before {
+                pointer-events: none;
+                z-index: 999;
+                position: sticky;
+                top: 0;
+                display: block;
+                float: left;
+                height: 0;
+                overflow: hidden;
+                opacity: 1;
+                transition: height $transition-fade, padding $transition-fade, opacity $transition-fade;
 
-            @include carbon--type-style('code-01');
-            @include carbon--font-family('mono');
+                @include carbon--type-style('code-01');
+                @include carbon--font-family('mono');
 
-            background: rgba($column-identifier-border-color, 1);
-            color: $text-04;
-            padding: 0 ($carbon--grid-gutter / 2);
+                background: rgba($column-identifier-border-color, 1);
+                color: $text-04;
+                padding: 0 ($carbon--grid-gutter / 2);
+                
+                .#{$prefix}--header & {
+                    top: carbon--mini-units(6);
+                }
+            }
         }
 
         // label transition
         .#{$prefix}--grid--hover &:hover {
-            &::after {
+            .#{$prefix}--label-column::before {
                 height: $height;
                 padding-top: $padding;
                 padding-bottom: $padding;
@@ -57,19 +72,19 @@ $column-identifier-border-opacity: $grid-border-opacity;
         }
 
         .#{$prefix}--grid--hide &:hover {
-            &::after {
+            .#{$prefix}--label-column::before {
                 height: 0;
                 padding: 0;
             }
         }
 
         // hide label on click
-        .#{$prefix}--grid--hide-col-label &,
-        .#{$prefix}--grid--hide &
+        .#{$prefix}--grid--hide-label-column &,
+        .#{$prefix}--grid--hide &,
         html:active &,
         body:active & {
             &::after,
-            &::before {
+            .#{$prefix}--label-column::before {
                 opacity: 0;
             }
         }
@@ -77,13 +92,13 @@ $column-identifier-border-opacity: $grid-border-opacity;
 
     // border definition
     .#{$prefix}--grid--hover & {
-        [class*="bx--col"]:hover::before {
+        [class*="bx--col"]:hover::after {
             box-shadow: inset 0 0 0 $column-identifier-border-size rgba($column-identifier-border-color, $column-identifier-border-opacity);
         }
     }
 
     .#{$prefix}--grid--hide & {
-        [class*="bx--col"]:hover::before {
+        [class*="bx--col"]:hover::after {
             box-shadow: none;
         }
     }
@@ -91,13 +106,13 @@ $column-identifier-border-opacity: $grid-border-opacity;
     // label content
     .#{$carbonPrefix}--col {
         
-        &::after { content: '.#{$carbonPrefix}--col'; }
+        .#{$prefix}--label-column::before { content: '.#{$carbonPrefix}--col'; }
         
         @each $size, $breakpoint in $carbon--grid-breakpoints {
             @include carbon--breakpoint($size) {
                 &-#{$size} {
                     @for $i from 1 through map-get($breakpoint, 'columns') {
-                        &-#{$i}::after { content: '.#{$carbonPrefix}--col-#{$size}-#{$i}'; }
+                        &-#{$i} .#{$prefix}--label-column::before { content: '.#{$carbonPrefix}--col-#{$size}-#{$i}'; }
                     }
                 }
             }

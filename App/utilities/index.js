@@ -7,3 +7,4 @@ export * from './getStorage';
 export * from './storageChanged';
 export * from './storageTrueFalse';
 export * from './onCommand';
+export * from './carbonPrefix';

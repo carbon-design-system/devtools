@@ -13,10 +13,10 @@ function manage2xGrid (result) {
     // ---
     // hide or show 2x grid
     storageTrueFalse(result.toggle2xGridState, () => {
-        html.classList.remove(`${prefix}--grid--hide-col-label`);
+        html.classList.remove(`${prefix}--grid--hide-label-column`);
         grid2x.classList.remove(`${prefix}--grid-2x--hide`);
     }, () => {
-        html.classList.add(`${prefix}--grid--hide-col-label`);
+        html.classList.add(`${prefix}--grid--hide-label-column`);
         grid2x.classList.add(`${prefix}--grid-2x--hide`);
     });
 
