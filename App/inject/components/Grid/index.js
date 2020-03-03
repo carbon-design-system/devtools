@@ -2,7 +2,7 @@ import { settings } from 'carbon-components';
 import { storageChanged, getStorage, storageTrueFalse } from '../../../utilities';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';
-import { manageColumnLabel } from './column-label';
+import { manageColumnLabel, labelInjector } from './column-label';
 
 const { prefix } = settings;
 const html = document.querySelector('html');
@@ -40,6 +40,7 @@ function initGrid () {
 
     // updates based sets defaults
     getStorage(null, updateGrid);
+    labelInjector();
 
     // updates if storage changes
     storageChanged((changes, namespace) => {
