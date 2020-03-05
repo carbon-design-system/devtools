@@ -17,12 +17,19 @@ $carbon--theme: $carbon--theme--g90;
 @import 'components/Loading';
 @import 'components/Empty';
 @import 'components/Main';
+@import 'components/Dependencies';
+@import 'components/Grid';
+@import 'components/Specs';
 
+// can we use css variables?
 @mixin popup--theme {
     @include more-options;
     @include loading;
     @include empty;
     @include main;
+    @include dependencies;
+    @include grid;
+    @include specs;
 
     background: $ui-background;
     color: $text-01;
