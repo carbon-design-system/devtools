@@ -1,3 +1,7 @@
+$feature-flags: (
+    enable-css-custom-properties: true,
+);
+
 @import '@carbon/grid/scss/prefix';
 @import '@carbon/layout/scss/breakpoint';
 @import '@carbon/layout/scss/spacing';
@@ -10,6 +14,13 @@
 
 $carbon--theme: $carbon--theme--g90;
 
+:root {
+    @include carbon--theme(
+        $theme: $carbon--theme--g90,
+        $emit-custom-properties: true
+    );
+}
+
 @include carbon--font-face-sans;
 @include carbon--theme;
 
@@ -17,12 +28,19 @@ $carbon--theme: $carbon--theme--g90;
 @import 'components/Loading';
 @import 'components/Empty';
 @import 'components/Main';
+@import 'components/Dependencies';
+@import 'components/Grid';
+@import 'components/Specs';
 
+// can we use css variables?
 @mixin popup--theme {
     @include more-options;
     @include loading;
     @include empty;
     @include main;
+    @include dependencies;
+    @include grid;
+    @include specs;
 
     background: $ui-background;
     color: $text-01;
@@ -30,6 +48,10 @@ $carbon--theme: $carbon--theme--g90;
     .#{$prefix}--popup__header {
         background-color: $ui-01;
     }
+}
+
+body {
+    @include popup--theme;
 }
 
 .#{$prefix}--popup {
@@ -47,32 +69,49 @@ $carbon--theme: $carbon--theme--g90;
     }
 
     &--white {
-        @include carbon--theme($carbon--theme--white) {
-            @include popup--theme;
-        }
+        // @include carbon--theme($carbon--theme--white) {
+        //     @include popup--theme;
+        // }
+        @include carbon--theme(
+            $theme: $carbon--theme--white,
+            $emit-custom-properties: true
+        );
     }
 
     &--g10 {
-        @include carbon--theme($carbon--theme--g10) {
-            @include popup--theme;
-        }
+        // @include carbon--theme($carbon--theme--g10) {
+        //     @include popup--theme;
+        // }
+        @include carbon--theme(
+            $theme: $carbon--theme--g10,
+            $emit-custom-properties: true
+        );
     }
 
-    &--g90 {
-        @include carbon--theme($carbon--theme--g90) {
-            @include popup--theme;
-        }
-    }
+    // &--g90 {
+        // @include carbon--theme($carbon--theme--g90) {
+        //     @include popup--theme;
+        // }
+        
+    // }
 
     &--g100 {
-        @include carbon--theme($carbon--theme--g100) {
-            @include popup--theme;
-        }
+        // @include carbon--theme($carbon--theme--g100) {
+        //     @include popup--theme;
+        // }
+        @include carbon--theme(
+            $theme: $carbon--theme--g100,
+            $emit-custom-properties: true
+        );
     }
 
     &--v9 {
-        @include carbon--theme($carbon--theme--v9) {
-            @include popup--theme;
-        }
+        // @include carbon--theme($carbon--theme--v9) {
+        //     @include popup--theme;
+        // }
+        @include carbon--theme(
+            $theme: $carbon--theme--v9,
+            $emit-custom-properties: true
+        );
     }
 }

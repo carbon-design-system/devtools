@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -5,9 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    watch: true,
-    mode: 'production',
-    performance: { hints: false },
     entry: {
         popup: [
             // './App/setPrefix.js',
@@ -30,10 +28,10 @@ module.exports = {
             './App/inject/index.js'
         ]
     },
-    devtool: 'source-map', // any "source-map"-like devtool is possible
     module: {
         rules: [{
             test: /\.s[ac]ss$/i,
+            sideEffects: true,
             use: [
                 MiniCssExtractPlugin.loader,
                 {
@@ -90,4 +88,10 @@ module.exports = {
         filename: '[name]/index.js',
         path: path.resolve(__dirname, 'chrome-extension/static')
     },
+    resolve: {
+        alias: {
+            react: "preact/compat",
+            "react-dom": "preact/compat"
+        }
+    }
 };

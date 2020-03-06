@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
 import { Toggle, ToggleSmall } from 'carbon-components-react';
 import { sendMessage, setStorage, getStorage } from '../../../utilities';
+import { Dependencies, Grid, Specs } from '../';
 
 const { prefix } = settings;
 
