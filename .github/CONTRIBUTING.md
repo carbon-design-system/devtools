@@ -34,7 +34,7 @@ With that all in place, you're ready to start contributing!
 ### 1. Fork the repo:
 
 Go to
-[IBM.com Devtools repository](https://github.com/james-dow/ibm-dotcom-devtools) on GitHub and click the `Fork` button in the top-right corner. This will create a copy of the repo associated with your account.
+[IBM.com Devtools repository](https://github.ibm.com/james-dow/ibm-dotcom-devtools) on GitHub and click the `Fork` button in the top-right corner. This will create a copy of the repo associated with your account.
 
 ### 2. Clone your fork:
 
