@@ -1,8 +1,8 @@
+![image](https://media.github.ibm.com/user/19/files/a6852000-5f31-11ea-9520-4186ecc02341)
+
 # IBM.com Devtools
 
 The [IBM.com Devtools](https://chrome.google.com/webstore/detail/ibmcom-devtools/oejjaglcafcolafkjecfkoojgnpfpgca) provides designers, developers, QA teams and anyone collaborating to build IBM.com pages with a simple set of tools.
-
-![image](https://media.github.ibm.com/user/19/files/a6852000-5f31-11ea-9520-4186ecc02341)
 
  * [General usage](#general-usage)
  * [Local development](#local-development)
