@@ -6,8 +6,8 @@ The [IBM.com Devtools](https://chrome.google.com/webstore/detail/ibmcom-devtools
 
  * [General usage](#general-usage)
  * [Local development](#local-development)
- * [Contributing](#contributing)
- * [License](#license)
+ * [Contributing](#-contributing)
+ * [License](#-license)
 
 ## General usage
 
