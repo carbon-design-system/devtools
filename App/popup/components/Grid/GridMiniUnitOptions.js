@@ -24,7 +24,9 @@ function GridMiniUnitOptions ({ disabled }) {
     }, []);
 
     useEffect(() => { // update storage
-        setStorage({ toggleMiniUnitGridOptions });
+        if (onLoad) {
+            setStorage({ toggleMiniUnitGridOptions });
+        }
     });
 
     return !onLoad ? null : (

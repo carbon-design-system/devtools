@@ -24,7 +24,9 @@ function Main () {
     }, []);
 
     useEffect(() => { // update storage
-        setStorage({ globalToggleStates });
+        if (onLoad) {
+            setStorage({ globalToggleStates });
+        }
     });
 
     useEffect(() => { // stop toggle bubbling

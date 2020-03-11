@@ -66,7 +66,8 @@ $column-identifier-border-opacity: $grid-border-opacity;
         // label transition
         .#{$prefix}--grid--hover &:hover {
             .#{$prefix}--label-column::before {
-                height: $height;
+                min-height: $height;
+                height: auto;
                 padding-top: $padding;
                 padding-bottom: $padding;
             }

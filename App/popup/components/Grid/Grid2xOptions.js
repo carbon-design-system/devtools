@@ -27,7 +27,9 @@ function Grid2xOptions ({ disabled }) {
     }, []);
 
     useEffect(() => { // update storage
-        setStorage({ toggle2xGridOptions });
+        if (onLoad) {
+            setStorage({ toggle2xGridOptions });
+        }
     });
 
     return !onLoad ? null : (

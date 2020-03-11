@@ -24,7 +24,9 @@ function Grid ({ disabled }) {
     }, []);
 
     useEffect(() => { // update storage
-        setStorage({ toggleGrids });
+        if (onLoad) {
+            setStorage({ toggleGrids });
+        }
     });
 
     return !onLoad ? null : (

@@ -142,9 +142,11 @@ $grid-outer-border-opacity: $grid-border-opacity;
 
         // breakpoint label theme
         @mixin breakpoint-label--theme {
+            $border-style: 1px solid $ui-03;
             color: $text-01;
             background: $ui-01;
-            border: 1px solid $ui-03;
+            border-top: $border-style;
+            border-left: $border-style;
         }
         
         &::after {
