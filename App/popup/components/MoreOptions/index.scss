@@ -1,7 +1,5 @@
-@import '~carbon-components/scss/components/overflow-menu/overflow-menu';
-
 @mixin more-options {
-    @include overflow-menu;
+    // @include overflow-menu;
 
     .#{$prefix}--more-options {
         position: absolute;

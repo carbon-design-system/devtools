@@ -1,11 +1,15 @@
 import { settings } from 'carbon-components';
-import { storageChanged, getStorage, storageTrueFalse } from '../../../utilities';
+import { storageChanged, getStorage } from '../../../utilities';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';
 import { manageColumnLabel, labelInjector } from './column-label';
+import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
 const html = document.querySelector('html');
+const themeList = Object.keys(themes);
+
+let lastTheme = '';
 
 function initGrid () {
     const body = html.querySelector('body');
@@ -39,27 +43,61 @@ function initGrid () {
     }
 
     // updates based sets defaults
-    getStorage(null, updateGrid);
     labelInjector();
 
     // updates if storage changes
-    storageChanged((changes, namespace) => {
-        updateGrid(changes);
-    });
+    manageGlobals();
+    manage2xGrid();
+    manageMiniUnitGrid();
 }
 
-function updateGrid (result) {
-    // ALL GRIDS
-    // ---
-    // hide/show all grid elements
-    storageTrueFalse(result.toggleGridsState, () => {
-        html.classList.remove(`${prefix}--grid--hide`);
-    }, () => {
-        html.classList.add(`${prefix}--grid--hide`);
-    });
+function manageGlobals () {
+    const grid2x = html.querySelector(`.${prefix}--grid-2x`);
+    const miniUnitGrid = document.querySelector(`.${prefix}--grid-mini-unit`);
 
-    manage2xGrid(result);
-    manageMiniUnitGrid(result);
+    getStorage('globalToggleStates', ({ globalToggleStates }) => manageGlobalToggle(globalToggleStates));
+    storageChanged('globalToggleStates', manageGlobalToggle);
+
+    getStorage('toggleGrids', ({ toggleGrids }) => manageGrids(toggleGrids));
+    storageChanged('toggleGrids', manageGrids);
+
+    getStorage('generalTheme', ({ generalTheme }) => manageGeneralTheme(generalTheme));
+    storageChanged('generalTheme', manageGeneralTheme);
+    
+    function manageGlobalToggle ({ Grid }) {
+        // this may not belong here?
+        if (Grid) {
+            html.classList.remove(`${prefix}--grid--hide`);
+        } else {
+            html.classList.add(`${prefix}--grid--hide`);
+        }
+    }
+    
+    function manageGrids ({ toggle2xGrid, toggleMiniUnitGrid }) {
+        // hide and show 2x grid
+        if (toggle2xGrid) {
+            html.classList.remove(`${prefix}--grid--hide-label-column`);
+            grid2x.classList.remove(`${prefix}--grid-2x--hide`);
+        } else {
+            html.classList.add(`${prefix}--grid--hide-label-column`);
+            grid2x.classList.add(`${prefix}--grid-2x--hide`);
+        }
+
+        // show or hide mini unit grid
+        if (toggleMiniUnitGrid) {
+            miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--hide`);
+        } else {
+            miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--hide`);
+        }
+    }
+    
+    function manageGeneralTheme (generalTheme = 'g90') {
+        if (generalTheme !== lastTheme) {
+            grid2x.classList.remove(...themeList.map(theme => `${prefix}--grid-2x--${theme}`)); // remove any first
+            grid2x.classList.add(`${prefix}--grid-2x--${generalTheme}`); // set updated theme
+            lastTheme = generalTheme;
+        }
+    }
 }
 
 

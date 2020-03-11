@@ -38,6 +38,7 @@ $column-identifier-border-opacity: $grid-border-opacity;
             padding: 0;
             
             &::before {
+                content: '.#{$carbonPrefix}--col-sm-4';
                 pointer-events: none;
                 z-index: 999;
                 position: sticky;

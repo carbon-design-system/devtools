@@ -4,10 +4,10 @@ import { ToggleSmall } from 'carbon-components-react';
 
 const { prefix } = settings;
 
-function Specs () {
+function Inventory () {
     return (
-        <p>Live specs content</p>
+        <p>Inventory content</p>
     );
 }
 
-export { Specs };
+export { Inventory };

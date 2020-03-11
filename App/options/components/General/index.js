@@ -12,14 +12,13 @@ function General () {
     const themeList = Object.keys(themes);
 
     useEffect(() => {
-        getStorage(['generalTheme'], data => {
-            console.log(themes);
-            console.log(data);
-            setDefaultValue(data);
+        getStorage(['generalTheme'], ({ generalTheme }) => {
+            console.log(generalTheme);
+            if (generalTheme) {
+                setDefaultValue(generalTheme);
+            }
         });
     }, []);
-    
-    console.log('state:', defaultValue);
 
     return (
         <AccordionItem title="General settings" open={false}>
@@ -30,7 +29,7 @@ function General () {
                 defaultValue={defaultValue}
                 size="sm"
                 className={`${prefix}--options__select`}>
-                {themeList.map(theme =>
+                {themeList.map(theme => 
                     <SelectItem
                         value={theme}
                         text={theme}

@@ -13,6 +13,7 @@
     "@carbon/grid": "^10.9.0",
     "@carbon/ibmdotcom-react": "^1.4.1-rc.0",
     "@carbon/ibmdotcom-utilities": "^1.4.0-rc.0",
+    "@carbon/icons-react": "^10.9.1",
     "@carbon/layout": "^10.8.0",
     "@carbon/motion": "^10.6.0",
     "@carbon/themes": "^10.10.0",
@@ -21,7 +22,6 @@
     "carbon-components-react": "^7.10.0"
   },
   "devDependencies": {
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
@@ -43,7 +43,7 @@
     "react-dom": "^16.10.1",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "terser-webpack-plugin": "^2.3.5",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1",

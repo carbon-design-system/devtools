@@ -32,12 +32,6 @@ $grid-mini-unit-border-opacity: $grid-opacity;
         transition: opacity $transition-fade;
     }
 
-    // // show mini-unit grid
-    // :not(.#{$prefix}--grid--hide) &,
-    // &:not() {
-    //     opacity: 1;
-    // }
-
     // hide mini-unit grid
     &--hide,
     .#{$prefix}--grid--hide &,
@@ -48,7 +42,10 @@ $grid-mini-unit-border-opacity: $grid-opacity;
 
     // mini unit fixed when scrolling
     &--fixed {
-        background-attachment: fixed;
+        &::before,
+        &::after {
+            background-attachment: fixed;
+        }
     }
 
     // mini unit cell definition
