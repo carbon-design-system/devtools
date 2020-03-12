@@ -1,40 +1,49 @@
 import { settings } from 'carbon-components';
-import { storageTrueFalse } from '../../../../utilities';
+import { getStorage, storageChanged } from '../../../../utilities';
 
 const { prefix } = settings;
 
-function manageMiniUnitGrid (result) {
+function manageMiniUnitGrid () {    
+    getStorage('toggleMiniUnitGridOptions', ({ toggleMiniUnitGridOptions }) => manageMiniUnitGridOptions(toggleMiniUnitGridOptions)); // set based on defaults
+    storageChanged('toggleMiniUnitGridOptions', manageMiniUnitGridOptions); // update ui if options change
+}
+
+function manageMiniUnitGridOptions ({
+        miniUnitCells,
+        miniUnitFix,
+        miniUnitVerticalBorders,
+        miniUnitHorizontalBorders
+    }) {
+
     const miniUnitGrid = document.querySelector(`.${prefix}--grid-mini-unit`);
 
-    // MINI UNIT GRID
-    // ---
-    // ** show or hide mini unit grid
-    storageTrueFalse(result.toggleMiniUnitGridState, () => {
-        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--hide`);
-    }, () => {
-        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--hide`);
-    });
-
     // ** show or hide mini unit cells
-    storageTrueFalse(result.toggleMiniUnitCellsState, () => {
+    if (miniUnitCells) {
         miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--cell`);
-    }, () => {
+    } else {
         miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--cell`);
-    });
-
-    // show or hide mini unit borders
-    storageTrueFalse(result.toggleMiniUnitBordersState, () => {
-        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--border`);
-    }, () => {
-        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--border`);
-    });
+    }
 
     // Toggle between fixing or scrolling mini unit grid
-    storageTrueFalse(result.toggleMiniUnitFixedState, () => {
+    if (miniUnitFix) {
         miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--fixed`);
-    }, () => {
+    } else {
         miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--fixed`);
-    });
+    }
+
+    // show or hide mini unit vertical borders
+    if (miniUnitVerticalBorders) {
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--vertical`);
+    } else {
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--vertical`);
+    }
+
+    // show or hide mini unit horizontal borders
+    if (miniUnitHorizontalBorders) {
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--horizontal`);
+    } else {
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--horizontal`);
+    }
 }
 
 export { manageMiniUnitGrid };

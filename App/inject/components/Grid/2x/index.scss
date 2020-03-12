@@ -111,43 +111,6 @@ $grid-outer-border-opacity: $grid-border-opacity;
             }
         }
 
-        // breakpoint label theme
-        @mixin breakpoint-label--theme {
-            color: $text-01;
-            background: $ui-01;
-            border: 1px solid $ui-03;
-        }
-
-        &--white::after {
-            @include carbon--theme($carbon--theme--white) {
-                 @include breakpoint-label--theme;
-            }
-        }
-
-        &--g10::after {
-            @include carbon--theme($carbon--theme--g10) {
-                 @include breakpoint-label--theme;
-            }
-        }
-
-        &--g90::after {
-            @include carbon--theme($carbon--theme--g90) {
-                 @include breakpoint-label--theme;
-            }
-        }
-
-        &--g100::after {
-            @include carbon--theme($carbon--theme--g100) {
-                 @include breakpoint-label--theme;
-            }
-        }
-
-        &--v9::after {
-            @include carbon--theme($carbon--theme--v9) {
-                 @include breakpoint-label--theme;
-            }
-        }
-
         // breakpoint label
         &::after {
             @include carbon--type-style('code-01');
@@ -169,26 +132,40 @@ $grid-outer-border-opacity: $grid-border-opacity;
             .#{$prefix}--grid--hide & {
                 bottom: -33px;
             }
-            
-            // can we loop through breakpoints?
-            @include carbon--breakpoint('sm') {
-                content: 'Breakpoint: Small';
+
+            @each $breakpoint in map-keys($carbon--grid-breakpoints) {
+                @include carbon--breakpoint($breakpoint) {
+                    content: 'breakpoint: #{$breakpoint}';
+                }
             }
-            
-            @include carbon--breakpoint('md') {
-                content: 'Breakpoint: Medium';
-            }
-            
-            @include carbon--breakpoint('lg') {
-                content: 'Breakpoint: Large';
-            }
-            
-            @include carbon--breakpoint('xlg') {
-                content: 'Breakpoint: X-Large';
-            }
-            
-            @include carbon--breakpoint('max') {
-                content: 'Breakpoint: Max';
+        }
+
+        // breakpoint label theme
+        @mixin breakpoint-label--theme {
+            $border-style: 1px solid $ui-03;
+            color: $text-01;
+            background: $ui-01;
+            border-top: $border-style;
+            border-left: $border-style;
+        }
+        
+        &::after {
+            @include breakpoint-label--theme;
+        }
+        
+        $themes: (
+            'white': $carbon--theme--white,
+            'g10': $carbon--theme--g10,
+            'g90': $carbon--theme--g90,
+            'g100': $carbon--theme--g100,
+            'v9': $carbon--theme--v9
+        );
+
+        @each $theme in map-keys($themes) {
+            &--#{$theme}::after {
+                @include carbon--theme(map-get($themes, $theme)) {
+                     @include breakpoint-label--theme;
+                }
             }
         }
     }

@@ -28,15 +28,9 @@ $grid-mini-unit-border-opacity: $grid-opacity;
         background-attachment: scroll;
         background-size: carbon--mini-units(1) carbon--mini-units(1);
         
-        opacity: 0;
+        opacity: 1;
         transition: opacity $transition-fade;
     }
-
-    // // show mini-unit grid
-    // :not(.#{$prefix}--grid--hide) &,
-    // &:not() {
-    //     opacity: 1;
-    // }
 
     // hide mini-unit grid
     &--hide,
@@ -48,26 +42,39 @@ $grid-mini-unit-border-opacity: $grid-opacity;
 
     // mini unit fixed when scrolling
     &--fixed {
-        background-attachment: fixed;
+        &::before,
+        &::after {
+            background-attachment: fixed;
+        }
     }
 
     // mini unit cell definition
-    &::before {
+    &--cell::before {
+        // opacity: 1;
         background-image: url($miniUnitSVG);
     }
     
-    &--cell::before {
-        opacity: 1;
-    }
-
-    // mini unit border definition
-    &::after {
+    // show horizontal border
+    &--horizontal::after {
+        // opacity: 1;
         background-image:
-            linear-gradient(to right, $miniUnitGradient),
-            linear-gradient(to bottom, $miniUnitGradient);
+                linear-gradient(to bottom, $miniUnitGradient);
     }
     
-    &--border::after {
-        opacity: 1;
+    // show vertical border
+    &--vertical::after {
+        // opacity: 1;
+        background-image:
+                linear-gradient(to right, $miniUnitGradient);
+    }
+    
+    // show both vertical and horizontal border
+    &--horizontal.#{$prefix}--grid-mini-unit--vertical {
+        &::after {
+            // opacity: 1;
+            background-image:
+                    linear-gradient(to right, $miniUnitGradient),
+                    linear-gradient(to bottom, $miniUnitGradient);
+        }
     }
 }

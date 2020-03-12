@@ -12,8 +12,6 @@ $feature-flags: (
 @import '@carbon/grid/scss/grid';
 @import '@carbon/themes/scss/themes';
 
-$carbon--theme: $carbon--theme--g90;
-
 :root {
     @include carbon--theme(
         $theme: $carbon--theme--g90,
@@ -24,44 +22,44 @@ $carbon--theme: $carbon--theme--g90;
 @include carbon--font-face-sans;
 @include carbon--theme;
 
+@import 'carbon-components/scss/components/overflow-menu/overflow-menu';
+@import '~carbon-components/scss/components/toggle/toggle';
+@import '~carbon-components/scss/components/accordion/accordion';
+@import '~carbon-components/scss/components/skeleton/skeleton';
+@import '~carbon-components/scss/components/link/link';
+@import '~carbon-components/scss/components/checkbox/checkbox';
+@import '~carbon-components/scss/components/form/form';
+@import '~carbon-components/scss/components/tooltip/tooltip';
+
 @import 'components/MoreOptions';
 @import 'components/Loading';
 @import 'components/Empty';
 @import 'components/Main';
-@import 'components/Dependencies';
+@import 'components/Inventory';
 @import 'components/Grid';
 @import 'components/Specs';
 
-// can we use css variables?
-@mixin popup--theme {
-    @include more-options;
-    @include loading;
-    @include empty;
-    @include main;
-    @include dependencies;
-    @include grid;
-    @include specs;
-
-    background: $ui-background;
-    color: $text-01;
-
-    .#{$prefix}--popup__header {
-        background-color: $ui-01;
-    }
-}
+@include more-options;
+@include loading;
+@include empty;
+@include main;
+@include inventory;
+@include grid;
+@include specs;
 
 body {
-    @include popup--theme;
+    background: $ui-background;
+    color: $text-01;
+    // min-height: carbon--mini-units(19);
 }
 
 .#{$prefix}--popup {
     width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
-    margin-bottom: $carbon--spacing-05;
 
     &__header {
         padding-top: $carbon--spacing-03 - carbon--rem(1px);
         padding-bottom: $carbon--spacing-03 - carbon--rem(1px);
-        margin-bottom: $carbon--spacing-05;
+        background-color: $ui-01;
     }
 
     &__heading {
@@ -69,9 +67,6 @@ body {
     }
 
     &--white {
-        // @include carbon--theme($carbon--theme--white) {
-        //     @include popup--theme;
-        // }
         @include carbon--theme(
             $theme: $carbon--theme--white,
             $emit-custom-properties: true
@@ -79,26 +74,13 @@ body {
     }
 
     &--g10 {
-        // @include carbon--theme($carbon--theme--g10) {
-        //     @include popup--theme;
-        // }
         @include carbon--theme(
             $theme: $carbon--theme--g10,
             $emit-custom-properties: true
         );
     }
 
-    // &--g90 {
-        // @include carbon--theme($carbon--theme--g90) {
-        //     @include popup--theme;
-        // }
-        
-    // }
-
     &--g100 {
-        // @include carbon--theme($carbon--theme--g100) {
-        //     @include popup--theme;
-        // }
         @include carbon--theme(
             $theme: $carbon--theme--g100,
             $emit-custom-properties: true
@@ -106,9 +88,6 @@ body {
     }
 
     &--v9 {
-        // @include carbon--theme($carbon--theme--v9) {
-        //     @include popup--theme;
-        // }
         @include carbon--theme(
             $theme: $carbon--theme--v9,
             $emit-custom-properties: true

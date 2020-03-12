@@ -1,77 +1,66 @@
 import { settings } from 'carbon-components';
-import { storageTrueFalse, getStorage, storageChanged } from '../../../../utilities';
-import { themes } from '@carbon/themes';
+import { getStorage, storageChanged } from '../../../../utilities';
 
 const { prefix } = settings;
-const themeList = Object.keys(themes);
 
-function manage2xGrid (result) {
+function manage2xGrid () {
+    getStorage('toggle2xGridOptions', ({ toggle2xGridOptions }) => manage2xGridOptions(toggle2xGridOptions)); // set based on defaults
+    storageChanged('toggle2xGridOptions', manage2xGridOptions); // update ui if options change
+}
+
+function manage2xGridOptions ({
+        toggle2xColumns,
+        toggle2xGutters,
+        toggle2xBorders,
+        toggle2xFullWidth,
+        toggle2xBreakpoints,
+        toggle2xColumnLabel
+    }) {
+
     const html = document.querySelector('html');
     const grid2x = html.querySelector(`.${prefix}--grid-2x`);
 
-    // 2X GRID
-    // ---
-    // hide or show 2x grid
-    storageTrueFalse(result.toggle2xGridState, () => {
-        html.classList.remove(`${prefix}--grid--hide-label-column`);
-        grid2x.classList.remove(`${prefix}--grid-2x--hide`);
-    }, () => {
-        html.classList.add(`${prefix}--grid--hide-label-column`);
-        grid2x.classList.add(`${prefix}--grid-2x--hide`);
-    });
-
     // hide or show columns
-    storageTrueFalse(result.toggle2xColumnsState, () => {
+    if (toggle2xColumns) {
         grid2x.classList.add(`${prefix}--grid-2x--inner`);
-    }, () => {
+    } else {
         grid2x.classList.remove(`${prefix}--grid-2x--inner`);
-    });
+    }
 
     // hide or show gutters
-    storageTrueFalse(result.toggle2xGuttersState, () => {
+    if (toggle2xGutters) {
         grid2x.classList.add(`${prefix}--grid-2x--outer`);
-    }, () => {
+    } else {
         grid2x.classList.remove(`${prefix}--grid-2x--outer`);
-    });
+    }
 
     // hide or show borders/dividers
-    storageTrueFalse(result.toggle2xBordersState, () => {
+    if (toggle2xBorders) {
         grid2x.classList.add(`${prefix}--grid-2x--inner-border`, `${prefix}--grid-2x--outer-border`);
-    }, () => {
+    } else {
         grid2x.classList.remove(`${prefix}--grid-2x--inner-border`, `${prefix}--grid-2x--outer-border`);
-    });
+    }
 
     // toggle between full width and max-width modifier
-    storageTrueFalse(result.toggle2xFullWidthState, () => {
+    if (toggle2xFullWidth) {
         grid2x.querySelector(`.${prefix}--grid`).classList.add(`${prefix}--grid--full-width`);
-    }, () => {
+    } else {
         grid2x.querySelector(`.${prefix}--grid`).classList.remove(`${prefix}--grid--full-width`);
-    });
-
-    // toggle on or off column identifier by hover
-    storageTrueFalse(result.toggle2xHoverState, () => {
-        html.classList.add(`${prefix}--grid--hover`);
-    }, () => {
-        html.classList.remove(`${prefix}--grid--hover`);
-    });
+    }
 
     // hide or show breakpoint label
-    storageTrueFalse(result.toggle2xBreakpointLabelState, () => {
+    if (toggle2xBreakpoints) {
         html.classList.add(`${prefix}--grid-2x--breakpoint-label`);
-    }, () => {
+    } else {
         html.classList.remove(`${prefix}--grid-2x--breakpoint-label`);
-    });
+    }
 
-    // set theme
-    getStorage(['generalTheme'], setThemeClass);
-
-    storageChanged(() => {
-        getStorage(['generalTheme'], setThemeClass);
-    });
-
-    function setThemeClass (data) {
-        grid2x.classList.remove(...themeList.map(theme => `${prefix}--grid-2x--${theme}`)); // remove any first
-        grid2x.classList.add(`${prefix}--grid-2x--${data}`);
+    // this shouldn't be here?
+    // toggle on or off column identifier by hover
+    if (toggle2xColumnLabel) {
+        html.classList.add(`${prefix}--grid--hover`);
+    } else {
+        html.classList.remove(`${prefix}--grid--hover`);
     }
 }
 
