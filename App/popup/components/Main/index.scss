@@ -1,24 +1,116 @@
-@import '~carbon-components/scss/components/toggle/toggle';
-
 @mixin main {
-    @include toggle;
-
     .#{$prefix}--popup-main {
-        // padding-top: $carbon--grid-gutter / 2;
-        // padding-bottom: $carbon--grid-gutter / 2;
+        margin-left: -($carbon--grid-gutter / 2);
+        margin-right: -($carbon--grid-gutter / 2);
+        width: initial;
         
-        &__section {
-            margin-bottom: $carbon--spacing-05;
+        .#{$prefix}--accordion {
+            &__title {
+                @include carbon--type-style('body-long-02');
+
+                .#{$prefix}--row {
+                    position: absolute;
+                    width: 100%;
+                }
+            }
             
-            &-title {
-                @include carbon--type-style('productive-heading-03');
-                margin-bottom: $carbon--spacing-05;
-                color: $text-01;
+            &__heading {
+                height: carbon--mini-units(6);
+            }
+            
+            &__arrow {
+                $size: carbon--rem(20px);
+                width: $size;
+                height: $size;
+                flex: 0 0 $size;
             }
         }
         
-        .#{$prefix}--form-item {
+        .#{$prefix}--label {
             margin-bottom: $carbon--spacing-05;
+        }
+        
+        &__info {
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            top: 4px;
+            margin-left: carbon--mini-units(1);
+            background: transparent;
+            border: 0;
+            color: $text-01;
+            outline: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all $duration--fast-02 carbon--motion(standard, productive);
+            cursor: pointer;
+            
+            &:focus {
+                box-shadow: 0 0 0 1px $focus;
+            }
+            
+            svg {
+                fill: currentColor;
+                display: block;
+            }
+
+            .#{$prefix}--checkbox-wrapper:hover & {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        &__section {
+            $border-width: carbon--rem(2px);
+
+            padding-top: $carbon--spacing-03 + $border-width;
+            padding-left: $carbon--grid-gutter / 2;
+            padding-right: $carbon--grid-gutter / 2;
+            margin-top: $carbon--spacing-06;
+            margin-bottom: $carbon--spacing-09;
+            position: relative;
+            
+            &:last-child {
+                margin-bottom: $carbon--spacing-06;
+            }
+            
+            &::before {
+                content: '';
+                height: $border-width;
+                position: absolute;
+                top: 0;
+                left: $carbon--grid-gutter / 2;
+                width: 100%;
+                max-width: carbon--mini-units(4);
+                background-color: $ui-03;
+            }
+            
+            &-title {
+                @include carbon--type-style('productive-heading-02');
+                // margin-bottom: $carbon--spacing-03;
+                color: $text-01;
+            }
+            
+            &-toggle {
+                margin-top: 3px;
+
+                .#{$prefix}--toggle {
+                    &__switch {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        &__toggle {
+            margin-top: 4px;
+            float: left;
+
+            .#{$prefix}--toggle {
+                &__switch {
+                    margin: 0;
+                }
+            }
         }
     }
 }

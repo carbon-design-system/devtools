@@ -21,8 +21,8 @@ function Popup () {
             setCarbon(msg.runningCarbon);
         });
         
-        getStorage(['generalTheme'], data => {
-            document.body.setAttribute('class', `${prefix}--popup--${data}`);
+        getStorage(['generalTheme'], ({ generalTheme }) => {
+            document.body.setAttribute('class', `${prefix}--popup--${generalTheme}`);
         });
     }, []);
     

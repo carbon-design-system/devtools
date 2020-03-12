@@ -1,9 +1,7 @@
-@import '~carbon-components/scss/components/link/link';
-
 // @mixin empty--theme { }
 
 @mixin empty {
-    @include link;
+    // @include link;
 
     .#{$prefix}--popup-empty {
         margin-top: $carbon--spacing-06;

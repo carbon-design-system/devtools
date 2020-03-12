@@ -42,9 +42,4 @@ body {
     &__title {
         @include carbon--type-style('productive-heading-04');
     }
-    
-    &__select .#{$prefix}--select-input__wrapper {
-        margin-left: -16px;
-        margin-right: -16px;
-    }
 }
