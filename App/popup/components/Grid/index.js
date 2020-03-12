@@ -6,20 +6,35 @@ import { Grid2xOptions } from './Grid2xOptions';
 import { GridMiniUnitOptions } from './GridMiniUnitOptions';
 
 const { prefix } = settings;
+
+const gridVersionTitles = {
+    'carbon-v10': '2x grid',
+    'carbon-v9': 'v9 grid'
+};
+
 const defaults = {
     toggle2xGrid: true
 };
 
-let onLoad = false;
 
 function Grid ({ disabled }) {
     const [toggleGrids, setToggleGrids] = useState(defaults);
+    const [gridVersionTitle, setGridVersionTitle] = useState(gridVersionTitles['carbon-v10']);
+    const [onLoad, setOnLoad] = useState(false);
 
     useEffect(() => { // get storage and set defaults
         const dataKey = 'toggleGrids';
         getStorage([dataKey], dataReceived => {
             setToggleGrids(dataReceived[dataKey]);
-            onLoad = true;
+            setOnLoad(true);
+        });
+        
+        // gets and sets the grid version title
+        getStorage(['gridVersion'], ({ gridVersion }) => {
+            console.log(gridVersion)
+            if (gridVersion) {
+                setGridVersionTitle(gridVersionTitles[gridVersion]);
+            }
         });
     }, []);
 
@@ -34,7 +49,7 @@ function Grid ({ disabled }) {
             <section className={`${prefix}--popup-main__section`}>
                 <div className={`${prefix}--row`}>
                     <div className={`${prefix}--col`}>
-                        <h2 className={`${prefix}--popup-main__section-title`}>2x</h2>
+                        <h2 className={`${prefix}--popup-main__section-title`}>{gridVersionTitle}</h2>
                     </div>
                     <div className={`${prefix}--col`}>
                         <ToggleSmall
@@ -55,7 +70,7 @@ function Grid ({ disabled }) {
             <section className={`${prefix}--popup-main__section`}>
                 <div className={`${prefix}--row`}>
                     <div className={`${prefix}--col`}>
-                        <h2 className={`${prefix}--popup-main__section-title`}>Mini unit</h2>
+                        <h2 className={`${prefix}--popup-main__section-title`}>Mini units</h2>
                     </div>
                     <div className={`${prefix}--col`}>
                         <ToggleSmall

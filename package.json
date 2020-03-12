@@ -19,7 +19,8 @@
     "@carbon/themes": "^10.10.0",
     "@carbon/type": "^10.9.0",
     "carbon-components": "^10.10.0",
-    "carbon-components-react": "^7.10.0"
+    "carbon-components-react": "^7.10.0",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

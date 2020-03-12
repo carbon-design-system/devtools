@@ -11,18 +11,20 @@ const defaults = {
     toggle2xBreakpoints: true
 };
 
-let onLoad = false;
-
 function Grid2xOptions ({ disabled }) {
 
     const [toggle2xGridOptions, setToggle2xGridOptions] = useState(defaults);
+    const [onLoad, setOnLoad] = useState(false);
 
     useEffect(() => { // get storage and set defaults
         const dataKey = 'toggle2xGridOptions';
         getStorage([dataKey], dataReceived => {
             // should this be passed in via props?
-            setToggle2xGridOptions(dataReceived[dataKey]);
-            onLoad = true;
+            if (dataReceived && dataReceived[dataKey]) {
+                setToggle2xGridOptions(dataReceived[dataKey]);
+            }
+
+            setOnLoad(true);
         });
     }, []);
 

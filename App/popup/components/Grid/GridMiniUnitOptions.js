@@ -9,17 +9,16 @@ const defaults = {
     miniUnitBorders: true
 };
 
-let onLoad = false;
-
 function GridMiniUnitOptions ({ disabled }) {
 
     const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] = useState(defaults);
+    const [onLoad, setOnLoad] = useState(false);
 
     useEffect(() => { // get storage and set defaults
         const dataKey = 'toggleMiniUnitGridOptions';
         getStorage([dataKey], dataReceived => {
             setToggleMiniUnitGridOptions(dataReceived[dataKey]);
-            onLoad = true;
+            setOnLoad(true);
         });
     }, []);
 

@@ -1,20 +1,48 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { settings } from 'carbon-components';
 import { Select, SelectItem, AccordionItem } from 'carbon-components-react';
+import { getStorage, setStorage } from '../../../utilities';
+import { gridVersions } from '../../../globals';
 
 const { prefix } = settings;
+const gridVersionList = Object.keys(gridVersions);
 
 function Grid () {
+    const [gridVersionState, setGridVersionState] = useState('carbon-v10');
+
+    useEffect(() => {
+        getStorage(['gridVersion'], ({ gridVersion }) => {
+            if (gridVersion) {
+                setGridVersionState(gridVersion);
+            }
+        });
+    }, []);
+
     return (
         <AccordionItem title="Grid settings" open={false}>
-            <Select labelText="Choose a grid" defaultValue="Carbon 16 Columns" size="sm" className={`${prefix}--options__select`}>
-                <SelectItem value="carbon-16" text="Carbon 16 Columns" />
-                <SelectItem value="carbon-12" text="Carbon 12 Columns (legacy)" />
-                {/* <SelectItem value="g90" text="Northstar Fluid (legacy)" />
-                <SelectItem value="g100" text="Northstar Adaptive (legacy)" /> */}
+            <Select
+                size="sm"
+                labelText="Choose a grid"
+                className={`${prefix}--options__select`}
+                onChange={setGridVersion}
+            >
+                {gridVersionList.map(gridVersion => {
+                    return (
+                        <SelectItem
+                            value={gridVersion}
+                            text={gridVersions[gridVersion]}
+                            selected={gridVersionState === gridVersion ? true : false}
+                        />
+                    );
+                })}
             </Select>
         </AccordionItem>
     );
+}
+
+function setGridVersion (e) {
+    const value = e.target.value;
+    setStorage({ gridVersion: value });
 }
 
 export { Grid };

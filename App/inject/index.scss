@@ -23,6 +23,12 @@ $transition-fade: $duration--fast-02 carbon--motion(standard, productive);
 
 @import 'components/Grid';
 
+.#{$prefix}--grid--carbon-v9 {
+    @import "@carbon/grid/scss/12";
+}
+
+
+
 
 
 

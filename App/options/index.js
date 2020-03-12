@@ -16,7 +16,7 @@ function Options () {
                     <h1 className={`${prefix}--options__title`}>Settings</h1>
                     <Accordion>
                         <General />
-                        {/*<Grid />*/}
+                        <Grid />
                     </Accordion>
                 </div>
             </div>

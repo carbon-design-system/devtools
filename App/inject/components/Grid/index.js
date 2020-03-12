@@ -1,5 +1,6 @@
 import { settings } from 'carbon-components';
 import { storageChanged, getStorage } from '../../../utilities';
+import { gridVersions } from '../../../globals';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';
 import { manageColumnLabel, labelInjector } from './column-label';
@@ -7,9 +8,11 @@ import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
 const html = document.querySelector('html');
+const gridVersionsList = Object.keys(gridVersions);
 const themeList = Object.keys(themes);
 
 let lastTheme = '';
+let lastGridVersion = '';
 
 function initGrid () {
     const body = html.querySelector('body');
@@ -63,6 +66,9 @@ function manageGlobals () {
 
     getStorage('generalTheme', ({ generalTheme }) => manageGeneralTheme(generalTheme));
     storageChanged('generalTheme', manageGeneralTheme);
+
+    getStorage('gridVersion', ({ gridVersion }) => manageGridVersion(gridVersion));
+    storageChanged('gridVersion', manageGridVersion);
     
     function manageGlobalToggle ({ Grid }) {
         // this may not belong here?
@@ -96,6 +102,14 @@ function manageGlobals () {
             grid2x.classList.remove(...themeList.map(theme => `${prefix}--grid-2x--${theme}`)); // remove any first
             grid2x.classList.add(`${prefix}--grid-2x--${generalTheme}`); // set updated theme
             lastTheme = generalTheme;
+        }
+    }
+    
+    function manageGridVersion (gridVersion = 'carbon-v10') {
+        if (gridVersion !== lastGridVersion) {
+            html.classList.remove(...gridVersionsList.map(version => `${prefix}--grid--${version}`)); // remove any first
+            html.classList.add(`${prefix}--grid--${gridVersion}`); // set updated theme
+            lastTheme = gridVersion;
         }
     }
 }

@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { carbonPrefix } from '../../../utilities';
+import { carbonPrefix } from '../../../globals';
 
 const { prefix } = settings;
 
