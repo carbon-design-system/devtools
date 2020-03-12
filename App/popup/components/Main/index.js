@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
-import { merge } from 'lodash';
 import { Accordion, AccordionItem, ToggleSmall, Toggle } from 'carbon-components-react';
-import { Inventory, Grid, Specs } from '../';
+import { Inventory, Specs, Grid } from '../';
 import { setStorage, getStorage } from '../../../utilities';
 
 const { prefix } = settings;
@@ -14,6 +13,14 @@ const defaults = {
 function Main () {
     const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
     const [onLoad, setOnLoad] = useState(false);
+
+    /* temporary, figure this out this shouldn't be defined here? for some reason imports come back undefined right now */
+    const groups = {
+        // 'Inventory': Inventory,
+        // 'Specs': Specs,
+        'Grid': Grid
+    };
+    const groupsList = Object.keys(groups);
 
     useEffect(() => { // get storage and set defaults
         const dataKey = 'globalToggleStates';
@@ -41,11 +48,18 @@ function Main () {
         });
     });
 
+    useEffect(() => { // TEMPORARY prevent accordion from opening and closing
+        const accordions = document.querySelectorAll(`.${prefix}--accordion__heading`);
+    
+        accordions.forEach(accordion => {
+            accordion.disabled = true;
+            accordion.style.cursor = 'default';
+        });
+    });
+
     return (
         <Accordion className={`${prefix}--popup-main`}>
-            {renderAccordionItem('Inventory', Inventory)}
-            {renderAccordionItem('Specs', Specs)}
-            {renderAccordionItem('Grid', Grid)}
+            {groupsList.map(groupName => renderAccordionItem(groupName, groups[groupName]))}
         </Accordion>
     );
 
@@ -54,7 +68,8 @@ function Main () {
         return !onLoad ? null : (
             <AccordionItem
                 className={`${prefix}--popup-main__item`}
-                open={globalToggleStates[id]}
+                // open={globalToggleStates[id]}
+                open={true}
                 title={(
                     <div className={`${prefix}--row`}>
                         <div className={`${prefix}--col`}>{title}</div>

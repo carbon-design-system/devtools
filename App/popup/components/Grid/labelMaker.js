@@ -8,14 +8,14 @@ function labelMaker (labelText) {
     return (
         <>
             {labelText}
-            <button 
+            {/*<button 
                 className={`${prefix}--popup-main__info`}
                 onClick={e => {
                     e.stopPropagation();
                 }}
             >
                 <Information16 />
-            </button>
+            </button>*/}
         </>
     );
 }

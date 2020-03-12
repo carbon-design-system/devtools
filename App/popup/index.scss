@@ -12,8 +12,6 @@ $feature-flags: (
 @import '@carbon/grid/scss/grid';
 @import '@carbon/themes/scss/themes';
 
-$carbon--theme: $carbon--theme--g90;
-
 :root {
     @include carbon--theme(
         $theme: $carbon--theme--g90,
@@ -52,7 +50,7 @@ $carbon--theme: $carbon--theme--g90;
 body {
     background: $ui-background;
     color: $text-01;
-    min-height: carbon--mini-units(19);
+    // min-height: carbon--mini-units(19);
 }
 
 .#{$prefix}--popup {
