@@ -7,7 +7,7 @@ import { setStorage, getStorage } from '../../../utilities';
 
 const { prefix } = settings;
 const defaults = {
-    Grids: true
+    Grid: true
 };
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
@@ -45,13 +45,12 @@ function Main () {
         <Accordion className={`${prefix}--popup-main`}>
             {renderAccordionItem('Inventory', Inventory)}
             {renderAccordionItem('Specs', Specs)}
-            {renderAccordionItem('Grids', Grid)}
+            {renderAccordionItem('Grid', Grid)}
         </Accordion>
     );
 
     function renderAccordionItem (title, Content) {
         const id = title.replace(' ', '');
-        console.log(globalToggleStates[id]);
         return !onLoad ? null : (
             <AccordionItem
                 className={`${prefix}--popup-main__item`}

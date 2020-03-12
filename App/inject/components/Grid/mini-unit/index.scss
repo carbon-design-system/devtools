@@ -28,7 +28,7 @@ $grid-mini-unit-border-opacity: $grid-opacity;
         background-attachment: scroll;
         background-size: carbon--mini-units(1) carbon--mini-units(1);
         
-        opacity: 0;
+        opacity: 1;
         transition: opacity $transition-fade;
     }
 
@@ -49,22 +49,32 @@ $grid-mini-unit-border-opacity: $grid-opacity;
     }
 
     // mini unit cell definition
-    &::before {
+    &--cell::before {
+        // opacity: 1;
         background-image: url($miniUnitSVG);
     }
     
-    &--cell::before {
-        opacity: 1;
-    }
-
-    // mini unit border definition
-    &::after {
+    // show horizontal border
+    &--horizontal::after {
+        // opacity: 1;
         background-image:
-            linear-gradient(to right, $miniUnitGradient),
-            linear-gradient(to bottom, $miniUnitGradient);
+                linear-gradient(to bottom, $miniUnitGradient);
     }
     
-    &--border::after {
-        opacity: 1;
+    // show vertical border
+    &--vertical::after {
+        // opacity: 1;
+        background-image:
+                linear-gradient(to right, $miniUnitGradient);
+    }
+    
+    // show both vertical and horizontal border
+    &--horizontal.#{$prefix}--grid-mini-unit--vertical {
+        &::after {
+            // opacity: 1;
+            background-image:
+                    linear-gradient(to right, $miniUnitGradient),
+                    linear-gradient(to bottom, $miniUnitGradient);
+        }
     }
 }

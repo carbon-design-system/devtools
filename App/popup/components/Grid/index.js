@@ -25,13 +25,14 @@ function Grid ({ disabled }) {
     useEffect(() => { // get storage and set defaults
         const dataKey = 'toggleGrids';
         getStorage([dataKey], dataReceived => {
-            setToggleGrids(dataReceived[dataKey]);
+            if (dataReceived && dataReceived[dataKey]) {
+                setToggleGrids(dataReceived[dataKey]);
+            }
             setOnLoad(true);
         });
         
         // gets and sets the grid version title
         getStorage(['gridVersion'], ({ gridVersion }) => {
-            console.log(gridVersion)
             if (gridVersion) {
                 setGridVersionTitle(gridVersionTitles[gridVersion]);
             }

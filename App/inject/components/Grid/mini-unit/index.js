@@ -10,8 +10,9 @@ function manageMiniUnitGrid () {
 
 function manageMiniUnitGridOptions ({
         miniUnitCells,
-        miniUnitBorders,
-        miniUnitFix
+        miniUnitFix,
+        miniUnitVerticalBorders,
+        miniUnitHorizontalBorders
     }) {
 
     const miniUnitGrid = document.querySelector(`.${prefix}--grid-mini-unit`);
@@ -23,18 +24,25 @@ function manageMiniUnitGridOptions ({
         miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--cell`);
     }
 
-    // show or hide mini unit borders
-    if (miniUnitBorders) {
-        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--border`);
-    } else {
-        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--border`);
-    }
-
     // Toggle between fixing or scrolling mini unit grid
     if (miniUnitFix) {
         miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--fixed`);
     } else {
         miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--fixed`);
+    }
+
+    // show or hide mini unit vertical borders
+    if (miniUnitVerticalBorders) {
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--vertical`);
+    } else {
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--vertical`);
+    }
+
+    // show or hide mini unit horizontal borders
+    if (miniUnitHorizontalBorders) {
+        miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--horizontal`);
+    } else {
+        miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--horizontal`);
     }
 }
 

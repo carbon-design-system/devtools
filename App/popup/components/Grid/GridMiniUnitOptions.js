@@ -6,7 +6,8 @@ import { labelMaker } from './labelMaker';
 
 const { prefix } = settings;
 const defaults = {
-    miniUnitBorders: true
+    miniUnitVerticalBorders: true,
+    miniUnitHorizontalBorders: true
 };
 
 function GridMiniUnitOptions ({ disabled }) {
@@ -17,7 +18,9 @@ function GridMiniUnitOptions ({ disabled }) {
     useEffect(() => { // get storage and set defaults
         const dataKey = 'toggleMiniUnitGridOptions';
         getStorage([dataKey], dataReceived => {
-            setToggleMiniUnitGridOptions(dataReceived[dataKey]);
+            if (dataReceived && dataReceived[dataKey]) {
+                setToggleMiniUnitGridOptions(dataReceived[dataKey]);
+            }
             setOnLoad(true);
         });
     }, []);
@@ -34,7 +37,32 @@ function GridMiniUnitOptions ({ disabled }) {
                 <div className={`${prefix}--row`}>
                     <div className={`${prefix}--col-sm-2`}>
                         <Checkbox
-                            defaultChecked
+                            disabled={disabled}
+                            labelText={labelMaker('Vertical')}
+                            id="miniUnitVerticalBorders"
+                            checked={toggleMiniUnitGridOptions['miniUnitVerticalBorders']}
+                            onChange={e => {
+                                const changes = {...toggleMiniUnitGridOptions};
+                                changes['miniUnitVerticalBorders'] = e;
+                                setToggleMiniUnitGridOptions(changes);
+                            }}
+                        />
+                    </div>
+                        <div className={`${prefix}--col-sm-2`}>
+                            <Checkbox
+                                disabled={disabled}
+                                labelText={labelMaker('Horizontal')}
+                                id="miniUnitHorizontalBorders"
+                                checked={toggleMiniUnitGridOptions['miniUnitHorizontalBorders']}
+                                onChange={e => {
+                                    const changes = {...toggleMiniUnitGridOptions};
+                                    changes['miniUnitHorizontalBorders'] = e;
+                                    setToggleMiniUnitGridOptions(changes);
+                                }}
+                            />
+                        </div>
+                    <div className={`${prefix}--col-sm-2`}>
+                        <Checkbox
                             disabled={disabled}
                             labelText={labelMaker('Cells')}
                             id="miniUnitCells"
@@ -48,21 +76,6 @@ function GridMiniUnitOptions ({ disabled }) {
                     </div>
                     <div className={`${prefix}--col-sm-2`}>
                         <Checkbox
-                            defaultChecked
-                            disabled={disabled}
-                            labelText={labelMaker('Borders')}
-                            id="miniUnitBorders"
-                            checked={toggleMiniUnitGridOptions['miniUnitBorders']}
-                            onChange={e => {
-                                const changes = {...toggleMiniUnitGridOptions};
-                                changes['miniUnitBorders'] = e;
-                                setToggleMiniUnitGridOptions(changes);
-                            }}
-                        />
-                    </div>
-                    <div className={`${prefix}--col-sm-2`}>
-                        <Checkbox
-                            defaultChecked
                             disabled={disabled}
                             labelText={labelMaker('Fix on scroll')}
                             id="miniUnitFix"
