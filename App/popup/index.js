@@ -9,14 +9,14 @@ import './index.scss';
 
 const { prefix } = settings;
 
-sendMessage({ popup: true });
-
 function Popup () {
     const [onCarbon, setCarbon] = useState('loading'); // 'loading', true, false
 
     let Content = Loading;
 
     useEffect(() => {
+        sendMessage({ popup: true }); // TODO: how can we send only per tab once?
+
         getMessage(msg => {
             setCarbon(msg.runningCarbon);
         });

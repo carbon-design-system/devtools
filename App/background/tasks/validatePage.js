@@ -1,11 +1,31 @@
-import { getMessage, insertScript } from '../../utilities';
+import { getMessage, insertScript, getStorage, onTabUpdated, storageChanged, activeTab } from '../../utilities';
 
-// prevent multiple inserts
+// TODO: prevent multiple inserts
 
+
+
+/// WHEN POP UP IS OPENED VALIDATE PAGE
 function validatePage () {
-    getMessage((request, sender, sendResponse) => {
-        if (request.popup === true) {
-            insertScript('/static/validate/index.js');
+    console.log('validating page');
+    getMessage(msg => {
+        if (msg.popup) {
+            activeTab(tab => {
+                insertValidation(tab.id);
+            });
+        }
+    });
+}
+
+function insertValidation (tabId, callback) {
+    insertScript(tabId, {
+        file: '/static/validate/index.js'
+    }, () => {
+        console.log('injected validation');
+        if (chrome.runtime.lastError) {
+            console.log(chrome.runtime.lastError.message);
+            // reset permissions?
+        } else if (typeof callback === 'function') {
+            callback(tabId);
         }
     });
 }

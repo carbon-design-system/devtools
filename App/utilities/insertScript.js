@@ -1,7 +1,5 @@
-function insertScript (filepath, callback) {
-    chrome.tabs.executeScript({
-        file: filepath
-    }, callback);
+function insertScript (tabId, details, callback) {
+    chrome.tabs.executeScript(tabId, details, callback);
 }
 
 export { insertScript };

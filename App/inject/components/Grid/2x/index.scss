@@ -10,6 +10,16 @@ $grid-outer-border-size: $grid-border-size;
 $grid-outer-border-color: $grid-border-color;
 $grid-outer-border-opacity: $grid-border-opacity;
 
+@mixin label-maker($breakpoints) {
+    &::after {
+        @each $breakpoint in map-keys($breakpoints) {
+            @include carbon--breakpoint($breakpoint) {
+                content: 'breakpoint: #{$breakpoint}';
+            }
+        }
+    }
+}
+
 // 2x grid
 .#{$prefix}--grid {
     // full-width transition effect
@@ -132,13 +142,9 @@ $grid-outer-border-opacity: $grid-border-opacity;
             .#{$prefix}--grid--hide & {
                 bottom: -33px;
             }
-
-            @each $breakpoint in map-keys($carbon--grid-breakpoints) {
-                @include carbon--breakpoint($breakpoint) {
-                    content: 'breakpoint: #{$breakpoint}';
-                }
-            }
         }
+        
+        @include label-maker($carbon--grid-breakpoints);
 
         // breakpoint label theme
         @mixin breakpoint-label--theme {

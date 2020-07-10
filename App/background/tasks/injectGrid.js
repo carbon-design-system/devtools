@@ -1,12 +1,20 @@
-import { getMessage, insertScript, insertCSS } from '../../utilities';
+import { getMessage, insertScript, insertCSS, activeTab } from '../../utilities';
 
-// prevent multiple inserts
+// TODO: prevent multiple inserts
 
 function injectGrid () {
-    getMessage((request) => {
-        if (request.runningCarbon === true) {
-            insertScript('/static/inject/index.js');
-            insertCSS('/static/inject/index.css');
+    getMessage(msg => {
+        if (msg.runningCarbon === true) {
+            activeTab(tab => {
+                insertScript(tab.id, {
+                    file: '/static/inject/index.js',
+                    runAt: 'document_start'
+                });
+                insertCSS(tab.id, {
+                    file: '/static/inject/index.css',
+                    runAt: 'document_start'
+                });
+            });
         }
     });
 }

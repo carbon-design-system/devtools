@@ -1,4 +1,11 @@
-import { validatePage, injectGrid } from './tasks';
+import {
+    validatePage,
+    injectGrid,
+    manageTabs,
+    setBadge
+} from './tasks';
 
+setBadge();
+// manageTabs();
 validatePage();
 injectGrid();
