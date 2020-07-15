@@ -76,12 +76,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Options – IBM Dotcom Devtools',
             chunks: ['options'],
-            filename: 'options/index.html'
+            filename: 'options/index.html',
+            cache: false
         }),
         new HtmlWebpackPlugin({
             title: 'Popup – IBM Dotcom Devtools',
             chunks: ['popup'],
-            filename: 'popup/index.html'
+            filename: 'popup/index.html',
+            cache: false
         })
     ],
     output: {
