@@ -10,6 +10,7 @@ sendValidation();
 function sendValidation () {
     const ddsSelector = `[data-autoid*="${dotcomPrefix}--"]`;
     const carbonSelector = `[class*="${carbonPrefix}--"]`;
+
     const msg = {
         runningCarbon: false
     };
@@ -19,6 +20,5 @@ function sendValidation () {
         msg.runningCarbon = true;
     }
 
-    console.log(msg);
     sendMessage(msg); // TODO: SET STORAGE INSTEAD?
 }
