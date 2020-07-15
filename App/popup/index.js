@@ -35,10 +35,10 @@ function Popup () {
     return (
         <article className={`${prefix}--popup ${prefix}--grid`}>
             <header className={`${prefix}--row ${prefix}--popup__header`}>
-                <div className={`${prefix}--col`}>
+                <div className={`${prefix}--col-sm-2`}>
                     <h1 className={`${prefix}--popup__heading`}>IBM.com Devtools</h1>
                 </div>
-                <div className={`${prefix}--col`}>
+                <div className={`${prefix}--col-sm-2`}>
                     <MoreOptions />
                 </div>
             </header>
