@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { carbonPrefix } from '../../../globals';
+import { carbonPrefix } from '../../../../globals';
 
 const { prefix } = settings;
 
@@ -9,6 +9,8 @@ function isHeader () {
 
     if (header) {
         html.classList.add(`${prefix}--header`);
+    } else {
+        html.classList.remove(`${prefix}--header`);
     }
 }
 

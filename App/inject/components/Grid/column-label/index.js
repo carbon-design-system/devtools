@@ -1,6 +1,7 @@
 import { settings } from 'carbon-components';
 import { storageTrueFalse } from '../../../../utilities';
 import { carbonPrefix } from '../../../../globals';
+import { isHeader } from './isHeader';
 
 const { prefix } = settings;
 
@@ -25,6 +26,7 @@ function labelInjector () {
         mutationList.forEach(mutation => {
             if (mutation.type === 'childList') {
                 injectLabels(mutation.addedNodes); // inject if anymore are added
+                isHeader();
             }
         });
     });
