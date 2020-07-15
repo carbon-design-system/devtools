@@ -9,8 +9,7 @@ $feature-flags: (
 @import '@carbon/type/scss/font-family';
 @import '@carbon/type/scss/styles';
 @import '@carbon/type/scss/font-face/sans';
-@import '@carbon/grid/scss/grid';
-@import '@carbon/themes/scss/themes';
+@import '@carbon/grid/scss/mixins';
 
 :root {
     @include carbon--theme(
@@ -20,7 +19,6 @@ $feature-flags: (
 }
 
 @include carbon--font-face-sans;
-@include carbon--theme;
 
 @import 'carbon-components/scss/components/overflow-menu/overflow-menu';
 @import '~carbon-components/scss/components/toggle/toggle';
@@ -72,25 +70,42 @@ body {
             $emit-custom-properties: true
         );
     }
-
+    
     &--g10 {
         @include carbon--theme(
             $theme: $carbon--theme--g10,
             $emit-custom-properties: true
         );
     }
-
+    
     &--g100 {
         @include carbon--theme(
             $theme: $carbon--theme--g100,
             $emit-custom-properties: true
         );
     }
-
+    
     &--v9 {
         @include carbon--theme(
             $theme: $carbon--theme--v9,
             $emit-custom-properties: true
         );
     }
+}
+
+
+.#{$prefix}--grid {
+    @include carbon--make-container;
+}
+
+.#{$prefix}--row {
+    @include carbon--make-row;
+}
+
+[class*="#{$prefix}--col"] {
+    @include carbon--make-col-ready;
+}
+    
+.#{$prefix}--col-sm-2 {
+    @include carbon--make-col(2, 4);
 }

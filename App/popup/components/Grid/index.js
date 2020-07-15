@@ -49,10 +49,10 @@ function Grid ({ disabled }) {
         <>
             <section className={`${prefix}--popup-main__section`}>
                 <div className={`${prefix}--row`}>
-                    <div className={`${prefix}--col`}>
+                    <div className={`${prefix}--col-sm-2`}>
                         <h2 className={`${prefix}--popup-main__section-title`}>{gridVersionTitle}</h2>
                     </div>
-                    <div className={`${prefix}--col`}>
+                    <div className={`${prefix}--col-sm-2`}>
                         <ToggleSmall
                             className={`${prefix}--popup-main__section-toggle`}
                             disabled={disabled}
@@ -70,10 +70,10 @@ function Grid ({ disabled }) {
             </section>
             <section className={`${prefix}--popup-main__section`}>
                 <div className={`${prefix}--row`}>
-                    <div className={`${prefix}--col`}>
+                    <div className={`${prefix}--col-sm-2`}>
                         <h2 className={`${prefix}--popup-main__section-title`}>Mini units</h2>
                     </div>
-                    <div className={`${prefix}--col`}>
+                    <div className={`${prefix}--col-sm-2`}>
                         <ToggleSmall
                             className={`${prefix}--popup-main__section-toggle`}
                             disabled={disabled}

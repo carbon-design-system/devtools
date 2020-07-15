@@ -72,8 +72,8 @@ function Main () {
                 open={true}
                 title={(
                     <div className={`${prefix}--row`}>
-                        <div className={`${prefix}--col`}>{title}</div>
-                        <div className={`${prefix}--col`}>
+                        <div className={`${prefix}--col-sm-2`}>{title}</div>
+                        <div className={`${prefix}--col-sm-2`}>
                             <ToggleSmall
                                 id={id}
                                 className={`${prefix}--popup-main__toggle`}
