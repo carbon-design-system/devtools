@@ -20,5 +20,6 @@ function sendValidation () {
         msg.runningCarbon = true;
     }
 
+    console.log(msg);
     sendMessage(msg); // TODO: SET STORAGE INSTEAD?
 }
