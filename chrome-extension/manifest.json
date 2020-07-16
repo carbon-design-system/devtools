@@ -5,7 +5,9 @@
     "description": "Basic toolset to aide in the development of Carbon pages.",
     "permissions": [
         "activeTab",
-        "storage"
+        "storage",
+        "https://*.mybluemix.net/*",
+        "https://*.carbondesignsystem.com/*"
     ],
     "background": {
         "scripts": ["/static/background/index.js"],
