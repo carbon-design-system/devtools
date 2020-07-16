@@ -30,7 +30,7 @@
             }
         }
         
-        .#{$prefix}--label {
+        legend.#{$prefix}--label {
             margin-bottom: $carbon--spacing-05;
         }
         
@@ -103,6 +103,10 @@
                         margin: 0;
                     }
                 }
+            }
+            
+            .#{$prefix}--row {
+                margin-bottom: 8px;
             }
         }
 

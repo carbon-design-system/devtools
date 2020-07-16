@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
-import { Checkbox, FormGroup, Tooltip } from 'carbon-components-react';
+import { Checkbox, FormGroup, Tooltip, NumberInput } from 'carbon-components-react';
 import { setStorage, getStorage } from '../../../utilities';
 import { Column32, Grid32, Information16 } from '@carbon/icons-react';
 import { labelMaker } from './labelMaker';
@@ -8,7 +8,9 @@ import { labelMaker } from './labelMaker';
 const { prefix } = settings;
 const defaults = {
     toggle2xColumns: true,
-    toggle2xBreakpoints: true
+    toggle2xBreakpoints: true,
+    toggle2xLeftInfluencer: 0,
+    toggle2xRightLeftInfluencer: 0
 };
 
 function Grid2xOptions ({ disabled }) {
@@ -112,6 +114,36 @@ function Grid2xOptions ({ disabled }) {
                             onChange={e => {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xColumnLabel'] = e;
+                                setToggle2xGridOptions(changes);
+                            }}
+                        />
+                    </div>
+                </div>
+                <div className={`${prefix}--row`}>
+                    <div className={`${prefix}--col-sm-2`}>
+                         <NumberInput
+                            label={labelMaker('Left influencer')}
+                            min={0}
+                            step={8}
+                            value={toggle2xGridOptions['toggle2xLeftInfluencer']}
+                            size="sm"
+                            onChange={e => {
+                                const changes = {...toggle2xGridOptions};
+                                changes['toggle2xLeftInfluencer'] = e.imaginaryTarget.value;
+                                setToggle2xGridOptions(changes);
+                            }}
+                        />
+                    </div>
+                    <div className={`${prefix}--col-sm-2`}>
+                         <NumberInput
+                            label={labelMaker('Right influencer')}
+                            min={0}
+                            step={8}
+                            value={toggle2xGridOptions['toggle2xRightInfluencer']}
+                            size="sm"
+                            onChange={e => {
+                                const changes = {...toggle2xGridOptions};
+                                changes['toggle2xRightInfluencer'] = e.imaginaryTarget.value;
                                 setToggle2xGridOptions(changes);
                             }}
                         />
