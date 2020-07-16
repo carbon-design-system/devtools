@@ -1,6 +1,6 @@
 {
   "name": "devtools",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "description": "Basic tools to aide in the development of Carbon pages.",
   "main": "index.js",
   "scripts": {
