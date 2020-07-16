@@ -1,8 +1,8 @@
 ![image](https://media.github.ibm.com/user/19/files/a6852000-5f31-11ea-9520-4186ecc02341)
 
-# IBM.com Devtools
+# Carbon Devtools
 
-The [IBM.com Devtools](http://ibm.biz/ibmdotcom-devtools) provides designers, developers, QA teams and anyone collaborating to build IBM.com pages with a simple set of tools.
+The [Carbon Devtools](http://ibm.biz/carbon-devtools) provides designers, developers, QA teams and anyone collaborating to build Carbon pages with a simple set of tools.
 
  * [General usage](#general-usage)
  * [Local development](#local-development)
@@ -13,7 +13,7 @@ The [IBM.com Devtools](http://ibm.biz/ibmdotcom-devtools) provides designers, de
 
 #### Chrome web store
 
-1. Go to [IBM.com Devtools](http://ibm.biz/ibmdotcom-devtools) on the Chrome Web Store.
+1. Go to [Carbon Devtools](http://ibm.biz/carbon-devtools) on the Chrome Web Store.
 2. Click the "Add to Chrome" button.
 ![image](https://user-images.githubusercontent.com/3793636/76051228-bdc30e00-5f2f-11ea-845f-a4dae86f4c53.png)
 
@@ -36,7 +36,7 @@ The [IBM.com Devtools](http://ibm.biz/ibmdotcom-devtools) provides designers, de
 
     <img src="https://media.github.ibm.com/user/19/files/2dd79100-5f3c-11ea-9e06-a8d1eea75c8d" width="300px" />
 
-4. Navigate to, find, and select `ibm-dotcom-devtools/chrome-extension`.
+4. Navigate to, find, and select `devtools/chrome-extension`.
 5. You should now be able to see a tile with your local build, and be able to see its extension next to the Chrome Omnibox indicating it was successfully installed.
 
     <img src="https://media.github.ibm.com/user/19/files/e0a7ef00-5f3c-11ea-8512-54f6d95e9f5c" width="300px" />

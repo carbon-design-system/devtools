@@ -6,7 +6,7 @@ We pride ourselves in open and inclusive design and development. If you're wonde
 
 ## Code of conduct
 
-We value all of our community members, and thus want to foster a positive contributing environment. Please take a look at our [code of conduct](https://github.ibm.com/james.dow/ibm-dotcom-devtools/blob/dev/.github/CODE_OF_CONDUCT.md) before engaging in our workspaces.
+We value all of our community members, and thus want to foster a positive contributing environment. Please take a look at our [code of conduct](https://github.com/carbon-design-system/devtools/blob/dev/.github/CODE_OF_CONDUCT.md) before engaging in our workspaces.
 
 ## Prerequisites
 
@@ -34,20 +34,20 @@ With that all in place, you're ready to start contributing!
 ### 1. Fork the repo:
 
 Go to
-[IBM.com Devtools repository](https://github.ibm.com/james-dow/ibm-dotcom-devtools) on GitHub and click the `Fork` button in the top-right corner. This will create a copy of the repo associated with your account.
+[Carbon Devtools repository](https://github.com/carbon-design-system/devtools) on GitHub and click the `Fork` button in the top-right corner. This will create a copy of the repo associated with your account.
 
 ### 2. Clone your fork:
 
 1.  Go to your [GitHub Repositories](https://github.com/settings/repositories).
-2.  Click on `[your_github_username]/ibm-dotcom-devtools`.
+2.  Click on `[your_github_username]/devtools`.
 3.  Click on the `Clone or Download` button and copy the URL from the
     `Clone with SSH` option. It should start with `git@github.com...`
 
 In your terminal:
 
 ```sh
-git clone git@github.com:[your_github_username]/ibm-dotcom-devtools.git
-cd ibm-dotcom-devtools
+git clone git@github.com:[your_github_username]/devtools.git
+cd devtools
 ```
 
 See [GitHub docs](https://help.github.com/articles/fork-a-repo/) for more
@@ -57,11 +57,11 @@ details.
 
 When you clone your forked repo, running `git remote -v` will show that the `origin` is pointing to your forked repo by default.
 
-Now you need to add the `james-dow/ibm-dotcom-devtools` repo as your upstream remote branch:
+Now you need to add the `carbon-design-system/devtools` repo as your upstream remote branch:
 
 ```sh
 # Add the upstream remote to your repo
-git remote add upstream git@github.com:james-dow/ibm-dotcom-devtools.git
+git remote add upstream git@github.com:carbon-design-system/devtools.git
 
 # Verify the remote was added
 git remote -v
@@ -72,8 +72,8 @@ Your terminal should output something like this:
 ```sh
 origin  [your forked repo] (fetch)
 origin  [your forked repo] (push)
-upstream    git@github.com:james.dow/ibm-dotcom-devtools.git (fetch)
-upstream    git@github.com:james.dow/ibm-dotcom-devtools.git (push)
+upstream    git@github.com:carbon-design-system/devtools.git (fetch)
+upstream    git@github.com:carbon-design-system/devtools.git (push)
 ```
 
 ### 4. Work in a branch
@@ -105,7 +105,7 @@ yarn watch
 ### 6. Make a pull request
 
 **Note:** Before you make a pull request,
-[search](https://github.ibm.com/james-dow/ibm-dotcom-devtools/issues) the issues to see if a similar issue has already been submitted. If a similar issue has been submitted, assign yourself or ask to be assigned to the issue by posting a comment. If the issue does not exist, please make a new issue. Issues give us context about what you are contributing and expedite the process to getting your contributions merged. It's a win for everybody :tada:
+[search](https://github.com/carbon-design-system/devtools/issues) the issues to see if a similar issue has already been submitted. If a similar issue has been submitted, assign yourself or ask to be assigned to the issue by posting a comment. If the issue does not exist, please make a new issue. Issues give us context about what you are contributing and expedite the process to getting your contributions merged. It's a win for everybody :tada:
 
 When you're at a good stopping place and you're ready for feedback from other contributors and maintainers, **push your commits to your fork**:
 
@@ -131,7 +131,7 @@ After your changes are commited, run:
 git push -u origin { YOUR_BRANCH_NAME }
 ```
 
-In your browser, navigate to [james-dow/ibm-dotcom-devtools](https://github.ibm.com/james-dow/ibm-dotcom-devtools) and click the button that reads `Compare & pull request`. Write a title and description then click `Create pull request`
+In your browser, navigate to [carbon-design-system/devtools](https://github.com/carbon-design-system/devtools) and click the button that reads `Compare & pull request`. Write a title and description then click `Create pull request`
 
 - [How to write the perfect pull request](https://github.com/blog/1943-how-to-write-the-perfect-pull-request)
 

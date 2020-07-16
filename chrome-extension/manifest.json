@@ -1,8 +1,8 @@
 {
-    "name": "IBM.com Devtools",
+    "name": "Carbon Devtools",
     "version": "1.5.1",
     "manifest_version": 2,
-    "description": "Basic toolset to aide in the development of IBM.com pages.",
+    "description": "Basic toolset to aide in the development of Carbon pages.",
     "permissions": [
         "activeTab",
         "storage"
