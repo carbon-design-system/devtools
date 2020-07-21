@@ -27,6 +27,8 @@ The [Carbon Devtools](http://ibm.biz/carbon-devtools) provides designers, develo
 2. `yarn build` or `yarn watch` to build extension
 
 #### Install locally to browser
+`/extension`
+
 * Google [getting started](https://developer.chrome.com/extensions/getstarted#manifest)
 * Firefox [your first web extension](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Trying_it_out)
 

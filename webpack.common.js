@@ -88,7 +88,7 @@ module.exports = {
     ],
     output: {
         filename: '[name]/index.js',
-        path: path.resolve(__dirname, 'chrome-extension/static')
+        path: path.resolve(__dirname, 'extension/static')
     },
     resolve: {
         alias: {
