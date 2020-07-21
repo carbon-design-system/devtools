@@ -2,19 +2,19 @@
 
 The [Carbon Devtools](http://ibm.biz/carbon-devtools) provides designers, developers, QA teams and anyone collaborating to build Carbon pages with a simple set of tools.
 
- * [Chrome web store](#chrome-web-store)
- * [Firefox browser add-ons](#firefox-browser-add-ons)
+ * [Install on Chrome](#chrome-web-store)
+ * [Install on Firefox](#firefox-browser-add-ons)
  * [Local development](#local-development)
  * [Contributing](#-contributing)
  * [License](#-license)
 
-## Chrome
+## Install on Chrome
 
 1. Go to [Carbon Devtools](http://ibm.biz/carbon-devtools-chrome) on the Chrome Web Store.
 2. Click the "Add to Chrome" button.
 3. Once installed you can click to open it next to the Chrome Omnibox.
 
-## Firefox
+## Install on Firefox
 
 1. Go to [Carbon Devtools](http://ibm.biz/carbon-devtools-firefox) on the Firefox browser add-ons.
 2. Click the "+ Add to Firefox" button.
