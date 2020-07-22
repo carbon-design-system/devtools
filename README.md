@@ -14,6 +14,8 @@ The [Carbon Devtools](http://ibm.biz/carbon-devtools) provides designers, develo
 2. Click the "Add to Chrome" button.
 3. Once installed you can click to open it next to the Chrome Omnibox.
 
+> This extension works for all chromium based browsers, and thus can be applied to Microsoft Edge, Brave, and Opera as well.
+
 ## Install on Firefox
 
 1. Go to [Carbon Devtools](http://ibm.biz/carbon-devtools-firefox) on the Firefox browser add-ons.
