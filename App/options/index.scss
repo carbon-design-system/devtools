@@ -7,6 +7,9 @@
 @import '@carbon/type/scss/font-face/sans';
 @import '@carbon/grid/scss/grid';
 @import '@carbon/themes/scss/themes';
+@import '~carbon-components/scss/components/form/form';
+@import '~carbon-components/scss/components/select/select';
+@import '~carbon-components/scss/components/toggle/toggle';
 
 $carbon--theme: $carbon--theme--white;
 
@@ -35,7 +38,7 @@ body {
     }
     
     &__title,
-    &__select {
+    .#{$prefix}--form-item {
         margin-bottom: $carbon--spacing-05;
     }
     
