@@ -5,6 +5,11 @@
         position: absolute;
         right: 0;
         top: 0;
+        
+        svg {
+            // fixes issue where the click event gets hung up on svg and won't get executed.
+            pointer-events: none;
+        }
     }
 
     .#{$prefix}--overflow-menu-options {
