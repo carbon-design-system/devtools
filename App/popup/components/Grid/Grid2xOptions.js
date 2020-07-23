@@ -127,9 +127,10 @@ function Grid2xOptions ({ disabled }) {
                             step={8}
                             value={toggle2xGridOptions['toggle2xLeftInfluencer']}
                             size="sm"
+                            invalidText="Please input a positive integer"
                             onChange={e => {
                                 const changes = {...toggle2xGridOptions};
-                                changes['toggle2xLeftInfluencer'] = e.imaginaryTarget.value;
+                                changes['toggle2xLeftInfluencer'] = e.imaginaryTarget.value || 0;
                                 setToggle2xGridOptions(changes);
                             }}
                         />
@@ -141,9 +142,10 @@ function Grid2xOptions ({ disabled }) {
                             step={8}
                             value={toggle2xGridOptions['toggle2xRightInfluencer']}
                             size="sm"
+                            invalidText="Please input a positive integer"
                             onChange={e => {
                                 const changes = {...toggle2xGridOptions};
-                                changes['toggle2xRightInfluencer'] = e.imaginaryTarget.value;
+                                changes['toggle2xRightInfluencer'] = e.imaginaryTarget.value || 0;
                                 setToggle2xGridOptions(changes);
                             }}
                         />
