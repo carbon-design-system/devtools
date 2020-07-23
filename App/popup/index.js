@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Toggle } from 'carbon-components-react';
 import { settings } from 'carbon-components';
-import { getMessage, sendMessage, getStorage } from '../utilities';
+import { getMessage, sendMessage, getStorage, betaFlag } from '../utilities';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
 import './index.scss';
@@ -33,7 +33,7 @@ function Popup () {
     }
     
     return (
-        <article className={`${prefix}--popup ${prefix}--grid`}>
+        <article className={`${prefix}--popup ${prefix}--grid ${betaFlag(() => `${prefix}--popup--beta`)}`}>
             <header className={`${prefix}--row ${prefix}--popup__header`}>
                 <div className={`${prefix}--col-sm-2`}>
                     <h1 className={`${prefix}--popup__heading`}>Carbon Devtools</h1>

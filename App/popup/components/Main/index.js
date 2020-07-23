@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
 import { Accordion, AccordionItem, ToggleSmall, Toggle } from 'carbon-components-react';
 import { Inventory, Specs, Grid } from '../';
-import { setStorage, getStorage } from '../../../utilities';
+import { setStorage, getStorage, betaFlag } from '../../../utilities';
 
 const { prefix } = settings;
 const defaults = {
@@ -48,12 +48,14 @@ function Main () {
         });
     });
 
-    useEffect(() => { // TEMPORARY prevent accordion from opening and closing
-        const accordions = document.querySelectorAll(`.${prefix}--accordion__heading`);
-    
-        accordions.forEach(accordion => {
-            accordion.disabled = true;
-            accordion.style.cursor = 'default';
+    betaFlag(true, () => {
+        useEffect(() => { // TEMPORARY prevent accordion from opening and closing
+            const accordions = document.querySelectorAll(`.${prefix}--accordion__heading`);
+        
+            accordions.forEach(accordion => {
+                accordion.disabled = true;
+                accordion.style.cursor = 'default';
+            });
         });
     });
 
