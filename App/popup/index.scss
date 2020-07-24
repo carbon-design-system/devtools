@@ -55,15 +55,24 @@ body {
 
 .#{$prefix}--popup {
     width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
+    padding-top: 32px;
 
     &__header {
         padding-top: $carbon--spacing-03 - carbon--rem(1px);
         padding-bottom: $carbon--spacing-03 - carbon--rem(1px);
         background-color: $ui-01;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
     }
 
     &__heading {
         @include carbon--type-style('productive-heading-01');
+    }
+    
+    &--experimental {
+        padding-top: 56px;
     }
     
     &__experimental-tag {
