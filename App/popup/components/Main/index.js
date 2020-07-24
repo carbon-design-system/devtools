@@ -11,6 +11,7 @@ const defaults = {
 };
 
 experimentalFlag(true, () => {
+    // only set this default if the experimental flag isn't set
     defaults['Grid'] = true;
 });
 
@@ -27,7 +28,7 @@ function Main () {
     experimentalFlag(() => {
         groups['Validate page'] = Validation;
         groups['Inventory'] = Inventory;
-        groups['Specs'] = Specs;
+        groups['Page specs'] = Specs;
     });
     groups['Grid'] = Grid;
 

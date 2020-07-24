@@ -48,19 +48,19 @@ function GridMiniUnitOptions ({ disabled }) {
                             }}
                         />
                     </div>
-                        <div className={`${prefix}--col-sm-2`}>
-                            <Checkbox
-                                disabled={disabled}
-                                labelText={labelMaker('Horizontal')}
-                                id="miniUnitHorizontalBorders"
-                                checked={toggleMiniUnitGridOptions['miniUnitHorizontalBorders']}
-                                onChange={e => {
-                                    const changes = {...toggleMiniUnitGridOptions};
-                                    changes['miniUnitHorizontalBorders'] = e;
-                                    setToggleMiniUnitGridOptions(changes);
-                                }}
-                            />
-                        </div>
+                    <div className={`${prefix}--col-sm-2`}>
+                        <Checkbox
+                            disabled={disabled}
+                            labelText={labelMaker('Horizontal')}
+                            id="miniUnitHorizontalBorders"
+                            checked={toggleMiniUnitGridOptions['miniUnitHorizontalBorders']}
+                            onChange={e => {
+                                const changes = {...toggleMiniUnitGridOptions};
+                                changes['miniUnitHorizontalBorders'] = e;
+                                setToggleMiniUnitGridOptions(changes);
+                            }}
+                        />
+                    </div>
                     <div className={`${prefix}--col-sm-2`}>
                         <Checkbox
                             disabled={disabled}

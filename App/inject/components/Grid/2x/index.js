@@ -23,8 +23,6 @@ function manage2xGridOptions ({
     const grid2x = html.querySelector(`.${prefix}--grid-2x`);
     
     // set grid influencers
-    console.log(toggle2xLeftInfluencer, toggle2xRightInfluencer);
-    console.log(grid2x);
     grid2x.style.paddingLeft = `${toggle2xLeftInfluencer || 0}px`;
     grid2x.style.paddingRight = `${toggle2xRightInfluencer || 0}px`;
 
