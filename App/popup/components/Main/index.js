@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
 import { Accordion, AccordionItem, ToggleSmall, Toggle } from 'carbon-components-react';
-import { Inventory, Specs, Grid } from '../';
+import { Inventory, Specs, Grid, Validation } from '../';
 import { setStorage, getStorage, experimentalFlag } from '../../../utilities';
 
 const { prefix } = settings;
@@ -9,6 +9,10 @@ const defaults = {
     // Specs: true,
     // Grid: true
 };
+
+experimentalFlag(true, () => {
+    defaults['Grid'] = true;
+});
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
 function Main () {
@@ -21,6 +25,7 @@ function Main () {
        Need a better way to loop through and name panels/groups from line 4 */
     const groups = {};
     experimentalFlag(() => {
+        groups['Validate page'] = Validation;
         groups['Inventory'] = Inventory;
         groups['Specs'] = Specs;
     });

@@ -3,5 +3,7 @@ export * from './Empty';
 export * from './Main';
 export * from './MoreOptions';
 export * from './Inventory';
+export * from './Validation';
+export * from './ComingSoon';
 export * from './Grid';
 export * from './Specs';
