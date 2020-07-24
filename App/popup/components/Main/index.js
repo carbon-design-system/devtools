@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
 import { Accordion, AccordionItem, ToggleSmall, Toggle } from 'carbon-components-react';
 import { Inventory, Specs, Grid } from '../';
-import { setStorage, getStorage, betaFlag } from '../../../utilities';
+import { setStorage, getStorage, experimentalFlag } from '../../../utilities';
 
 const { prefix } = settings;
 const defaults = {
-    Grid: true
+    // Specs: true,
+    // Grid: true
 };
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
@@ -14,12 +15,17 @@ function Main () {
     const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
     const [onLoad, setOnLoad] = useState(false);
 
-    /* temporary, figure this out this shouldn't be defined here? for some reason imports come back undefined right now */
-    const groups = {
-        // 'Inventory': Inventory,
-        // 'Specs': Specs,
-        'Grid': Grid
-    };
+    /* temporary groups,
+       figure this out this shouldn't be defined here?
+       for some reason imports come back undefined outside of Main()
+       Need a better way to loop through and name panels/groups from line 4 */
+    const groups = {};
+    experimentalFlag(() => {
+        groups['Inventory'] = Inventory;
+        groups['Specs'] = Specs;
+    });
+    groups['Grid'] = Grid;
+
     const groupsList = Object.keys(groups);
 
     useEffect(() => { // get storage and set defaults
@@ -38,7 +44,7 @@ function Main () {
         }
     });
 
-    useEffect(() => { // stop toggle bubbling
+    useEffect(() => { // stop toggle bubbling, allows us to add a toggle to the button
         const toggles = document.querySelectorAll(`.${prefix}--popup-main__toggle`);
         
         toggles.forEach(toggle => {
@@ -48,7 +54,7 @@ function Main () {
         });
     });
 
-    betaFlag(true, () => {
+    experimentalFlag(true, () => {
         useEffect(() => { // TEMPORARY prevent accordion from opening and closing
             const accordions = document.querySelectorAll(`.${prefix}--accordion__heading`);
         
@@ -67,11 +73,14 @@ function Main () {
 
     function renderAccordionItem (title, Content) {
         const id = title.replace(' ', '');
+        let openItem = true;
+        
+        experimentalFlag(() => { openItem = globalToggleStates[id] });
+        
         return !onLoad ? null : (
             <AccordionItem
                 className={`${prefix}--popup-main__item`}
-                // open={globalToggleStates[id]}
-                open={true}
+                open={openItem}
                 title={(
                     <div className={`${prefix}--row`}>
                         <div className={`${prefix}--col-sm-2`}>{title}</div>

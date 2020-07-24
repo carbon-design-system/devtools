@@ -8,17 +8,17 @@ const { prefix } = settings;
 
 function General () {
     const [themeState, setThemeState] = useState('g90');
-    const [betaState, setBetaState] = useState(false);
+    const [experimentalState, setExperimentalState] = useState(false);
     const themeList = Object.keys(themes);
 
     useEffect(() => {
-        getStorage(['generalTheme', 'generalBeta'], ({ generalTheme, generalBeta }) => {
+        getStorage(['generalTheme', 'generalExperimental'], ({ generalTheme, generalExperimental }) => {
             if (generalTheme) {
                 setThemeState(generalTheme);
             }
 
-            if (generalBeta) {
-                setBetaState(generalBeta);
+            if (generalExperimental) {
+                setExperimentalState(generalExperimental);
             }
         });
     }, []);
@@ -41,11 +41,11 @@ function General () {
             </Select>
             
             <ToggleSmall
-                labelText="Beta features"
-                className={`${prefix}--options__beta`}
-                id="beta"
-                toggled={betaState}
-                onChange={setBeta}
+                labelText="Experimental features"
+                className={`${prefix}--options__experimental`}
+                id="experimental"
+                toggled={experimentalState}
+                onChange={setExperimental}
             />
         </AccordionItem>
     );
@@ -56,9 +56,9 @@ function setTheme (e) {
     setStorage({ generalTheme: value });
 }
 
-function setBeta (e) {
+function setExperimental (e) {
     const value = e.target.checked;
-    setStorage({ generalBeta: value });
+    setStorage({ generalExperimental: value });
 }
 
 export { General };

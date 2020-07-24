@@ -122,6 +122,7 @@ function Grid2xOptions ({ disabled }) {
                 <div className={`${prefix}--row`}>
                     <div className={`${prefix}--col-sm-2`}>
                          <NumberInput
+                            disabled={disabled}
                             label={labelMaker('Left influencer')}
                             min={0}
                             step={8}
@@ -137,6 +138,7 @@ function Grid2xOptions ({ disabled }) {
                     </div>
                     <div className={`${prefix}--col-sm-2`}>
                          <NumberInput
+                            disabled={disabled}
                             label={labelMaker('Right influencer')}
                             min={0}
                             step={8}

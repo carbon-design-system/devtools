@@ -17,7 +17,7 @@
             &__heading {
                 height: carbon--mini-units(6);
 
-                .#{$prefix}--popup:not(.#{$prefix}--popup--beta) &:hover:before { // temporary until we add more accordion items
+                .#{$prefix}--popup:not(.#{$prefix}--popup--experimental) &:hover:before { // temporary until we add more accordion items
                     display: none;
                 }
             }

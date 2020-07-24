@@ -6,7 +6,7 @@ const { prefix } = settings;
 
 function Specs () {
     return (
-        <p>Live specs content</p>
+        <p>Specs live</p>
     );
 }
 

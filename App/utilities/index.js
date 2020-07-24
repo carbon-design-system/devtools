@@ -10,4 +10,4 @@ export * from './onCommand';
 export * from './activeTab';
 export * from './onTabUpdated';
 export * from './onTabRemoved';
-export * from './betaFlag';
+export * from './experimental';
