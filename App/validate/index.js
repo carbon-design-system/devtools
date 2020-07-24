@@ -1,4 +1,4 @@
-import { sendMessage } from '../utilities';
+import { sendMessage, getStorage } from '../utilities';
 import { settings as dotcomSettings } from '@carbon/ibmdotcom-utilities';
 import { settings as carbonSettings } from 'carbon-components';
 
@@ -15,10 +15,13 @@ function sendValidation () {
         runningCarbon: false
     };
 
-    // at least components on page
-    if (document.querySelector(`${carbonSelector}, ${ddsSelector}`)) {
-        msg.runningCarbon = true;
-    }
+    getStorage(['generalNonCarbon'], ({generalNonCarbon}) => {
+        // at least components on page
+        // or user chooses to ignore carbon validation
+        if (generalNonCarbon || document.querySelector(`${carbonSelector}, ${ddsSelector}`)) {
+            msg.runningCarbon = true;
+        }
 
-    sendMessage(msg); // TODO: SET STORAGE INSTEAD?
+        sendMessage(msg); // TODO: SET STORAGE INSTEAD?
+    });
 }

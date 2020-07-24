@@ -9,10 +9,12 @@ const { prefix } = settings;
 function General () {
     const [themeState, setThemeState] = useState('g90');
     const [experimentalState, setExperimentalState] = useState(false);
+    const [nonCarbonState, setNonCarbonState] = useState(false);
     const themeList = Object.keys(themes);
 
     useEffect(() => {
-        getStorage(['generalTheme', 'generalExperimental'], ({ generalTheme, generalExperimental }) => {
+        // consider grouping into an object. Look at 2x grid family in /popup
+        getStorage(['generalTheme', 'generalExperimental', 'generalNonCarbon'], ({ generalTheme, generalExperimental, generalNonCarbon }) => {
             if (generalTheme) {
                 setThemeState(generalTheme);
             }
@@ -20,33 +22,52 @@ function General () {
             if (generalExperimental) {
                 setExperimentalState(generalExperimental);
             }
+
+            if (generalNonCarbon) {
+                setNonCarbonState(generalNonCarbon);
+            }
         });
     }, []);
 
     return (
         <AccordionItem title="General settings" open={false}>
-
-            <Select
-                size="sm"
-                onChange={setTheme}
-                labelText="Choose a theme"
-                className={`${prefix}--options__select`}>
-                {themeList.map(theme => 
-                    <SelectItem
-                        value={theme}
-                        text={theme}
-                        selected={theme === themeState ? true : false}
+            <div className={`${prefix}--row`}>
+                <div className={`${prefix}--col-sm-2`}>
+                    <ToggleSmall
+                        labelText="Non-carbon pages"
+                        className={`${prefix}--options__non-carbon`}
+                        id="nonCarbon"
+                        toggled={nonCarbonState}
+                        onChange={setNonCarbon}
                     />
-                )}
-            </Select>
-            
-            <ToggleSmall
-                labelText="Experimental features"
-                className={`${prefix}--options__experimental`}
-                id="experimental"
-                toggled={experimentalState}
-                onChange={setExperimental}
-            />
+                </div>
+                <div className={`${prefix}--col-sm-2`}>
+                    <ToggleSmall
+                        labelText="Experimental features"
+                        className={`${prefix}--options__experimental`}
+                        id="experimental"
+                        toggled={experimentalState}
+                        onChange={setExperimental}
+                    />
+                </div>
+            </div>
+            <div className={`${prefix}--row`}>
+                <div className={`${prefix}--col-sm-2`}>
+                    <Select
+                        size="sm"
+                        onChange={setTheme}
+                        labelText="Choose a theme"
+                        className={`${prefix}--options__select`}>
+                        {themeList.map(theme => 
+                            <SelectItem
+                                value={theme}
+                                text={theme}
+                                selected={theme === themeState ? true : false}
+                            />
+                        )}
+                    </Select>
+                </div>
+            </div>
         </AccordionItem>
     );
 }
@@ -59,6 +80,11 @@ function setTheme (e) {
 function setExperimental (e) {
     const value = e.target.checked;
     setStorage({ generalExperimental: value });
+}
+
+function setNonCarbon (e) {
+    const value = e.target.checked;
+    setStorage({ generalNonCarbon: value });
 }
 
 export { General };
