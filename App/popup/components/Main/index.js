@@ -28,9 +28,9 @@ function Main () {
     experimentalFlag(() => {
         groups['Validate page'] = Validation;
         groups['Inventory'] = Inventory;
-        groups['Page specs'] = Specs;
+        groups['Live specs'] = Specs;
     });
-    groups['Grid'] = Grid;
+    groups['Grid overlay'] = Grid;
 
     const groupsList = Object.keys(groups);
 
