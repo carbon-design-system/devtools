@@ -12,7 +12,8 @@ function sendValidation () {
     const carbonSelector = `[class*="${carbonPrefix}--"]`;
 
     const msg = {
-        runningCarbon: false
+        runningCarbon: false,
+        ignoreValidation: false
     };
 
     getStorage(['generalNonCarbon'], ({generalNonCarbon}) => {
@@ -20,6 +21,7 @@ function sendValidation () {
         // or user chooses to ignore carbon validation
         if (generalNonCarbon || document.querySelector(`${carbonSelector}, ${ddsSelector}`)) {
             msg.runningCarbon = true;
+            msg.ignoreValidation = generalNonCarbon;
         }
 
         sendMessage(msg); // TODO: SET STORAGE INSTEAD?

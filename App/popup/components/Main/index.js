@@ -27,8 +27,8 @@ function Main () {
     const groups = {};
     experimentalFlag(() => {
         groups['Validate page'] = Validation;
-        groups['Inventory'] = Inventory;
-        groups['Live specs'] = Specs;
+        groups['Asset audit'] = Inventory;
+        groups['Page specs'] = Specs;
     });
     groups['Grid overlay'] = Grid;
 
@@ -79,6 +79,7 @@ function Main () {
 
     function renderAccordionItem (title, Content) {
         const id = title.replace(' ', '');
+        console.log(id)
         let openItem = true;
         
         experimentalFlag(() => { openItem = globalToggleStates[id] });

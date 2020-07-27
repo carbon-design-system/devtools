@@ -4,14 +4,16 @@ import { getMessage, insertScript, insertCSS } from '../../utilities';
 
 function injectGrid () {
     getMessage((msg, sender) => {
-        if (msg.runningCarbon === true) {
+        if (msg.runningCarbon) {
+            const frameId = msg.ignoreValidation ? 0: sender.frameId;
+            
             insertScript(null, {
                 file: '/static/inject/index.js',
-                frameId: sender.frameId
+                frameId: frameId
             });
             insertCSS(null, {
                 file: '/static/inject/index.css',
-                frameId: sender.frameId
+                frameId: frameId
             });
         }
     });
