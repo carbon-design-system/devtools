@@ -70,9 +70,9 @@ function manageGlobals () {
     getStorage('gridVersion', ({ gridVersion }) => manageGridVersion(gridVersion));
     storageChanged('gridVersion', manageGridVersion);
     
-    function manageGlobalToggle ({ Grid }) {
+    function manageGlobalToggle ({ gridoverlay }) {
         // this may not belong here?
-        if (Grid) {
+        if (gridoverlay) {
             html.classList.remove(`${prefix}--grid--hide`);
         } else {
             html.classList.add(`${prefix}--grid--hide`);

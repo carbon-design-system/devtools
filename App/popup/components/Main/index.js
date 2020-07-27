@@ -12,7 +12,7 @@ const defaults = {
 
 experimentalFlag(true, () => {
     // only set this default if the experimental flag isn't set
-    defaults['Grid'] = true;
+    defaults['gridoverlay'] = true;
 });
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
@@ -78,8 +78,8 @@ function Main () {
     );
 
     function renderAccordionItem (title, Content) {
-        const id = title.replace(' ', '');
-        console.log(id)
+        const id = title.replace(' ', '').toLowerCase();
+        console.log(id, globalToggleStates[id])
         let openItem = true;
         
         experimentalFlag(() => { openItem = globalToggleStates[id] });
