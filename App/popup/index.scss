@@ -31,6 +31,8 @@ $feature-flags: (
 @import '~carbon-components/scss/components/tooltip/tooltip';
 @import '~carbon-components/scss/components/tag/tag';
 @import '~carbon-components/scss/components/tile/tile';
+@import '~carbon-components/scss/components/content-switcher/content-switcher';
+// @import '~carbon-components/scss/components/button/button';
 
 @import 'components/MoreOptions';
 @import 'components/Loading';
@@ -39,6 +41,7 @@ $feature-flags: (
 @import 'components/Inventory';
 @import 'components/Grid';
 @import 'components/Specs';
+@import 'components/ResizeBrowser';
 
 @include more-options;
 @include loading;
@@ -47,6 +50,7 @@ $feature-flags: (
 @include inventory;
 @include grid;
 @include specs;
+@include resize-browser;
 
 body {
     background: $ui-background;

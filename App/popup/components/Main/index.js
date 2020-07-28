@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
 import { Accordion, AccordionItem, ToggleSmall, Toggle } from 'carbon-components-react';
-import { Inventory, Specs, Grid, Validation } from '../';
+import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
 import { setStorage, getStorage, experimentalFlag } from '../../../utilities';
 
 const { prefix } = settings;
@@ -72,14 +72,17 @@ function Main () {
     });
 
     return (
-        <Accordion className={`${prefix}--popup-main`}>
-            {groupsList.map(groupName => renderAccordionItem(groupName, groups[groupName]))}
-        </Accordion>
+        <>
+            <ResizeBrowser />
+            <Accordion className={`${prefix}--popup-main`}>
+                {groupsList.map(groupName => renderAccordionItem(groupName, groups[groupName]))}
+            </Accordion>
+        </>
     );
 
     function renderAccordionItem (title, Content) {
         const id = title.replace(' ', '').toLowerCase();
-        console.log(id, globalToggleStates[id])
+
         let openItem = true;
         
         experimentalFlag(() => { openItem = globalToggleStates[id] });

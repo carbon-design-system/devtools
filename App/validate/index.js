@@ -17,6 +17,7 @@ function sendValidation () {
     const msg = {
         runningCarbon: false,
         ignoreValidation: false,
+        windowWidth: window.outerWidth
         // carbonComponents: {
         //     '.bx--link': document.querySelectorAll(`.bx--link`).length,
         //     '.bx--button': document.querySelectorAll(`.bx--button`).length,

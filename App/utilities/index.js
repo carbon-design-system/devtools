@@ -11,3 +11,4 @@ export * from './activeTab';
 export * from './onTabUpdated';
 export * from './onTabRemoved';
 export * from './experimental';
+export * from './remtopx';
