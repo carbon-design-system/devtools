@@ -18,7 +18,9 @@ function Popup () {
         sendMessage({ popup: true }); // TODO: how can we send only per tab once?
 
         getMessage(msg => {
-            setCarbon(msg.runningCarbon);
+            if (msg.runningCarbon) {
+                setCarbon(msg.runningCarbon);
+            }
         });
         
         getStorage(['generalTheme'], ({ generalTheme }) => {
@@ -26,9 +28,9 @@ function Popup () {
         });
     }, []);
     
-    if (onCarbon === true) {
+    if (onCarbon) {
         Content = Main;
-    } else if (onCarbon === false) {
+    } else {
         Content = Empty;
     }
     

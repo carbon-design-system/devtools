@@ -10,16 +10,24 @@ sendValidation();
 function sendValidation () {
     const ddsSelector = `[data-autoid*="${dotcomPrefix}--"]`;
     const carbonSelector = `[class*="${carbonPrefix}--"]`;
+    const carbonComponents = document.querySelector(`${carbonSelector}, ${ddsSelector}`);
+    
+    // console.log(carbonComponents.querySelectorAll('a'));
 
     const msg = {
         runningCarbon: false,
-        ignoreValidation: false
+        ignoreValidation: false,
+        // carbonComponents: {
+        //     '.bx--link': document.querySelectorAll(`.bx--link`).length,
+        //     '.bx--button': document.querySelectorAll(`.bx--button`).length,
+        //     '.bx--tile': document.querySelectorAll(`.bx--tile`).length
+        // }
     };
 
     getStorage(['generalNonCarbon'], ({generalNonCarbon}) => {
         // at least components on page
         // or user chooses to ignore carbon validation
-        if (generalNonCarbon || document.querySelector(`${carbonSelector}, ${ddsSelector}`)) {
+        if (generalNonCarbon || carbonComponents) {
             msg.runningCarbon = true;
             msg.ignoreValidation = generalNonCarbon;
         }
