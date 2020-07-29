@@ -11,6 +11,7 @@ const { prefix } = settings;
 
 function Popup () {
     const [onCarbon, setCarbon] = useState('loading'); // 'loading', true, false
+    const [initialMsg, setInitialMsg] = useState();
 
     let Content = Loading;
 
@@ -18,9 +19,9 @@ function Popup () {
         sendMessage({ popup: true }); // TODO: how can we send only per tab once?
 
         getMessage(msg => {
-            console.log(msg.runningCarbon);
             if (msg.runningCarbon) {
                 setCarbon(msg.runningCarbon);
+                setInitialMsg(msg);
             }
         });
         
@@ -47,7 +48,7 @@ function Popup () {
                 </div>
             </header>
             <main>
-                <Content />
+                <Content initialMsg={initialMsg} />
             </main>
         </article>
     );

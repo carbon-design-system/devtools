@@ -1,6 +1,6 @@
 {
     "name": "Carbon Devtools",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "manifest_version": 2,
     "description": "Basic toolset to aide in the development of Carbon pages.",
     "permissions": [

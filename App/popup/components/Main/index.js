@@ -16,7 +16,7 @@ experimentalFlag(true, () => {
 });
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
-function Main () {
+function Main ({ initialMsg }) {
     const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
     const [onLoad, setOnLoad] = useState(false);
 
@@ -73,7 +73,7 @@ function Main () {
 
     return (
         <>
-            <ResizeBrowser />
+            <ResizeBrowser windowWidth={initialMsg.windowWidth} />
             <Accordion className={`${prefix}--popup-main`}>
                 {groupsList.map(groupName => renderAccordionItem(groupName, groups[groupName]))}
             </Accordion>
