@@ -1,18 +1,10 @@
 import { sendMessage, getStorage } from '../utilities';
-import { settings as dotcomSettings } from '@carbon/ibmdotcom-utilities';
-import { settings as carbonSettings } from 'carbon-components';
-
-const { stablePrefix: dotcomPrefix } = dotcomSettings;
-const { prefix: carbonPrefix } = carbonSettings;
+import { prefixSelectors } from '../globals';
 
 sendValidation();
 
 function sendValidation () {
-    const ddsSelector = `[data-autoid*="${dotcomPrefix}--"]`;
-    const carbonSelector = `[class*="${carbonPrefix}--"]`;
-    const carbonComponents = document.querySelector(`${carbonSelector}, ${ddsSelector}`);
-    
-    // console.log(carbonComponents.querySelectorAll('a'));
+    const carbonComponents = document.querySelector(prefixSelectors.join(', '));
 
     const msg = {
         runningCarbon: false,

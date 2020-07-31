@@ -12,6 +12,7 @@
   "dependencies": {
     "@carbon/colors": "^10.11.0",
     "@carbon/grid": "^10.12.0",
+    "@carbon/ibm-security": "^1.28.0",
     "@carbon/ibmdotcom-react": "^1.8.0",
     "@carbon/ibmdotcom-utilities": "^1.8.0",
     "@carbon/icons": "^10.13.0",
