@@ -1,4 +1,7 @@
 import { getMessage, insertScript, insertCSS } from '../../utilities';
+import { allComponents } from '../../globals';
+
+console.log(allComponents);
 
 // TODO: prevent multiple inserts
 

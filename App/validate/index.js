@@ -4,7 +4,7 @@ import { prefixSelectors } from '../globals';
 sendValidation();
 
 function sendValidation () {
-    const carbonComponents = document.querySelector(prefixSelectors.join(', '));
+    const carbonComponents = document.querySelector(prefixSelectors);
 
     const msg = {
         runningCarbon: false,
