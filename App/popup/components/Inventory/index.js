@@ -12,15 +12,16 @@ function Inventory ({ disable, open }) {
     getMessage(({ inventoryData }) => {
         if (inventoryData) {
             setInventoryData(inventoryData);
-            // console.log(inventoryData);
         }
     });
 
     useEffect(() => {
-        if (open) {
+        // only request inventory if open,
+        // and no data has been received
+        if (open && Object.keys(inventoryData).length === 0) {
             sendTabMessage(-1, { requestInventory: true });
         }
-    }, []);
+    });
 
     return (Object.keys(inventoryData).length ? inventoryList(inventoryData) : loadingInventory());
 }
@@ -44,7 +45,7 @@ function inventoryList ({ all, uniqueCount, totalCount }) {
                 </div>
                 <div className={`${prefix}--col-sm-1 ${prefix}--inventory__info`}>
                     <h3 className={`${prefix}--inventory__info-title`}>
-                        Type
+                        Kinds
                     </h3>
                     <p className={`${prefix}--inventory__info-value`}>
                         {uniqueCount}
@@ -139,6 +140,5 @@ function loadingInventory () {
 
 export { Inventory };
 
-//TODO: only render when asked for
 //TODO: fix sourcemap issue
 //TODO: fix webpack watch again
