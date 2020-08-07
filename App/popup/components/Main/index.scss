@@ -4,31 +4,41 @@
         margin-right: -($carbon--grid-gutter / 2);
         width: initial;
         
-        .#{$prefix}--accordion {
-            &__title {
-                @include carbon--type-style('body-long-02');
-
-                .#{$prefix}--row {
-                    position: absolute;
-                    width: 100%;
-                }
-            }
-            
-            &__heading {
+        &__item > .#{$prefix}--accordion__heading {
                 height: carbon--mini-units(6);
 
-                .#{$prefix}--popup:not(.#{$prefix}--popup--experimental) &:hover:before { // temporary until we add more accordion items
+                .#{$prefix}--popup:not(.#{$prefix}--popup--experimental) &:hover:before {
+                    // temporary until we add more accordion items
                     display: none;
                 }
+                
+                .#{$prefix}--accordion {
+                    &__title {
+                        @include carbon--type-style('body-long-02');
+
+                        .#{$prefix}--row {
+                            position: absolute;
+                            width: 100%;
+                        }
+                    }
+                    
+                    &__heading {
+                        height: carbon--mini-units(6);
+
+                        .#{$prefix}--popup:not(.#{$prefix}--popup--experimental) &:hover:before { // temporary until we add more accordion items
+                            display: none;
+                        }
+                    }
+                    
+                    &__arrow {
+                        $size: carbon--rem(20px);
+                        width: $size;
+                        height: $size;
+                        flex: 0 0 $size;
+                    }
+                }
             }
-            
-            &__arrow {
-                $size: carbon--rem(20px);
-                width: $size;
-                height: $size;
-                flex: 0 0 $size;
-            }
-        }
+        
         
         legend.#{$prefix}--label {
             margin-bottom: $carbon--spacing-05;

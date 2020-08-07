@@ -6,9 +6,9 @@ const { stablePrefix: dotcomPrefix } = dotcomSettings;
 const securityPrefix = getSecurityPrefix('');
 const cloudPalPrefix = 'pal'; // static hardcoded
 
-const prefixSelectors = `[class*="${carbonPrefix}--"] ` // carbon
-               + `[data-autoid*="${dotcomPrefix}--"] ` // DDS
-               + `[class*="${securityPrefix}"] ` // security
+const prefixSelectors = `[class*="${carbonPrefix}--"], ` // carbon
+               + `[data-autoid*="${dotcomPrefix}--"], ` // DDS
+               + `[class*="${securityPrefix}"], ` // security
                + `[class*="${cloudPalPrefix}--"]`; // pal
 
 export {

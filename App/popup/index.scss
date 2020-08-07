@@ -70,6 +70,7 @@ body {
         width: 100%;
         top: 0;
         z-index: 100;
+        border-bottom: 1px solid $ui-background;
     }
 
     &__heading {
@@ -129,6 +130,31 @@ body {
     @include carbon--make-col-ready;
 }
     
+.#{$prefix}--col-sm-1 {
+    @include carbon--make-col(1, 4);
+}
+    
 .#{$prefix}--col-sm-2 {
     @include carbon--make-col(2, 4);
+}
+
+// allows nesting accordions
+.#{$prefix}--accordion {
+    &__item--active {
+        .#{$prefix}--accordion__content { // all content
+            display: none;
+        }
+        
+        .#{$prefix}--accordion__arrow { // all arrows
+            transform: rotate(90deg);
+        }
+
+        > .#{$prefix}--accordion__content { // only show direct content
+            display: block;
+        }
+        
+        > button .#{$prefix}--accordion__arrow { // only rotate arrow if direct child
+            transform: rotate(-90deg);
+        }
+    }
 }

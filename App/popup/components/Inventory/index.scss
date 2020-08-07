@@ -1,3 +1,126 @@
 @mixin inventory {
-    
+    .#{$prefix}--inventory {
+        margin-right: -($carbon--grid-gutter / 2);
+        width: initial;
+
+        &__info {
+            margin-bottom: carbon--mini-units(2);
+
+            &-title {
+                // font-weight: bold;
+                color: $text-02;
+                @include carbon--type-style('helper-text-01');
+            }
+            
+            &-value {
+                color: $text-01;
+                font-weight: bold;
+                @include carbon--type-style('productive-heading-05');
+            }
+        }
+
+        &__item {
+
+            &,
+            &:last-child {
+                border-color: $ui-01;
+            }
+            
+            &-count {
+                @include carbon--type-style('helper-text-01');
+                color: $text-02;
+                float: right;
+            }
+
+            .#{$prefix}--accordion__heading {
+                padding-right: $carbon--grid-gutter / 2;
+            }
+
+            .#{$prefix}--accordion__title, 
+            .#{$prefix}--accordion__arrow {
+                color: $text-02;
+                fill: currentColor;
+            }
+        }
+
+        &__sub-item {
+            padding: $carbon--grid-gutter / 2;
+            margin-left: -($carbon--grid-gutter / 2);
+            margin-right: -($carbon--grid-gutter / 2);
+            margin-bottom: $carbon--grid-gutter--condensed;
+
+            &__name {
+                @include carbon--type-style('code-01');
+                border-left: 3px solid $ui-03;
+                padding-left: carbon--mini-units(2);
+                padding-top: carbon--mini-units(1);
+                padding-bottom: carbon--mini-units(1);
+                margin-bottom: carbon--mini-units(3);
+                
+                &__tag {
+                    color: $text-04;
+                    font-weight: bold;
+
+                    &::before {
+                        content: '<';
+                    }
+                    
+                    &::after {
+                        content: '>';
+                    }
+                }
+
+                &__id {
+                    color: $text-02;
+                    font-style: italic;
+
+                    &::before {
+                        content: '#';
+                    }
+                }
+                
+                &__class {
+                    color: $text-01;
+
+                    &::before {
+                        content: '.';
+                    }
+                }
+            }
+            
+            &__text {
+                @include carbon--type-style('body-short-01');
+                margin-bottom: carbon--mini-units(2);
+                // font-style: italic;
+                color: $text-01;
+                font-weight: bold;
+                position: relative;
+                display: flex;
+                
+                & > span {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    display: block;
+                }
+                
+                &::before {
+                    content: '“';
+                    position: absolute;
+                    top: 0;
+                    right: 100%;
+                }
+                
+                &::after {
+                    content: '”';
+                }
+            }
+
+            &__unique-id {
+                @include carbon--type-style('helper-text-01');
+                text-align: right;
+                color: $text-03;
+            }
+        }
+    }
 }

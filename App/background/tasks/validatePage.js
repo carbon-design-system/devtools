@@ -1,4 +1,4 @@
-import { getMessage, insertScript, getStorage, onTabUpdated, storageChanged } from '../../utilities';
+import { getMessage, insertScript } from '../../utilities';
 
 // TODO: prevent multiple inserts
 

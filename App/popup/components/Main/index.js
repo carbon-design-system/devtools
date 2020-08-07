@@ -108,7 +108,7 @@ function Main ({ initialMsg }) {
                         </div>
                     </div>
                 )}>
-                <Content disabled={!globalToggleStates[id]} />
+                <Content disabled={!globalToggleStates[id]} open={openItem} />
             </AccordionItem>
         );
     }
