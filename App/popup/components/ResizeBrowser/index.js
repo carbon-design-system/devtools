@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
 import { ContentSwitcher, Switch } from 'carbon-components-react';
 import { breakpoints, baseFontSize } from '@carbon/layout';
-import { remtopx, getMessage, experimentalFlag } from '../../../utilities';
+import { remtopx, getMessage } from '../../../utilities';
 
 const { prefix } = settings;
 const breakpointKeys = Object.keys(breakpoints);
@@ -10,7 +10,7 @@ const breakpointKeys = Object.keys(breakpoints);
 function ResizeBrowser ({ windowWidth = 0 }) {
     const [breakpointIndex, setBreakpointIndex] = useState(false);
 
-    return experimentalFlag(() => (
+    return (
         <div className={`${prefix}--popup-resize-browser ${prefix}--row`}>
             <div className={`${prefix}--col`}>
                 <p className={`${prefix}--popup-resize-browser__label`}>Resize browser</p>
@@ -26,7 +26,7 @@ function ResizeBrowser ({ windowWidth = 0 }) {
                 </ContentSwitcher>
             </div>
         </div>
-    ));
+    );
 }
 
 function getBreakpointIndex (windowWidth) {

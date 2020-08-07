@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { sendMessage, getMessage, storageChanged } from '../../../utilities';
+import { sendMessage, getMessage } from '../../../utilities';
 import { allComponents } from '../../../globals';
 
 const { prefix } = settings;

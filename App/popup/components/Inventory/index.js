@@ -6,7 +6,7 @@ import { bugs } from '../../../../package.json'
 
 const { prefix } = settings;
 
-function Inventory ({ disable, open }) {
+function Inventory ({ disable, isOpen }) {
     const [inventoryData, setInventoryData] = useState({});
 
     getMessage(({ inventoryData }) => {
@@ -18,7 +18,7 @@ function Inventory ({ disable, open }) {
     useEffect(() => {
         // only request inventory if open,
         // and no data has been received
-        if (open && Object.keys(inventoryData).length === 0) {
+        if (isOpen && Object.keys(inventoryData).length === 0) {
             sendTabMessage(-1, { requestInventory: true });
         }
     });
@@ -27,7 +27,7 @@ function Inventory ({ disable, open }) {
 }
 
 function inventoryList ({ all, uniqueCount, totalCount }) {
-    const allKeys = Object.keys(all);
+    const allKeys = Object.keys(all).sort();
 
     return (
         <>
@@ -45,7 +45,7 @@ function inventoryList ({ all, uniqueCount, totalCount }) {
                 </div>
                 <div className={`${prefix}--col-sm-1 ${prefix}--inventory__info`}>
                     <h3 className={`${prefix}--inventory__info-title`}>
-                        Kinds
+                        {`Groups`}
                     </h3>
                     <p className={`${prefix}--inventory__info-value`}>
                         {uniqueCount}
