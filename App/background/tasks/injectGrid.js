@@ -1,10 +1,10 @@
 import { getMessage, insertScript, insertCSS } from '../../utilities';
 
-// TODO: prevent multiple inserts
-
 function injectGrid () {
     getMessage((msg, sender) => {
-        if (msg.runningCarbon) {
+        /* only inject if carbon is found
+           and we haven't injected before */
+        if (msg.runningCarbon && !msg.carbonDevtoolsInjected) {
             const frameId = msg.ignoreValidation ? 0: sender.frameId;
             
             insertScript(null, {

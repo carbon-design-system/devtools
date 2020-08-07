@@ -1,6 +1,6 @@
 import { getMessage, insertScript } from '../../utilities';
 
-// TODO: prevent multiple inserts
+// TODO: prevent multiple inserts to validate
 
 // TODO: Can declarativeContent be used in place of validation scripts? https://developer.chrome.com/extensions/declarativeContent
 

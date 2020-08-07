@@ -9,9 +9,7 @@ const idselector = 'bxdevid'; // should this be in prefix selector file?
 function initInventory () {
     getMessage((msg, sender, sendResponse) => {
         if (msg.requestInventory) {
-            sendMessage({ inventoryData: getInventory(allComponents) }, () => {
-                console.log('message sent'); // TODO: remove this
-            });
+            sendMessage({ inventoryData: getInventory(allComponents) });
         }
     });
 }

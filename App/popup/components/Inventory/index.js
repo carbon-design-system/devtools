@@ -139,8 +139,6 @@ function loadingInventory () {
 
 export { Inventory };
 
-//TODO: fix loading issue 
+//TODO: only render when asked for
 //TODO: fix sourcemap issue
 //TODO: fix webpack watch again
-// TODO: inject code only once 
-// TODO: only render when asked for

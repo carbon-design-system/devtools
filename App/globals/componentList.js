@@ -7,6 +7,7 @@ import { carbonPrefix, dotcomPrefix, cloudPalPrefix, getSecurityPrefix} from './
 // }
 
 // TODO: Find a way to automate this...
+// TODO: write to JSON file instead with either seperate build command, or seperate project all together.
 
 const carbonComponents = {};
 carbonComponents[`.${carbonPrefix}--accordion`] = 'Accordion';
@@ -178,7 +179,6 @@ const allComponents = {
     ...cloudPalComponents
 };
 
-// TODO: write to JSON file instead with either seperate build command, or seperate project all together.
 export {
     allComponents,
     carbonComponents,
