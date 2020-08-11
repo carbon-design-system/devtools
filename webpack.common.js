@@ -31,7 +31,7 @@ module.exports = {
     module: {
         rules: [{
             test: /\.s[ac]ss$/i,
-            sideEffects: true,
+            sideEffects: false,
             use: [
                 MiniCssExtractPlugin.loader,
                 {
@@ -40,7 +40,12 @@ module.exports = {
                         sourceMap: true,
                     },
                 },
-                'postcss-loader',
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        sourceMap: true,
+                    },
+                },
                 {
                     loader: 'sass-loader',
                     options: {

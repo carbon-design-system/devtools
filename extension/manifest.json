@@ -13,6 +13,9 @@
         "scripts": ["/static/background/index.js"],
         "persistent": false
     },
+    "web_accessible_resources": [
+        "/static/inject/index.css"
+    ],
     "icons": {
         "16": "/media/16x16-mid.png",
         "32": "/media/32x32-mid.png",

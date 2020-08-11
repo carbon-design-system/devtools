@@ -26,6 +26,25 @@ function sendValidation () {
             msg.ignoreValidation = generalNonCarbon;
         }
 
+        
+        // inject css via this method for development purposes mostly
+        if (!msg.carbonDevtoolsInjected) {
+            if (msg.ignoreValidation || msg.runningCarbon) {
+                const cssURL = chrome.extension.getURL('/static/inject/index.css');
+                
+                if (!document.querySelector(`[href="${cssURL}"]`)) {
+                    injectStyles(cssURL);
+                }
+            }
+        }
+
         sendMessage(msg); // TODO: SET STORAGE INSTEAD?
     });
+}
+
+function injectStyles(url) {
+    var elem = document.createElement('link');
+    elem.rel = 'stylesheet';
+    elem.setAttribute('href', url);
+    document.head.appendChild(elem);
 }

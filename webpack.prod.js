@@ -7,12 +7,7 @@ module.exports = merge(common, {
     optimization: {
         minimize: true,
         minimizer: [
-          // new UglifyJsPlugin({
-          //   parallel: true,
-          //   extractComments: 'all',
-          //   cache: true
-          // }),
-          new TerserPlugin({}),
-        ],
-    },
+          new TerserPlugin({})
+        ]
+    }
 });
