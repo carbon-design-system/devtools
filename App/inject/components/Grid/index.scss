@@ -10,6 +10,7 @@ $grid-border-opacity: 1;
 
 body {
     position: relative;
+    height: initial !important;
 }
 
 .#{$prefix}--grid-container {
