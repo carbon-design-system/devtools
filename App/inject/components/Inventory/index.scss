@@ -1,0 +1,26 @@
+$inventory-color: map-get(map-get($carbon--colors, 'purple'), 50);
+
+.#{$prefix}--inventory {
+    &--highlight {
+        position: relative;
+        
+        &::before {
+            // does this break anything, or should we inject a div?
+            content: '';
+            pointer-events: none;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: rgba($inventory-color, .5);
+            z-index: 1001;
+        }
+    }
+}
+
+
+
+
+
+

@@ -21,6 +21,13 @@ function Inventory ({ disable, isOpen }) {
         if (isOpen && Object.keys(inventoryData).length === 0) {
             sendTabMessage(-1, { requestInventory: true });
         }
+        
+        document.querySelectorAll(`.${prefix}--accordion__heading`).forEach(comp => {
+            comp.addEventListener('mouseenter', componentMouseOver);
+            comp.addEventListener('mouseleave', componentMouseOut);
+            comp.addEventListener('focus', componentMouseOver);
+            comp.addEventListener('blur', componentMouseOut);
+        });
     });
 
     return (Object.keys(inventoryData).length ? inventoryList(inventoryData) : loadingInventory());
@@ -58,6 +65,7 @@ function inventoryList ({ all, uniqueCount, totalCount }) {
                     className={`${prefix}--inventory`}>
                     {allKeys.map((key, i) => (
                         <AccordionItem
+                            data-identifier={all[key].map(({ uniqueID }) => uniqueID)}
                             title={(
                                 <>
                                     {key}
@@ -74,7 +82,19 @@ function inventoryList ({ all, uniqueCount, totalCount }) {
                                     className={`${prefix}--inventory__sub-item`}
                                     kind='secondary'
                                     size='small'
-                                    key={uniqueID}>
+                                    key={uniqueID}
+                                    data-identifier={uniqueID}
+                                    handleClick={componentClick}
+                                    onMouseEnter={componentMouseOver}
+                                    onMouseLeave={componentMouseOut}
+                                    onFocus={e => {
+                                        componentClick(e);
+                                        componentMouseOver(e);
+                                    }}
+                                    onBlur={e => {
+                                        componentMouseOut(e);
+                                    }}
+                                    >
                                     {!innerText ? null : (
                                         <p className={`${prefix}--inventory__sub-item__text`}>
                                             <span>{innerText}</span>
@@ -125,6 +145,41 @@ function buildName (tag, id, classes) {
 
     return name;
 }
+
+function componentClick (e) {
+    // only a single item
+    e.preventDefault();
+    const id = e.currentTarget.dataset.identifier.split(',');
+    sendTabMessage(-1, { inventoryComponentClicked: id }); // single string
+}
+
+function componentMouseOver (e) {
+    let ids = getIdsData(e.currentTarget);
+    
+    if (ids.length > 0) {            
+        sendTabMessage(-1, { inventoryComponentMouseOver: ids });
+    }
+}
+
+function componentMouseOut (e) {
+    let ids = getIdsData(e.currentTarget);
+    
+    if (ids.length > 0) {            
+        sendTabMessage(-1, { inventoryComponentMouseOut: ids });
+    }
+}
+
+function getIdsData (target) {
+    const dataset = target.dataset.identifier || target.parentNode.dataset.identifier;
+    let idList = [];
+
+    if (dataset) {
+        idList = dataset.split(',');
+    }
+
+    return idList;
+}
+
 
 function emptyInventory () {
     return (
