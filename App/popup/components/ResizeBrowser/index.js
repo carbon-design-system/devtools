@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { settings } from 'carbon-components';
 import { ContentSwitcher, Switch } from 'carbon-components-react';
 import { breakpoints, baseFontSize } from '@carbon/layout';
@@ -14,7 +14,7 @@ function ResizeBrowser ({ windowWidth = 0 }) {
         <div className={`${prefix}--popup-resize-browser ${prefix}--row`}>
             <div className={`${prefix}--col`}>
                 <p className={`${prefix}--popup-resize-browser__label`}>Resize browser</p>
-                <ContentSwitcher onChange={resizeBrowser} selectedIndex={getBreakpointIndex(windowWidth)}>
+                <ContentSwitcher onChange={resizeBrowser} selectedIndex={getBreakpointIndex(windowWidth)} selectionMode="manual">
                     {breakpointKeys.map((breakpointKey, i) => {
                         return (
                             <Switch
