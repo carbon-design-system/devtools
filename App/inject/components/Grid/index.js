@@ -22,7 +22,9 @@ function initGrid () {
     
     let gridContainer = body.querySelector(`.${gridContainerClassName}`);
 
-    html.classList.add(`${prefix}--grid--hide`);
+    html.classList.add(`${prefix}--grid--hide`)
+    html.classList.add(`${prefix}--grid-mini-unit`)
+    html.classList.add(`${prefix}--grid-mini-unit--hide`);
 
     for (let i = 0; i < numOfColumns; i++) {
         columns.push(`<div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>`);
@@ -35,8 +37,7 @@ function initGrid () {
                     ${columns.join('')}
                 </div>
             </div>
-        </div>
-        <div class="${prefix}--grid-mini-unit ${prefix}--grid-mini-unit--hide"></div>`;
+        </div>`;
     
     if (!gridContainer) {
         gridContainer = document.createElement('div');

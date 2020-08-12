@@ -9,8 +9,8 @@ $grid-mini-unit-border-opacity: $grid-opacity;
     $miniUnitSVG: "data:image/svg+xml;charset=UTF-8,%3csvg width='8px' height='8px' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='1' fill='#{$grid-mini-unit-color}' fill-opacity='#{$grid-mini-unit-opacity/2}' width='7' height='7'%3e%3c/rect%3e%3c/svg%3e";
     $miniUnitGradient: rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) $grid-mini-unit-border-size, transparent $grid-mini-unit-border-size;
     
-    opacity: 1;
-    transition: opacity $transition-fade;
+    position: relative;
+    height: initial;
 
     // mini unit grid
     &::before,
@@ -34,10 +34,12 @@ $grid-mini-unit-border-opacity: $grid-opacity;
 
     // hide mini-unit grid
     &--hide,
-    .#{$prefix}--grid--hide &,
-    html:active &,
+    &.#{$prefix}--grid--hide,
     &:active {
-        opacity: 0;
+        &::before,
+        &::after {
+            opacity: 0;
+        }
     }
 
     // mini unit fixed when scrolling
