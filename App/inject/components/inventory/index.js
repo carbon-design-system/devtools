@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { sendMessage, getMessage } from '../../../utilities';
+import { sendMessage, getMessage, randomId } from '../../../utilities';
 import { allComponents } from '../../../globals';
 
 const { prefix } = settings;
@@ -100,10 +100,6 @@ function doThisByIds (ids, callback, afterCallback) {
     }
 }
 
-function randomID () {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
-
 function resetIdSelectors () {
     const components = document.querySelectorAll(`[data-${idselector}]`);
 
@@ -140,7 +136,7 @@ function getInventory (componentList) {
             for (let i = 0; i < components.length; i++) {
             // loop through each component and build data, and assign ids
                 const component = components[i];
-                const uniqueID = randomID();
+                const uniqueID = randomId();
             
                 inventory.totalCount += 1; // add to the total count
                 

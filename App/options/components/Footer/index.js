@@ -1,6 +1,7 @@
 import React from "react";
 import { settings } from 'carbon-components';
 import { Link } from 'carbon-components-react';
+import { gaEvent } from '../../../utilities';
 import { name, version, bugs, repository, dependencies } from '../../../../package.json';
 
 const { prefix } = settings;
@@ -17,8 +18,14 @@ function Footer () {
                 <li>carbon v{CARBON_VERSION}</li>
                 <li>ibm.com library v{DOTCOM_VERSION}</li>
                 <li>ibm security v{SECURITY_VERSION}</li>
-                <li><Link href={repository.url} target="_blank">code repository</Link></li>
-                <li><Link href={bugs.url} target="_blank">submit an issue</Link></li>
+                <li><Link
+                    onClick={() => gaEvent('navigation', 'click', 'code-repository')}
+                    href={repository.url}
+                    target="_blank">code repository</Link></li>
+                <li><Link
+                    onClick={() => gaEvent('navigation', 'click', 'submit-an-issue')}
+                    href={bugs.url}
+                    target="_blank">submit an issue</Link></li>
             </ul>
         </footer>
     );

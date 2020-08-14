@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
-import { sendTabMessage, getMessage } from '../../../utilities';
+import { sendTabMessage, getMessage, gaNavigationEvent, gaDomEvent } from '../../../utilities';
 import { Accordion, AccordionItem, AccordionSkeleton, ClickableTile, Link } from 'carbon-components-react';
 import { bugs } from '../../../../package.json'
 
@@ -8,10 +8,13 @@ const { prefix } = settings;
 
 function Inventory ({ disable, isOpen }) {
     const [inventoryData, setInventoryData] = useState({});
+    let startPerfCheck;
 
-    getMessage(({ inventoryData }) => {
-        if (inventoryData) {
-            setInventoryData(inventoryData);
+    getMessage(msg => {
+        const msgKeys = Object.keys(msg);
+        if (msgKeys.indexOf('inventoryData') > -1) {
+            setInventoryData(msg.inventoryData);
+            perfCheck(startPerfCheck);
         }
     });
 
@@ -20,6 +23,8 @@ function Inventory ({ disable, isOpen }) {
         // and no data has been received
         if (isOpen && Object.keys(inventoryData).length === 0) {
             sendTabMessage(-1, { requestInventory: true });
+            // check performance;
+            startPerfCheck = performance.now();
         }
         
         document.querySelectorAll(`.${prefix}--accordion__heading`).forEach(comp => {
@@ -65,6 +70,7 @@ function inventoryList ({ all, uniqueCount, totalCount }) {
                     className={`${prefix}--inventory`}>
                     {allKeys.map((key, i) => (
                         <AccordionItem
+                            onHeadingClick={val => gaNavigationEvent('toggle', 'inventory-item', val.isOpen)}
                             data-identifier={all[key].map(({ uniqueID }) => uniqueID)}
                             title={(
                                 <>
@@ -151,6 +157,7 @@ function componentClick (e) {
     e.preventDefault();
     const id = e.currentTarget.dataset.identifier.split(',');
     sendTabMessage(-1, { inventoryComponentClicked: id }); // single string
+    gaNavigationEvent('click', 'inventory-sub-item');
 }
 
 function componentMouseOver (e) {
@@ -184,13 +191,24 @@ function getIdsData (target) {
 function emptyInventory () {
     return (
         <p>
-            We couldn't find any components that matched our records. If you believe this to be in error please <Link href={bugs.url} target="_blank">submit an issue</Link>.
+            We couldn't find any components that matched our records. If you believe this to be in error please <Link href={bugs.url} target="_blank" onClick={() => gaNavigationEvent('click', 'submit-an-issue')}>submit an issue</Link>.
         </p>
     );
 }
 
 function loadingInventory () {
     return <AccordionSkeleton align="start" open={false} count={3} />;
+}
+
+function perfCheck (startTime) {
+    const time = performance.now() - startTime;
+    const timeToCheck = 1000;
+
+    gaDomEvent('inventory', 'audit', Math.round(time));
+    
+    if (time > timeToCheck) {
+        gaExcpetion(`Slow inventory audit: ${time}ms`, 0);
+    }
 }
 
 export { Inventory };

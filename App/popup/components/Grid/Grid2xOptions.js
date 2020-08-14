@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
 import { Checkbox, FormGroup, Tooltip, NumberInput } from 'carbon-components-react';
-import { setStorage, getStorage } from '../../../utilities';
+import { setStorage, getStorage, gaConfigurationEvent } from '../../../utilities';
 import { Column32, Grid32, Information16 } from '@carbon/icons-react';
 import { labelMaker } from './labelMaker';
 
@@ -50,6 +50,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xColumns'] = e;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-columns', e);
                             }}
                         />
                     </div>
@@ -63,6 +64,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xGutters'] = e;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-gutters', e);
                             }}
                         />
                     </div>
@@ -76,6 +78,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xBorders'] = e;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-borders', e);
                             }}
                         />
                     </div>
@@ -89,6 +92,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xFullWidth'] = e;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-full-width', e);
                             }}
                         />
                     </div>
@@ -102,6 +106,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xBreakpoints'] = e;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-breapoints-label', e);
                             }}
                         />
                     </div>
@@ -115,6 +120,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xColumnLabel'] = e;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-column-label', e);
                             }}
                         />
                     </div>
@@ -133,6 +139,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xLeftInfluencer'] = e.imaginaryTarget.value || 0;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-left-influencer', changes['toggle2xLeftInfluencer']);
                             }}
                         />
                     </div>
@@ -149,6 +156,7 @@ function Grid2xOptions ({ disabled }) {
                                 const changes = {...toggle2xGridOptions};
                                 changes['toggle2xRightInfluencer'] = e.imaginaryTarget.value || 0;
                                 setToggle2xGridOptions(changes);
+                                gaConfigurationEvent('2x-grid-change', '2x-right-influencer', changes['toggle2xRightInfluencer']);
                             }}
                         />
                     </div>

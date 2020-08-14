@@ -1,7 +1,8 @@
 import React from "react";
 import { settings } from 'carbon-components';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { bugs, repository } from '../../../../package.json'
+import { gaNavigationEvent } from '../../../utilities';
+import { bugs, repository } from '../../../../package.json';
 
 const { prefix } = settings;
 
@@ -9,6 +10,7 @@ function MoreOptions () {
     
     return (
         <OverflowMenu
+            onClick={() => gaNavigationEvent('toggle', 'settings-menu', 1)}
             className={`${prefix}--more-options`}
             flipped={true}
             ariaLabel="More options">
@@ -19,12 +21,14 @@ function MoreOptions () {
                 href={bugs.url}
                 target="_blank"
                 itemText="Report an issue"
+                onClick={() => gaNavigationEvent('click', 'report-an-issue')}
             />
             <OverflowMenuItem
                 hasDivider={false}
                 href={repository.url}
                 target="_blank"
                 itemText="Go to GitHub"
+                onClick={() => gaNavigationEvent('click', 'go-to-github')}
             />
             <OverflowMenuItem
                 onClick={openChromeExtensionOptions}
@@ -41,6 +45,8 @@ function openChromeExtensionOptions (e) {
     } else {
         window.open(chrome.runtime.getURL('options.html'));
     }
+
+    gaNavigationEvent('click', 'settings')
 }
 
 export { MoreOptions };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { settings } from 'carbon-components';
 import { ContentSwitcher, Switch } from 'carbon-components-react';
 import { breakpoints, baseFontSize } from '@carbon/layout';
-import { remtopx, getMessage } from '../../../utilities';
+import { remtopx, getMessage, gaConfigurationEvent } from '../../../utilities';
 
 const { prefix } = settings;
 const breakpointKeys = Object.keys(breakpoints);
@@ -48,9 +48,10 @@ function getBreakpointIndex (windowWidth) {
     }
 }
 
-function resizeBrowser ({ name: width }) {
+function resizeBrowser ({ text, name: width }) {
     // should this be a utility?
     chrome.windows.update(-2, { width: width });
+    gaConfigurationEvent('browser-resize-change', text, width);
 }
 
 export { ResizeBrowser };

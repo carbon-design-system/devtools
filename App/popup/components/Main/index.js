@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
 import { Accordion, AccordionItem, ToggleSmall, Toggle } from 'carbon-components-react';
 import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
-import { setStorage, getStorage, experimentalFlag } from '../../../utilities';
+import { setStorage, getStorage, experimentalFlag, gaNavigationEvent, gaConfigurationEvent } from '../../../utilities';
 
 const { prefix } = settings;
 const defaults = {
@@ -67,6 +67,7 @@ function Main ({ initialMsg }) {
 
     function renderAccordionItem (title, Content) {
         const id = title.replace(' ', '').toLowerCase();
+        const codename = title.replace(' ', '-').toLowerCase();
         
         return !onLoad ? null : (
             <AccordionItem
@@ -76,6 +77,7 @@ function Main ({ initialMsg }) {
                     const changes = {...globalToggleStates};
                     changes[id] = val.isOpen;
                     setIsOpenStates(changes);
+                    gaNavigationEvent('toggle', codename, val.isOpen);
                 }}
                 title={
                     ['componentlist'].indexOf(id) > -1 ? title : (
@@ -91,6 +93,7 @@ function Main ({ initialMsg }) {
                                     changes[id] = e;
                                     setGlobalToggleStates(changes);
                                     setIsOpenStates(changes);
+                                    gaConfigurationEvent('global-change', codename, e);
                                 }}
                             />
                         </div>

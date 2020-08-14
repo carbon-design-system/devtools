@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { settings } from 'carbon-components';
 import { Select, SelectItem, AccordionItem } from 'carbon-components-react';
-import { getStorage, setStorage } from '../../../utilities';
+import { getStorage, setStorage, gaNavigationEvent, gaConfigurationEvent } from '../../../utilities';
 import { gridVersions } from '../../../globals';
 
 const { prefix } = settings;
@@ -19,7 +19,10 @@ function Grid () {
     }, []);
 
     return (
-        <AccordionItem title="Grid settings" open={false}>
+        <AccordionItem
+            onClick={() => gaNavigationEvent('toggle', 'grid-settings')}
+            title="Grid settings"
+            open={false}>
             <Select
                 size="sm"
                 labelText="Choose a grid"
@@ -42,7 +45,9 @@ function Grid () {
 
 function setGridVersion (e) {
     const value = e.target.value;
-    setStorage({ gridVersion: value });
+    setStorage({ gridVersion: value }, () => {
+        gaConfigurationEvent('grid-settings-change', 'grid-version');
+    });
 }
 
 export { Grid };

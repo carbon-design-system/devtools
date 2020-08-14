@@ -10,3 +10,5 @@ export * from './activeTab';
 export * from './onTabUpdated';
 export * from './experimental';
 export * from './remtopx';
+export * from './ga';
+export * from './randomId';

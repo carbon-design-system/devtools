@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
 import { Select, SelectItem, AccordionItem, ToggleSmall } from 'carbon-components-react';
-import { getStorage, setStorage } from '../../../utilities';
+import { getStorage, setStorage, gaNavigationEvent, gaConfigurationEvent } from '../../../utilities';
 import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
@@ -30,7 +30,10 @@ function General () {
     }, []);
 
     return (
-        <AccordionItem title="General settings" open={false}>
+        <AccordionItem
+            onClick={() => gaNavigationEvent('toggle', 'general-settings')}
+            title="General settings"
+            open={false}>
             <div className={`${prefix}--row`}>
                 <div className={`${prefix}--col-sm-2`}>
                     <ToggleSmall
@@ -74,17 +77,23 @@ function General () {
 
 function setTheme (e) {
     const value = e.target.value;
-    setStorage({ generalTheme: value });
+    setStorage({ generalTheme: value }, () => {
+        gaConfigurationEvent('general-settings-change', 'general-theme');
+    });
 }
 
 function setExperimental (e) {
     const value = e.target.checked;
-    setStorage({ generalExperimental: value });
+    setStorage({ generalExperimental: value }, () => {
+        gaConfigurationEvent('general-settings-change', 'general-experimental', value);
+    });
 }
 
 function setNonCarbon (e) {
     const value = e.target.checked;
-    setStorage({ generalNonCarbon: value });
+    setStorage({ generalNonCarbon: value }, () => {
+        gaConfigurationEvent('general-settings-change', 'general-ignore-validation', value);
+    });
 }
 
 export { General };

@@ -79,13 +79,13 @@ module.exports = {
             chunkFilename: '[id]/index.css',
         }),
         new HtmlWebpackPlugin({
-            title: 'Options – IBM Dotcom Devtools',
+            title: 'Options – Carbon Devtools',
             chunks: ['options'],
             filename: 'options/index.html',
             cache: false
         }),
         new HtmlWebpackPlugin({
-            title: 'Popup – IBM Dotcom Devtools',
+            title: 'Popup – Carbon Devtools',
             chunks: ['popup'],
             filename: 'popup/index.html',
             cache: false

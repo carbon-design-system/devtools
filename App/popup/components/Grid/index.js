@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
-import { setStorage, getStorage } from '../../../utilities';
+import { setStorage, getStorage, gaConfigurationEvent } from '../../../utilities';
 import { ToggleSmall } from 'carbon-components-react';
 import { Grid2xOptions } from './Grid2xOptions';
 import { GridMiniUnitOptions } from './GridMiniUnitOptions';
@@ -62,6 +62,7 @@ function Grid ({ disabled }) {
                                 const changes = {...toggleGrids};
                                 changes['toggle2xGrid'] = e;
                                 setToggleGrids(changes);
+                                gaConfigurationEvent('2x-grid-change', 'global', e);
                             }}
                         />
                     </div>
@@ -83,6 +84,7 @@ function Grid ({ disabled }) {
                                 const changes = {...toggleGrids};
                                 changes['toggleMiniUnitGrid'] = e;
                                 setToggleGrids(changes);
+                                gaConfigurationEvent('mini-unit-grid-change', 'global', e);
                             }}
                         />
                     </div>
