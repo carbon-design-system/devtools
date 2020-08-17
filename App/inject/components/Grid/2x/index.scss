@@ -29,7 +29,7 @@ $grid-outer-border-opacity: $grid-border-opacity;
         position: fixed;
         left: 0;
         top: 0;
-        z-index: 9999999999;
+        z-index: $zindex;
         width: 100%;
         height: 100vh;
         transition: height $transition-in, padding $transition-fade;
@@ -129,7 +129,7 @@ $grid-outer-border-opacity: $grid-border-opacity;
             position: fixed;
             padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
             right: 0;
-            z-index: 9999999999;
+            z-index: $zindex;
             transition: bottom $transition-in;
             border-bottom: 0;
 
@@ -159,16 +159,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
             @include breakpoint-label--theme;
         }
         
-        $themes: (
-            'white': $carbon--theme--white,
-            'g10': $carbon--theme--g10,
-            'g90': $carbon--theme--g90,
-            'g100': $carbon--theme--g100,
-            'v9': $carbon--theme--v9
-        );
-
         @each $theme in map-keys($themes) {
-            &--#{$theme}::after {
+            .#{$prefix}--#{$theme} &::after {
                 @include carbon--theme(map-get($themes, $theme)) {
                      @include breakpoint-label--theme;
                 }

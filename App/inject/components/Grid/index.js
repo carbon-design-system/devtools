@@ -100,8 +100,8 @@ function manageGlobals () {
     
     function manageGeneralTheme (generalTheme = 'g90') {
         if (generalTheme !== lastTheme) {
-            grid2x.classList.remove(...themeList.map(theme => `${prefix}--grid-2x--${theme}`)); // remove any first
-            grid2x.classList.add(`${prefix}--grid-2x--${generalTheme}`); // set updated theme
+            html.classList.remove(...themeList.map(theme => `${prefix}--${theme}`)); // remove any first
+            html.classList.add(`${prefix}--${generalTheme}`); // set updated theme
             lastTheme = generalTheme;
         }
     }

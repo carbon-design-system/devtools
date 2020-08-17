@@ -24,7 +24,7 @@ $grid-mini-unit-border-opacity: $grid-opacity;
         height: 100%;
         min-height: 100vh;
         display: block;
-        z-index: 999999999;
+        z-index: $zindex;
         background-attachment: scroll;
         background-size: carbon--mini-units(1) carbon--mini-units(1);
         

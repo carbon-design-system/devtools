@@ -10,7 +10,7 @@ $grid-border-opacity: 1;
 
 .#{$prefix}--grid-container {
     position: absolute;
-    z-index: 9999999999;
+    z-index: $zindex;
     height: auto;
     width: auto;
     top: 0;

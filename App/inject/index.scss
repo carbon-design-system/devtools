@@ -1,5 +1,6 @@
 $prefix: 'bx-dev';
 $carbonPrefix: 'bx';
+$zindex: 9999999999;
 
 // cleanup imports
 // are all these imports still being used?
@@ -20,16 +21,19 @@ $carbonPrefix: 'bx';
 
 $transition-in: $duration--moderate-02 carbon--motion(standard, productive);
 $transition-fade: $duration--fast-02 carbon--motion(standard, productive);
+$themes: (
+    'white': $carbon--theme--white,
+    'g10': $carbon--theme--g10,
+    'g90': $carbon--theme--g90,
+    'g100': $carbon--theme--g100,
+    'v9': $carbon--theme--v9
+);
 
-@import 'components/Grid';
-@import 'components/Inventory';
+@import 'components';
 
 .#{$prefix}--grid--carbon-v9 {
     @import "@carbon/grid/scss/12";
 }
-
-
-
 
 
 

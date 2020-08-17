@@ -1,10 +1,10 @@
 import { settings } from 'carbon-components';
+import { positionTooltip, showHideTooltip, updateTooltipContent } from '../';
 import { sendMessage, getMessage, randomId } from '../../../utilities';
 import { allComponents } from '../../../globals';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
-// const html = document.querySelector('html');
 const highlightClass = `${prefix}--inventory--highlight`;
 const relativeClass = `${prefix}--inventory--relative`;
 
@@ -63,6 +63,8 @@ function addHighlights (ids) {
 
 function removeHighlights (ids) {
     doThisByIds(ids, removeHighlight);
+    
+    showHideTooltip(false);
 
     // remove window event listener
     document.body.removeEventListener('mouseenter', nukeAllHighlights);
@@ -71,15 +73,28 @@ function removeHighlights (ids) {
 function nukeAllHighlights () {
     const components = document.querySelectorAll('.' + highlightClass);
     
+    showHideTooltip(false);
+    
     components.forEach(removeHighlight);
     
     document.body.removeEventListener('mouseenter', nukeAllHighlights);
 }
 
-function addHighlight (component) {
+function addHighlight (component, id, showTooltip) {
     const position = getComputedStyle(component).position;
 
     component.classList.add(highlightClass);
+
+    if (showTooltip) {
+        const idPosition = component.dataset[idselector].split(',').indexOf(id);
+        const componentName = component.dataset.componentname.split(',')[idPosition];
+
+        showHideTooltip(true);
+        positionTooltip(component);
+        updateTooltipContent(`
+            <span class="${prefix}--tooltip--primary">${componentName}</span>
+            <span class="${prefix}--tooltip--secondary">${component.offsetWidth}x${component.offsetHeight}</span>`);
+    }
     
     if (position !== 'fixed'
      && position !== 'absolute'
@@ -100,10 +115,10 @@ function doThisByIds (ids, callback, afterCallback) {
     const components = document.querySelectorAll(selector);
 
     if (components.length === 1) {
-        callback(components[0]);
+        callback(components[0], ids[0], true);
     } else if (components.length > 0) {
         for (let i = 0; i < components.length; i++) {
-            callback(components[i]);
+            callback(components[i], ids[i], false);
         }
     }
     
@@ -154,8 +169,10 @@ function getInventory (componentList) {
                 
                 if (component.dataset[idselector]) {
                     component.dataset[idselector] += ',' + uniqueID; // set a unique id to find later
+                    component.dataset['componentname'] += ',' + componentName; // set a unique id to find later
                 } else {
                     component.dataset[idselector] = uniqueID; // set a unique id to find later
+                    component.dataset['componentname'] = componentName; // set a unique id to find later
                 }
 
                 inventory.all[componentName].push({
@@ -173,7 +190,6 @@ function getInventory (componentList) {
     
     return inventory;
 }
-
 
 export { initInventory };
 

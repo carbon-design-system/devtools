@@ -6,6 +6,8 @@ import { bugs } from '../../../../package.json'
 
 const { prefix } = settings;
 
+// TODO: build search capability
+
 function Inventory ({ disable, isOpen }) {
     const [inventoryData, setInventoryData] = useState({});
     let startPerfCheck;

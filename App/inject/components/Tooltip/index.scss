@@ -1,0 +1,60 @@
+@import "carbon-components/scss/components/tooltip/tooltip";
+
+.#{$prefix}--tooltip {
+    @include carbon--type-style('helper-text-01');
+    padding: carbon--mini-units(1);
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transition-fade, visibility $transition-fade;
+    min-width: initial;
+    position: fixed;
+    margin-top: 0;
+    z-index: $zindex - 1;
+    
+    &[data-floating-menu-direction=top] {
+        margin-top: -1 * carbon--mini-units(1);
+    }
+    
+    &__content {
+        width: 100%;
+        display: flex;
+    }
+    
+    &--shown {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    &--primary {
+        font-weight: bold;
+        margin-right: carbon--mini-units(2);
+    }
+    
+    &--secondary {
+    }
+
+    // tooltip theme
+    @mixin tooltip--theme {
+        background: $ui-01;
+        color: $text-01;
+        
+        .#{$prefix}--tooltip__caret {
+            border-bottom-color: $ui-01;
+        }
+        
+        &--secondary {
+            color: $text-02;
+        }
+    }
+
+    @include tooltip--theme;
+
+    @each $theme in map-keys($themes) {
+        .#{$prefix}--#{$theme} & {
+            @include carbon--theme(map-get($themes, $theme)) {
+                 @include tooltip--theme;
+            }
+        }
+    }
+}
