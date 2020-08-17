@@ -6,6 +6,7 @@ const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
 // const html = document.querySelector('html');
 const highlightClass = `${prefix}--inventory--highlight`;
+const relativeClass = `${prefix}--inventory--relative`;
 
 function initInventory () {
     getMessage((msg, sender, sendResponse) => {
@@ -54,18 +55,14 @@ function scrollIntoView (id) {
 }
 
 function addHighlights (ids) {
-    doThisByIds(ids, component => {
-        component.classList.add(highlightClass);
-    });
+    doThisByIds(ids, addHighlight);
     
     // add window event listener
     document.body.addEventListener('mouseenter', nukeAllHighlights);
 }
 
 function removeHighlights (ids) {
-    doThisByIds(ids, component => {
-        component.classList.remove(highlightClass);
-    });
+    doThisByIds(ids, removeHighlight);
 
     // remove window event listener
     document.body.removeEventListener('mouseenter', nukeAllHighlights);
@@ -74,11 +71,26 @@ function removeHighlights (ids) {
 function nukeAllHighlights () {
     const components = document.querySelectorAll('.' + highlightClass);
     
-    components.forEach(component => {
-        component.classList.remove(highlightClass);
-    });
+    components.forEach(removeHighlight);
     
     document.body.removeEventListener('mouseenter', nukeAllHighlights);
+}
+
+function addHighlight (component) {
+    const position = getComputedStyle(component).position;
+
+    component.classList.add(highlightClass);
+    
+    if (position !== 'fixed'
+     && position !== 'absolute'
+     && position !== 'relative') {
+        component.classList.add(relativeClass);
+    }
+}
+
+function removeHighlight (component) {
+    component.classList.remove(highlightClass);
+    component.classList.remove(relativeClass);
 }
 
 function doThisByIds (ids, callback, afterCallback) {
