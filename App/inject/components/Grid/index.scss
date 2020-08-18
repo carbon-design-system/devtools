@@ -31,4 +31,14 @@ $grid-border-opacity: 1;
     body:active & {
         opacity: 0;
     }
+
+    &--interact {
+        pointer-events: initial;
+
+        // hide grid on click
+        html:active &,
+        body:active & {
+            opacity: 1;
+        }
+    }
 }

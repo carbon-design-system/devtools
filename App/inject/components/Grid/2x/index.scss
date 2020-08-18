@@ -41,6 +41,11 @@ $grid-outer-border-opacity: $grid-border-opacity;
             height: 0;
             top: auto;
             bottom: 0;
+
+            // minimized column and how it's hidden
+            .#{$prefix}--col--minimize {
+                visibility: hidden;
+            }
         }
 
         .#{$prefix}--grid,
@@ -51,10 +56,15 @@ $grid-outer-border-opacity: $grid-border-opacity;
         }
         
         [class*="#{$prefix}--col-"] {
+            margin-bottom: 100vh;
+
             &,
             &::before {
                 transition:
+                    height $transition-in,
+                    top $transition-in,
                     box-shadow $transition-in,
+                    opacity $transition-fade,
                     background-color $transition-fade;
             }
 
@@ -62,6 +72,18 @@ $grid-outer-border-opacity: $grid-border-opacity;
                 content: '';
                 display: block;
             }
+            
+            // interactive columns
+            .#{$prefix}--devtools--interact &:hover {
+                opacity: .8;
+                cursor: pointer;
+            }
+
+            // minimized column
+            &.#{$prefix}--col--minimize {
+                height: carbon--mini-units(2);
+            }
+
         }
 
         // column
@@ -81,7 +103,7 @@ $grid-outer-border-opacity: $grid-border-opacity;
             [class*="#{$prefix}--col-"] {
                 &::before {
                     box-shadow:
-                        $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
+                        ($carbon--grid-gutter/2) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
                         ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
                 }
             }
@@ -114,12 +136,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
         // gutter divider
         &--outer-border {
             [class*="#{$prefix}--col-"] {
-                box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
-                
-                &:first-child {
-                    box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity),
-                    ($grid-outer-border-size * -1) 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
-                }
+                box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity),
+                    inset $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
             }
         }
 

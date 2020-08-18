@@ -1,11 +1,14 @@
 import './index.scss';
-import { initGrid, initInventory, initTooltip } from './components';
+import { initGrid, initInventory, initTooltip, initShortcuts } from './components';
 
-window.carbonDevtoolsInjected = true;
+if (!window.carbonDevtoolsInjected) {
+    initGrid();
+    initTooltip();
+    initInventory();
+    initShortcuts();
 
-initGrid();
-initTooltip();
-initInventory();
+    window.carbonDevtoolsInjected = true;
+}
 
 // TODO: figure out why injected twice?
 // console.log('asdf');

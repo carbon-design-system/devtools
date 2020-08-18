@@ -10,6 +10,7 @@
 @import '~carbon-components/scss/components/form/form';
 @import '~carbon-components/scss/components/select/select';
 @import '~carbon-components/scss/components/toggle/toggle';
+@import '~carbon-components/scss/components/structured-list/structured-list';
 
 $carbon--theme: $carbon--theme--white;
 
@@ -17,6 +18,7 @@ $carbon--theme: $carbon--theme--white;
 @include carbon--theme;
 
 @import './components/Footer';
+@import './components/Shortcuts';
 
 body {
     background: $ui-background;

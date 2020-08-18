@@ -1,0 +1,29 @@
+.#{$prefix}--options-shortcuts {
+    p {
+        @include carbon--type-style('helper-text-01');
+        color: $text-02;
+        // margin-bottom: carbon--mini-units(4);
+    }
+
+    &__key {
+        @include carbon--type-style('code-01');
+        background-color: $ui-01;
+        border-radius: carbon--mini-units(.25);
+        padding: carbon--mini-units(.5) carbon--mini-units(1);
+        margin-right: carbon--mini-units(.5);
+        color: $text-01;
+        display: flex;
+        // font-weight: 500;
+        
+        &s {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        svg {
+            fill: currentColor;
+            width: carbon--mini-units(2);
+            height: carbon--mini-units(2);
+        }
+    }
+}

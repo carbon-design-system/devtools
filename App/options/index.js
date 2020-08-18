@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { settings } from 'carbon-components';
 import { Accordion } from 'carbon-components-react';
-import { Footer, General, Grid } from './components';
+import { Footer, General, Grid, Shortcuts } from './components';
 import { gaPageview } from '../utilities';
 
 import './index.scss';
@@ -20,6 +20,7 @@ function Options () {
                     <Accordion>
                         <General />
                         <Grid />
+                        <Shortcuts />
                     </Accordion>
                 </div>
             </div>

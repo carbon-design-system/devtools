@@ -4,7 +4,7 @@ $inventory-color: map-get(map-get($carbon--colors, 'purple'), 50);
     &--relative {
         position: relative;
     }
-    &--highlight::before {
+    &--highlight::after {
         // does this break anything, or should we inject a div?
         content: '';
         pointer-events: none;
