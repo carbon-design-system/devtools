@@ -1,12 +1,10 @@
 import { settings } from 'carbon-components';
-import { positionTooltip, showHideTooltip, updateTooltipContent } from '../';
+import { positionTooltip, showHideTooltip, updateTooltipContent, addHighlight, removeHighlight } from '../';
 import { sendMessage, getMessage, randomId } from '../../../utilities';
 import { allComponents } from '../../../globals';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
-const highlightClass = `${prefix}--inventory--highlight`;
-const relativeClass = `${prefix}--inventory--relative`;
 
 function initInventory () {
     getMessage((msg, sender, sendResponse) => {
@@ -21,7 +19,7 @@ function initInventory () {
 
         if (msg.inventoryComponentMouseOver) {
             // highlight each in list
-            addHighlights(msg.inventoryComponentMouseOver);
+            highlightInventoryItems(msg.inventoryComponentMouseOver);
         }
 
         if (msg.inventoryComponentClicked) {
@@ -54,36 +52,17 @@ function scrollIntoView (id) {
     }
 }
 
-function addHighlights (ids) {
-    doThisByIds(ids, addHighlight);
-    
-    // add window event listener
-    document.body.addEventListener('mouseenter', nukeAllHighlights);
+function highlightInventoryItems (ids) {
+    doThisByIds(ids, highlightInventoryItem);
 }
 
 function removeHighlights (ids) {
-    doThisByIds(ids, removeHighlight);
-    
+    doThisByIds(ids, comp => removeHighlight(comp, 'inventory'));
     showHideTooltip(false);
-
-    // remove window event listener
-    document.body.removeEventListener('mouseenter', nukeAllHighlights);
 }
 
-function nukeAllHighlights () {
-    const components = document.querySelectorAll('.' + highlightClass);
-    
-    showHideTooltip(false);
-    
-    components.forEach(removeHighlight);
-    
-    document.body.removeEventListener('mouseenter', nukeAllHighlights);
-}
-
-function addHighlight (component, id, showTooltip) {
-    const position = getComputedStyle(component).position;
-
-    component.classList.add(highlightClass);
+function highlightInventoryItem (component, id, showTooltip) {
+    addHighlight(component, 'inventory');
 
     if (showTooltip) {
         const idPosition = component.dataset[idselector].split(',').indexOf(id);
@@ -95,20 +74,9 @@ function addHighlight (component, id, showTooltip) {
             <span class="${prefix}--tooltip--primary">${componentName}</span>
             <span class="${prefix}--tooltip--secondary">${component.offsetWidth}x${component.offsetHeight}</span>`);
     }
-    
-    if (position !== 'fixed'
-     && position !== 'absolute'
-     && position !== 'relative') {
-        component.classList.add(relativeClass);
-    }
 }
 
-function removeHighlight (component) {
-    component.classList.remove(highlightClass);
-    component.classList.remove(relativeClass);
-}
-
-function doThisByIds (ids, callback, afterCallback) {
+function doThisByIds (ids, callback) {
     const beginning = `[data-${idselector}*="`;
     const end = `"]`;
     const selector = beginning + ids.join(end + ', ' + beginning) + end;
@@ -120,10 +88,6 @@ function doThisByIds (ids, callback, afterCallback) {
         for (let i = 0; i < components.length; i++) {
             callback(components[i], ids[i], false);
         }
-    }
-    
-    if (typeof afterCallback === 'function') {
-        afterCallback(ids);
     }
 }
 

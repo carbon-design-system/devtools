@@ -1,0 +1,38 @@
+$inventory-color: map-get(map-get($carbon--colors, 'purple'), 50);
+$specs-color: map-get(map-get($carbon--colors, 'magenta'), 50);
+$grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
+
+.#{$prefix}--highlight {
+    &--grid,
+    &--specs,
+    &--inventory {
+        &::after {
+            // does this break anything, or should we inject a div?
+            content: '';
+            pointer-events: none;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: $zindex - 1;
+            transform: translate(0,0);
+        }
+    }
+
+    &--relative {
+        position: relative;
+    }
+    
+    &--inventory::after {
+        background-color: rgba($inventory-color, .5);
+    }
+    
+    &--specs::after {
+        background-color: rgba($specs-color, .5);
+    }
+    
+    &--grid::after {
+        background-color: rgba($grid-color, .5);
+    }
+}
