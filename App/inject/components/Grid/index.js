@@ -16,15 +16,13 @@ let lastGridVersion = '';
 
 function initGrid () {
     const body = html.querySelector('body');
-    const gridContainerClassName = `${prefix}--grid-container`;
+    const devtoolContainerClass = `${prefix}--devtools`;
     const numOfColumns = 16;
     const columns = [];
     
-    let gridContainer = body.querySelector(`.${gridContainerClassName}`);
+    let gridContainer = body.querySelector(`.${devtoolContainerClass}`);
 
-    html.classList.add(`${prefix}--grid--hide`)
-    html.classList.add(`${prefix}--grid-mini-unit`)
-    html.classList.add(`${prefix}--grid-mini-unit--hide`);
+    html.classList.add(`${prefix}--grid--hide`);
 
     for (let i = 0; i < numOfColumns; i++) {
         columns.push(`<div class="${prefix}--col-sm-1 ${prefix}--col-md-1 ${prefix}--col-lg-1"></div>`);
@@ -37,11 +35,12 @@ function initGrid () {
                     ${columns.join('')}
                 </div>
             </div>
-        </div>`;
+        </div>
+        <div class="${prefix}--grid-mini-unit"></div>`;
     
     if (!gridContainer) {
         gridContainer = document.createElement('div');
-        gridContainer.classList.add(gridContainerClassName);
+        gridContainer.classList.add(devtoolContainerClass);
         gridContainer.innerHTML = GRID_HTML;
         body.appendChild(gridContainer);
     }
@@ -92,9 +91,9 @@ function manageGlobals () {
 
         // show or hide mini unit grid
         if (toggleMiniUnitGrid) {
-            miniUnitGrid.classList.remove(`${prefix}--grid-mini-unit--hide`);
+            html.classList.add(`${prefix}--grid-mini-unit--show`);
         } else {
-            miniUnitGrid.classList.add(`${prefix}--grid-mini-unit--hide`);
+            html.classList.remove(`${prefix}--grid-mini-unit--show`);
         }
     }
     

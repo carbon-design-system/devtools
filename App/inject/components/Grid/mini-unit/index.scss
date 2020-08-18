@@ -4,13 +4,9 @@ $grid-mini-unit-border-size: $grid-border-size;
 $grid-mini-unit-border-color: $grid-border-color;
 $grid-mini-unit-border-opacity: $grid-opacity;
 
-// @mixin mini-unit () {
 .#{$prefix}--grid-mini-unit {
     $miniUnitSVG: "data:image/svg+xml;charset=UTF-8,%3csvg width='8px' height='8px' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='1' fill='#{$grid-mini-unit-color}' fill-opacity='#{$grid-mini-unit-opacity/2}' width='7' height='7'%3e%3c/rect%3e%3c/svg%3e";
     $miniUnitGradient: rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) $grid-mini-unit-border-size, transparent $grid-mini-unit-border-size;
-    
-    position: relative;
-    height: initial;
 
     // mini unit grid
     &::before,
@@ -24,17 +20,29 @@ $grid-mini-unit-border-opacity: $grid-opacity;
         height: 100%;
         min-height: 100vh;
         display: block;
-        z-index: $zindex;
+        z-index: 2;
         background-attachment: scroll;
         background-size: carbon--mini-units(1) carbon--mini-units(1);
         
-        opacity: 1;
+        opacity: 0;
         transition: opacity $transition-fade;
+    }
+    
+    &--show {
+        position: relative;
+        height: initial;
+
+        .#{$prefix}--grid-mini-unit {
+            &::before,
+            &::after {
+                opacity: 1;
+            }
+        }
     }
 
     // hide mini-unit grid
-    &--hide,
-    &.#{$prefix}--grid--hide,
+    // &--hide,
+    .#{$prefix}--grid--hide &,
     &:active {
         &::before,
         &::after {

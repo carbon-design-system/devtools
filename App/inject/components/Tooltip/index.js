@@ -18,6 +18,7 @@ let clearTooltipAnimation,
 
 function initTooltip () {
     const tooltip = body.querySelector('.' + tooltipClass);
+    const devtoolsContainer = body.querySelector(`.${prefix}--devtools`);
 
     if (!tooltip) {
         const tooltipHTML = document.createElement('div');
@@ -27,7 +28,7 @@ function initTooltip () {
                   <span class="${tooltipClass}__caret"></span>
                   <div class="${tooltipClass}__content" tabindex="-1" role="dialog"></div>
               `;
-        body.appendChild(tooltipHTML);
+        devtoolsContainer.appendChild(tooltipHTML);
     }
 }
 

@@ -7,7 +7,7 @@ const securityPrefix = getSecurityPrefix('');
 const cloudPalPrefix = 'pal'; // static hardcoded
 
 const prefixSelectors = `[class*="${carbonPrefix}--"], ` // carbon
-               + `[data-autoid*="${dotcomPrefix}--"], ` // DDS
+               + `[data-autoid*="${dotcomPrefix}--"], [data-auto-id*="${dotcomPrefix}--"], ` // DDS
                + `[class*="${securityPrefix}"], ` // security
                + `[class*="${cloudPalPrefix}--"]`; // pal
 

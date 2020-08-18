@@ -10,7 +10,7 @@
     min-width: initial;
     position: fixed;
     margin-top: 0;
-    z-index: $zindex - 1;
+    z-index: 1;
     
     &[data-floating-menu-direction=top] {
         margin-top: -1 * carbon--mini-units(1);

@@ -8,7 +8,7 @@ $grid-border-opacity: 1;
 @import 'mini-unit';
 @import 'column-label';
 
-.#{$prefix}--grid-container {
+.#{$prefix}--devtools {
     position: absolute;
     z-index: $zindex;
     height: auto;

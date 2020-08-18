@@ -20,6 +20,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
     }
 }
 
+// TODO: fix breakpoint and mini unit grid overlay
+
 // 2x grid
 .#{$prefix}--grid {
     // full-width transition effect
@@ -29,7 +31,7 @@ $grid-outer-border-opacity: $grid-border-opacity;
         position: fixed;
         left: 0;
         top: 0;
-        z-index: $zindex;
+        z-index: 3;
         width: 100%;
         height: 100vh;
         transition: height $transition-in, padding $transition-fade;
@@ -129,7 +131,7 @@ $grid-outer-border-opacity: $grid-border-opacity;
             position: fixed;
             padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
             right: 0;
-            z-index: $zindex;
+            z-index: 4;
             transition: bottom $transition-in;
             border-bottom: 0;
 

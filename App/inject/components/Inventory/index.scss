@@ -14,7 +14,7 @@ $inventory-color: map-get(map-get($carbon--colors, 'purple'), 50);
         left: 0;
         top: 0;
         background-color: rgba($inventory-color, .5);
-        z-index: $zindex - 2;
+        z-index: $zindex - 1;
     }
 }
 
