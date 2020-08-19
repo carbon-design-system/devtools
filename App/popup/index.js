@@ -76,7 +76,6 @@ function perfCheck (startTime, msg) {
           }
         }
 
-        console.log('validate', status, Math.round(time));
         gaDomEvent('validate', status, Math.round(time));
         
         if (time > timeToCheck) {
