@@ -11,10 +11,13 @@ function injectGrid () {
                 file: '/static/inject/index.js',
                 frameId: frameId
             });
-            // insertCSS(null, {
-            //     file: '/static/inject/index.css',
-            //     frameId: frameId
-            // });
+            
+            if (process.env.NODE_ENV === 'production') {
+                insertCSS(null, {
+                    file: '/static/inject/index.css',
+                    frameId: frameId
+                });
+            }
         }
     });
 }

@@ -27,8 +27,9 @@ function sendValidation () {
         }
 
         
-        // inject css via this method for development purposes mostly
-        if (!msg.carbonDevtoolsInjected) {
+        // inject css via this method for development purposes
+        if (process.env.NODE_ENV === 'development'
+         && !msg.carbonDevtoolsInjected) {
             if (msg.ignoreValidation || msg.runningCarbon) {
                 const cssURL = chrome.extension.getURL('/static/inject/index.css');
                 
