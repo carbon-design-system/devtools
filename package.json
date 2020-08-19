@@ -23,8 +23,6 @@
     "@carbon/type": "^10.9.0",
     "carbon-components": "^10.15.0",
     "carbon-components-react": "^7.15.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-preact-pure": "^2.2.1",
     "terser-webpack-plugin": "^4.0.0"
   },
   "devDependencies": {
