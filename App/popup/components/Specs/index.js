@@ -3,11 +3,12 @@ import { settings } from 'carbon-components';
 import { setStorage, getStorage } from '../../../utilities';
 import { ToggleSmall, FormGroup, TileGroup, RadioTile } from 'carbon-components-react';
 import { ComingSoon } from '../';
+import { CustomOutline32 } from './CustomOutline32';
 import { ColorPalette32, TextScale32, Grid32, VirtualColumn32, ParentChild32 } from '@carbon/icons-react';
 
 const { prefix } = settings;
 
-const defaults = {};
+const defaults = 'dependencies';
 
 
 function Specs ({ disabled }) {
@@ -31,13 +32,14 @@ function Specs ({ disabled }) {
     });
 
     return !onLoad ? null : (
-        <>
-        
         <TileGroup
-            // defaultSelected="default-selected"
-            // legend="Radio Tile Group"
-            name="tile-group"
-            className={`${prefix}--popup__specs`}>
+            defaultSelected={toggleSpecs}
+            name="specs"
+            className={`${prefix}--popup__specs`}
+            onChange={e => {
+                setToggleSpecs(e);
+                gaConfigurationEvent('specs-change', e)
+            }}>
             <RadioTile
                 id="specsGrid"
                 name="specs"
@@ -46,11 +48,18 @@ function Specs ({ disabled }) {
                 Grid
             </RadioTile>
             <RadioTile
-                id="specsTypography"
+                id="specsDependencies"
                 name="specs"
-                value="typography">
-                <TextScale32 className={`${prefix}--popup__specs-icon`} />
-                Typography
+                value="dependencies">
+                <ParentChild32 className={`${prefix}--popup__specs-icon`} />
+                Dependencies
+            </RadioTile>
+            <RadioTile
+                id="specsOutline"
+                name="specs"
+                value="outline">
+                <CustomOutline32 className={`${prefix}--popup__specs-icon`} />
+                Outline
             </RadioTile>
             <RadioTile
                 id="specsSpacing"
@@ -67,42 +76,13 @@ function Specs ({ disabled }) {
                 Color
             </RadioTile>
             <RadioTile
-                id="specsDependencies"
+                id="specsTypography"
                 name="specs"
-                value="dependencies">
-                <ParentChild32 className={`${prefix}--popup__specs-icon`} />
-                Dependencies
+                value="typography">
+                <TextScale32 className={`${prefix}--popup__specs-icon`} />
+                Typography
             </RadioTile>
         </TileGroup>
-            {/*// <section className={`${prefix}--popup-main__section`}>
-            //     <div className={`${prefix}--row`}>
-            //         <div className={`${prefix}--col-sm-2`}>
-            //             <h2 className={`${prefix}--popup-main__section-title`}>On hover</h2>
-            //         </div>
-            //     </div>
-            //     <FormGroup legendText="Options">
-            //         <div className={`${prefix}--row`}>
-            //             <div className={`${prefix}--col-sm-2`}>
-            //                 <ComingSoon />
-            //             </div>
-            //         </div>
-            //     </FormGroup>
-            // </section>
-            // <section className={`${prefix}--popup-main__section`}>
-            //     <div className={`${prefix}--row`}>
-            //         <div className={`${prefix}--col-sm-2`}>
-            //             <h2 className={`${prefix}--popup-main__section-title`}>Color</h2>
-            //         </div>
-            //     </div>
-            //     <FormGroup legendText="Options">
-            //         <div className={`${prefix}--row`}>
-            //             <div className={`${prefix}--col-sm-2`}>
-            //                 <ComingSoon />
-            //             </div>
-            //         </div>
-            //     </FormGroup>
-            // </section>*/}
-        </>
     );
 }
 
