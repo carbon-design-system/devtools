@@ -30,8 +30,8 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.s[ac]ss$/i,
-            sideEffects: false,
+            test: /\.(scss|sass)$/,
+            sideEffects: true,
             use: [
                 MiniCssExtractPlugin.loader,
                 {
