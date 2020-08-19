@@ -23,6 +23,7 @@
     "@carbon/type": "^10.9.0",
     "carbon-components": "^10.15.0",
     "carbon-components-react": "^7.15.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "terser-webpack-plugin": "^4.0.0"
   },
   "devDependencies": {
