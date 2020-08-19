@@ -21,11 +21,11 @@ function Main ({ initialMsg }) {
        for some reason imports come back undefined outside of Main()
        Need a better way to loop through and name panels/groups from line 4 */
     const groups = {};
+    groups['Component list'] = Inventory;
     experimentalFlag(() => {
         groups['Validate page'] = Validation;
-        groups['Page specs'] = Specs;
+        groups['Specs'] = Specs;
     });
-    groups['Component list'] = Inventory;
     groups['Grid overlay'] = Grid;
 
     const groupsList = Object.keys(groups);
