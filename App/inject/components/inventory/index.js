@@ -14,7 +14,7 @@ function initInventory () {
 
         if (msg.inventoryComponentMouseOut) {
             // remove all highlights when mouse out
-            removeHighlights(msg.inventoryComponentMouseOut);
+            removeInventoryHighlights(msg.inventoryComponentMouseOut);
         }
 
         if (msg.inventoryComponentMouseOver) {
@@ -56,7 +56,7 @@ function highlightInventoryItems (ids) {
     doThisByIds(ids, highlightInventoryItem);
 }
 
-function removeHighlights (ids) {
+function removeInventoryHighlights (ids) {
     doThisByIds(ids, comp => removeHighlight(comp, 'inventory'));
     showHideTooltip(false);
 }
