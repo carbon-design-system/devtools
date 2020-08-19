@@ -11,6 +11,7 @@ function addHighlight (component, type = '') {
     }
 
     addRelativeOrNot(component);
+    component.classList.add(highlightClass);
     component.classList.add(highlightClass + type);
 }
 
@@ -19,6 +20,7 @@ function removeHighlight (component, type) {
         type = '--' + type; // "specs" type becomes "--specs"
     }
 
+    component.classList.remove(highlightClass);
     component.classList.remove(highlightClass + type);
     component.classList.remove(relativeClass);
 }

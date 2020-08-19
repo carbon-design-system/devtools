@@ -7,7 +7,6 @@ $grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
     &--specs,
     &--inventory {
         &::after {
-            // does this break anything, or should we inject a div?
             content: '';
             pointer-events: none;
             position: absolute;
@@ -17,6 +16,17 @@ $grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
             top: 0;
             z-index: $zindex - 1;
             transform: translate(0,0);
+        }
+    }
+
+    &.#{$prefix}--highlight {
+        &--grid,
+        &--specs,
+        &--inventory {
+            &::after {
+                left: 0;
+                transform: translate(0,0);
+            }
         }
     }
 
