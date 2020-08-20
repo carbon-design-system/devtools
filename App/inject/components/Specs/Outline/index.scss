@@ -1,0 +1,9 @@
+.#{$specs-prefix} {
+    body * {
+        transition: box-shadow $transition-fade;
+    }
+
+    &.#{$specs-prefix}--outline body :not(.#{$specs-prefix}--devtools) * {
+        box-shadow: inset 0 0 0 1px $specs-color;
+    }
+}

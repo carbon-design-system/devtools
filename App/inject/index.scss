@@ -21,6 +21,10 @@ $zindex: 9999999999;
 
 $transition-in: $duration--moderate-02 carbon--motion(standard, productive);
 $transition-fade: $duration--fast-02 carbon--motion(standard, productive);
+$grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
+$inventory-color: map-get(map-get($carbon--colors, 'purple'), 50);
+$specs-color: map-get(map-get($carbon--colors, 'magenta'), 50);
+
 $themes: (
     'white': $carbon--theme--white,
     'g10': $carbon--theme--g10,
