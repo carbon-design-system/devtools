@@ -1,18 +1,7 @@
 .#{$prefix}--highlight {
-    &--grid,
-    &--specs,
-    &--inventory {
-        &::after {
-            content: '';
-            pointer-events: none;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            z-index: $zindex - 1;
-            transform: translate(0,0);
-        }
+    &::after { 
+        opacity: 0;
+        transition: opacity $transition-fade;
     }
 
     &.#{$prefix}--highlight {
@@ -20,8 +9,16 @@
         &--specs,
         &--inventory {
             &::after {
+                content: '';
+                pointer-events: none;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
                 left: 0;
                 transform: translate(0,0);
+                z-index: $zindex - 1;
+                opacity: 1;
             }
         }
     }
