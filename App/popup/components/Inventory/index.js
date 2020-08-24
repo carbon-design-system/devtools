@@ -214,6 +214,3 @@ function perfCheck (startTime) {
 }
 
 export { Inventory };
-
-//TODO: fix sourcemap issue
-//TODO: fix webpack watch again

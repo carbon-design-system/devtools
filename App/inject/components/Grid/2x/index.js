@@ -14,7 +14,6 @@ function manage2xGridOptions ({
         toggle2xBorders,
         toggle2xFullWidth,
         toggle2xBreakpoints,
-        toggle2xColumnLabel,
         toggle2xLeftInfluencer,
         toggle2xRightInfluencer
     }) {
@@ -59,14 +58,6 @@ function manage2xGridOptions ({
         html.classList.add(`${prefix}--grid-2x--breakpoint-label`);
     } else {
         html.classList.remove(`${prefix}--grid-2x--breakpoint-label`);
-    }
-
-    // this shouldn't be here?
-    // toggle on or off column identifier by hover
-    if (toggle2xColumnLabel) {
-        html.classList.add(`${prefix}--grid--hover`);
-    } else {
-        html.classList.remove(`${prefix}--grid--hover`);
     }
 }
 

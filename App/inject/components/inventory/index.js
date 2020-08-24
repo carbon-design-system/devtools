@@ -156,5 +156,3 @@ function getInventory (componentList) {
 }
 
 export { initInventory };
-
-// TODO: come up with a better name. more consistent. inventory, or audit?

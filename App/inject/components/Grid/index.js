@@ -3,7 +3,6 @@ import { storageChanged, getStorage } from '../../../utilities';
 import { gridVersions } from '../../../globals';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';
-import { manageColumnLabel, labelInjector } from './column-label';
 import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
@@ -45,9 +44,6 @@ function initGrid () {
         body.appendChild(gridContainer);
     }
 
-    // updates based sets defaults
-    labelInjector();
-
     // updates if storage changes
     manageGlobals();
     manage2xGrid();
@@ -82,10 +78,8 @@ function manageGlobals () {
     function manageGrids ({ toggle2xGrid, toggleMiniUnitGrid }) {
         // hide and show 2x grid
         if (toggle2xGrid) {
-            html.classList.remove(`${prefix}--grid--hide-label-column`);
             grid2x.classList.remove(`${prefix}--grid-2x--hide`);
         } else {
-            html.classList.add(`${prefix}--grid--hide-label-column`);
             grid2x.classList.add(`${prefix}--grid-2x--hide`);
         }
 
