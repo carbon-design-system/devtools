@@ -10,6 +10,3 @@ if (!window.carbonDevtoolsInjected) {
 
     window.carbonDevtoolsInjected = true;
 }
-
-// TODO: figure out why injected twice?
-// console.log('asdf');

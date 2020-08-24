@@ -6,7 +6,6 @@ import {
 import { setClientId } from '../utilities';
 
 setClientId();
-injectGrid();
 setBadge();
 validatePage();
 injectGrid();
