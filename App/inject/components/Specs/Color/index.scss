@@ -1,0 +1,110 @@
+.#{$specs-prefix} {
+    &-color-tooltip {
+        display: flex;
+
+        &__title {
+            @include carbon--type-style('productive-heading-01');
+            margin-bottom: carbon--mini-units(1);
+            float: left;
+            margin-right: 8px;
+        }
+        
+        &__color {
+            border-radius: 50%;
+            display: inline-block;
+            overflow: hidden;
+            background: repeating-linear-gradient(90deg, #fff,  #fff 8px,  #000 8px,  #000 16px);
+
+            span {
+                display: block;
+                width: carbon--mini-units(2);
+                height: carbon--mini-units(2);
+            }
+        }
+
+        &__group {
+            padding: carbon--mini-units(1);
+            padding-right: carbon--mini-units(2);
+            
+            ul {
+                clear: both;
+                padding: 0;
+                margin: 0;
+                list-style-type: none;
+            }
+
+            li {
+                display: flex;
+                margin-bottom: carbon--mini-units(.5);
+                padding: 0;
+                
+                &::before {
+                    display: none;
+                }
+                
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &__prop {
+            @include carbon--type-style('code-01');
+            margin-right: carbon--mini-units(1);
+            font-weight: 500;
+        }
+        
+        p#{&}__value {
+            @include carbon--type-style('code-01');
+            white-space: nowrap;
+        }
+
+        li#{&}__warning {
+            @include carbon--type-style('helper-text-01');
+            $yellow: map-get(map-get($carbon--colors, 'yellow'), 30);
+            border-left: 3px solid $yellow;
+            padding-left: carbon--mini-units(1);
+            margin-bottom: carbon--mini-units(1);
+            font-weight: 500;
+        }
+
+        // tooltip theme
+        @mixin color-tooltip--theme {
+            $border: 1px solid $ui-04;
+
+            &__group {
+                background-color: $ui-background;
+                border-right: $carbon--grid-gutter--condensed solid $ui-01;
+                border-bottom: $carbon--grid-gutter--condensed solid $ui-01;
+            }
+            
+            &__warning {
+                background-color: $ui-01;
+                color: $text-01;
+            }
+            
+            &__color {
+                border: $border;
+            }
+
+            &__title,
+            &__prop {
+                color: $text-01;
+            }
+
+            &__value {
+                color: $text-02;
+            }
+        }
+
+        @include color-tooltip--theme;
+
+        @each $theme in map-keys($themes) {
+            .#{$prefix}--#{$theme} & {
+                @include carbon--theme(map-get($themes, $theme)) {
+                     @include color-tooltip--theme;
+                }
+            }
+        }
+    }
+}

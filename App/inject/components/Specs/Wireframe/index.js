@@ -38,3 +38,40 @@
 //   }
 //  });
 // })();
+
+
+// get data
+// check for updates
+// spec on?
+// this item on?
+
+import { settings } from 'carbon-components'
+
+const { prefix } = settings;
+
+const html = document.querySelector('html');
+// const outlineClass = `${prefix}--specs--outline`;
+
+function manageSpecsWireframe (specs, specType) {
+    if (specs && specType === 'wireframe') {
+        activateWireframe();
+    } else {
+        deactivateWireframe();
+    }
+}
+
+function activateWireframe () {
+    // html.classList.add(outlineClass);
+
+    // .bx--grid, .bx--row, .bx--col, .bx--col-sm-#, .bx--col-md-# ...
+    // add highlight
+    // add tooltip
+    console.log('activate wireframe');
+}
+
+function deactivateWireframe () {
+    // html.classList.remove(outlineClass);
+    console.log('de-activate wireframe');
+}
+
+export { manageSpecsWireframe };

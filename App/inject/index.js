@@ -1,5 +1,11 @@
 import './index.scss';
-import { initGrid, initSpecs, initInventory, initTooltip, initShortcuts } from './components';
+import {
+    initGrid,
+    initSpecs,
+    initInventory,
+    initTooltip,
+    initShortcuts
+} from './components';
 
 if (!window.carbonDevtoolsInjected) {
     initGrid();

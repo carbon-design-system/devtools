@@ -1,6 +1,14 @@
 import { settings } from 'carbon-components';
 import { getStorage, storageChanged } from '../../../utilities';
-import { manageOutline } from './collection';
+import {
+    manageSpecsColor,
+    manageSpecsDependencies,
+    manageSpecsGrid,
+    manageSpecsOutline,
+    manageSpecsSpacing,
+    manageSpecsType,
+    manageSpecsWireframe
+} from './collection';
 
 const { prefix } = settings;
 
@@ -18,7 +26,6 @@ function initSpecs () {
      // set onload based on defaults
     getStorage(['globalToggleStates', 'toggleSpecs'], ({ globalToggleStates, toggleSpecs }) => {
         manageSpecsState('specs', globalToggleStates.specs);
-        console.log(toggleSpecs);
         manageSpecsState('specType', toggleSpecs);
     });
 
@@ -28,10 +35,8 @@ function initSpecs () {
 }
 
 function manageSpecsState (type, value) {
-    console.log(type, value);
     if (state[type] !== value) {
         state[type] = value;
-        console.log(value, state);
         manageSpecs(state);
     }
 }
@@ -43,7 +48,13 @@ function manageSpecs ({ specs, specType }) {
         removeSpecs();
     }
 
-    manageOutline(specs, specType);
+    manageSpecsColor(specs, specType);
+    manageSpecsDependencies(specs, specType);
+    manageSpecsGrid(specs, specType);
+    manageSpecsOutline(specs, specType);
+    manageSpecsSpacing(specs, specType);
+    manageSpecsType(specs, specType);
+    manageSpecsWireframe(specs, specType);
 }
 
 function addSpecs () {

@@ -10,26 +10,26 @@ const { prefix } = settings;
 const html = document.querySelector('html');
 // const outlineClass = `${prefix}--specs--outline`;
 
-function manageSpecsDependencies (specs, specType) {
-    if (specs && specType === 'dependencies') {
-        activateDependencies();
+function manageSpecsSpacing (specs, specType) {
+    if (specs && specType === 'spacing') {
+        activateSpacing();
     } else {
-        deactivateDependencies();
+        deactivateSpacing();
     }
 }
 
-function activateDependencies () {
+function activateSpacing () {
     // html.classList.add(outlineClass);
 
     // .bx--grid, .bx--row, .bx--col, .bx--col-sm-#, .bx--col-md-# ...
     // add highlight
     // add tooltip
-    console.log('activate dependencies');
+    console.log('activate spacing');
 }
 
-function deactivateDependencies () {
+function deactivateSpacing () {
     // html.classList.remove(outlineClass);
-    console.log('de-activate dependencies');
+    console.log('de-activate spacing');
 }
 
-export { manageSpecsDependencies };
+export { manageSpecsSpacing };

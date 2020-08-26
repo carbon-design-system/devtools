@@ -25,6 +25,18 @@ function removeHighlight (component, type) {
     component.classList.remove(relativeClass);
 }
 
+function removeAllHighlights () {
+    const comps = document.querySelectorAll('.' + highlightClass);
+
+    if (comps.length > 0) {
+        for (let i = 0; i < comps.length; i += 1) {
+            removeHighlight(comps[i], 'grid');
+            removeHighlight(comps[i], 'specs');
+            removeHighlight(comps[i], 'inventory');
+        }
+    }
+}
+
 function addRelativeOrNot (component) {
     const position = getComputedStyle(component).position;
 
@@ -37,5 +49,6 @@ function addRelativeOrNot (component) {
 
 export {
     addHighlight,
-    removeHighlight
+    removeHighlight,
+    removeAllHighlights
 };

@@ -5,21 +5,20 @@ const { prefix } = settings;
 const html = document.querySelector('html');
 const outlineClass = `${prefix}--specs--outline`;
 
-function manageOutline (specs, specType) {
-    console.log('manageOutline()', specs, specType);
+function manageSpecsOutline (specs, specType) {
     if (specs && specType === 'outline') {
-        addOutline();
+        activateOutline();
     } else {
-        removeOutline();
+        deactiveOutline();
     }
 }
 
-function addOutline () {
+function activateOutline () {
     html.classList.add(outlineClass);
 }
 
-function removeOutline () {
+function deactiveOutline () {
     html.classList.remove(outlineClass);
 }
 
-export { manageOutline };
+export { manageSpecsOutline };

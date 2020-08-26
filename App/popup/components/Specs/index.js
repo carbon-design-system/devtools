@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
-import { setStorage, getStorage } from '../../../utilities';
+import { setStorage, getStorage, gaConfigurationEvent } from '../../../utilities';
 import { ToggleSmall, FormGroup, TileGroup, RadioTile } from 'carbon-components-react';
 import { ComingSoon } from '../';
 import { CustomOutline32 } from './CustomOutline32';
@@ -41,11 +41,11 @@ function Specs ({ disabled }) {
                 gaConfigurationEvent('specs-change', e)
             }}>
             <RadioTile
-                id="specsGrid"
+                id="specsColor"
                 name="specs"
-                value="grid">
-                <Grid32 className={`${prefix}--popup__specs-icon`} />
-                Grid
+                value="color">
+                <ColorPalette32 className={`${prefix}--popup__specs-icon`} />
+                Color
             </RadioTile>
             <RadioTile
                 id="specsDependencies"
@@ -53,6 +53,13 @@ function Specs ({ disabled }) {
                 value="dependencies">
                 <ParentChild32 className={`${prefix}--popup__specs-icon`} />
                 Dependencies
+            </RadioTile>
+            <RadioTile
+                id="specsGrid"
+                name="specs"
+                value="grid">
+                <Grid32 className={`${prefix}--popup__specs-icon`} />
+                Grid
             </RadioTile>
             <RadioTile
                 id="specsOutline"
@@ -67,13 +74,6 @@ function Specs ({ disabled }) {
                 value="spacing">
                 <VirtualColumn32 className={`${prefix}--popup__specs-icon`} />
                 Spacing
-            </RadioTile>
-            <RadioTile
-                id="specsColor"
-                name="specs"
-                value="color">
-                <ColorPalette32 className={`${prefix}--popup__specs-icon`} />
-                Color
             </RadioTile>
             <RadioTile
                 id="specsTypography"
