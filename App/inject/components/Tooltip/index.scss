@@ -8,6 +8,7 @@
     visibility: hidden;
     transition: opacity $transition-fade, visibility $transition-fade;
     min-width: initial;
+    max-width: initial;
     position: fixed;
     margin-top: 0;
     z-index: 1;
@@ -29,9 +30,6 @@
     &--primary {
         font-weight: bold;
         margin-right: carbon--mini-units(2);
-    }
-    
-    &--secondary {
     }
 
     // tooltip theme
