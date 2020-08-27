@@ -1,7 +1,7 @@
 import { settings } from 'carbon-components';
-import { addHighlight, removeHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight, removeAllHighlights } from '../../Highlight';
 import { positionTooltip, showHideTooltip, updateTooltipContent } from '../../Tooltip';
-import { colors, rgba } from '@carbon/colors';
+import { colors } from '@carbon/colors';
 import { themes } from '@carbon/themes';
 import { searchCarbonTokens } from './searchCarbonTokens';
 import { themeKeys } from './themeKeys';
@@ -21,24 +21,33 @@ function manageSpecsColor (specs, specType) {
 function activateColor () {
     document.body.addEventListener('mouseover', mouseOver);
     document.body.addEventListener('mouseout', mouseOut);
-    // TODO: add scroll event that removes everything.
 }
 
 function deactivateColor () {
     document.body.removeEventListener('mouseover', mouseOver);
     document.body.removeEventListener('mouseout', mouseOut);
-    // TODO: add scroll event that removes everything.
 }
 
 function mouseOver (e) {
-    const target = e.srcElement;
+    let target;
+
+    for (let i = 0; i < e.path.length; i += 1) {
+        target = e.path[i];
+
+        if (target.nodeName === 'BODY' || highlightColor(target)) {
+            break;
+        }
+    }
+}
+
+function highlightColor (target) {
     const styles = window.getComputedStyle(target);
     const themeName = getThemeName(target);
     const themes = themeName || themeKeys.theme; // do we know the current theme? If not give them all of them.
     const borderResults = combineBorderColors(styles, themes);
 
     let tooltipSectionCount = 0;
-    let tooltipContent = `<div class="${prefix}--specs-color-tooltip">`;
+    let tooltipContent = '';
 
     if (doesItHaveText(target.childNodes)) {
         tooltipSectionCount++;
@@ -61,14 +70,22 @@ function mouseOver (e) {
         tooltipContent += borderResults.html;
     }
 
-    tooltipContent += `</div>`;
 
     if (tooltipSectionCount > 0) {
+        
+        const componentName = `<h1 class="${prefix}--specs-color-tooltip__name">${getComponentName(target, target.nodeName.toLowerCase())}</h1>`;
+
+        updateTooltipContent(`
+            <div class="${prefix}--specs-color-tooltip">
+                ${tooltipContent.replace(/<!--name-->/g, componentName)}
+            </div>
+        `);
+
         addHighlight(target, 'specs');
-        updateTooltipContent(tooltipContent);
         positionTooltip(target); // mouse location?
         showHideTooltip(true);
         document.addEventListener('scroll', clearOnScroll);
+        return tooltipSectionCount;
     }
 }
 
@@ -79,9 +96,7 @@ function clearOnScroll () {
 }
 
 function mouseOut (e) {
-    const target = e.srcElement;
-
-    removeHighlight(target, 'specs');
+    removeAllHighlights();
     showHideTooltip(false);
     document.removeEventListener('scroll', clearOnScroll);
 }
@@ -160,7 +175,8 @@ function tooltipSection (property, value, scopedKeys) {
         const rgbValue = Color(value).rgb().toString().toLowerCase();
         
         html += `<div  class="${prefix}--specs-color-tooltip__group">`;
-        html += `<div class="${prefix}--specs-color-tooltip__color">
+        html += `<!--name-->
+                <div class="${prefix}--specs-color-tooltip__color">
                     <span style="background-color: ${rgbValue}"></span>
                  </div>
                  <h2 class="${prefix}--specs-color-tooltip__title">${property}</h2>`;
@@ -230,6 +246,22 @@ function doesItHaveText (children) {
     }
 
     return validate;
+}
+
+function getComponentName (comp, name) {
+    let compName;
+
+    if (comp.nodeName !== 'BODY') {
+        compName = comp.getAttribute('data-componentname');
+        
+        if (compName) {
+            compName = compName.split(',').slice(-1)[0];
+        } else {
+            compName = getComponentName(comp.parentNode, name);
+        }
+    }
+
+    return compName || name;
 }
 
 export { manageSpecsColor };

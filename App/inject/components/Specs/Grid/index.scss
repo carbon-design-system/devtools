@@ -1,0 +1,69 @@
+.#{$specs-prefix} {
+    &-grid-tooltip {
+        max-width: carbon--mini-units(34);
+        margin-bottom: -1 * carbon--mini-units(.5);
+
+        &__title {
+            @include carbon--type-style('productive-heading-01');
+            margin-bottom: carbon--mini-units(.5);
+        }
+        
+        &__title,
+        &__classlist li {
+            margin-right: carbon--mini-units(.5);
+            display: inline-block;
+        }
+        
+        &__classlist {
+            @include carbon--type-style('code-01');
+            display: inline-block;
+            margin-bottom: carbon--mini-units(.5);
+            
+            li {
+                margin-bottom: $carbon--grid-gutter--condensed;
+                display: inline-block;
+                border-radius: 3px;
+                
+                &::after {
+                    content: ',';
+                }
+
+                &:last-child::after {
+                    content: '';
+                }
+            }
+            
+            &--active {
+                padding: 0 carbon--mini-units(1);
+                
+                &::after {
+                    display: none;
+                }
+            }
+        }
+        
+        // tooltip theme
+        @mixin grid-tooltip--theme {
+            &__title {
+                color: $text-01;
+            }
+            
+            &__classlist {
+                &--active {
+                    color: $text-01;
+                    background-color: $ui-02;
+                }
+            }
+        }
+
+        @include grid-tooltip--theme;
+
+        @each $theme in map-keys($themes) {
+            .#{$prefix}--#{$theme} & {
+                @include carbon--theme(map-get($themes, $theme)) {
+                     @include grid-tooltip--theme;
+                }
+            }
+        }
+    }
+}

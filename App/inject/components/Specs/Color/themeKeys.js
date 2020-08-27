@@ -33,15 +33,15 @@ const themeKeys = {
         'ui01',
         'ui02',
         'ui03',
-        'interactive01',
-        'interactive02',
-        'interactive03',
         'field01',
         'field02',
         'inverse02',
         'overlay01',
         'hoverUI',
-        'disabled01'
+        'disabled01',
+        'interactive01',
+        'interactive02',
+        'interactive03'
     ],
     icon: ['interactive04', 'icon01', 'icon02', 'icon03', 'inverse01', 'disabled02', 'disabled03']
 };

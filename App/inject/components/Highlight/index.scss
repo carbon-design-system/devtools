@@ -18,8 +18,15 @@
                 left: 0;
                 transform: translate(0,0);
                 z-index: $zindex - 1;
-                opacity: 1;
+                opacity: .5;
+                background-color: currentColor;
             }
+        }
+        
+        &--outline::after {
+            background: none;
+            opacity: 1;
+            box-shadow: inset 0 0 0 1px currentColor;
         }
     }
 
@@ -28,14 +35,14 @@
     }
     
     &--inventory::after {
-        background-color: rgba($inventory-color, .5);
+        color: $inventory-color;
     }
     
     &--specs::after {
-        background-color: rgba($specs-color, .5);
+        color: $specs-color;
     }
     
     &--grid::after {
-        background-color: rgba($grid-color, .5);
+        color: $grid-color;
     }
 }

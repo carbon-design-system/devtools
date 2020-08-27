@@ -21,14 +21,13 @@ function Inventory ({ disable, isOpen }) {
     });
 
     useEffect(() => {
-        // only request inventory if open,
-        // and no data has been received
-        if (isOpen && Object.keys(inventoryData).length === 0) {
-            sendTabMessage(-1, { requestInventory: true });
-            // check performance;
-            startPerfCheck = performance.now();
-        }
-        
+        // send data on open so it's ready
+        sendTabMessage(-1, { requestInventory: true });
+        // check performance;
+        startPerfCheck = performance.now();
+    }, []);
+
+    useEffect(() => {
         document.querySelectorAll(`.${prefix}--accordion__heading`).forEach(comp => {
             comp.addEventListener('mouseenter', componentMouseOver);
             comp.addEventListener('mouseleave', componentMouseOut);
@@ -199,6 +198,7 @@ function emptyInventory () {
 }
 
 function loadingInventory () {
+    // TODO: I think this can be removed. it shouldn't be needed if it gets called when opened
     return <AccordionSkeleton align="start" open={false} count={3} />;
 }
 

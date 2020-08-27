@@ -4,10 +4,15 @@ const { prefix } = settings;
 
 const highlightClass = `${prefix}--highlight`;
 const relativeClass = `${highlightClass}--relative`;
+const outlineClass = `${highlightClass}--outline`;
 
-function addHighlight (component, type = '') {
+function addHighlight (component, type = '', options = {}) {
     if (type) {
         type = '--' + type; // "specs" type becomes "--specs"
+    }
+    
+    if (options.outline) {
+        component.classList.add(outlineClass);
     }
 
     addRelativeOrNot(component);
@@ -23,6 +28,7 @@ function removeHighlight (component, type) {
     component.classList.remove(highlightClass);
     component.classList.remove(highlightClass + type);
     component.classList.remove(relativeClass);
+    component.classList.remove(outlineClass);
 }
 
 function removeAllHighlights () {
@@ -42,7 +48,8 @@ function addRelativeOrNot (component) {
 
     if (position !== 'fixed'
      && position !== 'absolute'
-     && position !== 'relative') {
+     && position !== 'relative'
+     && position !== 'sticky') {
         component.classList.add(relativeClass);
     }
 }

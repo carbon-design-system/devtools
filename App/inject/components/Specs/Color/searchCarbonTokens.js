@@ -8,6 +8,7 @@ import { prioritizeThemes } from './themeKeys';
     1. search all IDL tokens until I find a match
     
     Carbon Theme
+    0. only execute search if idl color is found first
     1. check target and see if it has custom properties, and grab the
        used theme based on some checks around the unique list of keys.
        search based on that single theme if found.

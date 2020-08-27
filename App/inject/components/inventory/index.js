@@ -10,6 +10,21 @@ function initInventory () {
     getMessage((msg, sender, sendResponse) => {
         if (msg.requestInventory) {
             sendMessage({ inventoryData: getInventory(allComponents) });
+            
+            // re-render if page updates
+            const DOMwatch = new MutationObserver(mutationList => {
+                mutationList.forEach(mutation => {
+                    if (mutation.type === 'childList') {
+                        getInventory(allComponents);
+                    }
+                });
+            });
+
+            DOMwatch.observe(document.body, {
+                childList: true,
+                attributes: false,
+                subtree: true
+            });
         }
 
         if (msg.inventoryComponentMouseOut) {

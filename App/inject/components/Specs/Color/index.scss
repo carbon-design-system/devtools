@@ -2,6 +2,10 @@
     &-color-tooltip {
         display: flex;
 
+        &__name {
+            @include carbon--type-style('label-01');
+        }
+
         &__title {
             @include carbon--type-style('productive-heading-01');
             margin-bottom: carbon--mini-units(1);
@@ -71,7 +75,7 @@
         // tooltip theme
         @mixin color-tooltip--theme {
             $border: 1px solid $ui-04;
-
+            
             &__group {
                 background-color: $ui-background;
                 border-right: $carbon--grid-gutter--condensed solid $ui-01;
@@ -92,6 +96,7 @@
                 color: $text-01;
             }
 
+            &__name,
             &__value {
                 color: $text-02;
             }

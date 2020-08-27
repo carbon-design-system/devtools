@@ -86,8 +86,8 @@ function tooltipOffsetY ({ y, bottom }, tooltip, tooltipCaret) {
 
     // make sure tooltip is always within viewport
     if (y <= tooltip.offsetHeight) {
-        if (bottom < tooltipCaret.offsetHeight) {
-            // stick to top instead of going above
+        if (bottom < tooltipCaret.offsetHeight || bottom >= window.innerHeight) {
+            // stick to top instead of going above, or below if the height exceeds 100%
             offsetValue = tooltipCaret.offsetHeight;
         } else {
             // position below component if not enough room above
