@@ -5,6 +5,7 @@ import { allComponents } from '../../../globals';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
+let inventory;
 
 function initInventory () {
     getMessage((msg, sender, sendResponse) => {
@@ -15,7 +16,9 @@ function initInventory () {
             const DOMwatch = new MutationObserver(mutationList => {
                 mutationList.forEach(mutation => {
                     if (mutation.type === 'childList') {
-                        getInventory(allComponents);
+                        getInventory(allComponents, false);
+                        // do we need to send a message back to pop up
+                        // incase a component has been added or removed?s
                     }
                 });
             });
@@ -46,24 +49,27 @@ function initInventory () {
 
 function scrollIntoView (id) {
     const component = document.querySelector(`[data-${idselector}*="${id}"]`);
-    const bodyRect = document.body.getBoundingClientRect();
-    const componentRect = component.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    let scrollToPosition = componentRect.top - bodyRect.top;
     
-    if (componentRect.height < windowHeight) {
-        // center it on the page if component height is less than window height
-        scrollToPosition = scrollToPosition
-                         - (windowHeight / 2) // centers basic position top on screen
-                         + (componentRect.height / 2); // centers component on screen
-    }
+    if (component) {
+        const bodyRect = document.body.getBoundingClientRect();
+        const componentRect = component.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        let scrollToPosition = componentRect.top - bodyRect.top;
+        
+        if (componentRect.height < windowHeight) {
+            // center it on the page if component height is less than window height
+            scrollToPosition = scrollToPosition
+                             - (windowHeight / 2) // centers basic position top on screen
+                             + (componentRect.height / 2); // centers component on screen
+        }
 
-    if (componentRect.top < 0 || componentRect.bottom > windowHeight) {
-        // avoid scrolling if fixed, or in view already
-        window.scrollTo({
-            top: scrollToPosition,
-            behavior: 'smooth'
-        });
+        if (componentRect.top < 0 || componentRect.bottom > windowHeight) {
+            // avoid scrolling if fixed, or in view already
+            window.scrollTo({
+                top: scrollToPosition,
+                behavior: 'smooth'
+            });
+        }
     }
 }
 
@@ -106,55 +112,76 @@ function doThisByIds (ids, callback) {
     }
 }
 
-function resetIdSelectors () {
+function resetInventory () {
     const components = document.querySelectorAll(`[data-${idselector}]`);
 
-    if (components.length === 1) {
-        components[0].removeAttribute(`data-${idselector}`);
-    } else if (components.length > 0) {
-        for (let i = 0; i < components.length; i++) {
-            components[i].removeAttribute(`data-${idselector}`);
-        }
-    }
-}
-
-function getInventory (componentList) {
-    const selectors = Object.keys(componentList);
-    const inventory = {
+    inventory = {
         totalCount: 0,
         uniqueCount: 0,
         all: {}
     };
 
-    resetIdSelectors();
-    
+    if (components.length > 0) {
+        for (let i = 0; i < components.length; i++) {
+            components[i].removeAttribute(`data-${idselector}`);
+            components[i].removeAttribute(`data-componentname`);
+        }
+    }
+}
+
+function getInventory (componentList, reset = true) {
+    const selectors = Object.keys(componentList);
+
+    if (reset) {
+        resetInventory();
+    }
+
     for (let i = 0; i < selectors.length; i++) {
-    // loop through indidivual selectors
+    // loop through indidivual selectors/components
         const selector = selectors[i];
         const componentName = componentList[selector];
         const components = document.querySelectorAll(selector);
+        const inventoryData = updateInventory(componentName, components);
         
-        if (components.length > 0) {
-        // if no components don't waste more time
-            inventory.all[componentName] = [];
-            inventory.uniqueCount += 1; // add to the unique count
+        if (inventoryData.length > 0) {
+            if (!inventory.all[componentName]) {
+                inventory.uniqueCount += 1; // add to the unique count
+                inventory.all[componentName] = inventoryData;
+            } else {
+                inventory.all[componentName].concat(inventoryData);
+            }
 
-            for (let i = 0; i < components.length; i++) {
-            // loop through each component and build data, and assign ids
-                const component = components[i];
-                const uniqueID = randomId();
+            inventory.totalCount += inventoryData.length; // add to the total count
+        }
+    }
+    
+    return inventory;
+}
+
+function updateInventory (componentName, components) {
+    const inventory = [];
+
+    if (components.length > 0) {
+    // if no components don't waste more time
+        for (let i = 0; i < components.length; i++) {
+        // loop through each component and build data, and assign ids
+            const component = components[i];
+            const uniqueID = randomId();
+            const componentNames = component.dataset['componentname'];
+            let push = false;
             
-                inventory.totalCount += 1; // add to the total count
-                
-                if (component.dataset[idselector]) {
-                    component.dataset[idselector] += ',' + uniqueID; // set a unique id to find later
-                    component.dataset['componentname'] += ',' + componentName; // set a unique id to find later
-                } else {
-                    component.dataset[idselector] = uniqueID; // set a unique id to find later
-                    component.dataset['componentname'] = componentName; // set a unique id to find later
-                }
+            if (!componentNames) {
+                component.dataset[idselector] = uniqueID; // set a unique id to find later
+                component.dataset['componentname'] = componentName; // set a unique id to find later
+                push = true;
+            } else if (componentNames.indexOf(componentName) === -1) {
+                component.dataset[idselector] += ',' + uniqueID; // set a unique id to find later
+                component.dataset['componentname'] += ',' + componentName; // set a unique id to find later
+                push = true;
+            }
 
-                inventory.all[componentName].push({
+            if (push) {
+                inventory.push({
                     name: componentName,
                     uniqueID: uniqueID,
                     outerHTML: component.outerHTML,

@@ -1,7 +1,9 @@
 .#{$prefix}--highlight {
+    $opacity: .5;
+
     &::after { 
         opacity: 0;
-        transition: opacity $transition-fade;
+        transition: opacity $transition-fade,  background-color $transition-fade;
     }
 
     &.#{$prefix}--highlight {
@@ -18,7 +20,7 @@
                 left: 0;
                 transform: translate(0,0);
                 z-index: $zindex - 1;
-                opacity: .5;
+                opacity: $opacity;
                 background-color: currentColor;
             }
         }
@@ -28,21 +30,43 @@
             opacity: 1;
             box-shadow: inset 0 0 0 1px currentColor;
         }
+        
+        &--inline::after {
+            display: none;
+        }
     }
 
     &--relative {
         position: relative;
     }
     
-    &--inventory::after {
-        color: $inventory-color;
+    &--inventory {
+        &::after {
+            color: $inventory-color;
+        }
+        
+        &.#{$prefix}--highlight--inline {
+            background-color: rgba($inventory-color, $opacity);
+        }
     }
     
-    &--specs::after {
-        color: $specs-color;
+    &--specs {
+        &::after {
+            color: $specs-color;
+        }
+        
+        &.#{$prefix}--highlight--inline {
+            background-color: rgba($specs-color, $opacity);
+        }
     }
     
-    &--grid::after {
-        color: $grid-color;
+    &--grid {
+        &::after {
+            color: $grid-color;
+        }
+        
+        &.#{$prefix}--highlight--inline {
+            background-color: rgba($grid-color, $opacity);
+        }
     }
 }

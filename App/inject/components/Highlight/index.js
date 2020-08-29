@@ -5,6 +5,7 @@ const { prefix } = settings;
 const highlightClass = `${prefix}--highlight`;
 const relativeClass = `${highlightClass}--relative`;
 const outlineClass = `${highlightClass}--outline`;
+const inlineClass = `${highlightClass}--inline`;
 
 function addHighlight (component, type = '', options = {}) {
     if (type) {
@@ -15,7 +16,7 @@ function addHighlight (component, type = '', options = {}) {
         component.classList.add(outlineClass);
     }
 
-    addRelativeOrNot(component);
+    conditionalHighlights(component);
     component.classList.add(highlightClass);
     component.classList.add(highlightClass + type);
 }
@@ -28,6 +29,7 @@ function removeHighlight (component, type) {
     component.classList.remove(highlightClass);
     component.classList.remove(highlightClass + type);
     component.classList.remove(relativeClass);
+    component.classList.remove(inlineClass);
     component.classList.remove(outlineClass);
 }
 
@@ -43,14 +45,20 @@ function removeAllHighlights () {
     }
 }
 
-function addRelativeOrNot (component) {
-    const position = getComputedStyle(component).position;
+function conditionalHighlights (component) {
+    const computed = getComputedStyle(component);
+    const position = computed.position;
+    const display = computed.display;
 
     if (position !== 'fixed'
      && position !== 'absolute'
      && position !== 'relative'
      && position !== 'sticky') {
         component.classList.add(relativeClass);
+    }
+
+    if (display === 'inline') {
+        component.classList.add(inlineClass);
     }
 }
 

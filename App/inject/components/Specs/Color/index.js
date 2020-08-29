@@ -73,7 +73,7 @@ function highlightColor (target) {
 
     if (tooltipSectionCount > 0) {
         
-        const componentName = `<h1 class="${prefix}--specs-color-tooltip__name">${getComponentName(target, target.nodeName.toLowerCase())}</h1>`;
+        const componentName = `<h1 class="${prefix}--specs-color-tooltip__name">${getComponentName(target, '&lt;' + target.nodeName.toLowerCase() + '&gt;')}</h1>`;
 
         updateTooltipContent(`
             <div class="${prefix}--specs-color-tooltip">
@@ -255,7 +255,7 @@ function getComponentName (comp, name) {
         compName = comp.getAttribute('data-componentname');
         
         if (compName) {
-            compName = compName.split(',').slice(-1)[0];
+            compName = compName.split(',')[0];
         } else {
             compName = getComponentName(comp.parentNode, name);
         }

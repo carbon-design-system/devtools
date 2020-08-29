@@ -38,9 +38,8 @@ function positionTooltip (component) {
     const tooltip = body.querySelector('.' + tooltipClass);
     const tooltipCaret = tooltip.querySelector('.' + tooltipCaretClass);
 
-    tooltip.style.left = tooltipOffsetX(boundingBox.x, tooltip, component);
+    tooltip.style.left = tooltipOffsetX(boundingBox, tooltip, component);
     tooltip.style.top = tooltipOffsetY(boundingBox, tooltip, tooltipCaret);
-    flipTooltip(boundingBox, tooltip);
     offsetCaretX(boundingBox, tooltip, tooltipCaret, component);
 
     if (tooltipShowing) { // don't run if tooltip is hidden
@@ -54,72 +53,76 @@ function offsetCaretX (boundingBox, tooltip, tooltipCaret, component) {
     tooltipCaret.style.margin = null;
 
     // reposition caret over item if too small
-    if (tooltip.offsetWidth > component.offsetWidth) {
+    if (tooltip.offsetWidth > boundingBox.width) {
         let carotOffset;
 
-        if ((boundingBox.x + tooltip.offsetWidth) > window.innerWidth) { // aligned right
+        if ((boundingBox.x + tooltip.offsetWidth) >= window.innerWidth) { // aligned right
             // half of component width + component right + half of carot width
-            carotOffset = (component.offsetWidth / 2) + (window.innerWidth - boundingBox.right) + (tooltipCaret.offsetWidth / 2);
+            carotOffset = (boundingBox.width / 2) + (window.innerWidth - boundingBox.right) + (tooltipCaret.offsetWidth / 2);
             tooltipCaret.style.left = `calc(100% - ${carotOffset}px)`;
             tooltipCaret.style.margin = 0;
-        } else if (boundingBox.x <= component.offsetWidth) { // aligned left
+        } else if (boundingBox.x <= boundingBox.width) { // aligned left
             // component left + half of component width - half of tooltip carot width
-            carotOffset = boundingBox.x + (component.offsetWidth / 2) - (tooltipCaret.offsetWidth / 2);
+            carotOffset = boundingBox.x + (boundingBox.width / 2) - (tooltipCaret.offsetWidth / 2);
             tooltipCaret.style.left = setPx(carotOffset);
             tooltipCaret.style.margin = 0;
         }
     }
 }
 
-function flipTooltip ({ y }, tooltip) {
-    // flip tooltip if space between item and top is smaller than tooltip height
-    // make sure tooltip is always pointing in the right direction
-    if (y < tooltip.offsetHeight) {
-        tooltip.setAttribute('data-floating-menu-direction', 'bottom');
-    } else {
-        tooltip.setAttribute('data-floating-menu-direction', 'top');
-    }
+function flipTooltip (tooltip, direction) {
+    tooltip.setAttribute('data-floating-menu-direction', direction);
 }
 
-function tooltipOffsetY ({ y, bottom }, tooltip, tooltipCaret) {
-    let offsetValue = y;
-
-    // make sure tooltip is always within viewport
-    if (y <= tooltip.offsetHeight) {
-        if (bottom < tooltipCaret.offsetHeight || bottom >= window.innerHeight) {
-            // stick to top instead of going above, or below if the height exceeds 100%
-            offsetValue = tooltipCaret.offsetHeight;
-        } else {
-            // position below component if not enough room above
-            offsetValue = bottom + tooltipCaret.offsetHeight;
-        }
-    } else if (y >= window.innerHeight) {
-        // stick to bottom instead of going below
-        offsetValue = window.innerHeight - tooltip.offsetHeight; // need to offset
-    } else {
-        // by default display tooltip above the given component.
-        offsetValue = y - tooltip.offsetHeight + (tooltipCaret.offsetHeight / 2);
-    }
+function tooltipOffsetY (comp, tooltip, tooltipCaret) {
+    const compBottom = comp.bottom;
+    const compTop = comp.y;
+    const tooltipHeight = tooltip.offsetHeight;
+    const windowHeight = window.innerHeight;
+    const caretHeight = tooltipCaret.offsetHeight;
     
+    let offsetValue = caretHeight; // 3. fix to top by default
+    let caretDirection = 'top';
+
+    // 1. room on top?
+    if (compTop >= tooltipHeight) {
+
+        // // 1a. below the screen?
+        if (compTop > windowHeight) {
+            offsetValue = windowHeight - tooltipHeight; // fix to bottom of screen
+        } else {
+            offsetValue = compTop - tooltipHeight; // fix to top of comp
+        }
+
+    // 2. room on bottom?
+    } else if ((compBottom + tooltipHeight) <= windowHeight) {
+
+        // // 2a. above the screen?
+        if (compBottom > caretHeight) {
+            offsetValue = compBottom + caretHeight; // fix to bottom of comp
+        }
+        
+        caretDirection = 'bottom';
+    }
+
+    flipTooltip(tooltip, caretDirection);
     return setPx(offsetValue);
 }
 
-function tooltipOffsetX (x, tooltip, component) {
+function tooltipOffsetX ({ x, width }, tooltip, component) {
     let offsetValue = x;
 
     // offset whole tooltip and ensure it stays within viewport
-    if ((x + tooltip.offsetWidth) > window.innerWidth) {
+    if ((x + tooltip.offsetWidth) > window.innerWidth) { // right 
         // make sure the tooltip doesn't go beyond the right edge of screen
         offsetValue = window.innerWidth - tooltip.offsetWidth;
-    } else {
-        if (tooltip.offsetWidth > component.offsetWidth) {
-            // if component is smaller than tooltip center tooltip over it
-            offsetValue = x - (tooltip.offsetWidth / 2) + (component.offsetWidth / 2);
-            
-            if (offsetValue < 0) {
-                // set to zero if we over compinsated so it doesn't fall off the edge
-                offsetValue = 0;
-            }
+    } else if (tooltip.offsetWidth > width) {
+        // if component is smaller than tooltip center tooltip over it
+        offsetValue = x - (tooltip.offsetWidth / 2) + (width / 2);
+        
+        if (offsetValue < 0) {
+            // set to zero if we over compinsated so it doesn't fall off the edge
+            offsetValue = 0;
         }
     }
     
