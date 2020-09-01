@@ -63,6 +63,14 @@ carbonComponents[`.${carbonPrefix}--text-area`] = 'TextArea';
 carbonComponents[`.${carbonPrefix}--time-picker`] = 'TimePicker';
 
 const ibmdotcomComponents = {};
+// internal
+ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--content-block"]`] = 'ContentBlock';
+ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--content-group"]`] = 'ContentGroup';
+ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--content-item"]`] = 'ContentItem';
+ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--callout__container"]`] = 'Callout';
+ibmdotcomComponents[`.${carbonPrefix}--content-section`] = 'ContentSection';
+// experimental
+//
 ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--button-group"]`] = 'ButtonGroup';
 ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--cta-section"]`] = 'CTASection';
 ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--callout-quote"]`] = 'CalloutQuote';
@@ -103,13 +111,6 @@ ibmdotcomComponents[`.${carbonPrefix}--card-section`] = 'CardSection';
 ibmdotcomComponents[`.${carbonPrefix}--pictogram-item`] = 'PictogramItem';
 ibmdotcomComponents[`.${carbonPrefix}--image`] = 'Image';
 ibmdotcomComponents[`.${carbonPrefix}--card-group`] = 'CardGroup';
-// internal
-ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--content-block"]`] = 'ContentBlock';
-ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--content-group"]`] = 'ContentGroup';
-ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--content-item"]`] = 'ContentItem';
-ibmdotcomComponents[`[data-autoid="${dotcomPrefix}--callout__container"]`] = 'Callout';
-ibmdotcomComponents[`.${carbonPrefix}--content-section`] = 'ContentSection';
-// experimental
 
 const securityComponents = {};
 securityComponents[`.${getSecurityPrefix('combo-button')}`] = 'ComboButton';

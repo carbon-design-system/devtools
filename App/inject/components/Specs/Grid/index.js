@@ -12,7 +12,6 @@ const colSelector = `${carbonPrefix}--col`;
 const specsGridClass = `${prefix}--specs-grid-tooltip`;
 const titleClass = `${specsGridClass}__title`;
 const classListClass = `${specsGridClass}__classlist`;
-const breakpointKeys = Object.keys(breakpoints);
 
 function manageSpecsGrid (specs, specType) {
     if (specs && specType === 'grid') {
@@ -124,6 +123,8 @@ function mouseOut (e) {
 }
 
 function activeBreakpoint (classList) {
+    // TODO: Can this be combined with getActiveBreakpoint class?
+    const breakpointKeys = Object.keys(breakpoints);
     const l = breakpointKeys.length;
     const windowWidth = rem(window.innerWidth);
     let breakpointName, breakpoint, active;
@@ -133,7 +134,7 @@ function activeBreakpoint (classList) {
         // if class list contains this breakpoint
         if (classList.indexOf(breakpointName) > -1) {
             breakpoint = breakpoints[breakpointName];
-            // AND breapoint width is less than window width
+            // AND breakpoint width is less than window width
             if (parseInt(breakpoint.width, 10) <= parseInt(windowWidth, 10)) {
                 active = breakpointName;
             } else {

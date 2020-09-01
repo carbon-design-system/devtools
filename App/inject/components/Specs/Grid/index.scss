@@ -17,12 +17,18 @@
         &__classlist {
             @include carbon--type-style('code-01');
             display: inline-block;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
             margin-bottom: carbon--mini-units(.5);
             
             li {
-                margin-bottom: $carbon--grid-gutter--condensed;
                 display: inline-block;
+                padding: 0;
+                margin: 0;
                 border-radius: 3px;
+                margin-bottom: carbon--mini-units(.5);
+                margin-right: carbon--mini-units(.5);
                 
                 &::before {
                     display: none;
@@ -32,12 +38,16 @@
                     content: ',';
                 }
 
-                &:last-child::after {
-                    content: '';
+                &:last-child {
+                    margin-right: 0;
+
+                    &::after {
+                        content: '';
+                    }
                 }
             }
             
-            &--active {
+            li#{&}--active {
                 padding: 0 carbon--mini-units(1);
                 
                 &::after {

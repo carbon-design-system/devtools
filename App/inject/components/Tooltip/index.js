@@ -146,8 +146,61 @@ function showHideTooltip (show) {
     }
 }
 
+function __specValueItem (type, value) {
+    let html;
+
+    if (type === 'warning') {
+        html = `
+            <li class="${prefix}--tooltip-specs__warning">
+                ${value}
+            </li>
+        `;
+    } else {
+        html = `
+            <li>
+                <h3 class="${prefix}--tooltip-specs__prop">${type}</h3>
+                <p class="${prefix}--tooltip-specs__value">${value}</p>
+            </li>
+        `;
+    }
+    
+    return html;
+}
+
+function __specsContainer (groups) {
+    let groupsContent = '';
+
+    groups.forEach(({ eyebrow, title, content }) => {
+        groupsContent += `<div class="${prefix}--tooltip-specs__group">`;
+        
+        if (eyebrow) {
+            groupsContent += `<h1 class="${prefix}--tooltip-specs__eyebrow">${eyebrow}</h1>`;
+        }
+        
+        if (title) {
+            groupsContent += `<h2 class="${prefix}--tooltip-specs__title">${title}</h2>`;
+        }
+        
+        if (content) {
+            groupsContent += content;
+        }
+
+        groupsContent += `</div>`;
+    });
+    
+
+    return `
+        <div class="${prefix}--tooltip-specs">
+            ${groupsContent}
+        </div>
+    `;
+}
+
 export {
     initTooltip,
     positionTooltip,
     showHideTooltip,
-    updateTooltipContent };
+    updateTooltipContent,
+    __specValueItem,
+    __specsContainer
+};

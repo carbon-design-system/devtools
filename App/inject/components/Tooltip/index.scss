@@ -32,6 +32,70 @@
         font-weight: bold;
         margin-right: carbon--mini-units(2);
     }
+    
+    // spec detail groups
+    &-specs {
+        display: flex;
+
+        &__eyebrow {
+            @include carbon--type-style('label-01');
+        }
+
+        &__title {
+            @include carbon--type-style('productive-heading-01');
+            margin-bottom: carbon--mini-units(1);
+            float: left;
+            margin-right: 8px;
+        }
+
+        &__group {
+            padding: carbon--mini-units(1);
+            padding-right: carbon--mini-units(2);
+            min-width: carbon--mini-units(23);
+            
+            ul {
+                clear: both;
+                padding: 0;
+                margin: 0;
+                list-style-type: none;
+            }
+
+            li {
+                display: flex;
+                margin: 0;
+                padding: 0;
+                margin-bottom: carbon--mini-units(.25);
+                
+                &::before {
+                    display: none;
+                }
+                
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &__prop {
+            @include carbon--type-style('code-01');
+            margin-right: carbon--mini-units(1);
+            font-weight: 500;
+        }
+        
+        p#{&}__value {
+            @include carbon--type-style('code-01');
+            white-space: nowrap;
+        }
+
+        li#{&}__warning {
+            @include carbon--type-style('helper-text-01');
+            $yellow: map-get(map-get($carbon--colors, 'yellow'), 30);
+            border-left: 3px solid $yellow;
+            padding-left: carbon--mini-units(1);
+            margin-bottom: carbon--mini-units(1);
+            font-weight: 500;
+        }
+    }
 
     // tooltip theme
     @mixin tooltip--theme {
@@ -44,6 +108,29 @@
         
         &--secondary {
             color: $text-02;
+        }
+
+        &-specs {
+            &__group {
+                background-color: $ui-background;
+                border-right: $carbon--grid-gutter--condensed solid $ui-01;
+                border-bottom: $carbon--grid-gutter--condensed solid $ui-01;
+            }
+            
+            &__warning {
+                background-color: $ui-01;
+                color: $text-01;
+            }
+
+            &__title,
+            &__prop {
+                color: $text-01;
+            }
+
+            &__name,
+            &__value {
+                color: $text-02;
+            }
         }
     }
 

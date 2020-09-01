@@ -12,3 +12,6 @@ export * from './experimental';
 export * from './remtopx';
 export * from './ga';
 export * from './randomId';
+export * from './getComponentName';
+export * from './doesItHaveText';
+export * from './getActiveBreakpoint';
