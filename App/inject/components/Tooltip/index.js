@@ -61,7 +61,8 @@ function offsetCaretX (boundingBox, tooltip, tooltipCaret, component) {
             carotOffset = (boundingBox.width / 2) + (window.innerWidth - boundingBox.right) + (tooltipCaret.offsetWidth / 2);
             tooltipCaret.style.left = `calc(100% - ${carotOffset}px)`;
             tooltipCaret.style.margin = 0;
-        } else if (boundingBox.x <= boundingBox.width) { // aligned left
+        } else if (boundingBox.right < tooltip.offsetWidth) { // aligned left
+        // console.log(boundingBox.right, tooltip.offsetWidth);
             // component left + half of component width - half of tooltip carot width
             carotOffset = boundingBox.x + (boundingBox.width / 2) - (tooltipCaret.offsetWidth / 2);
             tooltipCaret.style.left = setPx(carotOffset);
@@ -169,9 +170,16 @@ function __specValueItem (type, value) {
 
 function __specsContainer (groups) {
     let groupsContent = '';
+    let groupLayoutClass = '';
+    
+    if (groups.length === 1) {
+        groupLayoutClass = `${prefix}--tooltip-specs__group--single`;
+    } else if (groups.length === 2) {
+        groupLayoutClass = `${prefix}--tooltip-specs__group--duo`;
+    }
 
     groups.forEach(({ eyebrow, title, content }) => {
-        groupsContent += `<div class="${prefix}--tooltip-specs__group">`;
+        groupsContent += `<div class="${prefix}--tooltip-specs__group ${groupLayoutClass}">`;
         
         if (eyebrow) {
             groupsContent += `<h1 class="${prefix}--tooltip-specs__eyebrow">${eyebrow}</h1>`;

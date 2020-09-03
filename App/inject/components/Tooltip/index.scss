@@ -8,7 +8,7 @@
     visibility: hidden;
     transition: opacity $transition-fade, visibility $transition-fade;
     min-width: initial;
-    max-width: initial;
+    max-width: 100vw;
     position: fixed;
     margin-top: 0;
     z-index: 1;
@@ -36,6 +36,7 @@
     // spec detail groups
     &-specs {
         display: flex;
+        flex-wrap: wrap;
 
         &__eyebrow {
             @include carbon--type-style('label-01');
@@ -51,7 +52,20 @@
         &__group {
             padding: carbon--mini-units(1);
             padding-right: carbon--mini-units(2);
-            min-width: carbon--mini-units(23);
+            min-width: carbon--mini-units(25);
+            width: 50%;
+            
+            @include carbon--breakpoint('md') {
+                width: 25%;
+            }
+            
+            &--single {
+                width: 100%;
+            }
+            
+            &--duo {
+                width: 50%;
+            }
             
             ul {
                 clear: both;
@@ -84,7 +98,7 @@
         
         p#{&}__value {
             @include carbon--type-style('code-01');
-            white-space: nowrap;
+            // white-space: nowrap;
         }
 
         li#{&}__warning {

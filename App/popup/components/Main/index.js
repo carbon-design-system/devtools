@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
-import { Accordion, AccordionItem, ToggleSmall, Toggle } from 'carbon-components-react';
+import { Accordion, AccordionItem, ToggleSmall, Toggle, Button } from 'carbon-components-react';
 import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
 import { setStorage, getStorage, experimentalFlag, gaNavigationEvent, gaConfigurationEvent } from '../../../utilities';
 
@@ -11,7 +11,7 @@ const defaults = {
 };
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
-function Main ({ initialMsg }) {
+function Main ({ initialMsg, panelControls }) {
     const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
     const [isOpenStates, setIsOpenStates] = useState(defaults);
     const [onLoad, setOnLoad] = useState(false);
@@ -21,9 +21,8 @@ function Main ({ initialMsg }) {
        for some reason imports come back undefined outside of Main()
        Need a better way to loop through and name panels/groups from line 4 */
     const groups = {};
-    groups['Component list'] = Inventory;
     experimentalFlag(() => {
-        groups['Validate page'] = Validation;
+        groups['Component list'] = Inventory;
         groups['Specs'] = Specs;
     });
     groups['Grid overlay'] = Grid;
@@ -50,9 +49,9 @@ function Main ({ initialMsg }) {
         const toggles = document.querySelectorAll(`.${prefix}--popup-main__toggle`);
         
         toggles.forEach(toggle => {
-            toggle.addEventListener('click', e => {
-                e.stopPropagation();
-            });
+            // TODO: make sure this is cleaning up correctly
+            toggle.removeEventListener('click', stopBubble);
+            toggle.addEventListener('click', stopBubble);
         });
     });
 
@@ -60,10 +59,24 @@ function Main ({ initialMsg }) {
         <>
             <ResizeBrowser windowWidth={initialMsg.windowWidth} />
             <Accordion className={`${prefix}--popup-main`}>
+                {experimentalFlag(() => (
+                    <AccordionItem
+                        title={'Validate page'}
+                        className={`${prefix}--popup-main__item ${prefix}--popup-main__validate`}
+                        onHeadingClick={() => panelControls.open(
+                            'validate',
+                            <Validation panelControls={panelControls} />
+                        )}
+                    />
+                ))}
                 {groupsList.map(groupName => renderAccordionItem(groupName, groups[groupName]))}
             </Accordion>
         </>
     );
+    
+    function stopBubble (e) {
+        e.stopPropagation();
+    }
 
     function renderAccordionItem (title, Content) {
         const id = title.replace(' ', '').toLowerCase();

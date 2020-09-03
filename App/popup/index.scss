@@ -32,7 +32,7 @@ $feature-flags: (
 @import '~carbon-components/scss/components/tag/tag';
 @import '~carbon-components/scss/components/tile/tile';
 @import '~carbon-components/scss/components/content-switcher/content-switcher';
-// @import '~carbon-components/scss/components/button/button';
+@import '~carbon-components/scss/components/button/button';
 
 @import 'components/MoreOptions';
 @import 'components/Loading';
@@ -67,10 +67,11 @@ body {
         padding-bottom: $carbon--spacing-03 - carbon--rem(1px);
         background-color: $ui-01;
         position: fixed;
+        display: flex;
         width: 100%;
         top: 0;
         z-index: 100;
-        border-bottom: 1px solid $ui-background;
+        box-shadow: inset 0 -1px 0 0 $ui-background;
     }
 
     &__heading {
@@ -86,6 +87,45 @@ body {
         font-size: 10px;
         width: 80px;
         min-height: initial;
+    }
+    
+    &__panel {
+        $panel-transition: $duration--moderate-02 carbon--motion(standard, productive);
+
+        width: 50%;
+        transition: opacity $panel-transition;
+        
+        &:first-child {
+            opacity: 1;
+        }
+
+        &:last-child {
+            opacity: 0;
+        }
+
+        &-container {
+            width: 200%;
+            display: flex;
+            margin-left: 0;
+            position: relative;
+            transition: margin-left $panel-transition;
+        }
+        
+        &--shift {
+            margin-left: -100%;
+            
+            .#{$prefix}--popup__panel {
+
+                &:first-child {
+                    opacity: 0;
+                }
+
+                &:last-child {
+                    opacity: 1;
+                }
+            }
+
+        }
     }
 
     &--white {

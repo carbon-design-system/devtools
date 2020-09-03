@@ -6,11 +6,18 @@ const { prefix } = settings;
 
 function ComingSoon () {
     return (
-        <div style={{textAlign: 'center'}}>
-            <p>
-                <Sprout32 />
-            </p>
-            <p>Coming soon!</p>
+        <div style={{
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }}>
+            <div style={{ textAlign: 'center' }}>
+                <p>
+                    <Sprout32 />
+                </p>
+                <p>Coming soon!</p>
+            </div>
         </div>
     );
 }

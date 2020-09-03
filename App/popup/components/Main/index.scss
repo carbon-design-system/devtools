@@ -38,6 +38,20 @@
                     }
                 }
             }
+            
+        &__validate {
+            &.#{$prefix}--accordion__item--active > .#{$prefix}--accordion__content {
+                display: none;
+            }
+
+            &,
+            &.#{$prefix}--accordion__item--active {
+                
+                .#{$prefix}--accordion__arrow {
+                    transform: rotate(0deg);
+                }
+            }
+        }
         
         
         legend.#{$prefix}--label {

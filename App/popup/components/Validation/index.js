@@ -1,13 +1,24 @@
 import React from "react";
 import { settings } from 'carbon-components';
-import { ToggleSmall } from 'carbon-components-react';
+import { Button } from 'carbon-components-react';
+import { ChevronLeft16 } from '@carbon/icons-react';
+
 import { ComingSoon } from '../';
 
 const { prefix } = settings;
 
-function Validation () {
+function Validation ({ panelControls }) {
     return (
-        <ComingSoon />
+        <>
+            <Button
+                kind='secondary'
+                onClick={() => panelControls.close('validate')}
+            >
+                <ChevronLeft16 style={{ marginRight: 8 }} />
+                Back
+            </Button>
+            <ComingSoon />
+        </>
     );
 }
 

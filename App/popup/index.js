@@ -14,9 +14,26 @@ gaPageview('/popup', document.title);
 function Popup () {
     const [onCarbon, setCarbon] = useState('loading'); // 'loading', true, false
     const [initialMsg, setInitialMsg] = useState();
+    const [panelState, setPanelState] = useState({ open: false, children: (null) });
 
-    let startPerfCheck,
-        Content = Loading;
+    let PanelChildren, startPerfCheck,
+        Content = Loading,
+        panelControls = {
+            open: (name, children) => {
+                setPanelState({
+                    open: true,
+                    children: children
+                });
+                gaNavigationEvent('panel', name, 1);
+            },
+            close: (name) => {
+                setPanelState({
+                    open: false,
+                    children: panelState.children
+                });
+                gaNavigationEvent('panel', name, 0);
+            }
+        };
 
     getMessage(msg => {
         const msgKeys = Object.keys(msg);
@@ -45,8 +62,8 @@ function Popup () {
     }
     
     return (
-        <article className={`${prefix}--popup ${prefix}--grid ${experimentalFlag(() => `${prefix}--popup--experimental`)}`}>
-            <header className={`${prefix}--row ${prefix}--popup__header`}>
+        <article className={`${prefix}--popup ${experimentalFlag(() => `${prefix}--popup--experimental`)}`}>
+            <header className={`${prefix}--popup__header`}>
                 <div className={`${prefix}--col-sm-2`}>
                     <h1 className={`${prefix}--popup__heading`}>Carbon Devtools</h1>
                     {experimentalFlag(() => <Tag type="magenta" className={`${prefix}--popup__experimental-tag`}>Experimental</Tag>)}
@@ -55,11 +72,24 @@ function Popup () {
                     <MoreOptions />
                 </div>
             </header>
-            <main>
-                <Content initialMsg={initialMsg} />
-            </main>
+            <section className={`${prefix}--popup__panel-container ${activePanel(panelState)}`}>
+                <main className={`${prefix}--grid ${prefix}--popup__panel`}>
+                    <Content initialMsg={initialMsg} panelControls={panelControls} />
+                </main>
+                <aside className={`${prefix}--popup__panel`}>
+                    {panelState.children}
+                </aside>
+            </section>
         </article>
     );
+}
+
+function activePanel (stateName) {
+    if (stateName.open) {
+        return `${prefix}--popup__panel--shift`;
+    }
+    
+    return '';
 }
 
 function perfCheck (startTime, msg) {

@@ -71,8 +71,6 @@ function highlightType (target) {
     }
 
     if (typeCount > 0) {
-        const componentName = `<h1 class="${prefix}--specs-color-tooltip__name">${getComponentName(target)}</h1>`;
-
         updateTooltipContent(__specsContainer(tooltipGroups));
         addHighlight(target, 'specs');
         positionTooltip(target); // mouse location?
