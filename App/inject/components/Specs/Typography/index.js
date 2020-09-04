@@ -1,7 +1,7 @@
 import { settings } from 'carbon-components';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import { positionTooltip, showHideTooltip, updateTooltipContent, __specValueItem, __specsContainer } from '../../Tooltip';
-import { getComponentName, doesItHaveText, getActiveBreakpoint } from '../../../../utilities';
+import { getComponentName, doesItHaveText, getActiveBreakpoint, removeLeadingZero } from '../../../../utilities';
 import { fontWeights, styles } from '@carbon/type';
 import { rem } from '@carbon/layout';
 
@@ -317,14 +317,10 @@ function formatPxValue (compValue) {
         pxNum = removeLeadingZero(Math.round(parseFloat(compValue, 10)*1000)/1000); // round to 3 places
         remNum = removeLeadingZero(Math.round(parseFloat(rem(pxNum), 10)*1000)/1000); // round to 3 places
 
-        pxValue = `${pxNum}px / ${remNum}rem`
+        pxValue = `${pxNum}px / ${remNum}rem`;
     }
     
     return pxValue;
-}
-
-function removeLeadingZero (val) {
-    return String(val).replace(/^-[0]+/g, '-').replace(/^0+/g, '');
 }
 
 function getFontWeight (compValue, carbonWeights) {

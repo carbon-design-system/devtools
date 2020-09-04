@@ -1,4 +1,5 @@
 import { settings } from 'carbon-components';
+import { setPx } from '../../../utilities';
 import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
@@ -130,10 +131,6 @@ function tooltipOffsetX ({ x, width }, tooltip, component) {
     return setPx(offsetValue);
 }
 
-function setPx (value) {
-    return value + 'px';
-}
-
 function showHideTooltip (show) {
     const tooltip = body.querySelector('.' + tooltipClass);
 
@@ -149,7 +146,7 @@ function showHideTooltip (show) {
 
 function __specValueItem (type, value) {
     let html;
-
+    // TODO: Remove <li> from this template?
     if (type === 'warning') {
         html = `
             <li class="${prefix}--tooltip-specs__warning">
@@ -157,12 +154,17 @@ function __specValueItem (type, value) {
             </li>
         `;
     } else {
-        html = `
-            <li>
-                <h3 class="${prefix}--tooltip-specs__prop">${type}</h3>
-                <p class="${prefix}--tooltip-specs__value">${value}</p>
-            </li>
-        `;
+        html = `<li>`;
+        
+        if (type) {
+            html += `<h3 class="${prefix}--tooltip-specs__prop">${type}</h3>`;
+        }
+        
+        if (value) {
+            html += `<p class="${prefix}--tooltip-specs__value">${value}</p>`;
+        }
+                
+        html += `</li>`;
     }
     
     return html;

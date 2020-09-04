@@ -1,6 +1,7 @@
-.#{$prefix}--highlight {
-    $opacity: .5;
+$highlight-opacity: .5;
 
+.#{$prefix}--highlight {
+    
     &::after { 
         opacity: 0;
         transition: opacity $transition-fade,  background-color $transition-fade;
@@ -20,7 +21,7 @@
                 left: 0;
                 transform: translate(0,0);
                 z-index: $zindex - 1;
-                opacity: $opacity;
+                opacity: $highlight-opacity;
                 background-color: currentColor;
             }
         }
@@ -46,7 +47,7 @@
         }
         
         &.#{$prefix}--highlight--inline {
-            background-color: rgba($inventory-color, $opacity);
+            background-color: rgba($inventory-color, $highlight-opacity);
         }
     }
     
@@ -56,7 +57,7 @@
         }
         
         &.#{$prefix}--highlight--inline {
-            background-color: rgba($specs-color, $opacity);
+            background-color: rgba($specs-color, $highlight-opacity);
         }
     }
     
@@ -66,7 +67,11 @@
         }
         
         &.#{$prefix}--highlight--inline {
-            background-color: rgba($grid-color, $opacity);
+            background-color: rgba($grid-color, $highlight-opacity);
         }
+    }
+        
+    body:active &::after {
+        opacity: 0;
     }
 }

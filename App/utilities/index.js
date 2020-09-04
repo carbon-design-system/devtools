@@ -15,3 +15,5 @@ export * from './randomId';
 export * from './getComponentName';
 export * from './doesItHaveText';
 export * from './getActiveBreakpoint';
+export * from './setPx';
+export * from './removeLeadingZero';
