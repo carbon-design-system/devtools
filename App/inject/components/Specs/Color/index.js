@@ -30,14 +30,10 @@ function deactivateColor () {
 }
 
 function mouseOver (e) {
-    let target;
+    let target = e.srcElement || e;
 
-    for (let i = 0; i < e.path.length; i += 1) {
-        target = e.path[i];
-
-        if (target.nodeName === 'BODY' || highlightColor(target)) {
-            break;
-        }
+    if (target.nodeName !== 'BODY' && !highlightColor(target)) {
+        mouseOver(target.parentNode);
     }
 }
 

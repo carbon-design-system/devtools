@@ -27,13 +27,10 @@ function deactivateDependencies () {
 }
 
 function mouseOver (e) {
-    let target;
-    for (let i = 0; i < e.path.length; i += 1) {
-        target = e.path[i];
-    
-        if (highlightDependencies(target) || target.nodeName === 'BODY') {
-            break;
-        }
+    let target = e.srcElement || e;
+
+    if (!highlightDependencies(target) && target.nodeName !== 'BODY') {
+        mouseOver(target.parentNode);
     }
 }
 

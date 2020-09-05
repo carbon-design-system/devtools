@@ -61,6 +61,7 @@ body {
 .#{$prefix}--popup {
     width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
     padding-top: 32px;
+    overflow: hidden;
 
     &__header {
         padding-top: $carbon--spacing-03 - carbon--rem(1px);

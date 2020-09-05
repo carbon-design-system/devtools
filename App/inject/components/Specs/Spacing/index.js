@@ -31,20 +31,18 @@ function deactivateSpacing () {
 }
 
 function mouseOver (e) {
-    let target;
+    let target = e.srcElement || e;
 
-    for (let i = 0; i < e.path.length; i += 1) {
-        target = e.path[i];
-
-        if (target.nodeName === 'BODY' || highlightSpacing(target)) {
-            break;
-        }
+    if (target.nodeName !== 'BODY' && !highlightSpacing(target)) {
+        mouseOver(target.parentNode);
     }
 }
 
 function highlightSpacing (target) {
     const boundingBox = target.getBoundingClientRect();
     const styles = window.getComputedStyle(target);
+    
+    console.log(target);
 
     let spacerCount = 0;
     

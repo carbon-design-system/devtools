@@ -26,14 +26,10 @@ function deactivateType () {
 }
 
 function mouseOver (e) {
-    let target;
+    let target = e.srcElement || e;
 
-    for (let i = 0; i < e.path.length; i += 1) {
-        target = e.path[i];
-
-        if (target.nodeName === 'BODY' || highlightType(target)) {
-            break;
-        }
+    if (target.nodeName !== 'BODY' && !highlightType(target)) {
+        mouseOver(target.parentNode);
     }
 }
 

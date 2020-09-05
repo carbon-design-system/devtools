@@ -32,13 +32,10 @@ function deactivateGrid () {
 }
 
 function mouseOver (e) {
-    let target;
-    for (let i = 0; i < e.path.length; i += 1) {
-        target = e.path[i];
+    let target = e.srcElement || e;
 
-        if (target.nodeName === 'BODY' || highlightGrid(target)) {
-            break;
-        }
+    if (target.nodeName !== 'BODY' && !highlightGrid(target)) {
+        mouseOver(target.parentNode);
     }
 }
 
