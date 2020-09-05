@@ -41,8 +41,6 @@ function mouseOver (e) {
 function highlightSpacing (target) {
     const boundingBox = target.getBoundingClientRect();
     const styles = window.getComputedStyle(target);
-    
-    console.log(target);
 
     let spacerCount = 0;
     
@@ -50,26 +48,22 @@ function highlightSpacing (target) {
         top: {
             margin: stripUnit(styles.marginTop),
             padding: stripUnit(styles.paddingTop),
-            border: stripUnit(styles.borderTopWidth),
-            // seperate: seperateSpacers(styles.borderLeftWidth, styles.backgroundColor)
+            border: stripUnit(styles.borderTopWidth)
         },
         right: {
             margin: stripUnit(styles.marginRight),
             padding: stripUnit(styles.paddingRight),
-            border: stripUnit(styles.borderRightWidth),
-            // seperate: seperateSpacers(styles.borderRightWidth, styles.backgroundColor)
+            border: stripUnit(styles.borderRightWidth)
         },
         bottom: {
             margin: stripUnit(styles.marginBottom),
             padding: stripUnit(styles.paddingBottom),
-            border: stripUnit(styles.borderBottomWidth),
-            // seperate: seperateSpacers(styles.borderBottomWidth, styles.backgroundColor)
+            border: stripUnit(styles.borderBottomWidth)
         },
         left: {
             margin: stripUnit(styles.marginLeft),
             padding: stripUnit(styles.paddingLeft),
-            border: stripUnit(styles.borderLeftWidth),
-            // seperate: seperateSpacers(styles.borderLeftWidth, styles.backgroundColor)
+            border: stripUnit(styles.borderLeftWidth)
         }
     });
 
@@ -88,6 +82,7 @@ function clearOnScroll () {
 }
 
 function mouseOut (e) {
+    console.log(onSpacer);
     if (!onSpacer) {
         resetAllSpacers();
         removeAllHighlights();
@@ -194,51 +189,36 @@ function setSpacers (target, boundingBox, spacerList, spacingStyles) {
         bottomRight = ['bottom', 'right'].indexOf(orientation) > -1;
         values = [];
 
-        // if (spacing.seperate) {
-            if (spacing.margin) {        
-                componentName = componentName || getComponentName(target); // only grab new if not already defined
+        if (spacing.margin) {        
+            componentName = componentName || getComponentName(target); // only grab new if not already defined
 
-                spacerCount += positionSpacer(
-                    componentName,
-                    Math.abs(spacing.margin), // value
-                    orientation, // current orientation
-                    spacerList[spacerCount], // spacer element
-                    spacingStyles,
-                    target, // origin target
-                    boundingBox, // origin target's bounding box
-                    Math.abs(topLeft ? spacing.margin : 0), // offset value
-                    true
-                );
-            }
+            spacerCount += positionSpacer(
+                componentName,
+                Math.abs(spacing.margin), // value
+                orientation, // current orientation
+                spacerList[spacerCount], // spacer element
+                spacingStyles,
+                target, // origin target
+                boundingBox, // origin target's bounding box
+                Math.abs(topLeft ? spacing.margin : 0), // offset value
+                true
+            );
+        }
 
-            if (spacing.padding) {        
-                componentName = componentName || getComponentName(target); // only grab new if not already defined
+        if (spacing.padding) {        
+            componentName = componentName || getComponentName(target); // only grab new if not already defined
 
-                spacerCount += positionSpacer(
-                    componentName,
-                    Math.abs(spacing.padding), // value
-                    orientation, // current orientation
-                    spacerList[spacerCount], // spacer element
-                    spacingStyles,
-                    target, // origin target
-                    boundingBox, // origin target's bounding box
-                    Math.abs(bottomRight ? spacing.padding : 0) // offset value
-                );
-            }
-        // } else {
-        //     // merges padding and margin into one large spacer
-        //     if (spacing.margin || spacing.padding) {
-        //         spacerCount += positionSpacer(
-        //             spacing.margin + spacing.padding, // value
-        //             orientation, // current orientation
-        //             spacerList[spacerCount], // spacer element
-        //             spacingStyles,
-        //             target, // origin target
-        //             boundingBox, // origin target's bounding box
-        //             topLeft ? spacing.margin : spacing.padding // offset value
-        //         );
-        //     }
-        // }
+            spacerCount += positionSpacer(
+                componentName,
+                Math.abs(spacing.padding), // value
+                orientation, // current orientation
+                spacerList[spacerCount], // spacer element
+                spacingStyles,
+                target, // origin target
+                boundingBox, // origin target's bounding box
+                Math.abs(bottomRight ? spacing.padding : 0) // offset value
+            );
+        }
     }
     
     return spacerCount;
@@ -346,12 +326,6 @@ function resetAllSpacers () {
         spacer.dataset.component = '';
     });
 }
-
-// function seperateSpacers (border, background) {
-//     // is there a border?
-//     // or is there a background?
-//     return (stripUnit(border) || background !== 'rgba(0, 0, 0, 0)');
-// }
 
 function stripUnit (value) {
     return parseFloat(value, 10);
