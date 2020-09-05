@@ -7,8 +7,9 @@ import { rem, spacing, layout } from '@carbon/layout';
 const { prefix } = settings;
 
 const spacersClass = `${prefix}--spacers`;
+const spacerBoxClass = `${spacersClass}__box`;
 
-let spacerList,
+let spacerList, activeTarget,
     onSpacer = false;
 
 function manageSpecsSpacing (specs, specType) {
@@ -33,9 +34,14 @@ function deactivateSpacing () {
 function mouseOver (e) {
     let target = e.srcElement || e;
 
-    if (target.nodeName !== 'BODY' && !highlightSpacing(target)) {
-        mouseOver(target.parentNode);
-    }
+    if (target.nodeName !== 'BODY' // stop everything if we've hit the highest node
+    && !target.classList.contains(spacerBoxClass) // don't run if we are on a spacer box
+    && !target.isSameNode(activeTarget)) { // don't run if we're already on the activeTarget
+         if (!highlightSpacing(target)) {
+            // keep going up a the tree if nothing matches
+            mouseOver(target.parentNode);
+         }
+     }
 }
 
 function highlightSpacing (target) {
@@ -68,8 +74,9 @@ function highlightSpacing (target) {
     });
 
     if (spacerCount) {
+        activeTarget = target;
         addHighlight(target, 'specs', { outline: true });
-        document.addEventListener('scroll', clearOnScroll);
+        window.addEventListener('scroll', clearOnScroll, true);
         return spacerCount;
     }
 }
@@ -78,16 +85,21 @@ function clearOnScroll () {
     resetAllSpacers();
     removeAllHighlights();
     showHideTooltip(false);
-    document.removeEventListener('scroll', clearOnScroll);
+    window.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function mouseOut (e) {
-    console.log(onSpacer);
-    if (!onSpacer) {
+    let target = e.relatedTarget;
+    
+    if (!target || // if target is null clear it all
+       (!target.isSameNode(activeTarget) // clear it if not going to active target
+     && !target.classList.contains(spacerBoxClass))) { // and if not a spacer
+        // if we've hit the end let's stop and remove everything
+        activeTarget = null;
         resetAllSpacers();
         removeAllHighlights();
         showHideTooltip(false);
-        document.removeEventListener('scroll', clearOnScroll);
+        window.removeEventListener('scroll', clearOnScroll, true);
     }
 }
 
@@ -106,17 +118,10 @@ function injectHTML () {
         devtoolsContainer.appendChild(spacersHTML);
         
 
-        spacerList = document.querySelectorAll(`.${spacersClass}__box`);
+        spacerList = document.querySelectorAll(`.${spacerBoxClass}`);
         spacerList.forEach(spacer => {
-            spacer.addEventListener('mouseenter', e => {
-                onSpacer = true;
-                spacerHover(e);
-            });
-            spacer.addEventListener('mouseleave', e => {
-                setTimeout(() => {
-                    onSpacer = false;
-                }, 10);
-            });
+            spacer.addEventListener('mouseenter', spacerHover);
+            spacer.addEventListener('mouseleave', () => showHideTooltip(false));
         });
     }
 }
@@ -129,18 +134,18 @@ function spacerHover (e) {
         // no token value warning
         const value = spacer.dataset.value;
         const spacingToken = getSpacingToken(value);
+        const formattedValue = ``;
         
-        let tooltipContent = '<ul>';
+        let tooltipContent = `<p class="${prefix}--tooltip-specs__value">
+                                ${removeLeadingZero(Math.round(value*1000)/1000)}px /
+                                ${removeLeadingZero(Math.round(parseFloat(rem(value), 10)*1000)/1000)}rem
+                              </p>`;
 
         if (!spacingToken) {
-            tooltipContent += __specValueItem('warning', 'Token not found');
+            tooltipContent += `<ul>
+                                ${__specValueItem('warning', 'Token not found')}
+                               </ul>`;
         }
-
-        tooltipContent += __specValueItem('',
-            `${removeLeadingZero(Math.round(value*1000)/1000)}px /
-             ${removeLeadingZero(Math.round(parseFloat(rem(value), 10)*1000)/1000)}rem`);
- 
-        tooltipContent += '</ul>';
 
         updateTooltipContent(__specsContainer([{
             eyebrow: spacer.dataset.component,
@@ -227,7 +232,7 @@ function setSpacers (target, boundingBox, spacerList, spacingStyles) {
 function positionSpacer (componentName, value, orientation, spacer, spacingStyles, target, boundingBox, offset, ignoreBorders) {
     const maxWidth = target.clientWidth - spacingStyles.left.padding - spacingStyles.right.padding;
     const maxHeight = target.clientHeight - spacingStyles.top.padding - spacingStyles.bottom.padding;
-    
+
     spacer.dataset.value = value;
     spacer.dataset.component = componentName;
 

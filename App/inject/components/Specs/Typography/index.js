@@ -71,7 +71,7 @@ function highlightType (target) {
         addHighlight(target, 'specs');
         positionTooltip(target); // mouse location?
         showHideTooltip(true);
-        document.addEventListener('scroll', clearOnScroll);
+        document.addEventListener('scroll', clearOnScroll, true);
         return typeCount;
     }
 }
@@ -79,13 +79,13 @@ function highlightType (target) {
 function clearOnScroll () {
     showHideTooltip(false);
     removeAllHighlights();
-    document.removeEventListener('scroll', clearOnScroll);
+    document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function mouseOut (e) {
     removeAllHighlights();
     showHideTooltip(false);
-    document.removeEventListener('scroll', clearOnScroll);
+    document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function getTypeToken (target, compStyles, carbonStyles) {

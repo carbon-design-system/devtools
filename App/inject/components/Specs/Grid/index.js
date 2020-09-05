@@ -102,7 +102,7 @@ function highlightGrid (target) {
         updateTooltipContent(tooltipContent);
         positionTooltip(target);
         showHideTooltip(true);
-        document.addEventListener('scroll', clearOnScroll);
+        document.addEventListener('scroll', clearOnScroll, true);
         return grid;
     }
 }
@@ -110,13 +110,13 @@ function highlightGrid (target) {
 function clearOnScroll () {
     showHideTooltip(false);
     removeAllHighlights();
-    document.removeEventListener('scroll', clearOnScroll);
+    document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function mouseOut (e) {
     removeAllHighlights();
     showHideTooltip(false);
-    document.removeEventListener('scroll', clearOnScroll);
+    document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function activeBreakpoint (classList) {

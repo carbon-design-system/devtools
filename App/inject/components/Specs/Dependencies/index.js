@@ -131,7 +131,7 @@ function highlightDependencies (target) {
         addHighlight(target, 'specs', { outline: true });
         positionTooltip(target);
         showHideTooltip(true);
-        document.addEventListener('scroll', clearOnScroll);
+        document.addEventListener('scroll', clearOnScroll, true);
         return dependencies;
     }
 }
@@ -139,13 +139,13 @@ function highlightDependencies (target) {
 function clearOnScroll () {
     showHideTooltip(false);
     removeAllHighlights();
-    document.removeEventListener('scroll', clearOnScroll);
+    document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function mouseOut (e) {
     removeAllHighlights();
     showHideTooltip(false);
-    document.removeEventListener('scroll', clearOnScroll);
+    document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 export { manageSpecsDependencies };

@@ -52,7 +52,7 @@
         &__group {
             padding: carbon--mini-units(1);
             padding-right: carbon--mini-units(2);
-            min-width: carbon--mini-units(25);
+            min-width: carbon--mini-units(30);
             width: 50%;
             
             @include carbon--breakpoint('md') {
@@ -78,7 +78,6 @@
                 display: flex;
                 margin: 0;
                 padding: 0;
-                margin-bottom: carbon--mini-units(.25);
                 
                 &::before {
                     display: none;
@@ -94,11 +93,12 @@
             @include carbon--type-style('code-01');
             margin-right: carbon--mini-units(1);
             font-weight: 500;
+            margin-top: carbon--mini-units(.25);
         }
         
         p#{&}__value {
             @include carbon--type-style('code-01');
-            // white-space: nowrap;
+            margin-top: carbon--mini-units(.25);
         }
 
         li#{&}__warning {
