@@ -149,8 +149,6 @@ function getTypeToken (target, compStyles, carbonStyles) {
 function fixedChecks (compStyles, tokenStyles, range) {
     let matches = 0;
     
-    console.log('');
-    
     if (!range) {
         if (tokenStyles.fontSize) {
             if (normalizeUnit(compStyles.fontSize) === normalizeUnit(tokenStyles.fontSize)) {
@@ -161,7 +159,7 @@ function fixedChecks (compStyles, tokenStyles, range) {
         }
 
         if (tokenStyles.lineHeight) {
-            if (unitlessLineHeight(compStyles.lineHeight, compStyles.fontSize) === normalizeUnit(tokenStyles.lineHeight)) {
+            if (unitlessLineHeight(compStyles.lineHeight, compStyles.fontSize, tokenStyles.lineHeight) === normalizeUnit(tokenStyles.lineHeight)) {
                 matches++;
             }
         } else {
@@ -273,8 +271,16 @@ function normalizeLetterSpacing (value) {
     return normalizeUnit(value);
 }
 
-function unitlessLineHeight(lineHeight, fontSize) {
-    return Math.round(normalizeUnit(lineHeight) / normalizeUnit(fontSize) * 100) / 100
+function unitlessLineHeight(lineHeight, fontSize, matchRound) {
+    let fixDecimal = String(matchRound).split('.');
+    
+    if (fixDecimal.length > 1) {
+        fixDecimal = Math.pow(10, fixDecimal[1].length);
+    } else {
+        fixDecimal = Math.pow(10, 3);
+    }
+
+    return Math.round(normalizeUnit(lineHeight) / normalizeUnit(fontSize) * fixDecimal) / fixDecimal;
 }
 
 function normalizeUnit (unit, fontSize) {
