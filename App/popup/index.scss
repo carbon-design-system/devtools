@@ -60,7 +60,7 @@ body {
 
 .#{$prefix}--popup {
     width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
-    padding-top: 32px;
+    padding-top: carbon--mini-units(4);
     overflow: hidden;
 
     &__header {
@@ -80,7 +80,7 @@ body {
     }
     
     &--experimental {
-        padding-top: 56px;
+        padding-top: carbon--mini-units(6) + carbon--rem(5px);
     }
     
     &__experimental-tag {
@@ -125,7 +125,6 @@ body {
                     opacity: 1;
                 }
             }
-
         }
     }
 

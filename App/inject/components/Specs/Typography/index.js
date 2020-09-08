@@ -115,9 +115,13 @@ function getTypeToken (target, compStyles, carbonStyles) {
                 } else {
                     matches++;
                 }
-                
+
                 if (lowRange.lineHeight && highRange.lineHeight) {
-                    if (validateRange(normalizeUnit(compStyles.lineHeight), normalizeUnit(lowRange.lineHeight, lowRange.fontSize), normalizeUnit(lowRange.lineHeight, highRange.fontSize))) {
+                    if (validateRange(
+                        unitlessLineHeight(compStyles.lineHeight, compStyles.fontSize),
+                        normalizeUnit(lowRange.lineHeight, lowRange.fontSize),
+                        normalizeUnit(lowRange.lineHeight, highRange.fontSize)
+                    )) {
                         matches++;
                     }
                 } else {
@@ -265,6 +269,10 @@ function normalizeLetterSpacing (value) {
     }
 
     return normalizeUnit(value);
+}
+
+function unitlessLineHeight(lineHeight, fontSize) {
+    return Math.round(normalizeUnit(lineHeight) / normalizeUnit(fontSize) * 100) / 100
 }
 
 function normalizeUnit (unit, fontSize) {

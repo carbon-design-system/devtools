@@ -13,9 +13,17 @@ function MoreOptions () {
             onClick={() => gaNavigationEvent('toggle', 'settings-menu', 1)}
             className={`${prefix}--more-options`}
             flipped={true}
+            menuOffsetFlip={menuBody => {
+                // TODO: This is a temporary fix due to some odd bug in carbon/chrome that won't allow the getboundingclientrect to get a width. In return it won't render properly. This overrides that bit. Keep an eye on this.
+                setTimeout(() => {
+                    console.log(menuBody.getBoundingClientRect());
+                    menuBody.style.left = 'auto';
+                    menuBody.style.right = 0;
+                }, 0);
+            }}
             ariaLabel="More options">
             <OverflowMenuItem
-                primaryFocus={true}
+                primaryFocus={true} //
                 isDelete={true}
                 hasDivider={false}
                 href={bugs.url}
