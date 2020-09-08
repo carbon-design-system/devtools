@@ -149,6 +149,8 @@ function getTypeToken (target, compStyles, carbonStyles) {
 function fixedChecks (compStyles, tokenStyles, range) {
     let matches = 0;
     
+    console.log('');
+    
     if (!range) {
         if (tokenStyles.fontSize) {
             if (normalizeUnit(compStyles.fontSize) === normalizeUnit(tokenStyles.fontSize)) {
@@ -159,7 +161,7 @@ function fixedChecks (compStyles, tokenStyles, range) {
         }
 
         if (tokenStyles.lineHeight) {
-            if (normalizeUnit(compStyles.lineHeight) === normalizeUnit(tokenStyles.lineHeight)) {
+            if (unitlessLineHeight(compStyles.lineHeight, compStyles.fontSize) === normalizeUnit(tokenStyles.lineHeight)) {
                 matches++;
             }
         } else {
