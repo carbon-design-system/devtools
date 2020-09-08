@@ -315,21 +315,23 @@ function positionSpacer (componentName, value, orientation, spacer, spacingStyle
 }
 
 function resetAllSpacers () {
-    spacerList.forEach(spacer => {
-        spacer.innerHTML = ``;
-        spacer.style.width = null;
-        spacer.style.height = null;
-        spacer.style.minHeight = null;
-        spacer.style.maxHeight = null;
-        spacer.style.minWidth = null;
-        spacer.style.maxWidth = null;
-        spacer.style.top = null;
-        spacer.style.left = null;
-        spacer.style.opacity = null;
-        spacer.style.visibility = null;
-        spacer.dataset.value = '';
-        spacer.dataset.component = '';
-    });
+    if (spacerList.length > 0) {
+        spacerList.forEach(spacer => {
+            spacer.innerHTML = ``;
+            spacer.style.width = null;
+            spacer.style.height = null;
+            spacer.style.minHeight = null;
+            spacer.style.maxHeight = null;
+            spacer.style.minWidth = null;
+            spacer.style.maxWidth = null;
+            spacer.style.top = null;
+            spacer.style.left = null;
+            spacer.style.opacity = null;
+            spacer.style.visibility = null;
+            spacer.dataset.value = '';
+            spacer.dataset.component = '';
+        });
+    }
 }
 
 function stripUnit (value) {

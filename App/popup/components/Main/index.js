@@ -6,7 +6,6 @@ import { setStorage, getStorage, experimentalFlag, gaNavigationEvent, gaConfigur
 
 const { prefix } = settings;
 const defaults = {
-    // Specs: true,
     gridoverlay: true
 };
 
