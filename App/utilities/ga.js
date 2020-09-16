@@ -7,13 +7,20 @@ function sendGaResponse (data) {
     activeTab(tab => {
         getStorage(
             ['clientId', 'gridVersion', 'generalTheme', 'generalExperimental', 'generalNonCarbon'],
-            ({ clientId,  gridVersion, generalTheme, generalExperimental, generalNonCarbon }) => {
+            ({
+                // TODO: should these defaults be set before we get to this point? So the storage always returns something for these values
+                clientId = 5555, 
+                gridVersion = 'carbon-v10',
+                generalTheme = 'g90',
+                generalExperimental = false,
+                generalNonCarbon = false
+            }) => {
 
             // building default responses
             data.v = 1; // version number
             data.tid = gaId; // ga property id
-            data.cid = clientId || 5555; // client id
-            data.uid = clientId || 5555; // client id
+            data.cid = clientId; // client id
+            data.uid = clientId; // client id
             data.ul = window.navigator.language.toLowerCase(); // user language
             data.cd1 = process.env.NODE_ENV; // development or production
             data.cd2 = version; // extension version
