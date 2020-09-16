@@ -1,7 +1,9 @@
+import url from 'url';
 import { setStorage, getStorage, activeTab, randomId, getActiveBreakpoint } from './';
 import { version } from '../../package.json';
 
 const gaId = 'UA-28030649-4';
+let setPath, setTitle;
 
 function sendGaResponse (data) {
     activeTab(tab => {
@@ -22,6 +24,8 @@ function sendGaResponse (data) {
             data.cid = clientId; // client id
             data.uid = clientId; // client id
             data.ul = window.navigator.language.toLowerCase(); // user language
+            data.dp = setPath; // Document Path
+            data.dt = setTitle; // Document Title
             data.cd1 = process.env.NODE_ENV; // development or production
             data.cd2 = version; // extension version
             data.cd3 = gridVersion; // grid version
@@ -36,7 +40,16 @@ function sendGaResponse (data) {
                 }
                 
                 if (tab.url) {
-                    data.dr = tab.url; // tab url
+                    if (data.ec && data.ec === 'dom') {
+                        const tabURL = url.parse(tab.url);
+
+                        data.dt = tab.title; // Document Title
+                        data.dl = tab.url; // document url
+                        data.dh = tabURL.host // document host
+                        data.dp = tabURL.path; // Document Path
+                    } else {
+                        data.dr = tab.url; // tab url
+                    }
                 }
             }
 
@@ -84,14 +97,14 @@ function buildGaResponse (data) {
 }
 
 function gaPageview (path, title) {
-    sendGaResponse({
-        t: 'pageview',
-        dp: path,
-        dt: title
-    });
+    
+    setPath = path; // Document Path
+    setTitle = title; // Document Title
+
+    sendGaResponse({ t: 'pageview' });
 }
 
-function gaEvent (category, action, label, value, moreData = {}) {
+function gaEvent (category, action, label, value = null, moreData = {}) {
     // categories: shortcut,
     
     // category: shortcut
@@ -100,15 +113,12 @@ function gaEvent (category, action, label, value, moreData = {}) {
     // value: true (1), false (0)
     // ---
     
-    const data = value === -1 ? moreData : {};
+    const data = { ...moreData };
           data.t = 'event';
           data.ec = category;
           data.ea = action;
           data.el = label;
-    
-    if (value => 0) {
-        data.ev = value;
-    }
+          data.ev = value;
 
     sendGaResponse(data);
 }
