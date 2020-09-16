@@ -1,4 +1,4 @@
-import { setStorage, getStorage, activeTab, randomId } from './';
+import { setStorage, getStorage, activeTab, randomId, getActiveBreakpoint } from './';
 import { version } from '../../package.json';
 
 const gaId = 'UA-28030649-4';
@@ -25,6 +25,7 @@ function sendGaResponse (data) {
             if (tab) {
                 if (tab.width && tab.height) {
                     data.vp = `${tab.width}x${tab.height}`; // viewport
+                    data.cd7 = getActiveBreakpoint(tab.width).active; // breakpoint
                 }
                 
                 if (tab.url) {

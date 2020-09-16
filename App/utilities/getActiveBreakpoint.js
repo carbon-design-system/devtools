@@ -1,13 +1,17 @@
 import { breakpoints, rem } from '@carbon/layout';
 
-function getActiveBreakpoint () {
+function getActiveBreakpoint (width) {
     const breakpointKeys = Object.keys(breakpoints);
-    const windowWidth = rem(window.innerWidth);
     let breakpointName, breakpoint,
+        windowWidth =rem(window.innerWidth),
         states = {
             before: [],
             after: []
         };
+        
+    if (width) {
+        windowWidth = rem(width);
+    }
 
     for (let i = 0; i < breakpointKeys.length; i++) {
         breakpointName = breakpointKeys[i];
