@@ -70,6 +70,7 @@ function clearOnScroll () {
 }
 
 function mouseOut (e) {
+    e.srcElement.dataset['highlightcontent'] = '';
     removeAllHighlights();
     showHideTooltip(false);
     document.removeEventListener('scroll', clearOnScroll, true);
