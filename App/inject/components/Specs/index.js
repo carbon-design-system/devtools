@@ -5,6 +5,7 @@ import {
     manageSpecsDependencies,
     manageSpecsGrid,
     manageSpecsOutline,
+    manageSpecsRatio,
     manageSpecsSpacing,
     manageSpecsType,
     manageSpecsWireframe
@@ -18,9 +19,6 @@ const state = {
     specs: false,
     specType: false
 };
-
-// globalToggleStates.specs
-// toggleSpecs.outline
 
 function initSpecs () {
      // set onload based on defaults
@@ -52,6 +50,7 @@ function manageSpecs ({ specs, specType }) {
     manageSpecsDependencies(specs, specType);
     manageSpecsGrid(specs, specType);
     manageSpecsOutline(specs, specType);
+    manageSpecsRatio(specs, specType);
     manageSpecsSpacing(specs, specType);
     manageSpecsType(specs, specType);
     manageSpecsWireframe(specs, specType);

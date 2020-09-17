@@ -1,7 +1,6 @@
 $highlight-opacity: .5;
 
 .#{$prefix}--highlight {
-    
     &::after { 
         opacity: 0;
         transition: opacity $transition-fade, background-color $transition-fade, box-shadow $transition-fade;
@@ -11,8 +10,11 @@ $highlight-opacity: .5;
         &--grid,
         &--specs,
         &--inventory {
+            --highlight-color-type-border: transparent;
+            --highlight-color-type-background: transparent;
+
             &::after {
-                content: '';
+                content: attr(data-highlightcontent);
                 pointer-events: none;
                 position: absolute;
                 height: 100%;
@@ -21,16 +23,22 @@ $highlight-opacity: .5;
                 left: 0;
                 transform: translate(0,0);
                 z-index: $zindex - 1;
-                opacity: $highlight-opacity;
-                background-color: currentColor;
-                box-shadow: inset 0 0 0 1px transparent;
+                opacity: 1;
+                background-color: var(--highlight-color-type-background);
+                color: #fff;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                @include carbon--type-style('expressive-paragraph-01');
             }
         }
         
         &--outline::after {
             background: none;
             opacity: 1;
-            box-shadow: inset 0 0 0 1px currentColor;
+            box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
         }
         
         &--inline::after {
@@ -43,32 +51,26 @@ $highlight-opacity: .5;
     }
     
     &--inventory {
-        &::after {
-            color: $inventory-color;
-        }
-        
+        &::after,
         &.#{$prefix}--highlight--inline {
-            background-color: rgba($inventory-color, $highlight-opacity);
+            --highlight-color-type-border: #{$inventory-color};
+            --highlight-color-type-background: #{rgba($inventory-color, $highlight-opacity)};
         }
     }
     
     &--specs {
-        &::after {
-            color: $specs-color;
-        }
-        
+        &::after,
         &.#{$prefix}--highlight--inline {
-            background-color: rgba($specs-color, $highlight-opacity);
+            --highlight-color-type-border: #{$specs-color};
+            --highlight-color-type-background: #{rgba($specs-color, $highlight-opacity)};
         }
     }
     
     &--grid {
-        &::after {
-            color: $grid-color;
-        }
-        
+        &::after,
         &.#{$prefix}--highlight--inline {
-            background-color: rgba($grid-color, $highlight-opacity);
+            --highlight-color-type-border: #{$grid-color};
+            --highlight-color-type-background: #{rgba($grid-color, $highlight-opacity)};
         }
     }
         

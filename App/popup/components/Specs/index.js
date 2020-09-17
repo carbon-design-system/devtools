@@ -4,7 +4,7 @@ import { setStorage, getStorage, gaConfigurationEvent } from '../../../utilities
 import { ToggleSmall, FormGroup, TileGroup, RadioTile } from 'carbon-components-react';
 import { ComingSoon } from '../';
 import { CustomOutline32 } from './CustomOutline32';
-import { ColorPalette32, TextScale32, Grid32, VirtualColumn32, ParentChild32 } from '@carbon/icons-react';
+import { ColorPalette32, TextScale32, Grid32, VirtualColumn32, ParentChild32, Scale32 } from '@carbon/icons-react';
 
 const { prefix } = settings;
 
@@ -67,6 +67,13 @@ function Specs ({ disabled }) {
                 value="outline">
                 <CustomOutline32 className={`${prefix}--popup__specs-icon`} />
                 Outline
+            </RadioTile>
+            <RadioTile
+                id="specsRatio"
+                name="specs"
+                value="ratio">
+                <Scale32 className={`${prefix}--popup__specs-icon`} />
+                Ratio
             </RadioTile>
             <RadioTile
                 id="specsSpacing"
