@@ -5,10 +5,12 @@ sendValidation();
 
 function sendValidation () {
     const carbonComponents = document.querySelector(prefixSelectors);
+    
+    console.log(document.querySelector(prefixSelectors));
 
     const msg = {
-        runningCarbon: false,
-        ignoreValidation: false,
+        // runningCarbon: false,
+        // ignoreValidation: false,
         windowWidth: window.outerWidth,
         carbonDevtoolsInjected: window.carbonDevtoolsInjected || false
         // carbonComponents: {
