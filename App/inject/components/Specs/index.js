@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { getStorage, storageChanged } from '../../../utilities';
+import { getStorage, storageItemChanged } from '../../../utilities';
 import {
     manageSpecsColor,
     manageSpecsDependencies,
@@ -28,8 +28,8 @@ function initSpecs () {
     });
 
     // update ui if options change
-    storageChanged('globalToggleStates', ({ specs }) => manageSpecsState('specs', specs));
-    storageChanged('toggleSpecs', toggleSpecs => manageSpecsState('specType', toggleSpecs));
+    storageItemChanged('globalToggleStates', ({ specs }) => manageSpecsState('specs', specs));
+    storageItemChanged('toggleSpecs', toggleSpecs => manageSpecsState('specType', toggleSpecs));
 }
 
 function manageSpecsState (type, value) {

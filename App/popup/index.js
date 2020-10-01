@@ -8,11 +8,12 @@ import { Loading, Empty, Main, MoreOptions } from './components';
 import './index.scss';
 
 const { prefix } = settings;
+let carbonStatus = 'loading';
 
 gaPageview('/popup', document.title);
 
 function Popup () {
-    const [onCarbon, setCarbon] = useState('loading'); // 'loading', true, false
+    const [onCarbon, setOnCarbon] = useState(carbonStatus); // 'loading', true, false
     const [initialMsg, setInitialMsg] = useState();
     const [panelState, setPanelState] = useState({ open: false, children: (null) });
 
@@ -35,32 +36,37 @@ function Popup () {
             }
         };
 
-    getMessage(msg => {
-        const msgKeys = Object.keys(msg);
-
-        if (msgKeys.indexOf('runningCarbon') > -1) {
-            setCarbon(msg.runningCarbon);
-            setInitialMsg(msg);
-            perfCheck(startPerfCheck, msg);
-        }
-    });
-
     useEffect(() => {
         startPerfCheck = performance.now();
 
         sendMessage({ popup: true }); // TODO: how can we send only per tab once?
-        
+
         getStorage(['generalTheme'], ({ generalTheme }) => {
             document.body.setAttribute('class', `${prefix}--popup--${generalTheme}`);
         });
+
+        getMessage(msg => {
+            const msgKeys = Object.keys(msg);
+
+            if (msgKeys.indexOf('runningCarbon') > -1) {
+                carbonStatus = true;
+                setOnCarbon(true);
+                setInitialMsg(msg);
+            } else if (carbonStatus !== true && Boolean(msg.runningCarbon) === false) { // undefined || false
+                carbonStatus = false;
+                setOnCarbon(false);
+            }
+
+            perfCheck(startPerfCheck, msg);
+        });
     }, []);
     
-    if (onCarbon === true) {
+    if (carbonStatus === true) {
         Content = Main;
-    } else if (onCarbon === false) {
+    } else if (carbonStatus === false) {
         Content = Empty;
     }
-    
+
     return (
         <article className={`${prefix}--popup ${experimentalFlag(() => `${prefix}--popup--experimental`)}`}>
             <header className={`${prefix}--popup__header`}>

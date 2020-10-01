@@ -63,7 +63,6 @@ function offsetCaretX (boundingBox, tooltip, tooltipCaret, component) {
             tooltipCaret.style.left = `calc(100% - ${carotOffset}px)`;
             tooltipCaret.style.margin = 0;
         } else if (boundingBox.right < tooltip.offsetWidth) { // aligned left
-        // console.log(boundingBox.right, tooltip.offsetWidth);
             // component left + half of component width - half of tooltip carot width
             carotOffset = boundingBox.x + (boundingBox.width / 2) - (tooltipCaret.offsetWidth / 2);
             tooltipCaret.style.left = setPx(carotOffset);

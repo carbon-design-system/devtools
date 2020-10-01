@@ -11,6 +11,7 @@
 @import '~carbon-components/scss/components/select/select';
 @import '~carbon-components/scss/components/toggle/toggle';
 @import '~carbon-components/scss/components/structured-list/structured-list';
+@import '~carbon-components/scss/components/button/button';
 
 $carbon--theme: $carbon--theme--white;
 
@@ -19,6 +20,7 @@ $carbon--theme: $carbon--theme--white;
 
 @import './components/Footer';
 @import './components/Shortcuts';
+@import './components/Reset';
 
 body {
     background: $ui-background;

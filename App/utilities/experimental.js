@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getStorage, storageChanged } from './index';
+import { getStorage, storageItemChanged } from './index';
 
 experimentalStatusChanged(setExperimentalStatus);
 getExperimentalStatus(setExperimentalStatus);
@@ -27,7 +27,7 @@ function getExperimentalStatus (callback) {
 }
 
 function experimentalStatusChanged (callback) {
-    storageChanged('generalExperimental', generalExperimental => {
+    storageItemChanged('generalExperimental', generalExperimental => {
         callback(generalExperimental);
     });
 }

@@ -1,11 +1,11 @@
 import { settings } from 'carbon-components';
-import { getStorage, storageChanged } from '../../../../utilities';
+import { getStorage, storageItemChanged } from '../../../../utilities';
 
 const { prefix } = settings;
 
 function manageMiniUnitGrid () {    
     getStorage('toggleMiniUnitGridOptions', ({ toggleMiniUnitGridOptions }) => manageMiniUnitGridOptions(toggleMiniUnitGridOptions)); // set based on defaults
-    storageChanged('toggleMiniUnitGridOptions', manageMiniUnitGridOptions); // update ui if options change
+    storageItemChanged('toggleMiniUnitGridOptions', manageMiniUnitGridOptions); // update ui if options change
 }
 
 function manageMiniUnitGridOptions ({

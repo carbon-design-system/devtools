@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { settings } from 'carbon-components';
-import { AccordionItem, StructuredListWrapper, StructuredListHead, StructuredListBody, StructuredListRow, StructuredListCell } from 'carbon-components-react';
+import { StructuredListWrapper, StructuredListHead, StructuredListBody, StructuredListRow, StructuredListCell } from 'carbon-components-react';
 import { MacShift32, Cursor_132 } from '@carbon/icons-react';
-import { gaNavigationEvent } from '../../../utilities';
 
 const { prefix } = settings;
 
@@ -16,11 +15,7 @@ function Shortcuts () {
     ];
 
     return (
-        <AccordionItem
-            onClick={() => gaNavigationEvent('toggle', 'shortcut-settings')}
-            title="Shortcuts"
-            open={false}
-            className={`${prefix}--options-shortcuts`}>
+        <div className={`${prefix}--options-shortcuts`}>
             <p className={`${prefix}--col-sm-3`}>Shortcuts will work on a validated page if you have given the extension permission for that page by clicking on the icon.</p>
             <StructuredListWrapper>
                 <StructuredListHead>
@@ -56,7 +51,7 @@ function Shortcuts () {
                     </StructuredListRow>
                 </StructuredListBody>
             </StructuredListWrapper>
-        </AccordionItem>
+        </div>
     );
 }
 

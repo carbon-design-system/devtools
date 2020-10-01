@@ -1,11 +1,11 @@
 import { settings } from 'carbon-components';
-import { getStorage, storageChanged } from '../../../../utilities';
+import { getStorage, storageItemChanged } from '../../../../utilities';
 
 const { prefix } = settings;
 
 function manage2xGrid () {
     getStorage('toggle2xGridOptions', ({ toggle2xGridOptions }) => manage2xGridOptions(toggle2xGridOptions)); // set based on defaults
-    storageChanged('toggle2xGridOptions', manage2xGridOptions); // update ui if options change
+    storageItemChanged('toggle2xGridOptions', manage2xGridOptions); // update ui if options change
 }
 
 function manage2xGridOptions ({

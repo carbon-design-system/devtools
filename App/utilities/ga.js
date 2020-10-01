@@ -11,7 +11,7 @@ function sendGaResponse (data) {
             ['clientId', 'gridVersion', 'generalTheme', 'generalExperimental', 'generalNonCarbon'],
             ({
                 // TODO: should these defaults be set before we get to this point? So the storage always returns something for these values
-                clientId = 5555, 
+                clientId = 5555,
                 gridVersion = 'carbon-v10',
                 generalTheme = 'g90',
                 generalExperimental = false,
@@ -29,8 +29,8 @@ function sendGaResponse (data) {
             data.cd1 = process.env.NODE_ENV; // development or production
             data.cd2 = version; // extension version
             data.cd3 = gridVersion; // grid version
-            data.cd4 = generalExperimental; // experimental
-            data.cd5 = generalNonCarbon; // ignore validation
+            data.cd4 = String(generalExperimental); // boolean experimental
+            data.cd5 = String(generalNonCarbon); // boolean ignore validation
             data.cd6 = generalTheme; // theme
             
             if (tab) {

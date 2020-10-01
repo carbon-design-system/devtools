@@ -5,19 +5,10 @@ sendValidation();
 
 function sendValidation () {
     const carbonComponents = document.querySelector(prefixSelectors);
-    
-    console.log(document.querySelector(prefixSelectors));
 
     const msg = {
-        // runningCarbon: false,
-        // ignoreValidation: false,
         windowWidth: window.outerWidth,
         carbonDevtoolsInjected: window.carbonDevtoolsInjected || false
-        // carbonComponents: {
-        //     '.bx--link': document.querySelectorAll(`.bx--link`).length,
-        //     '.bx--button': document.querySelectorAll(`.bx--button`).length,
-        //     '.bx--tile': document.querySelectorAll(`.bx--tile`).length
-        // }
     };
 
     getStorage(['generalNonCarbon'], ({generalNonCarbon}) => {
@@ -40,7 +31,7 @@ function sendValidation () {
                 }
             }
         }
-
+console.log(msg, generalNonCarbon);
         sendMessage(msg); // TODO: SET STORAGE INSTEAD?
     });
 }

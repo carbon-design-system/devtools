@@ -1,9 +1,5 @@
-function storageChanged (key, callback) {
-    chrome.storage.onChanged.addListener(data => {
-        if (data && data[key]) {
-            callback(data[key].newValue);
-        }
-    });
+function storageChanged (callback) {
+    chrome.storage.onChanged.addListener(callback);
 }
 
 export { storageChanged };

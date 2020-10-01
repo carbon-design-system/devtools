@@ -2,7 +2,6 @@
     p {
         @include carbon--type-style('helper-text-01');
         color: $text-02;
-        // margin-bottom: carbon--mini-units(4);
     }
 
     &__key {
@@ -13,7 +12,6 @@
         margin-right: carbon--mini-units(.5);
         color: $text-01;
         display: flex;
-        // font-weight: 500;
         
         &s {
             display: flex;

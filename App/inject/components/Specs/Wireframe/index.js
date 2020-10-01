@@ -66,12 +66,10 @@ function activateWireframe () {
     // .bx--grid, .bx--row, .bx--col, .bx--col-sm-#, .bx--col-md-# ...
     // add highlight
     // add tooltip
-    // console.log('activate wireframe');
 }
 
 function deactivateWireframe () {
     // html.classList.remove(outlineClass);
-    // console.log('de-activate wireframe');
 }
 
 export { manageSpecsWireframe };

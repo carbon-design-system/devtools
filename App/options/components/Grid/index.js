@@ -1,53 +1,33 @@
-import React, { useState, useEffect} from "react";
+import React from "react";
 import { settings } from 'carbon-components';
-import { Select, SelectItem, AccordionItem } from 'carbon-components-react';
-import { getStorage, setStorage, gaNavigationEvent, gaConfigurationEvent } from '../../../utilities';
+import { Select, SelectItem } from 'carbon-components-react';
+import { configuration } from '../';
 import { gridVersions } from '../../../globals';
 
 const { prefix } = settings;
 const gridVersionList = Object.keys(gridVersions);
 
-function Grid () {
-    const [gridVersionState, setGridVersionState] = useState('carbon-v10');
-
-    useEffect(() => {
-        getStorage(['gridVersion'], ({ gridVersion }) => {
-            if (gridVersion) {
-                setGridVersionState(gridVersion);
-            }
-        });
-    }, []);
-
+function Grid ({ gridVersion = 'carbon-v10' }) {
     return (
-        <AccordionItem
-            onClick={() => gaNavigationEvent('toggle', 'grid-settings')}
-            title="Grid settings"
-            open={false}>
+        <div>
             <Select
                 size="sm"
                 labelText="Choose a grid"
                 className={`${prefix}--options__select`}
-                onChange={setGridVersion}
+                onChange={e => configuration('grid-version', { gridVersion: e.target.value })}
             >
-                {gridVersionList.map(gridVersion => {
+                {gridVersionList.map(gridVersionItem => {
                     return (
                         <SelectItem
-                            value={gridVersion}
-                            text={gridVersions[gridVersion]}
-                            selected={gridVersionState === gridVersion ? true : false}
+                            value={gridVersionItem}
+                            text={gridVersions[gridVersionItem]}
+                            selected={gridVersion === gridVersionItem ? true : false}
                         />
                     );
                 })}
             </Select>
-        </AccordionItem>
+        </div>
     );
-}
-
-function setGridVersion (e) {
-    const value = e.target.value;
-    setStorage({ gridVersion: value }, () => {
-        gaConfigurationEvent('grid-settings-change', 'grid-version');
-    });
 }
 
 export { Grid };

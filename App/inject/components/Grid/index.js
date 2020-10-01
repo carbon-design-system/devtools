@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { storageChanged, getStorage } from '../../../utilities';
+import { storageItemChanged, getStorage } from '../../../utilities';
 import { gridVersions } from '../../../globals';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';
@@ -55,16 +55,16 @@ function manageGlobals () {
     const miniUnitGrid = document.querySelector(`.${prefix}--grid-mini-unit`);
 
     getStorage('globalToggleStates', ({ globalToggleStates }) => manageGlobalToggle(globalToggleStates));
-    storageChanged('globalToggleStates', manageGlobalToggle);
+    storageItemChanged('globalToggleStates', manageGlobalToggle);
 
     getStorage('toggleGrids', ({ toggleGrids }) => manageGrids(toggleGrids));
-    storageChanged('toggleGrids', manageGrids);
+    storageItemChanged('toggleGrids', manageGrids);
 
     getStorage('generalTheme', ({ generalTheme }) => manageGeneralTheme(generalTheme));
-    storageChanged('generalTheme', manageGeneralTheme);
+    storageItemChanged('generalTheme', manageGeneralTheme);
 
     getStorage('gridVersion', ({ gridVersion }) => manageGridVersion(gridVersion));
-    storageChanged('gridVersion', manageGridVersion);
+    storageItemChanged('gridVersion', manageGridVersion);
     
     function manageGlobalToggle ({ gridoverlay }) {
         // this may not belong here?

@@ -237,7 +237,12 @@ function positionSpacer (componentName, value, orientation, spacer, spacingStyle
     spacer.dataset.component = componentName;
 
     if (value >= 16) {
-        spacer.innerHTML = `<span>${value}</span>`;
+        spacer.innerHTML = `<span class="value">${value}</span>`;
+
+        if (value < spacer.querySelector('.value').offsetWidth) {
+            // if the text doesn't fit in the box then let's remove the text
+            spacer.innerHTML = '';
+        }
     }
 
     spacer.style.opacity = 1;
