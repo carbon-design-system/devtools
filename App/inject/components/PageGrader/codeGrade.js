@@ -4,8 +4,6 @@
 
 import { prefixSelectors, allComponents } from '../../../globals';
 
-/// TODO: Check window variable for help
-
 function codeGrade (pageGrades = {}) {
     let grades = {};
 
@@ -59,7 +57,6 @@ function componentCheck (grades = {}) {
     const selectors = Object.keys(allComponents);
     const refs = [...document.querySelectorAll(selectors)].slice(0, 10);
 
-    console.log(refs);
     grades.component.score = refs.length / 10;
     
     return grades;

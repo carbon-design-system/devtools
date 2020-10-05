@@ -94,7 +94,6 @@ function getTypeToken (target, compStyles, carbonStyles) {
         
     if (target.dataset['typetokenname']) {
         return target.dataset['typetokenname'];
-        // TODO: do other token values like this as well, color for instance
     } else {
         for (let i = 0; i < tokens.length; i++) {
             let matches = 0;
@@ -136,7 +135,7 @@ function getTypeToken (target, compStyles, carbonStyles) {
             
             if (matches === 5) {
                 tokenName = token;
-                // target.dataset['typetokenname'] = token; // TODO: consider uncommenting this back in
+                target.dataset['typetokenname'] = token;
 
                 break;
             }
@@ -341,7 +340,6 @@ function getFontWeight (compValue, carbonWeights) {
         returnedWeight = '';
         
     if (compValue) {
-        // TODO: add to <li>
         returnedWeight = compValue;
 
         for (let i = 0; i < weights.length; i++) {

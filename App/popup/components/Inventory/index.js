@@ -6,8 +6,6 @@ import { bugs } from '../../../../package.json'
 
 const { prefix } = settings;
 
-// TODO: build search capability
-
 function Inventory ({ disable, isOpen }) {
     const [inventoryData, setInventoryData] = useState({});
     let startPerfCheck;
@@ -198,7 +196,6 @@ function emptyInventory () {
 }
 
 function loadingInventory () {
-    // TODO: I think this can be removed. it shouldn't be needed if it gets called when opened
     return <AccordionSkeleton align="start" open={false} count={3} />;
 }
 

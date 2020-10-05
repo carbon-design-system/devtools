@@ -1,6 +1,5 @@
 
 
-/// TODO: Check window variable for help
 
 let northstar = false;
 

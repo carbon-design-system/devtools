@@ -39,7 +39,7 @@ function Popup () {
     useEffect(() => {
         startPerfCheck = performance.now();
 
-        sendMessage({ popup: true }); // TODO: how can we send only per tab once?
+        sendMessage({ popup: true });
 
         getStorage(['generalTheme'], ({ generalTheme }) => {
             document.body.setAttribute('class', `${prefix}--popup--${generalTheme}`);

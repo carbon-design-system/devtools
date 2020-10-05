@@ -48,7 +48,6 @@ function Main ({ initialMsg, panelControls }) {
         const toggles = document.querySelectorAll(`.${prefix}--popup-main__toggle`);
         
         toggles.forEach(toggle => {
-            // TODO: make sure this is cleaning up correctly
             toggle.removeEventListener('click', stopBubble);
             toggle.addEventListener('click', stopBubble);
         });

@@ -10,7 +10,6 @@ function sendGaResponse (data) {
         getStorage(
             ['clientId', 'gridVersion', 'generalTheme', 'generalExperimental', 'generalNonCarbon'],
             ({
-                // TODO: should these defaults be set before we get to this point? So the storage always returns something for these values
                 clientId = 5555,
                 gridVersion = 'carbon-v10',
                 generalTheme = 'g90',

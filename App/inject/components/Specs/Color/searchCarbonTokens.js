@@ -24,7 +24,6 @@ function searchCarbonTokens (tokens, color, scopedKeys = [], base = '') {
     let tokenValue = false;
 
     if (typeof tokens === 'object' && !Array.isArray(tokens)) {
-        // TODO: add capability to pass in an array?
         const keys = Object.keys(tokens);
         let key, token;
 

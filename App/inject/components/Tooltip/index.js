@@ -145,7 +145,7 @@ function showHideTooltip (show) {
 
 function __specValueItem (type, value) {
     let html;
-    // TODO: Remove <li> from this template?
+
     if (type === 'warning') {
         html = `
             <li class="${prefix}--tooltip-specs__warning">

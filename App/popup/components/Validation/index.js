@@ -11,15 +11,12 @@ const { prefix } = settings;
 function Validation ({ panelControls }) {
     const [pageGrades, setPageGrades] = useState({});
     
-    // TODO: make sure these chrome events sit inside use effect
-    
     useEffect(() => {
         sendTabMessage(-1, { requestPageGrade: true });
         
         getMessage((msg, sender, sendResponse) => {
             if (msg.pageGrades) {
                 setPageGrades(msg.pageGrades);
-                console.log(pageGrades);
             }
         });
     }, []);

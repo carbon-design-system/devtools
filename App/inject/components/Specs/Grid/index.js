@@ -120,7 +120,6 @@ function mouseOut (e) {
 }
 
 function activeBreakpoint (classList) {
-    // TODO: Can this be combined with getActiveBreakpoint class?
     const breakpointKeys = Object.keys(breakpoints);
     const l = breakpointKeys.length;
     const windowWidth = rem(window.innerWidth);

@@ -31,8 +31,8 @@ function sendValidation () {
                 }
             }
         }
-console.log(msg, generalNonCarbon);
-        sendMessage(msg); // TODO: SET STORAGE INSTEAD?
+
+        sendMessage(msg);
     });
 }
 
