@@ -8,24 +8,24 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
     entry: {
         popup: [
-            // './App/setPrefix.js',
-            './App/popup/index.js'
+            // './src/setPrefix.js',
+            './src/popup/index.js'
         ],
         options: [
-            // './App/setPrefix.js',
-            './App/options/index.js'
+            // './src/setPrefix.js',
+            './src/options/index.js'
         ],
         background: [
-            // './App/setPrefix.js',
-            './App/background/index.js'
+            // './src/setPrefix.js',
+            './src/background/index.js'
         ],
         validate: [
-            // './App/setPrefix.js',
-            './App/validate/index.js'
+            // './src/setPrefix.js',
+            './src/validate/index.js'
         ],
         inject: [
-            './App/setPrefix.js',
-            './App/inject/index.js'
+            './src/setPrefix.js',
+            './src/inject/index.js'
         ]
     },
     module: {
@@ -93,7 +93,7 @@ module.exports = {
     ],
     output: {
         filename: '[name]/index.js',
-        path: path.resolve(__dirname, 'extension/static')
+        path: path.resolve(__dirname, 'dist/static')
     },
     resolve: {
         alias: {
