@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
-import { sendTabMessage, getMessage, gaNavigationEvent, gaDomEvent } from '../../../utilities';
+import { sendTabMessage, getMessage, gaNavigationEvent, gaDomEvent } from '@carbon/devtools-utilities';
 import { Accordion, AccordionItem, AccordionSkeleton, ClickableTile, Link } from 'carbon-components-react';
 import { bugs } from '../../../../package.json'
 

@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from '../../../utilities';
+import { getStorage, setStorage } from '@carbon/devtools-utilities';
 import { initToggleColumns, addGridInteraction, removeGridInteraction } from './toggleColumns';
 
 const holdingKeys = [];

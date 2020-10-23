@@ -1,6 +1,7 @@
 {
   "name": "@carbon/devtools-web-extension",
   "version": "2.3.3",
+  "private": true,
   "description": "Basic tools to aide in the development of Carbon pages.",
   "main": "build/manifest.json",
   "scripts": {

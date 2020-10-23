@@ -98,7 +98,8 @@ module.exports = {
     resolve: {
         alias: {
             react: "preact/compat",
-            "react-dom": "preact/compat"
+            "react-dom": "preact/compat",
+            '@carbon/devtools-utilities': path.resolve(__dirname, '../utilities')
         }
     }
 };

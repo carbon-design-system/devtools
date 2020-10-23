@@ -1,9 +1,12 @@
 import url from 'url';
-import { setStorage, getStorage, activeTab, randomId, getActiveBreakpoint } from './';
-import { version } from '../../package.json';
+import { setStorage, getStorage, activeTab, randomId, getActiveBreakpoint } from '../';
 
 const gaId = 'UA-28030649-4';
-let setPath, setTitle;
+let setPath, setTitle, version;
+
+function setVersion (getVersion) {
+    version = getVersion;
+}
 
 function sendGaResponse (data) {
     activeTab(tab => {
@@ -60,7 +63,7 @@ function sendGaResponse (data) {
     });
 }
 
-function setClientId (callback) {
+function setClientId (callback, version) {
     getStorage(['clientId'], ({ clientId }) => {
         if (!clientId) {
             // if clientId doesn't exist set it
@@ -211,6 +214,7 @@ function gaDomEvent (action, label, value, moreData) {
 }
 
 export {
+    setVersion,
     setClientId,
     getClientId,
     gaPageview,

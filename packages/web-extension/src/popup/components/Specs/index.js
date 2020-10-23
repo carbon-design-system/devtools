@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
-import { setStorage, getStorage, gaConfigurationEvent } from '../../../utilities';
+import { setStorage, getStorage, gaConfigurationEvent } from '@carbon/devtools-utilities';
 import { ToggleSmall, FormGroup, TileGroup, RadioTile } from 'carbon-components-react';
 import { ComingSoon } from '../';
 import { CustomOutline32 } from './CustomOutline32';

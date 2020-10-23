@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
 import { bugs } from '../../../../package.json'
 import { Link } from 'carbon-components-react';
-import { gaNavigationEvent } from '../../../utilities';
+import { gaNavigationEvent } from '@carbon/devtools-utilities';
 
 const { prefix } = settings;
 

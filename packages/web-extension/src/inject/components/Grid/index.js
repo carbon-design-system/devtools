@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { storageItemChanged, getStorage } from '../../../utilities';
+import { storageItemChanged, getStorage } from '@carbon/devtools-utilities';
 import { gridVersions } from '../../../globals';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';

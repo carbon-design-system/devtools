@@ -1,4 +1,4 @@
-import { experimentalStatusChanged, getExperimentalStatus } from '../../utilities';
+import { experimentalStatusChanged, getExperimentalStatus } from '@carbon/devtools-utilities';
 import { magenta } from '@carbon/colors';
 
 let iconColor = '#888D94';

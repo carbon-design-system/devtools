@@ -1,6 +1,7 @@
 {
   "name": "@carbon/devtools-demo-site",
   "version": "1.0.0",
+  "private": true,
   "description": "A static webpage with basic UI elements that can be used for testing and demoing.",
   "main": "index.js",
   "scripts": {

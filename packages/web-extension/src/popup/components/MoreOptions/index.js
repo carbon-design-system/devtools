@@ -1,7 +1,7 @@
 import React from "react";
 import { settings } from 'carbon-components';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
-import { gaNavigationEvent } from '../../../utilities';
+import { gaNavigationEvent } from '@carbon/devtools-utilities';
 import { bugs, repository } from '../../../../package.json';
 
 const { prefix } = settings;

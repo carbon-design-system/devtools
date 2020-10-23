@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { setPx } from '../../../utilities';
+import { setPx } from '@carbon/devtools-utilities';
 import { themes } from '@carbon/themes';
 
 const { prefix } = settings;

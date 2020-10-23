@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { getStorage, storageItemChanged } from '../../../utilities';
+import { getStorage, storageItemChanged } from '@carbon/devtools-utilities';
 import {
     manageSpecsColor,
     manageSpecsDependencies,

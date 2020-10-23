@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
 import { Checkbox, FormGroup, Tooltip, NumberInput } from 'carbon-components-react';
-import { setStorage, getStorage, gaConfigurationEvent } from '../../../utilities';
+import { setStorage, getStorage, gaConfigurationEvent } from '@carbon/devtools-utilities';
 import { Column32, Grid32, Information16 } from '@carbon/icons-react';
 import { labelMaker } from './labelMaker';
 

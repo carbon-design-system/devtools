@@ -1,7 +1,7 @@
 import { settings } from 'carbon-components';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import { positionTooltip, showHideTooltip, updateTooltipContent, __specValueItem, __specsContainer } from '../../Tooltip';
-import { getComponentName, setPx, removeLeadingZero } from '../../../../utilities';
+import { getComponentName, setPx, removeLeadingZero } from '@carbon/devtools-utilities';
 import { rem, spacing, layout } from '@carbon/layout';
 
 const { prefix } = settings;

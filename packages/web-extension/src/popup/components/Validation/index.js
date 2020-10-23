@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
-import { sendTabMessage, getMessage, gaNavigationEvent, gaDomEvent } from '../../../utilities';
+import { sendTabMessage, getMessage, gaNavigationEvent, gaDomEvent } from '@carbon/devtools-utilities';
 import { Button } from 'carbon-components-react';
 import { ChevronLeft16 } from '@carbon/icons-react';
 

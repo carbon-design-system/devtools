@@ -25,5 +25,12 @@
   "bugs": {
     "url": "https://github.com/carbon-design-system/devtools/issues"
   },
-  "homepage": "https://github.com/carbon-design-system/devtools#readme"
+  "homepage": "https://github.com/carbon-design-system/devtools#readme",
+  
+  "dependencies": {
+    "@carbon/layout": "^10.13.0"
+  },
+  "devDependencies": {
+    "react": "^16.13.1"
+  }
 }

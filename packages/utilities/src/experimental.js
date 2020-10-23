@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { getStorage, storageItemChanged } from './index';
+import { getStorage, storageItemChanged } from '../';
 
 experimentalStatusChanged(setExperimentalStatus);
 getExperimentalStatus(setExperimentalStatus);

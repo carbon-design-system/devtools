@@ -1,7 +1,7 @@
 import { settings } from 'carbon-components';
 import { carbonPrefix } from '../../../../globals';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
-import { getComponentName } from '../../../../utilities';
+import { getComponentName } from '@carbon/devtools-utilities';
 import { positionTooltip, showHideTooltip, updateTooltipContent } from '../../Tooltip';
 
 const { prefix } = settings;

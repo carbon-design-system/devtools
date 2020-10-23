@@ -1,4 +1,4 @@
-import { getMessage, insertScript } from '../../utilities';
+import { getMessage, insertScript } from '@carbon/devtools-utilities';
 
 /// WHEN POP UP IS OPENED VALIDATE PAGE
 function validatePage () {

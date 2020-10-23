@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { settings } from 'carbon-components';
 import { Accordion, AccordionItem, ToggleSmall, Toggle, Button } from 'carbon-components-react';
 import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
-import { setStorage, getStorage, experimentalFlag, gaNavigationEvent, gaConfigurationEvent } from '../../../utilities';
+import { setStorage, getStorage, experimentalFlag, gaNavigationEvent, gaConfigurationEvent } from '@carbon/devtools-utilities';
 
 const { prefix } = settings;
 const defaults = {

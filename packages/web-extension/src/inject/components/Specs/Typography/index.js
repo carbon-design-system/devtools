@@ -1,7 +1,7 @@
 import { settings } from 'carbon-components';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import { positionTooltip, showHideTooltip, updateTooltipContent, __specValueItem, __specsContainer } from '../../Tooltip';
-import { getComponentName, doesItHaveText, getActiveBreakpoint, removeLeadingZero } from '../../../../utilities';
+import { getComponentName, doesItHaveText, getActiveBreakpoint, removeLeadingZero } from '@carbon/devtools-utilities';
 import { fontWeights, styles } from '@carbon/type';
 import { rem } from '@carbon/layout';
 

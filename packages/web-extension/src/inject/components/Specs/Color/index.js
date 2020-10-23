@@ -1,7 +1,7 @@
 import { settings } from 'carbon-components';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import { positionTooltip, showHideTooltip, updateTooltipContent, __specValueItem, __specsContainer } from '../../Tooltip';
-import { getComponentName, doesItHaveText } from '../../../../utilities';
+import { getComponentName, doesItHaveText } from '@carbon/devtools-utilities';
 import { colors } from '@carbon/colors';
 import { themes } from '@carbon/themes';
 import { searchCarbonTokens } from './searchCarbonTokens';

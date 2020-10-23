@@ -3,8 +3,10 @@ import {
     injectGrid,
     setBadge
 } from './tasks';
-import { setClientId } from '../utilities';
+import { setVersion, setClientId } from '@carbon/devtools-utilities';
+import { version } from '../../package.json';
 
+setVersion(version);
 setClientId();
 setBadge();
 validatePage();

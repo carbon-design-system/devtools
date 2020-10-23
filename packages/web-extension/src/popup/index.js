@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Tag } from 'carbon-components-react';
 import { settings } from 'carbon-components';
-import { getMessage, sendMessage, getStorage, experimentalFlag, gaPageview, gaDomEvent, gaNavigationEvent } from '../utilities';
+import { getMessage, sendMessage, getStorage, experimentalFlag, gaPageview, gaDomEvent, gaNavigationEvent } from '@carbon/devtools-utilities';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
 import './index.scss';

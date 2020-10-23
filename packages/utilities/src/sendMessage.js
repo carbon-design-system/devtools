@@ -1,4 +1,4 @@
-import { activeTab } from './';
+import { activeTab } from '../';
 
 function sendMessage (msg, callback) {
     chrome.runtime.sendMessage(msg, callback);

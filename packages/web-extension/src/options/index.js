@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { settings } from 'carbon-components';
 import { Accordion, AccordionItem } from 'carbon-components-react';
 import { Footer, General, Grid, Shortcuts, Reset } from './components';
-import { gaPageview, gaNavigationEvent, storageChanged, getStorage } from '../utilities';
+import { storageChanged, getStorage, gaPageview, gaNavigationEvent } from '@carbon/devtools-utilities';
 
 import './index.scss';
 

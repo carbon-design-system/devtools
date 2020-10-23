@@ -1,4 +1,4 @@
-import { sendMessage, getStorage } from '../utilities';
+import { sendMessage, getStorage } from '@carbon/devtools-utilities';
 import { prefixSelectors } from '../globals';
 
 sendValidation();

@@ -1,5 +1,5 @@
 import { settings } from 'carbon-components';
-import { sendMessage, getMessage } from '../../../utilities';
+import { sendMessage, getMessage } from '@carbon/devtools-utilities';
 import { thirdPartyGrade } from './thirdPartyGrade';
 import { codeGrade } from './codeGrade';
 

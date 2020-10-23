@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { settings } from 'carbon-components';
 import { ContentSwitcher, Switch } from 'carbon-components-react';
 import { breakpoints, baseFontSize } from '@carbon/layout';
-import { remtopx, getMessage, gaConfigurationEvent } from '../../../utilities';
+import { remtopx, getMessage, gaConfigurationEvent } from '@carbon/devtools-utilities';
 
 const { prefix } = settings;
 const breakpointKeys = Object.keys(breakpoints);

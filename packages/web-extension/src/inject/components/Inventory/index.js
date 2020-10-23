@@ -1,6 +1,6 @@
 import { settings } from 'carbon-components';
 import { positionTooltip, showHideTooltip, updateTooltipContent, addHighlight, removeHighlight } from '../';
-import { sendMessage, getMessage, randomId } from '../../../utilities';
+import { sendMessage, getMessage, randomId } from '@carbon/devtools-utilities';
 import { allComponents } from '../../../globals';
 
 const { prefix } = settings;

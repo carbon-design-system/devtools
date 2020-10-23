@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { settings } from 'carbon-components';
 import { Checkbox, FormGroup } from 'carbon-components-react';
-import { setStorage, getStorage, gaConfigurationEvent } from '../../../utilities';
+import { setStorage, getStorage, gaConfigurationEvent } from '@carbon/devtools-utilities';
 import { labelMaker } from './labelMaker';
 
 const { prefix } = settings;
