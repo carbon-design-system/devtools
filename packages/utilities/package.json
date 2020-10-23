@@ -1,0 +1,29 @@
+{
+  "name": "@carbon/devtools-utilities",
+  "version": "1.0.0",
+  "description": "Common utilities and functions used across throughout Carbon Devtools.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/devtools.git"
+  },
+  "keywords": [
+    "Carbon",
+    "IBM",
+    "Devtools",
+    "Development",
+    "Tools",
+    "Tokens",
+    "Utilities",
+    "Functions"
+  ],
+  "author": "James Dow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/devtools/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/devtools#readme"
+}
