@@ -1,0 +1,28 @@
+{
+  "name": "@carbon/devtools-demo-site",
+  "version": "1.0.0",
+  "description": "A static webpage with basic UI elements that can be used for testing and demoing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carbon-design-system/devtools.git"
+  },
+  "keywords": [
+    "IBM",
+    "Carbon",
+    "Devtools",
+    "Tools",
+    "Development",
+    "Demo",
+    "Test"
+  ],
+  "author": "James Dow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/devtools/issues"
+  },
+  "homepage": "https://github.com/carbon-design-system/devtools#readme"
+}
