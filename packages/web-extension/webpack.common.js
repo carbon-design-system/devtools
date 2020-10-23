@@ -93,7 +93,7 @@ module.exports = {
     ],
     output: {
         filename: '[name]/index.js',
-        path: path.resolve(__dirname, 'dist/static')
+        path: path.resolve(__dirname, 'build/static')
     },
     resolve: {
         alias: {
