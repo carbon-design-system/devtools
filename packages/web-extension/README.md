@@ -11,8 +11,6 @@ The [Carbon Devtools](http://ibm.biz/carbon-devtools) web extension is a plugin 
  
 ## Features
 
-We add new features to this tool from time to time. Here a couple of our favorites that we have today available.
-
 ##### Resize browser
 
 Identify what Carbon breakpoint you're browser is actively using, and quickly resize your browser to see how your page responds at various supported breakpoints.
