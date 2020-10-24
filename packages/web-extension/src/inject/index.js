@@ -1,20 +1,20 @@
 import './index.scss';
 import {
-    initGrid,
-    initSpecs,
-    initInventory,
-    initPageGrade,
-    initTooltip,
-    initShortcuts
+  initGrid,
+  initSpecs,
+  initInventory,
+  initPageGrade,
+  initTooltip,
+  initShortcuts,
 } from './components';
 
 if (!window.carbonDevtoolsInjected) {
-    initGrid();
-    initSpecs();
-    initTooltip();
-    initInventory();
-    initPageGrade();
-    initShortcuts();
+  initGrid();
+  initSpecs();
+  initTooltip();
+  initInventory();
+  initPageGrade();
+  initShortcuts();
 
-    window.carbonDevtoolsInjected = true;
+  window.carbonDevtoolsInjected = true;
 }

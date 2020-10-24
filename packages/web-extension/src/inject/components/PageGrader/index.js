@@ -5,24 +5,23 @@ import { codeGrade } from './codeGrade';
 
 const { prefix } = settings;
 
-function initPageGrade () {
-    getMessage((msg, sender, sendResponse) => {
-        if (msg.requestPageGrade) {
-            gradePage();
-        }
-    });
+function initPageGrade() {
+  getMessage((msg, sender, sendResponse) => {
+    if (msg.requestPageGrade) {
+      gradePage();
+    }
+  });
 }
 
-function gradePage () {
-    let pageGrades = {};
-    
-    thirdPartyGrade(pageGrades);
-    codeGrade(pageGrades);
+function gradePage() {
+  let pageGrades = {};
 
-    sendMessage({ pageGrades: pageGrades });
+  thirdPartyGrade(pageGrades);
+  codeGrade(pageGrades);
 
-    return pageGrades;
+  sendMessage({ pageGrades: pageGrades });
+
+  return pageGrades;
 }
-
 
 export { initPageGrade };

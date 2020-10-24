@@ -1,5 +1,5 @@
 $feature-flags: (
-    enable-css-custom-properties: true,
+  enable-css-custom-properties: true,
 );
 
 @import '@carbon/grid/scss/prefix';
@@ -12,10 +12,10 @@ $feature-flags: (
 @import '@carbon/grid/scss/mixins';
 
 :root {
-    @include carbon--theme(
-        $theme: $carbon--theme--g90,
-        $emit-custom-properties: true
-    );
+  @include carbon--theme(
+    $theme: $carbon--theme--g90,
+    $emit-custom-properties: true
+  );
 }
 
 @include carbon--font-face-sans;
@@ -53,148 +53,151 @@ $feature-flags: (
 @include resize-browser;
 
 body {
-    background: $ui-background;
-    color: $text-01;
-    // min-height: carbon--mini-units(19);
+  background: $ui-background;
+  color: $text-01;
+  // min-height: carbon--mini-units(19);
 }
 
 .#{$prefix}--popup {
-    width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
-    padding-top: carbon--mini-units(4);
-    overflow: hidden;
+  width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
+  padding-top: carbon--mini-units(4);
+  overflow: hidden;
 
-    &__header {
-        padding-top: $carbon--spacing-03 - carbon--rem(1px);
-        padding-bottom: $carbon--spacing-03 - carbon--rem(1px);
-        background-color: $ui-01;
-        position: fixed;
-        display: flex;
-        width: 100%;
-        top: 0;
-        z-index: 100;
-        box-shadow: inset 0 -1px 0 0 $ui-background;
+  &__header {
+    padding-top: $carbon--spacing-03 - carbon--rem(1px);
+    padding-bottom: $carbon--spacing-03 - carbon--rem(1px);
+    background-color: $ui-01;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    box-shadow: inset 0 -1px 0 0 $ui-background;
+  }
+
+  &__heading {
+    @include carbon--type-style('productive-heading-01');
+  }
+
+  &--experimental {
+    padding-top: carbon--mini-units(6) + carbon--rem(5px);
+  }
+
+  &__experimental-tag {
+    padding: 0;
+    font-size: 10px;
+    width: 80px;
+    min-height: initial;
+  }
+
+  &__panel {
+    $panel-transition: $duration--moderate-02
+      carbon--motion(standard, productive);
+
+    width: 50%;
+    transition: opacity $panel-transition;
+
+    &:first-child {
+      opacity: 1;
     }
 
-    &__heading {
-        @include carbon--type-style('productive-heading-01');
+    &:last-child {
+      opacity: 0;
     }
-    
-    &--experimental {
-        padding-top: carbon--mini-units(6) + carbon--rem(5px);
-    }
-    
-    &__experimental-tag {
-        padding: 0;
-        font-size: 10px;
-        width: 80px;
-        min-height: initial;
-    }
-    
-    &__panel {
-        $panel-transition: $duration--moderate-02 carbon--motion(standard, productive);
 
-        width: 50%;
-        transition: opacity $panel-transition;
-        
+    &-container {
+      width: 200%;
+      display: flex;
+      margin-left: 0;
+      position: relative;
+      transition: margin-left $panel-transition;
+    }
+
+    &--shift {
+      margin-left: -100%;
+
+      .#{$prefix}--popup__panel {
         &:first-child {
-            opacity: 1;
+          opacity: 0;
         }
 
         &:last-child {
-            opacity: 0;
+          opacity: 1;
         }
+      }
+    }
+  }
 
-        &-container {
-            width: 200%;
-            display: flex;
-            margin-left: 0;
-            position: relative;
-            transition: margin-left $panel-transition;
-        }
-        
-        &--shift {
-            margin-left: -100%;
-            
-            .#{$prefix}--popup__panel {
+  &--white {
+    @include carbon--theme(
+      $theme: $carbon--theme--white,
+      $emit-custom-properties: true
+    );
+  }
 
-                &:first-child {
-                    opacity: 0;
-                }
+  &--g10 {
+    @include carbon--theme(
+      $theme: $carbon--theme--g10,
+      $emit-custom-properties: true
+    );
+  }
 
-                &:last-child {
-                    opacity: 1;
-                }
-            }
-        }
-    }
+  &--g100 {
+    @include carbon--theme(
+      $theme: $carbon--theme--g100,
+      $emit-custom-properties: true
+    );
+  }
 
-    &--white {
-        @include carbon--theme(
-            $theme: $carbon--theme--white,
-            $emit-custom-properties: true
-        );
-    }
-    
-    &--g10 {
-        @include carbon--theme(
-            $theme: $carbon--theme--g10,
-            $emit-custom-properties: true
-        );
-    }
-    
-    &--g100 {
-        @include carbon--theme(
-            $theme: $carbon--theme--g100,
-            $emit-custom-properties: true
-        );
-    }
-    
-    &--v9 {
-        @include carbon--theme(
-            $theme: $carbon--theme--v9,
-            $emit-custom-properties: true
-        );
-    }
+  &--v9 {
+    @include carbon--theme(
+      $theme: $carbon--theme--v9,
+      $emit-custom-properties: true
+    );
+  }
 }
 
-
 .#{$prefix}--grid {
-    @include carbon--make-container;
+  @include carbon--make-container;
 }
 
 .#{$prefix}--row {
-    @include carbon--make-row;
+  @include carbon--make-row;
 }
 
-[class*="#{$prefix}--col"] {
-    @include carbon--make-col-ready;
+[class*='#{$prefix}--col'] {
+  @include carbon--make-col-ready;
 }
-    
+
 .#{$prefix}--col-sm-1 {
-    @include carbon--make-col(1, 4);
+  @include carbon--make-col(1, 4);
 }
-    
+
 .#{$prefix}--col-sm-2 {
-    @include carbon--make-col(2, 4);
+  @include carbon--make-col(2, 4);
 }
 
 // allows nesting accordions
 .#{$prefix}--accordion {
-    &__item--active {
-        .#{$prefix}--accordion__content { // all content
-            display: none;
-        }
-        
-        .#{$prefix}--accordion__arrow { // all arrows
-            transform: rotate(90deg);
-        }
-
-        > .#{$prefix}--accordion__content { // only show direct content
-            display: block;
-        }
-        
-        > button .#{$prefix}--accordion__arrow { // only rotate arrow if direct child
-            transform: rotate(-90deg);
-        }
+  &__item--active {
+    .#{$prefix}--accordion__content {
+      // all content
+      display: none;
     }
+
+    .#{$prefix}--accordion__arrow {
+      // all arrows
+      transform: rotate(90deg);
+    }
+
+    > .#{$prefix}--accordion__content {
+      // only show direct content
+      display: block;
+    }
+
+    > button .#{$prefix}--accordion__arrow {
+      // only rotate arrow if direct child
+      transform: rotate(-90deg);
+    }
+  }
 }

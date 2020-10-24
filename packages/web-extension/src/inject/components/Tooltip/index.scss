@@ -1,160 +1,161 @@
-@import "carbon-components/scss/components/tooltip/tooltip";
+@import 'carbon-components/scss/components/tooltip/tooltip';
 
 .#{$prefix}--tooltip {
-    @include carbon--type-style('helper-text-01');
-    padding: carbon--mini-units(1);
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity $transition-fade, visibility $transition-fade;
-    min-width: initial;
-    max-width: 100vw;
-    position: fixed;
-    margin-top: 0;
-    z-index: $zindex;
-    box-shadow: 0 2px 6px rgba(0,0,0, .2), inset 0 0 0 1px rgba(255, 255, 255, .1);
+  @include carbon--type-style('helper-text-01');
+  padding: carbon--mini-units(1);
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-fade, visibility $transition-fade;
+  min-width: initial;
+  max-width: 100vw;
+  position: fixed;
+  margin-top: 0;
+  z-index: $zindex;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 
-    &[data-floating-menu-direction=top] {
-        margin-top: -1 * carbon--mini-units(1);
+  &[data-floating-menu-direction='top'] {
+    margin-top: -1 * carbon--mini-units(1);
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+  }
+
+  &--shown {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &--primary {
+    font-weight: bold;
+    margin-right: carbon--mini-units(2);
+  }
+
+  // spec detail groups
+  &-specs {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__eyebrow {
+      @include carbon--type-style('label-01');
     }
 
-    &__content {
+    &__title {
+      @include carbon--type-style('productive-heading-01');
+      margin-bottom: carbon--mini-units(1);
+      float: left;
+      margin-right: 8px;
+    }
+
+    &__group {
+      padding: carbon--mini-units(1);
+      padding-right: carbon--mini-units(2);
+      min-width: carbon--mini-units(30);
+      width: 50%;
+
+      @include carbon--breakpoint('md') {
+        width: 25%;
+      }
+
+      &--single {
         width: 100%;
+      }
+
+      &--duo {
+        width: 50%;
+      }
+
+      ul {
+        clear: both;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+      }
+
+      li {
         display: flex;
+        margin: 0;
+        padding: 0;
+
+        &::before {
+          display: none;
+        }
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
     }
 
-    &--shown {
-        opacity: 1;
-        visibility: visible;
+    &__prop {
+      @include carbon--type-style('code-01');
+      margin-right: carbon--mini-units(1);
+      font-weight: 500;
+      margin-top: carbon--mini-units(0.25);
     }
 
-    &--primary {
-        font-weight: bold;
-        margin-right: carbon--mini-units(2);
+    p#{&}__value {
+      @include carbon--type-style('code-01');
+      margin-top: carbon--mini-units(0.25);
     }
-    
-    // spec detail groups
+
+    li#{&}__warning {
+      @include carbon--type-style('helper-text-01');
+      $yellow: map-get(map-get($carbon--colors, 'yellow'), 30);
+      border-left: 3px solid $yellow;
+      padding-left: carbon--mini-units(1);
+      margin-bottom: carbon--mini-units(1);
+      font-weight: 500;
+    }
+  }
+
+  // tooltip theme
+  @mixin tooltip--theme {
+    background: $ui-01;
+    color: $text-01;
+
+    .#{$prefix}--tooltip__caret {
+      border-bottom-color: $ui-01;
+    }
+
+    &--secondary {
+      color: $text-02;
+    }
+
     &-specs {
-        display: flex;
-        flex-wrap: wrap;
+      &__group {
+        background-color: $ui-background;
+        border-right: $carbon--grid-gutter--condensed solid $ui-01;
+        border-bottom: $carbon--grid-gutter--condensed solid $ui-01;
+      }
 
-        &__eyebrow {
-            @include carbon--type-style('label-01');
-        }
-
-        &__title {
-            @include carbon--type-style('productive-heading-01');
-            margin-bottom: carbon--mini-units(1);
-            float: left;
-            margin-right: 8px;
-        }
-
-        &__group {
-            padding: carbon--mini-units(1);
-            padding-right: carbon--mini-units(2);
-            min-width: carbon--mini-units(30);
-            width: 50%;
-            
-            @include carbon--breakpoint('md') {
-                width: 25%;
-            }
-            
-            &--single {
-                width: 100%;
-            }
-            
-            &--duo {
-                width: 50%;
-            }
-            
-            ul {
-                clear: both;
-                padding: 0;
-                margin: 0;
-                list-style-type: none;
-            }
-
-            li {
-                display: flex;
-                margin: 0;
-                padding: 0;
-                
-                &::before {
-                    display: none;
-                }
-                
-                &:last-of-type {
-                    margin-bottom: 0;
-                }
-            }
-        }
-
-        &__prop {
-            @include carbon--type-style('code-01');
-            margin-right: carbon--mini-units(1);
-            font-weight: 500;
-            margin-top: carbon--mini-units(.25);
-        }
-        
-        p#{&}__value {
-            @include carbon--type-style('code-01');
-            margin-top: carbon--mini-units(.25);
-        }
-
-        li#{&}__warning {
-            @include carbon--type-style('helper-text-01');
-            $yellow: map-get(map-get($carbon--colors, 'yellow'), 30);
-            border-left: 3px solid $yellow;
-            padding-left: carbon--mini-units(1);
-            margin-bottom: carbon--mini-units(1);
-            font-weight: 500;
-        }
-    }
-
-    // tooltip theme
-    @mixin tooltip--theme {
-        background: $ui-01;
+      &__warning {
+        background-color: $ui-01;
         color: $text-01;
-        
-        .#{$prefix}--tooltip__caret {
-            border-bottom-color: $ui-01;
-        }
-        
-        &--secondary {
-            color: $text-02;
-        }
+      }
 
-        &-specs {
-            &__group {
-                background-color: $ui-background;
-                border-right: $carbon--grid-gutter--condensed solid $ui-01;
-                border-bottom: $carbon--grid-gutter--condensed solid $ui-01;
-            }
-            
-            &__warning {
-                background-color: $ui-01;
-                color: $text-01;
-            }
+      &__title,
+      &__prop {
+        color: $text-01;
+      }
 
-            &__title,
-            &__prop {
-                color: $text-01;
-            }
-
-            &__name,
-            &__value {
-                color: $text-02;
-            }
-        }
+      &__name,
+      &__value {
+        color: $text-02;
+      }
     }
+  }
 
-    @include tooltip--theme;
+  @include tooltip--theme;
 
-    @each $theme in map-keys($themes) {
-        .#{$prefix}--#{$theme} & {
-            @include carbon--theme(map-get($themes, $theme)) {
-                 @include tooltip--theme;
-            }
-        }
+  @each $theme in map-keys($themes) {
+    .#{$prefix}--#{$theme} & {
+      @include carbon--theme(map-get($themes, $theme)) {
+        @include tooltip--theme;
+      }
     }
+  }
 }

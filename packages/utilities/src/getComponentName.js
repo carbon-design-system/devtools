@@ -1,20 +1,20 @@
-function getComponentName (comp, name) {
-    let compName;
-    const codeName = '&lt;' + comp.nodeName.toLowerCase() + '&gt;';
+function getComponentName(comp, name) {
+  let compName;
+  const codeName = '&lt;' + comp.nodeName.toLowerCase() + '&gt;';
 
-    if (comp.nodeName !== 'BODY') {
-        compName = comp.getAttribute('data-componentname');
-        
-        if (compName) {
-            compName = compName.split(',').pop();
-        } else {
-            compName = getComponentName(comp.parentNode, name || codeName);
-        }
+  if (comp.nodeName !== 'BODY') {
+    compName = comp.getAttribute('data-componentname');
+
+    if (compName) {
+      compName = compName.split(',').pop();
     } else {
-        compName = 'Page template';
+      compName = getComponentName(comp.parentNode, name || codeName);
     }
+  } else {
+    compName = 'Page template';
+  }
 
-    return compName || name;
+  return compName || name;
 }
 
 export { getComponentName };

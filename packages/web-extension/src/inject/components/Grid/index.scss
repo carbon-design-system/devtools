@@ -1,4 +1,4 @@
-$grid-opacity: .5;
+$grid-opacity: 0.5;
 $grid-border-size: 1px;
 $grid-border-color: $grid-color;
 $grid-border-opacity: 1;
@@ -7,36 +7,36 @@ $grid-border-opacity: 1;
 @import 'mini-unit';
 
 .#{$prefix}--devtools {
-    position: absolute;
-    z-index: $zindex;
-    height: auto;
-    width: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity $transition-fade;
+  position: absolute;
+  z-index: $zindex;
+  height: auto;
+  width: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    * {
-      box-sizing: border-box;
-    }
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity $transition-fade;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  // hide grid on click
+  html:active &,
+  body:active & {
+    opacity: 0;
+  }
+
+  &--interact {
+    pointer-events: initial;
 
     // hide grid on click
     html:active &,
     body:active & {
-        opacity: 0;
+      opacity: 1;
     }
-
-    &--interact {
-        pointer-events: initial;
-
-        // hide grid on click
-        html:active &,
-        body:active & {
-            opacity: 1;
-        }
-    }
+  }
 }

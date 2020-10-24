@@ -1,36 +1,36 @@
 @mixin more-options {
-    // @include overflow-menu;
+  // @include overflow-menu;
 
-    .#{$prefix}--more-options {
-        position: absolute;
-        right: 0;
-        top: 0;
-        
-        svg {
-            // fixes issue where the click event gets hung up on svg and won't get executed.
-            pointer-events: none;
-        }
-    }
+  .#{$prefix}--more-options {
+    position: absolute;
+    right: 0;
+    top: 0;
 
-    .#{$prefix}--overflow-menu-options {
-        outline: none;
+    svg {
+      // fixes issue where the click event gets hung up on svg and won't get executed.
+      pointer-events: none;
+    }
+  }
 
-        a {
-            text-decoration: none;
-        }
+  .#{$prefix}--overflow-menu-options {
+    outline: none;
+
+    a {
+      text-decoration: none;
     }
-    
-    .#{$prefix}--assistive-text,
-    .#{$prefix}--visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        border: 0;
-        visibility: visible;
-        white-space: nowrap;
-    }
+  }
+
+  .#{$prefix}--assistive-text,
+  .#{$prefix}--visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    visibility: visible;
+    white-space: nowrap;
+  }
 }

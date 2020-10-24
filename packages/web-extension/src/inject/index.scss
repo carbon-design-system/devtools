@@ -8,13 +8,13 @@ $zindex: 9999999999;
 @import '@carbon/type/scss/styles';
 @import '@carbon/type/scss/font-face/mono';
 @import '@carbon/grid/scss/prefix';
-@import "@carbon/layout/scss/breakpoint";
-@import "@carbon/layout/scss/mini-unit";
-@import "@carbon/grid/scss/grid";
-@import "@carbon/colors/scss/colors";
-@import "@carbon/themes/scss/themes";
-@import "@carbon/motion/scss/motion";
-@import "carbon-components/src/globals/scss/motion";
+@import '@carbon/layout/scss/breakpoint';
+@import '@carbon/layout/scss/mini-unit';
+@import '@carbon/grid/scss/grid';
+@import '@carbon/colors/scss/colors';
+@import '@carbon/themes/scss/themes';
+@import '@carbon/motion/scss/motion';
+@import 'carbon-components/src/globals/scss/motion';
 
 @include carbon--type-reset();
 @include carbon--font-face-mono();
@@ -26,18 +26,15 @@ $inventory-color: map-get(map-get($carbon--colors, 'purple'), 50);
 $specs-color: map-get(map-get($carbon--colors, 'magenta'), 50);
 
 $themes: (
-    'white': $carbon--theme--white,
-    'g10': $carbon--theme--g10,
-    'g90': $carbon--theme--g90,
-    'g100': $carbon--theme--g100,
-    'v9': $carbon--theme--v9
+  'white': $carbon--theme--white,
+  'g10': $carbon--theme--g10,
+  'g90': $carbon--theme--g90,
+  'g100': $carbon--theme--g100,
+  'v9': $carbon--theme--v9,
 );
 
 @import 'components';
 
 .#{$prefix}--grid--carbon-v9 {
-    @import "@carbon/grid/scss/12";
+  @import '@carbon/grid/scss/12';
 }
-
-
-

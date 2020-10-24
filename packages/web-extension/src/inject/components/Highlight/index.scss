@@ -1,80 +1,87 @@
-$highlight-opacity: .5;
+$highlight-opacity: 0.5;
 
 .#{$prefix}--highlight {
-    &::after { 
-        opacity: 0;
-        transition: opacity $transition-fade, background-color $transition-fade, box-shadow $transition-fade;
-    }
+  &::after {
+    opacity: 0;
+    transition: opacity $transition-fade, background-color $transition-fade,
+      box-shadow $transition-fade;
+  }
 
-    &.#{$prefix}--highlight {
-        &--grid,
-        &--specs,
-        &--inventory {
-            --highlight-color-type-border: transparent;
-            --highlight-color-type-background: transparent;
-
-            &::after {
-                content: attr(data-highlightcontent);
-                pointer-events: none;
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                top: 0;
-                left: 0;
-                transform: translate(0,0);
-                z-index: $zindex - 1;
-                opacity: 1;
-                background-color: var(--highlight-color-type-background);
-                color: #fff;
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-                @include carbon--type-style('expressive-paragraph-01');
-            }
-        }
-        
-        &--outline::after {
-            background: none;
-            opacity: 1;
-            box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
-        }
-        
-        &--inline::after {
-            display: none;
-        }
-    }
-
-    &--relative {
-        position: relative;
-    }
-    
+  &.#{$prefix}--highlight {
+    &--grid,
+    &--specs,
     &--inventory {
-        &::after,
-        &.#{$prefix}--highlight--inline {
-            --highlight-color-type-border: #{$inventory-color};
-            --highlight-color-type-background: #{rgba($inventory-color, $highlight-opacity)};
-        }
+      --highlight-color-type-border: transparent;
+      --highlight-color-type-background: transparent;
+
+      &::after {
+        content: attr(data-highlightcontent);
+        pointer-events: none;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+        z-index: $zindex - 1;
+        opacity: 1;
+        background-color: var(--highlight-color-type-background);
+        color: #fff;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include carbon--type-style('expressive-paragraph-01');
+      }
     }
-    
-    &--specs {
-        &::after,
-        &.#{$prefix}--highlight--inline {
-            --highlight-color-type-border: #{$specs-color};
-            --highlight-color-type-background: #{rgba($specs-color, $highlight-opacity)};
-        }
+
+    &--outline::after {
+      background: none;
+      opacity: 1;
+      box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
     }
-    
-    &--grid {
-        &::after,
-        &.#{$prefix}--highlight--inline {
-            --highlight-color-type-border: #{$grid-color};
-            --highlight-color-type-background: #{rgba($grid-color, $highlight-opacity)};
-        }
+
+    &--inline::after {
+      display: none;
     }
-        
-    body:active &::after {
-        opacity: 0;
+  }
+
+  &--relative {
+    position: relative;
+  }
+
+  &--inventory {
+    &::after,
+    &.#{$prefix}--highlight--inline {
+      --highlight-color-type-border: #{$inventory-color};
+      --highlight-color-type-background: #{rgba(
+          $inventory-color,
+          $highlight-opacity
+        )};
     }
+  }
+
+  &--specs {
+    &::after,
+    &.#{$prefix}--highlight--inline {
+      --highlight-color-type-border: #{$specs-color};
+      --highlight-color-type-background: #{rgba(
+          $specs-color,
+          $highlight-opacity
+        )};
+    }
+  }
+
+  &--grid {
+    &::after,
+    &.#{$prefix}--highlight--inline {
+      --highlight-color-type-border: #{$grid-color};
+      --highlight-color-type-background: #{rgba($grid-color, $highlight-opacity)};
+    }
+  }
+
+  body:active &::after {
+    opacity: 0;
+  }
 }

@@ -5,8 +5,8 @@
     "build": "lerna run build --stream",
     "clean": "lerna run clean && lerna clean --yes && rimraf node_modules",
     "reset": "yarn cache clean && yarn clean && yarn install && yarn build",
-    "format": "ECHO 'asdf'",
-    "format:diff": "ECHO 'asdf'",
+    "format": "lerna run format",
+    "format:diff": "lerna run format:diff",
     "lint": "ECHO 'asdf'",
     "lint:styles": "ECHO 'asdf'",
     "test": "ECHO 'asdf'"
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/carbon-design-system/devtools#readme",
   "workspaces": {
     "packages": [
-        "packages/*"
+      "packages/*"
     ]
   }
 }

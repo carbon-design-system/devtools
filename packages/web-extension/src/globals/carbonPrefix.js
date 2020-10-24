@@ -1,3 +1,3 @@
-const carbonPrefix = 'bx'
+const carbonPrefix = 'bx';
 
 export { carbonPrefix };
