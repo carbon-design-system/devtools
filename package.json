@@ -1,7 +1,37 @@
 {
-  "name": "root",
+  "name": "carbon-devtools-collection",
   "private": true,
+  "scripts": {
+    "build": "lerna run build --stream",
+    "clean": "lerna run clean && lerna clean --yes && rimraf node_modules",
+    "reset": "yarn cache clean && yarn clean && yarn install && yarn build",
+    "format": "ECHO 'asdf'",
+    "format:diff": "ECHO 'asdf'",
+    "lint": "ECHO 'asdf'",
+    "lint:styles": "ECHO 'asdf'",
+    "test": "ECHO 'asdf'"
+  },
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "license": "Apache-2.0",
+  "author": "James Dow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carbon-design-system/devtools"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/devtools/issues/new",
+    "email": "james.dow@us.ibm.com"
+  },
+  "homepage": "https://github.com/carbon-design-system/devtools#readme",
+  "workspaces": {
+    "packages": [
+        "packages/*"
+    ]
   }
 }
