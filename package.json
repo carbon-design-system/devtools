@@ -3,14 +3,15 @@
   "private": true,
   "scripts": {
     "build": "lerna run build --stream",
-    "clean": "lerna run clean && lerna clean --yes && rimraf node_modules",
+    "watch": "lerna run watch --parallel",
+    "clean": "lerna run clean --stream && lerna clean --yes && rimraf node_modules",
     "reset": "yarn cache clean && yarn clean && yarn install && yarn build",
-    "format": "lerna run format",
-    "format:diff": "lerna run format:diff",
-    "lint": "lerna run lint",
-    "lint:js": "lerna run lint:js",
-    "lint:styles": "lerna run lint:styles",
-    "test": "ECHO 'asdf'"
+    "format": "lerna run format --stream",
+    "format:diff": "lerna run format:diff --stream",
+    "lint": "lerna run lint --stream",
+    "lint:js": "lerna run lint:js --stream",
+    "lint:css": "lerna run lint:css --stream",
+    "test": "lerna run test --stream"
   },
   "devDependencies": {
     "lerna": "^3.22.1",
