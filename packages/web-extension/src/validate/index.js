@@ -24,7 +24,7 @@ function sendValidation () {
         if (process.env.NODE_ENV === 'development'
          && !msg.carbonDevtoolsInjected) {
             if (msg.ignoreValidation || msg.runningCarbon) {
-                const cssURL = chrome.extension.getURL('/static/inject/index.css');
+                const cssURL = chrome.extension.getURL('/inject/index.css');
                 
                 if (!document.querySelector(`[href="${cssURL}"]`)) {
                     injectStyles(cssURL);

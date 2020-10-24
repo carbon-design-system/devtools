@@ -1,8 +1,9 @@
 {
-    "name": "Carbon Devtools",
-    "version": "2.3.3",
+    "name": "{package_name}",
+    "version": "{package_version}",
     "manifest_version": 2,
-    "description": "Basic toolset to aide in the development of Carbon pages.",
+    "description": "{package_description}",
+    "author": "{package_author}",
     "permissions": [
         "activeTab",
         "storage",
@@ -10,11 +11,11 @@
         "https://*.carbondesignsystem.com/*"
     ],
     "background": {
-        "scripts": ["/static/background/index.js"],
+        "scripts": ["/background/index.js"],
         "persistent": false
     },
     "web_accessible_resources": [
-        "/static/inject/index.css"
+        "/inject/index.css"
     ],
     "icons": {
         "16": "/media/16x16-mid.png",
@@ -23,10 +24,10 @@
         "128": "/media/128x128-mid.png"
     },
     "browser_action": {
-        "default_popup": "/static/popup/index.html"
+        "default_popup": "/popup/index.html"
     },
     "options_ui": {
-        "page": "/static/options/index.html",
+        "page": "/options/index.html",
         "open_in_tab": false
     }
 }

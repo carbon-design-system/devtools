@@ -11,7 +11,7 @@ function validatePage () {
 
 function insertValidation (callback) {
     insertScript(null, {
-        file: '/static/validate/index.js',
+        file: '/validate/index.js',
         allFrames: true,
         matchAboutBlank: true
     }, () => {

@@ -8,13 +8,13 @@ function injectGrid () {
             const frameId = msg.ignoreValidation ? 0: sender.frameId;
             
             insertScript(null, {
-                file: '/static/inject/index.js',
+                file: '/inject/index.js',
                 frameId: frameId
             });
             
             if (process.env.NODE_ENV === 'production') {
                 insertCSS(null, {
-                    file: '/static/inject/index.css',
+                    file: '/inject/index.css',
                     frameId: frameId
                 });
             }

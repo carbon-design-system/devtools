@@ -1,9 +1,9 @@
 {
-  "name": "@carbon/devtools-web-extension",
-  "version": "2.3.3",
+  "name": "carbon-devtools",
+  "version": "2.4.0",
   "private": true,
   "description": "Basic tools to aide in the development of Carbon pages.",
-  "main": "build/manifest.json",
+  "main": "dist/manifest.json",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch --config webpack.dev.js",
@@ -34,6 +34,7 @@
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.2.1",
     "css-loader": "^4.2.2",
     "cssnano": "^4.1.10",
     "dotenv-webpack": "^2.0.0",

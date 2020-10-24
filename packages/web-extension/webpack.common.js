@@ -3,7 +3,9 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const package = require('./package');
 
 module.exports = {
     entry: {
@@ -24,7 +26,7 @@ module.exports = {
             './src/validate/index.js'
         ],
         inject: [
-            './src/setPrefix.js',
+            './src/globals/setPrefix.js',
             './src/inject/index.js'
         ]
     },
@@ -89,11 +91,26 @@ module.exports = {
             chunks: ['popup'],
             filename: 'popup/index.html',
             cache: false
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: './src/media',
+                    to: './media'
+                },
+                {
+                    from: './src/manifest.json',
+                    to: './',
+                    transform(content, path) {
+                        return syncManifestPackage(content.toString());
+                    },
+                },
+            ],
         })
     ],
     output: {
         filename: '[name]/index.js',
-        path: path.resolve(__dirname, 'build/static')
+        path: path.resolve(__dirname, 'dist')
     },
     resolve: {
         alias: {
@@ -103,3 +120,24 @@ module.exports = {
         }
     }
 };
+
+function syncManifestPackage (content) {
+    const manifest = JSON.parse(content);
+    
+    manifest.name = formatName(package.name);
+    manifest.version = package.version;
+    manifest.description = package.description;
+    manifest.author = package.author;
+    
+    return JSON.stringify(manifest);
+}
+
+function formatName (name) {
+    let cleanName = '';
+    
+    name.split('-').forEach(name =>
+        cleanName += name.charAt(0).toUpperCase() + name.slice(1) + ' '
+    );
+    
+    return cleanName.trim();
+}
