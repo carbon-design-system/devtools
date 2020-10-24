@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
 import { Select, SelectItem, ToggleSmall } from 'carbon-components-react';
 import { configuration } from '../';
@@ -51,8 +52,9 @@ function General({
             }
             labelText="Choose a theme"
             className={`${prefix}--options__select`}>
-            {themeList.map((theme) => (
+            {themeList.map((theme, i) => (
               <SelectItem
+                key={theme + i}
                 value={theme}
                 text={theme}
                 selected={theme === generalTheme ? true : false}
@@ -64,5 +66,11 @@ function General({
     </>
   );
 }
+
+General.propTypes = {
+  generalExperimental: PropTypes.bool,
+  generalNonCarbon: PropTypes.bool,
+  generalTheme: PropTypes.string,
+};
 
 export { General };

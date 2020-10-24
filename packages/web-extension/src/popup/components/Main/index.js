@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
-import {
-  Accordion,
-  AccordionItem,
-  ToggleSmall,
-  Toggle,
-  Button,
-} from 'carbon-components-react';
+import { Accordion, AccordionItem, ToggleSmall } from 'carbon-components-react';
 import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
 import {
   setStorage,
@@ -137,5 +132,10 @@ function Main({ initialMsg, panelControls }) {
     );
   }
 }
+
+Main.propTypes = {
+  initialMsg: PropTypes.object,
+  panelControls: PropTypes.func,
+};
 
 export { Main };

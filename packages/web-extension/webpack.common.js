@@ -1,11 +1,11 @@
-const webpack = require('webpack');
+const webpack = require('webpack'); // eslint-disable-line no-unused-vars
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const package = require('./package');
+const packageJSON = require('./package');
 
 module.exports = {
   entry: {
@@ -102,7 +102,7 @@ module.exports = {
         {
           from: './src/manifest.json',
           to: './',
-          transform(content, path) {
+          transform(content) {
             return syncManifestPackage(content.toString());
           },
         },
@@ -125,10 +125,10 @@ module.exports = {
 function syncManifestPackage(content) {
   const manifest = JSON.parse(content);
 
-  manifest.name = formatName(package.name);
-  manifest.version = package.version;
-  manifest.description = package.description;
-  manifest.author = package.author;
+  manifest.name = formatName(packageJSON.name);
+  manifest.version = packageJSON.version;
+  manifest.description = packageJSON.description;
+  manifest.author = packageJSON.author;
 
   return JSON.stringify(manifest);
 }

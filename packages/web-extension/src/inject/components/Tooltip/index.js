@@ -1,6 +1,5 @@
 import { settings } from 'carbon-components';
 import { setPx } from '@carbon/devtools-utilities';
-import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
 
@@ -51,7 +50,7 @@ function positionTooltip(component) {
   }
 }
 
-function offsetCaretX(boundingBox, tooltip, tooltipCaret, component) {
+function offsetCaretX(boundingBox, tooltip, tooltipCaret) {
   // reset carot styles
   tooltipCaret.style.left = null;
   tooltipCaret.style.margin = null;
@@ -117,7 +116,7 @@ function tooltipOffsetY(comp, tooltip, tooltipCaret) {
   return setPx(offsetValue);
 }
 
-function tooltipOffsetX({ x, width }, tooltip, component) {
+function tooltipOffsetX({ x, width }, tooltip) {
   let offsetValue = x;
 
   // offset whole tooltip and ensure it stays within viewport

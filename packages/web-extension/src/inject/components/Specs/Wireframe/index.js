@@ -43,12 +43,12 @@
 // check for updates
 // spec on?
 // this item on?
+//
+// import { settings } from 'carbon-components';
+//
+// const { prefix } = settings;
 
-import { settings } from 'carbon-components';
-
-const { prefix } = settings;
-
-const html = document.querySelector('html');
+// const html = document.querySelector('html');
 // const outlineClass = `${prefix}--specs--outline`;
 
 function manageSpecsWireframe(specs, specType) {

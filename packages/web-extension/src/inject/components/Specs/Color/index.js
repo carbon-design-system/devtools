@@ -103,7 +103,7 @@ function clearOnScroll() {
   document.removeEventListener('scroll', clearOnScroll, true);
 }
 
-function mouseOut(e) {
+function mouseOut() {
   removeAllHighlights();
   showHideTooltip(false);
   document.removeEventListener('scroll', clearOnScroll, true);

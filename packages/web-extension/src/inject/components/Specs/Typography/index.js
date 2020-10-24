@@ -1,4 +1,3 @@
-import { settings } from 'carbon-components';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import {
   positionTooltip,
@@ -15,8 +14,6 @@ import {
 } from '@carbon/devtools-utilities';
 import { fontWeights, styles } from '@carbon/type';
 import { rem } from '@carbon/layout';
-
-const { prefix } = settings;
 
 function manageSpecsType(specs, specType) {
   if (specs && specType === 'typography') {
@@ -105,7 +102,7 @@ function clearOnScroll() {
   document.removeEventListener('scroll', clearOnScroll, true);
 }
 
-function mouseOut(e) {
+function mouseOut() {
   removeAllHighlights();
   showHideTooltip(false);
   document.removeEventListener('scroll', clearOnScroll, true);
@@ -113,7 +110,7 @@ function mouseOut(e) {
 
 function getTypeToken(target, compStyles, carbonStyles) {
   const tokens = Object.keys(carbonStyles);
-  let matches, token, tokenStyles, range, lowRange, highRange, tokenName;
+  let token, tokenStyles, range, lowRange, highRange, tokenName;
 
   if (target.dataset['typetokenname']) {
     return target.dataset['typetokenname'];
@@ -243,13 +240,12 @@ function styleRange(styles) {
   const breakpoints = Object.keys(styles.breakpoints);
   const breakpointState = getActiveBreakpoint();
   const range = [];
-  let breakpoint, nextBreakpoint, breakpointStyles, level;
+  let breakpoint, breakpointStyles, level;
 
   range.push(JSON.parse(JSON.stringify(styles))); // copy over defaults
 
   for (let i = 0; i < breakpoints.length; i++) {
     breakpoint = breakpoints[i];
-    // nextBreakpoint = breakpoints[i + 1];
     breakpointStyles = styles.breakpoints[breakpoint];
     level = range.length - 1;
 
@@ -398,7 +394,6 @@ function formatPxValue(compValue) {
 function getFontWeight(compValue, carbonWeights) {
   const weights = Object.keys(carbonWeights);
   let weight,
-    setValue,
     returnedWeight = '';
 
   if (compValue) {

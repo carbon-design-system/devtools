@@ -9,8 +9,11 @@
     "watch": "webpack --watch --config webpack.dev.js",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "clean": "rimraf dist && rimraf node_modules",
-    "format": "prettier --write '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**'",
-    "format:diff": "prettier --list-different '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**'"
+    "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint . --ext .js",
+    "lint:css": "ECHO 'lint:css'"
   },
   "dependencies": {
     "@carbon/colors": "^10.13.0",
@@ -40,6 +43,8 @@
     "css-loader": "^4.2.2",
     "cssnano": "^4.1.10",
     "dotenv-webpack": "^2.0.0",
+    "eslint": "^7.12.0",
+    "eslint-config-carbon": "^2.1.0",
     "html-loader": "^1.3.0",
     "html-webpack-plugin": "^4.4.1",
     "mini-css-extract-plugin": "^0.11.0",
@@ -50,6 +55,8 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-rem-to-pixel": "^4.1.2",
     "preact": "^10.4.8",
+    "prettier": "^2.1.2",
+    "prettier-config-carbon": "^0.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
@@ -60,9 +67,7 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.3",
-    "zip-webpack-plugin": "^3.0.0",
-    "prettier": "^2.1.2",
-    "prettier-config-carbon": "^0.4.0"
+    "zip-webpack-plugin": "^3.0.0"
   },
   "sideEffects": false,
   "keywords": [
@@ -83,5 +88,13 @@
     "url": "https://github.com/carbon-design-system/devtools/issues/new",
     "email": "james.dow@us.ibm.com"
   },
-  "homepage": "https://github.com/carbon-design-system/devtools#readme"
+  "homepage": "https://github.com/carbon-design-system/devtools#readme",
+  "eslintConfig": {
+    "extends": [
+      "carbon"
+    ],
+    "globals": {
+      "chrome": "readonly"
+    }
+  }
 }

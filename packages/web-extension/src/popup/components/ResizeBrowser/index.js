@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { settings } from 'carbon-components';
 import { ContentSwitcher, Switch } from 'carbon-components-react';
-import { breakpoints, baseFontSize } from '@carbon/layout';
-import {
-  remtopx,
-  getMessage,
-  gaConfigurationEvent,
-} from '@carbon/devtools-utilities';
+import { breakpoints } from '@carbon/layout';
+import { remtopx, gaConfigurationEvent } from '@carbon/devtools-utilities';
 
 const { prefix } = settings;
 const breakpointKeys = Object.keys(breakpoints);
 
 function ResizeBrowser({ windowWidth = 0 }) {
-  const [breakpointIndex, setBreakpointIndex] = useState(false);
-
   return (
     <div className={`${prefix}--popup-resize-browser ${prefix}--row`}>
       <div className={`${prefix}--col`}>
@@ -54,7 +48,7 @@ function getBreakpointIndex(windowWidth) {
       }
     }
 
-    return selectedIndex; // setBreakpointIndex(selectedIndex);
+    return selectedIndex;
   }
 }
 

@@ -43,7 +43,7 @@ function Options() {
           <Accordion>
             <AccordionItem
               title="General"
-              onHeadingClick={(e) =>
+              onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'general-settings')
               }
               open={false}>
@@ -51,7 +51,7 @@ function Options() {
             </AccordionItem>
             <AccordionItem
               title="Grid"
-              onHeadingClick={(e) =>
+              onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'grid-settings')
               }
               open={false}>
@@ -59,7 +59,7 @@ function Options() {
             </AccordionItem>
             <AccordionItem
               title="Shortcuts"
-              onHeadingClick={(e) =>
+              onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'shortcut-settings')
               }
               open={false}>
@@ -67,7 +67,7 @@ function Options() {
             </AccordionItem>
             <AccordionItem
               title="Reset"
-              onHeadingClick={(e) =>
+              onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'reset-settings')
               }
               open={false}>

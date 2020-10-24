@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { settings } from 'carbon-components';
 import { bugs } from '../../../../package.json';
 import { Link } from 'carbon-components-react';

@@ -4,8 +4,11 @@
   "description": "Common utilities and functions used across throughout Carbon Devtools.",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**'",
-    "format:diff": "prettier --list-different '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**'"
+    "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint . --ext .js",
+    "lint:css": "ECHO 'lint:css'"
   },
   "keywords": [
     "Carbon",
@@ -35,7 +38,17 @@
     "@carbon/layout": "^10.13.0"
   },
   "devDependencies": {
+    "eslint": "^7.12.0",
+    "eslint-config-carbon": "^2.1.0",
     "prettier": "^2.1.2",
     "prettier-config-carbon": "^0.4.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "carbon"
+    ],
+    "globals": {
+      "chrome": "readonly"
+    }
   }
 }

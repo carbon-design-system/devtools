@@ -5,13 +5,7 @@ import {
   getStorage,
   gaConfigurationEvent,
 } from '@carbon/devtools-utilities';
-import {
-  ToggleSmall,
-  FormGroup,
-  TileGroup,
-  RadioTile,
-} from 'carbon-components-react';
-import { ComingSoon } from '../';
+import { TileGroup, RadioTile } from 'carbon-components-react';
 import { CustomOutline32 } from './CustomOutline32';
 import {
   ColorPalette32,
@@ -26,7 +20,7 @@ const { prefix } = settings;
 
 const defaults = 'dependencies';
 
-function Specs({ disabled }) {
+function Specs() {
   const [toggleSpecs, setToggleSpecs] = useState(defaults);
   const [onLoad, setOnLoad] = useState(false);
 

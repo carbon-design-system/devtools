@@ -14,7 +14,7 @@ const idselector = 'bxdevid'; // should this be in prefix selector file?
 let inventory;
 
 function initInventory() {
-  getMessage((msg, sender, sendResponse) => {
+  getMessage((msg) => {
     if (msg.requestInventory) {
       sendMessage({ inventoryData: getInventory(allComponents) });
 

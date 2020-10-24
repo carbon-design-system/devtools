@@ -1,5 +1,4 @@
 import { settings } from 'carbon-components';
-import { carbonPrefix } from '../../../../globals';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import { getComponentName } from '@carbon/devtools-utilities';
 import {

@@ -44,7 +44,7 @@ function MoreOptions() {
   );
 }
 
-function openChromeExtensionOptions(e) {
+function openChromeExtensionOptions() {
   if (chrome.runtime.openOptionsPage) {
     chrome.runtime.openOptionsPage();
   } else {

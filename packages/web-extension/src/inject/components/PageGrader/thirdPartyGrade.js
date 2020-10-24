@@ -65,14 +65,17 @@ function jqueryCheck(grades = {}) {
 
 function bootstrapCheck(grades = {}) {
   // bootstrap
+  return grades;
 }
 
 function materialCheck(grades = {}) {
   // material design
+  return grades;
 }
 
 function lightningCheck(grades = {}) {
   // lightning design system
+  return grades;
 }
 
 export {

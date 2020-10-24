@@ -5,6 +5,7 @@ import {
   getMessage,
   gaNavigationEvent,
   gaDomEvent,
+  gaExcpetion,
 } from '@carbon/devtools-utilities';
 import {
   Accordion,
@@ -17,9 +18,9 @@ import { bugs } from '../../../../package.json';
 
 const { prefix } = settings;
 
-function Inventory({ disable, isOpen }) {
+function Inventory() {
   const [inventoryData, setInventoryData] = useState({});
-  let startPerfCheck;
+  let startPerfCheck = performance.now(); // check performance;
 
   getMessage((msg) => {
     const msgKeys = Object.keys(msg);
@@ -32,8 +33,6 @@ function Inventory({ disable, isOpen }) {
   useEffect(() => {
     // send data on open so it's ready
     sendTabMessage(-1, { requestInventory: true });
-    // check performance;
-    startPerfCheck = performance.now();
   }, []);
 
   useEffect(() => {
@@ -89,7 +88,7 @@ function inventoryList({ all, uniqueCount, totalCount }) {
               }
               className={`${prefix}--inventory__item`}
               key={key + i}>
-              {all[key].map(({ uniqueID, innerText, tag, id, classes }, i) => (
+              {all[key].map(({ uniqueID, innerText, tag, id, classes }) => (
                 <ClickableTile
                   href="#"
                   className={`${prefix}--inventory__sub-item`}
@@ -147,8 +146,10 @@ function buildName(tag, id, classes) {
 
   if (classes) {
     name.push(
-      classes.map((classname) => (
-        <span className={`${prefix}--inventory__sub-item__name__class`}>
+      classes.map((classname, i) => (
+        <span
+          className={`${prefix}--inventory__sub-item__name__class`}
+          key={classname + i}>
           {classname}
         </span>
       ))
@@ -197,7 +198,7 @@ function getIdsData(target) {
 function emptyInventory() {
   return (
     <p>
-      We couldn't find any components that matched our records. If you believe
+      We could not find any components that matched our records. If you believe
       this to be in error please{' '}
       <Link
         href={bugs.url}
