@@ -17,9 +17,10 @@ function Grid({ gridVersion = 'carbon-v10' }) {
         onChange={(e) =>
           configuration('grid-version', { gridVersion: e.target.value })
         }>
-        {gridVersionList.map((gridVersionItem) => {
+        {gridVersionList.map((gridVersionItem, i) => {
           return (
             <SelectItem
+              key={gridVersionItem + i}
               value={gridVersionItem}
               text={gridVersions[gridVersionItem]}
               selected={gridVersion === gridVersionItem ? true : false}

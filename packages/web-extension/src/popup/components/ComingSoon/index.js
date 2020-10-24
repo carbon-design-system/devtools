@@ -1,8 +1,5 @@
 import React from 'react';
-import { settings } from 'carbon-components';
 import { Sprout32 } from '@carbon/icons-react';
-
-const { prefix } = settings;
 
 function ComingSoon() {
   return (

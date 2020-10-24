@@ -10,24 +10,23 @@ import {
   gaPageview,
   gaDomEvent,
   gaNavigationEvent,
+  gaExcpetion,
 } from '@carbon/devtools-utilities';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
 import './index.scss';
 
 const { prefix } = settings;
-let carbonStatus = 'loading';
+let carbonStatus = 'loading'; // 'loading', true, false
 
 gaPageview('/popup', document.title);
 
 function Popup() {
-  const [onCarbon, setOnCarbon] = useState(carbonStatus); // 'loading', true, false
+  const [onCarbon, setOnCarbon] = useState(carbonStatus); // eslint-disable-line no-unused-vars
   const [initialMsg, setInitialMsg] = useState();
   const [panelState, setPanelState] = useState({ open: false, children: null });
 
-  let PanelChildren,
-    startPerfCheck,
-    Content = Loading,
+  let Content = Loading,
     panelControls = {
       open: (name, children) => {
         setPanelState({
@@ -46,7 +45,7 @@ function Popup() {
     };
 
   useEffect(() => {
-    startPerfCheck = performance.now();
+    let startPerfCheck = performance.now();
 
     sendMessage({ popup: true });
 

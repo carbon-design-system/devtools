@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { settings } from 'carbon-components';
 import { Button } from 'carbon-components-react';
 import { CheckmarkOutline16 } from '@carbon/icons-react';
@@ -11,7 +11,7 @@ function Reset({ settingKeys = [] }) {
 
   const resetSettings = () => {
     if (settingKeys.length) {
-      chrome.storage.local.remove(settingKeys, (d) => {
+      chrome.storage.local.remove(settingKeys, () => {
         setStatusMsg(true);
       });
 
@@ -28,13 +28,13 @@ function Reset({ settingKeys = [] }) {
         <p className={`${prefix}--options-reset__helper`}>
           This includes all of the back end settings here in the extension
           options, and your defined configuration settings within main
-          extension's popup window.
+          extension&apos;s popup window.
         </p>
         <p>
           <Button
             onClick={resetSettings}
             kind="danger"
-            disabled={!Boolean(settingKeys.length)}>
+            disabled={!settingKeys.length}>
             Clear all settings
           </Button>
         </p>

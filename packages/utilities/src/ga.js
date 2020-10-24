@@ -75,7 +75,7 @@ function sendGaResponse(data) {
   });
 }
 
-function setClientId(callback, version) {
+function setClientId(callback) {
   getStorage(['clientId'], ({ clientId }) => {
     if (!clientId) {
       // if clientId doesn't exist set it

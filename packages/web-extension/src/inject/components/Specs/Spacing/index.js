@@ -19,9 +19,7 @@ const { prefix } = settings;
 const spacersClass = `${prefix}--spacers`;
 const spacerBoxClass = `${spacersClass}__box`;
 
-let spacerList,
-  activeTarget,
-  onSpacer = false;
+let spacerList, activeTarget;
 
 function manageSpecsSpacing(specs, specType) {
   if (specs && specType === 'spacing') {
@@ -150,7 +148,6 @@ function spacerHover(e) {
     // no token value warning
     const value = spacer.dataset.value;
     const spacingToken = getSpacingToken(value);
-    const formattedValue = ``;
 
     let tooltipContent = `<p class="${prefix}--tooltip-specs__value">
                                 ${removeLeadingZero(
@@ -212,7 +209,6 @@ function setSpacers(target, boundingBox, spacerList, spacingStyles) {
 
   let orientation,
     spacing,
-    values,
     topLeft,
     bottomRight,
     componentName,
@@ -223,7 +219,6 @@ function setSpacers(target, boundingBox, spacerList, spacingStyles) {
     spacing = spacingStyles[orientation];
     topLeft = ['top', 'left'].indexOf(orientation) > -1;
     bottomRight = ['bottom', 'right'].indexOf(orientation) > -1;
-    values = [];
 
     if (spacing.margin) {
       componentName = componentName || getComponentName(target); // only grab new if not already defined

@@ -1,12 +1,9 @@
-import { settings } from 'carbon-components';
 import { sendMessage, getMessage } from '@carbon/devtools-utilities';
 import { thirdPartyGrade } from './thirdPartyGrade';
 import { codeGrade } from './codeGrade';
 
-const { prefix } = settings;
-
 function initPageGrade() {
-  getMessage((msg, sender, sendResponse) => {
+  getMessage((msg) => {
     if (msg.requestPageGrade) {
       gradePage();
     }

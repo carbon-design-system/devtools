@@ -1,8 +1,8 @@
 import React from 'react';
-import { settings } from 'carbon-components';
-import { Information16 } from '@carbon/icons-react';
+// import { settings } from 'carbon-components';
+// import { Information16 } from '@carbon/icons-react';
 
-const { prefix } = settings;
+// const { prefix } = settings;
 
 function labelMaker(labelText) {
   return (

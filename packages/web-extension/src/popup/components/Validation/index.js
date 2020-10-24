@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { settings } from 'carbon-components';
-import {
-  sendTabMessage,
-  getMessage,
-  gaNavigationEvent,
-  gaDomEvent,
-} from '@carbon/devtools-utilities';
+import PropTypes from 'prop-types';
+import { sendTabMessage, getMessage } from '@carbon/devtools-utilities';
 import { Button } from 'carbon-components-react';
 import { ChevronLeft16 } from '@carbon/icons-react';
-
-import { ComingSoon } from '../';
-
-const { prefix } = settings;
 
 function Validation({ panelControls }) {
   const [pageGrades, setPageGrades] = useState({});
@@ -19,7 +10,7 @@ function Validation({ panelControls }) {
   useEffect(() => {
     sendTabMessage(-1, { requestPageGrade: true });
 
-    getMessage((msg, sender, sendResponse) => {
+    getMessage((msg) => {
       if (msg.pageGrades) {
         setPageGrades(msg.pageGrades);
       }
@@ -36,5 +27,9 @@ function Validation({ panelControls }) {
     </>
   );
 }
+
+Validation.propTypes = {
+  panelControls: PropTypes.func,
+};
 
 export { Validation };

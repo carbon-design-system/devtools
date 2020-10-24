@@ -7,8 +7,9 @@
     "reset": "yarn cache clean && yarn clean && yarn install && yarn build",
     "format": "lerna run format",
     "format:diff": "lerna run format:diff",
-    "lint": "ECHO 'asdf'",
-    "lint:styles": "ECHO 'asdf'",
+    "lint": "lerna run lint",
+    "lint:js": "lerna run lint:js",
+    "lint:styles": "lerna run lint:styles",
     "test": "ECHO 'asdf'"
   },
   "devDependencies": {

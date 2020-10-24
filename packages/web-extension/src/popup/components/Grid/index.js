@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
 import {
   setStorage,
@@ -107,5 +108,9 @@ function Grid({ disabled }) {
     </>
   );
 }
+
+Grid.propTypes = {
+  disabled: PropTypes.bool,
+};
 
 export { Grid };

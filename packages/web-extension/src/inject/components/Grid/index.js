@@ -54,7 +54,6 @@ function initGrid() {
 
 function manageGlobals() {
   const grid2x = html.querySelector(`.${prefix}--grid-2x`);
-  const miniUnitGrid = document.querySelector(`.${prefix}--grid-mini-unit`);
 
   getStorage('globalToggleStates', ({ globalToggleStates }) =>
     manageGlobalToggle(globalToggleStates)
