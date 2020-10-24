@@ -8,7 +8,9 @@
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch --config webpack.dev.js",
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "clean": "rimraf dist && rimraf node_modules"
+    "clean": "rimraf dist && rimraf node_modules",
+    "format": "prettier --write '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**'",
+    "format:diff": "prettier --list-different '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**'"
   },
   "dependencies": {
     "@carbon/colors": "^10.13.0",
@@ -58,7 +60,9 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.3",
-    "zip-webpack-plugin": "^3.0.0"
+    "zip-webpack-plugin": "^3.0.0",
+    "prettier": "^2.1.2",
+    "prettier-config-carbon": "^0.4.0"
   },
   "sideEffects": false,
   "keywords": [

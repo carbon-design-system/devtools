@@ -1,6 +1,6 @@
 // colors
 // typography
-// font families loaded 
+// font families loaded
 // spacing
 // grid
 // icons

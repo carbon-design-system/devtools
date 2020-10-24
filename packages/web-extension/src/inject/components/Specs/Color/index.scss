@@ -1,34 +1,40 @@
 .#{$specs-prefix} {
-    &-color-tooltip {
-        &__color {
-            border-radius: 50%;
-            display: inline-block;
-            overflow: hidden;
-            background: repeating-linear-gradient(90deg, #fff,  #fff 8px,  #000 8px,  #000 16px);
-            margin-bottom: carbon--mini-units(1);
+  &-color-tooltip {
+    &__color {
+      border-radius: 50%;
+      display: inline-block;
+      overflow: hidden;
+      background: repeating-linear-gradient(
+        90deg,
+        #fff,
+        #fff 8px,
+        #000 8px,
+        #000 16px
+      );
+      margin-bottom: carbon--mini-units(1);
 
-            span {
-                display: block;
-                width: carbon--mini-units(2);
-                height: carbon--mini-units(2);
-            }
-        }
-
-        // tooltip theme
-        @mixin color-tooltip--theme {
-            &__color {
-                border: 1px solid $ui-04;
-            }
-        }
-
-        @include color-tooltip--theme;
-
-        @each $theme in map-keys($themes) {
-            .#{$prefix}--#{$theme} & {
-                @include carbon--theme(map-get($themes, $theme)) {
-                     @include color-tooltip--theme;
-                }
-            }
-        }
+      span {
+        display: block;
+        width: carbon--mini-units(2);
+        height: carbon--mini-units(2);
+      }
     }
+
+    // tooltip theme
+    @mixin color-tooltip--theme {
+      &__color {
+        border: 1px solid $ui-04;
+      }
+    }
+
+    @include color-tooltip--theme;
+
+    @each $theme in map-keys($themes) {
+      .#{$prefix}--#{$theme} & {
+        @include carbon--theme(map-get($themes, $theme)) {
+          @include color-tooltip--theme;
+        }
+      }
+    }
+  }
 }

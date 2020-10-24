@@ -1,27 +1,27 @@
 .#{$prefix}--options-shortcuts {
-    p {
-        @include carbon--type-style('helper-text-01');
-        color: $text-02;
+  p {
+    @include carbon--type-style('helper-text-01');
+    color: $text-02;
+  }
+
+  &__key {
+    @include carbon--type-style('code-01');
+    background-color: $ui-01;
+    border-radius: carbon--mini-units(0.25);
+    padding: carbon--mini-units(0.5) carbon--mini-units(1);
+    margin-right: carbon--mini-units(0.5);
+    color: $text-01;
+    display: flex;
+
+    &s {
+      display: flex;
+      flex-direction: row;
     }
 
-    &__key {
-        @include carbon--type-style('code-01');
-        background-color: $ui-01;
-        border-radius: carbon--mini-units(.25);
-        padding: carbon--mini-units(.5) carbon--mini-units(1);
-        margin-right: carbon--mini-units(.5);
-        color: $text-01;
-        display: flex;
-        
-        &s {
-            display: flex;
-            flex-direction: row;
-        }
-        
-        svg {
-            fill: currentColor;
-            width: carbon--mini-units(2);
-            height: carbon--mini-units(2);
-        }
+    svg {
+      fill: currentColor;
+      width: carbon--mini-units(2);
+      height: carbon--mini-units(2);
     }
+  }
 }

@@ -5,86 +5,88 @@ $grid-mini-unit-border-color: $grid-border-color;
 $grid-mini-unit-border-opacity: $grid-opacity;
 
 .#{$prefix}--grid-mini-unit {
-    $miniUnitSVG: "data:image/svg+xml;charset=UTF-8,%3csvg width='8px' height='8px' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='1' fill='#{$grid-mini-unit-color}' fill-opacity='#{$grid-mini-unit-opacity/2}' width='7' height='7'%3e%3c/rect%3e%3c/svg%3e";
-    $miniUnitGradient: rgba($grid-mini-unit-border-color, $grid-mini-unit-border-opacity) $grid-mini-unit-border-size, transparent $grid-mini-unit-border-size;
+  $miniUnitSVG: "data:image/svg+xml;charset=UTF-8,%3csvg width='8px' height='8px' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='1' y='1' fill='#{$grid-mini-unit-color}' fill-opacity='#{$grid-mini-unit-opacity/2}' width='7' height='7'%3e%3c/rect%3e%3c/svg%3e";
+  $miniUnitGradient: rgba(
+        $grid-mini-unit-border-color,
+        $grid-mini-unit-border-opacity
+      )
+      $grid-mini-unit-border-size,
+    transparent $grid-mini-unit-border-size;
 
-    // mini unit grid
+  // mini unit grid
+  &::before,
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: block;
+    z-index: 2;
+    background-attachment: scroll;
+    background-size: carbon--mini-units(1) carbon--mini-units(1);
+
+    opacity: 0;
+    transition: opacity $transition-fade;
+  }
+
+  &--show {
+    position: relative;
+    height: initial;
+
+    .#{$prefix}--grid-mini-unit {
+      &::before,
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  // hide mini-unit grid
+  // &--hide,
+  .#{$prefix}--grid--hide &,
+  &:active {
     &::before,
     &::after {
-        content: '';
-        pointer-events: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        min-height: 100vh;
-        display: block;
-        z-index: 2;
-        background-attachment: scroll;
-        background-size: carbon--mini-units(1) carbon--mini-units(1);
-        
-        opacity: 0;
-        transition: opacity $transition-fade;
+      opacity: 0;
     }
-    
-    &--show {
-        position: relative;
-        height: initial;
+  }
 
-        .#{$prefix}--grid-mini-unit {
-            &::before,
-            &::after {
-                opacity: 1;
-            }
-        }
+  // mini unit fixed when scrolling
+  &--fixed {
+    &::before,
+    &::after {
+      background-attachment: fixed;
     }
+  }
 
-    // hide mini-unit grid
-    // &--hide,
-    .#{$prefix}--grid--hide &,
-    &:active {
-        &::before,
-        &::after {
-            opacity: 0;
-        }
-    }
+  // mini unit cell definition
+  &--cell::before {
+    // opacity: 1;
+    background-image: url($miniUnitSVG);
+  }
 
-    // mini unit fixed when scrolling
-    &--fixed {
-        &::before,
-        &::after {
-            background-attachment: fixed;
-        }
-    }
+  // show horizontal border
+  &--horizontal::after {
+    // opacity: 1;
+    background-image: linear-gradient(to bottom, $miniUnitGradient);
+  }
 
-    // mini unit cell definition
-    &--cell::before {
-        // opacity: 1;
-        background-image: url($miniUnitSVG);
+  // show vertical border
+  &--vertical::after {
+    // opacity: 1;
+    background-image: linear-gradient(to right, $miniUnitGradient);
+  }
+
+  // show both vertical and horizontal border
+  &--horizontal.#{$prefix}--grid-mini-unit--vertical {
+    &::after {
+      // opacity: 1;
+      background-image: linear-gradient(to right, $miniUnitGradient),
+        linear-gradient(to bottom, $miniUnitGradient);
     }
-    
-    // show horizontal border
-    &--horizontal::after {
-        // opacity: 1;
-        background-image:
-                linear-gradient(to bottom, $miniUnitGradient);
-    }
-    
-    // show vertical border
-    &--vertical::after {
-        // opacity: 1;
-        background-image:
-                linear-gradient(to right, $miniUnitGradient);
-    }
-    
-    // show both vertical and horizontal border
-    &--horizontal.#{$prefix}--grid-mini-unit--vertical {
-        &::after {
-            // opacity: 1;
-            background-image:
-                    linear-gradient(to right, $miniUnitGradient),
-                    linear-gradient(to bottom, $miniUnitGradient);
-        }
-    }
+  }
 }

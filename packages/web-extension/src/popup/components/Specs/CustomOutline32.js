@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-function CustomOutline32 (props) {
-    return (<svg
+function CustomOutline32(props) {
+  return (
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
       viewBox="0 0 32 32"
       fill="currentColor"
-      {...props}
-    >
+      {...props}>
       <path d="M27 11H29V13H27z"></path>
       <path d="M27 7H29V9H27z"></path>
       <path d="M27 3H29V5H27z"></path>
@@ -33,7 +33,8 @@ function CustomOutline32 (props) {
       <path d="M27 23H29V25H27z"></path>
       <path d="M3 27H5V29H3z"></path>
       <path d="M27 27H29V29H27z"></path>
-    </svg>);
+    </svg>
+  );
 }
 
 export { CustomOutline32 };

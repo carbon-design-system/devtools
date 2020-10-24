@@ -1,22 +1,22 @@
 .#{$prefix}--spacers {
-    pointer-events: all;
+  pointer-events: all;
 
-    &__box {
-        @include carbon--type-style('code-01');
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        z-index: $zindex / 2;
-        background-color: rgba($specs-color, .9);
-        box-shadow: inset 0 0 0 1px $specs-color;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity $transition-fade, visibility $transition-fade;
-        
-        & * {
-            pointer-events: none;
-        }
+  &__box {
+    @include carbon--type-style('code-01');
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    z-index: $zindex / 2;
+    background-color: rgba($specs-color, 0.9);
+    box-shadow: inset 0 0 0 1px $specs-color;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transition-fade, visibility $transition-fade;
+
+    & * {
+      pointer-events: none;
     }
+  }
 }

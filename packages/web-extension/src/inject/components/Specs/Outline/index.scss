@@ -1,15 +1,15 @@
 .#{$specs-prefix} {
-    &.#{$specs-prefix}--outline body *:not([class*="#{$prefix}--"]) {
-        box-shadow: inset 0 0 0 1px rgba($specs-color, .1);
-        transition: box-shadow $transition-fade;
-        
-        &:hover {
-            box-shadow: inset 0 0 0 1px $specs-color;
-        }
-    }
+  &.#{$specs-prefix}--outline body *:not([class*='#{$prefix}--']) {
+    box-shadow: inset 0 0 0 1px rgba($specs-color, 0.1);
+    transition: box-shadow $transition-fade;
 
-    // hide on interaction
-    &.#{$specs-prefix}--outline:active body *:not([class*="#{$prefix}--"])  {
-        box-shadow: inset 0 0 0 1px rgba($specs-color, 0);
+    &:hover {
+      box-shadow: inset 0 0 0 1px $specs-color;
     }
+  }
+
+  // hide on interaction
+  &.#{$specs-prefix}--outline:active body *:not([class*='#{$prefix}--']) {
+    box-shadow: inset 0 0 0 1px rgba($specs-color, 0);
+  }
 }

@@ -2,12 +2,12 @@ module.exports = {
   plugins: {
     'postcss-import': {},
     'postcss-preset-env': {},
-    'cssnano': {},
+    cssnano: {},
     'postcss-rem-to-pixel': {
-        rootValue: 16,
-        propList: ['*'],
-        replace: true,
-        mediaQuery: true
-    }
-  }
-}
+      rootValue: 16,
+      propList: ['*'],
+      replace: true,
+      mediaQuery: true,
+    },
+  },
+};

@@ -11,178 +11,181 @@ $grid-outer-border-color: $grid-border-color;
 $grid-outer-border-opacity: $grid-border-opacity;
 
 @mixin label-maker($breakpoints) {
-    &::after {
-        @each $breakpoint in map-keys($breakpoints) {
-            @include carbon--breakpoint($breakpoint) {
-                content: 'breakpoint: #{$breakpoint}';
-            }
-        }
+  &::after {
+    @each $breakpoint in map-keys($breakpoints) {
+      @include carbon--breakpoint($breakpoint) {
+        content: 'breakpoint: #{$breakpoint}';
+      }
     }
+  }
 }
 
 // 2x grid
 .#{$prefix}--grid {
-    // full-width transition effect
-    transition: max-width $transition-fade;
+  // full-width transition effect
+  transition: max-width $transition-fade;
 
-    &-2x {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 3;
-        width: 100%;
-        height: 100vh;
-        transition: height $transition-in, padding $transition-fade;
-        
-        &--hide,
-        .#{$prefix}--grid--hide & {
-            height: 0;
-            top: auto;
-            bottom: 0;
+  &-2x {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100vh;
+    transition: height $transition-in, padding $transition-fade;
 
-            // minimized column and how it's hidden
-            .#{$prefix}--col--minimize {
-                visibility: hidden;
-            }
-        }
+    &--hide,
+    .#{$prefix}--grid--hide & {
+      height: 0;
+      top: auto;
+      bottom: 0;
 
-        .#{$prefix}--grid,
-        .#{$prefix}--row,
-        [class*="#{$prefix}--col-"],
-        [class*="#{$prefix}--col-"]::before {
-            height: 100%;
-        }
-        
-        [class*="#{$prefix}--col-"] {
-            margin-bottom: 100vh;
-
-            &,
-            &::before {
-                transition:
-                    height $transition-in,
-                    top $transition-in,
-                    box-shadow $transition-in,
-                    opacity $transition-fade,
-                    background-color $transition-fade;
-            }
-
-            &::before {
-                content: '';
-                display: block;
-            }
-            
-            // interactive columns
-            .#{$prefix}--devtools--interact &:hover {
-                opacity: .8;
-                cursor: pointer;
-            }
-
-            // minimized column
-            &.#{$prefix}--col--minimize {
-                height: carbon--mini-units(2);
-            }
-
-        }
-
-        // column
-        &--inner {
-            [class*="#{$prefix}--col-"]::before {
-                background-color: rgba($grid-inner-color, $grid-inner-opacity);
-            }
-        }
-        &:not(.#{$prefix}--grid-2x--inner) {
-            [class*="#{$prefix}--col-"]::before {
-                background-color: rgba($grid-inner-color, 0);
-            }
-        }
-
-        // gutter
-        &--outer {
-            [class*="#{$prefix}--col-"] {
-                &::before {
-                    box-shadow:
-                        ($carbon--grid-gutter/2) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-                        ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
-                }
-            }
-        }
-
-        // column border
-        &--inner-border {
-            [class*="#{$prefix}--col-"] {
-                &::before {
-                    box-shadow:
-                        $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
-                        ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
-                }
-            }
-        }
-
-        // gutter + column border
-        &--outer.#{$prefix}--grid-2x--inner-border {
-            [class*="#{$prefix}--col-"] {
-                &::before {
-                    box-shadow:
-                        $carbon--grid-gutter/2 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-                        ($carbon--grid-gutter/2 * -1) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-                        $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
-                        ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
-                }
-            }
-        }
-
-        // gutter divider
-        &--outer-border {
-            [class*="#{$prefix}--col-"] {
-                box-shadow: $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity),
-                    inset $grid-outer-border-size 0 0 rgba($grid-outer-border-color, $grid-outer-border-opacity);
-            }
-        }
-
-        // breakpoint label
-        &::after {
-            @include carbon--type-style('code-01');
-            @include carbon--font-family('mono');
-
-            position: fixed;
-            padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
-            right: 0;
-            z-index: 4;
-            transition: bottom $transition-in;
-            border-bottom: 0;
-
-            .#{$prefix}--grid-2x--breakpoint-label & {
-                bottom: 0;
-            }
-            
-            &,
-            .#{$prefix}--grid-2x--hide &,
-            .#{$prefix}--grid--hide & {
-                bottom: -33px;
-            }
-        }
-        
-        @include label-maker($carbon--grid-breakpoints);
-
-        // breakpoint label theme
-        @mixin breakpoint-label--theme {
-            $border-style: 1px solid $ui-03;
-            color: $text-01;
-            background: $ui-01;
-            border-top: $border-style;
-            border-left: $border-style;
-        }
-        
-        &::after {
-            @include breakpoint-label--theme;
-        }
-        
-        @each $theme in map-keys($themes) {
-            .#{$prefix}--#{$theme} &::after {
-                @include carbon--theme(map-get($themes, $theme)) {
-                     @include breakpoint-label--theme;
-                }
-            }
-        }
+      // minimized column and how it's hidden
+      .#{$prefix}--col--minimize {
+        visibility: hidden;
+      }
     }
+
+    .#{$prefix}--grid,
+    .#{$prefix}--row,
+    [class*='#{$prefix}--col-'],
+    [class*='#{$prefix}--col-']::before {
+      height: 100%;
+    }
+
+    [class*='#{$prefix}--col-'] {
+      margin-bottom: 100vh;
+
+      &,
+      &::before {
+        transition: height $transition-in, top $transition-in,
+          box-shadow $transition-in, opacity $transition-fade,
+          background-color $transition-fade;
+      }
+
+      &::before {
+        content: '';
+        display: block;
+      }
+
+      // interactive columns
+      .#{$prefix}--devtools--interact &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+
+      // minimized column
+      &.#{$prefix}--col--minimize {
+        height: carbon--mini-units(2);
+      }
+    }
+
+    // column
+    &--inner {
+      [class*='#{$prefix}--col-']::before {
+        background-color: rgba($grid-inner-color, $grid-inner-opacity);
+      }
+    }
+    &:not(.#{$prefix}--grid-2x--inner) {
+      [class*='#{$prefix}--col-']::before {
+        background-color: rgba($grid-inner-color, 0);
+      }
+    }
+
+    // gutter
+    &--outer {
+      [class*='#{$prefix}--col-'] {
+        &::before {
+          box-shadow: ($carbon--grid-gutter/2) 0 0
+              rgba($grid-outer-color, $grid-outer-opacity),
+            ($carbon--grid-gutter/2 * -1) 0 0
+              rgba($grid-outer-color, $grid-outer-opacity);
+        }
+      }
+    }
+
+    // column border
+    &--inner-border {
+      [class*='#{$prefix}--col-'] {
+        &::before {
+          box-shadow: $grid-inner-border-size 0 0
+              rgba($grid-inner-border-color, $grid-inner-border-opacity),
+            ($grid-inner-border-size * -1) 0 0
+              rgba($grid-inner-border-color, $grid-inner-border-opacity);
+        }
+      }
+    }
+
+    // gutter + column border
+    &--outer.#{$prefix}--grid-2x--inner-border {
+      [class*='#{$prefix}--col-'] {
+        &::before {
+          box-shadow: $carbon--grid-gutter/2 0 0
+              rgba($grid-outer-color, $grid-outer-opacity),
+            ($carbon--grid-gutter/2 * -1) 0 0
+              rgba($grid-outer-color, $grid-outer-opacity),
+            $grid-inner-border-size 0 0
+              rgba($grid-inner-border-color, $grid-inner-border-opacity),
+            ($grid-inner-border-size * -1) 0 0
+              rgba($grid-inner-border-color, $grid-inner-border-opacity);
+        }
+      }
+    }
+
+    // gutter divider
+    &--outer-border {
+      [class*='#{$prefix}--col-'] {
+        box-shadow: $grid-outer-border-size 0 0
+            rgba($grid-outer-border-color, $grid-outer-border-opacity),
+          inset $grid-outer-border-size 0 0
+            rgba($grid-outer-border-color, $grid-outer-border-opacity);
+      }
+    }
+
+    // breakpoint label
+    &::after {
+      @include carbon--type-style('code-01');
+      @include carbon--font-family('mono');
+
+      position: fixed;
+      padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
+      right: 0;
+      z-index: 4;
+      transition: bottom $transition-in;
+      border-bottom: 0;
+
+      .#{$prefix}--grid-2x--breakpoint-label & {
+        bottom: 0;
+      }
+
+      &,
+      .#{$prefix}--grid-2x--hide &,
+      .#{$prefix}--grid--hide & {
+        bottom: -33px;
+      }
+    }
+
+    @include label-maker($carbon--grid-breakpoints);
+
+    // breakpoint label theme
+    @mixin breakpoint-label--theme {
+      $border-style: 1px solid $ui-03;
+      color: $text-01;
+      background: $ui-01;
+      border-top: $border-style;
+      border-left: $border-style;
+    }
+
+    &::after {
+      @include breakpoint-label--theme;
+    }
+
+    @each $theme in map-keys($themes) {
+      .#{$prefix}--#{$theme} &::after {
+        @include carbon--theme(map-get($themes, $theme)) {
+          @include breakpoint-label--theme;
+        }
+      }
+    }
+  }
 }

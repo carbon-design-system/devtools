@@ -2,11 +2,11 @@
 @import '~carbon-components/scss/components/link/link';
 
 .#{$prefix}--options__meta {
-    margin-top: $carbon--spacing-07;
-    color: $text-05;
-    
-    &,
-    .#{$prefix}--link {
-        @include carbon--type-style('helper-text-01');
-    }
+  margin-top: $carbon--spacing-07;
+  color: $text-05;
+
+  &,
+  .#{$prefix}--link {
+    @include carbon--type-style('helper-text-01');
+  }
 }

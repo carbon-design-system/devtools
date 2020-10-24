@@ -1,122 +1,141 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { settings } from 'carbon-components';
-import { Accordion, AccordionItem, ToggleSmall, Toggle, Button } from 'carbon-components-react';
+import {
+  Accordion,
+  AccordionItem,
+  ToggleSmall,
+  Toggle,
+  Button,
+} from 'carbon-components-react';
 import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
-import { setStorage, getStorage, experimentalFlag, gaNavigationEvent, gaConfigurationEvent } from '@carbon/devtools-utilities';
+import {
+  setStorage,
+  getStorage,
+  experimentalFlag,
+  gaNavigationEvent,
+  gaConfigurationEvent,
+} from '@carbon/devtools-utilities';
 
 const { prefix } = settings;
 const defaults = {
-    gridoverlay: true
+  gridoverlay: true,
 };
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
-function Main ({ initialMsg, panelControls }) {
-    const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
-    const [isOpenStates, setIsOpenStates] = useState(defaults);
-    const [onLoad, setOnLoad] = useState(false);
+function Main({ initialMsg, panelControls }) {
+  const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
+  const [isOpenStates, setIsOpenStates] = useState(defaults);
+  const [onLoad, setOnLoad] = useState(false);
 
-    /* temporary groups,
+  /* temporary groups,
        figure this out this shouldn't be defined here?
        for some reason imports come back undefined outside of Main()
        Need a better way to loop through and name panels/groups from line 4 */
-    const groups = {};
-    experimentalFlag(() => {
-        groups['Component list'] = Inventory;
-        groups['Specs'] = Specs;
+  const groups = {};
+  experimentalFlag(() => {
+    groups['Component list'] = Inventory;
+    groups['Specs'] = Specs;
+  });
+  groups['Grid overlay'] = Grid;
+
+  const groupsList = Object.keys(groups);
+
+  useEffect(() => {
+    // get storage and set defaults
+    const dataKey = 'globalToggleStates';
+    getStorage([dataKey], (dataReceived) => {
+      if (dataReceived && dataReceived[dataKey]) {
+        setGlobalToggleStates(dataReceived[dataKey]);
+      }
+      setOnLoad(true);
     });
-    groups['Grid overlay'] = Grid;
+  }, []);
 
-    const groupsList = Object.keys(groups);
+  useEffect(() => {
+    // update storage
+    if (onLoad) {
+      setStorage({ globalToggleStates });
+    }
+  });
 
-    useEffect(() => { // get storage and set defaults
-        const dataKey = 'globalToggleStates';
-        getStorage([dataKey], dataReceived => {
-            if (dataReceived && dataReceived[dataKey]) {
-                setGlobalToggleStates(dataReceived[dataKey]);
+  useEffect(() => {
+    // stop toggle bubbling, allows us to add a toggle to the accordion button
+    const toggles = document.querySelectorAll(`.${prefix}--popup-main__toggle`);
+
+    toggles.forEach((toggle) => {
+      toggle.removeEventListener('click', stopBubble);
+      toggle.addEventListener('click', stopBubble);
+    });
+  });
+
+  return (
+    <>
+      <ResizeBrowser windowWidth={initialMsg.windowWidth} />
+      <Accordion className={`${prefix}--popup-main`}>
+        {experimentalFlag(() => (
+          <AccordionItem
+            title={'Validate page'}
+            className={`${prefix}--popup-main__item ${prefix}--popup-main__validate`}
+            onHeadingClick={() =>
+              panelControls.open(
+                'validate',
+                <Validation panelControls={panelControls} />
+              )
             }
-            setOnLoad(true);
-        });
-    }, []);
+          />
+        ))}
+        {groupsList.map((groupName) =>
+          renderAccordionItem(groupName, groups[groupName])
+        )}
+      </Accordion>
+    </>
+  );
 
-    useEffect(() => { // update storage
-        if (onLoad) {
-            setStorage({ globalToggleStates });
-        }
-    });
+  function stopBubble(e) {
+    e.stopPropagation();
+  }
 
-    useEffect(() => { // stop toggle bubbling, allows us to add a toggle to the accordion button
-        const toggles = document.querySelectorAll(`.${prefix}--popup-main__toggle`);
-        
-        toggles.forEach(toggle => {
-            toggle.removeEventListener('click', stopBubble);
-            toggle.addEventListener('click', stopBubble);
-        });
-    });
+  function renderAccordionItem(title, Content) {
+    const id = title.replace(' ', '').toLowerCase();
+    const codename = title.replace(' ', '-').toLowerCase();
 
-    return (
-        <>
-            <ResizeBrowser windowWidth={initialMsg.windowWidth} />
-            <Accordion className={`${prefix}--popup-main`}>
-                {experimentalFlag(() => (
-                    <AccordionItem
-                        title={'Validate page'}
-                        className={`${prefix}--popup-main__item ${prefix}--popup-main__validate`}
-                        onHeadingClick={() => panelControls.open(
-                            'validate',
-                            <Validation panelControls={panelControls} />
-                        )}
-                    />
-                ))}
-                {groupsList.map(groupName => renderAccordionItem(groupName, groups[groupName]))}
-            </Accordion>
-        </>
-    );
-    
-    function stopBubble (e) {
-        e.stopPropagation();
-    }
-
-    function renderAccordionItem (title, Content) {
-        const id = title.replace(' ', '').toLowerCase();
-        const codename = title.replace(' ', '-').toLowerCase();
-        
-        return !onLoad ? null : (
-            <AccordionItem
-                className={`${prefix}--popup-main__item`}
-                open={globalToggleStates[id]}
-                onHeadingClick={val => {
-                    const changes = {...globalToggleStates};
-                    changes[id] = val.isOpen;
+    return !onLoad ? null : (
+      <AccordionItem
+        className={`${prefix}--popup-main__item`}
+        open={globalToggleStates[id]}
+        onHeadingClick={(val) => {
+          const changes = { ...globalToggleStates };
+          changes[id] = val.isOpen;
+          setIsOpenStates(changes);
+          gaNavigationEvent('toggle', codename, val.isOpen);
+        }}
+        title={
+          ['componentlist'].indexOf(id) > -1 ? (
+            title
+          ) : (
+            <div className={`${prefix}--row`}>
+              <div className={`${prefix}--col-sm-2`}>{title}</div>
+              <div className={`${prefix}--col-sm-2`}>
+                <ToggleSmall
+                  id={id}
+                  className={`${prefix}--popup-main__toggle`}
+                  toggled={globalToggleStates[id]}
+                  onToggle={(e) => {
+                    const changes = { ...globalToggleStates };
+                    changes[id] = e;
+                    setGlobalToggleStates(changes);
                     setIsOpenStates(changes);
-                    gaNavigationEvent('toggle', codename, val.isOpen);
-                }}
-                title={
-                    ['componentlist'].indexOf(id) > -1 ? title : (
-                    <div className={`${prefix}--row`}>
-                        <div className={`${prefix}--col-sm-2`}>{title}</div>
-                        <div className={`${prefix}--col-sm-2`}>
-                            <ToggleSmall
-                                id={id}
-                                className={`${prefix}--popup-main__toggle`}
-                                toggled={globalToggleStates[id]}
-                                onToggle={e => {
-                                    const changes = {...globalToggleStates};
-                                    changes[id] = e;
-                                    setGlobalToggleStates(changes);
-                                    setIsOpenStates(changes);
-                                    gaConfigurationEvent('global-change', codename, e);
-                                }}
-                            />
-                        </div>
-                    </div>
-                )}>
-                <Content
-                    disabled={!globalToggleStates[id]}
-                    isOpen={isOpenStates[id]}
+                    gaConfigurationEvent('global-change', codename, e);
+                  }}
                 />
-            </AccordionItem>
-        );
-    }
+              </div>
+            </div>
+          )
+        }>
+        <Content disabled={!globalToggleStates[id]} isOpen={isOpenStates[id]} />
+      </AccordionItem>
+    );
+  }
 }
 
 export { Main };

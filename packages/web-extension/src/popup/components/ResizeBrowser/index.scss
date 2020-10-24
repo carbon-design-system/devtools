@@ -1,16 +1,16 @@
 @mixin resize-browser {
-    .#{$prefix}--popup-resize-browser {
-        margin-top: $carbon--spacing-07;
-        margin-bottom: $carbon--spacing-05;
+  .#{$prefix}--popup-resize-browser {
+    margin-top: $carbon--spacing-07;
+    margin-bottom: $carbon--spacing-05;
 
-        .#{$prefix}--popup-resize-browser__label {
-            @include carbon--type-style('label-01');
-            color: $text-02;
-            margin-bottom: $carbon--spacing-03;
-        }
-        
-        .#{$prefix}--content-switcher-btn {
-            padding-right: 0;
-        }
+    .#{$prefix}--popup-resize-browser__label {
+      @include carbon--type-style('label-01');
+      color: $text-02;
+      margin-bottom: $carbon--spacing-03;
     }
+
+    .#{$prefix}--content-switcher-btn {
+      padding-right: 0;
+    }
+  }
 }

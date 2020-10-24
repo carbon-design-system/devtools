@@ -1,75 +1,75 @@
 .#{$specs-prefix} {
-    &-dependencies-tooltip {
-        min-width: carbon--mini-units(20);
-        max-width: carbon--mini-units(40);
-        
-        &__group {
-            margin-top: carbon--mini-units(1);
-        }
+  &-dependencies-tooltip {
+    min-width: carbon--mini-units(20);
+    max-width: carbon--mini-units(40);
 
-        &__title {
-            @include carbon--type-style('productive-heading-01');
-            margin-bottom: carbon--mini-units(1);
-        }
-        
-        &__sub {
-            @include carbon--type-style('label-01');
-            margin-bottom: carbon--mini-units(.5);
-            display: inline-block;
-        }
-        
-        p#{&}__empty {
-            @include carbon--type-style('helper-text-01');
-            margin-right: 25%;
-        }
-        
-        &__list {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: inline-block;
-
-            &-item {
-                margin-right: $carbon--grid-gutter--condensed * 2;
-                margin-bottom: $carbon--grid-gutter--condensed * 2;
-                display: inline-block;
-                padding: 0 carbon--mini-units(1);
-                border-radius: 3px;
-                
-                &::before {
-                    display: none;
-                }
-            }
-        }
-        
-        // tooltip theme
-        @mixin dependencies-tooltip--theme {
-            &__title {
-                color: $text-01;
-            }
-            
-            &__empty,
-            &__sub {
-                color: $text-02;
-            }
-            
-            &__list {
-                &--unorder,
-                &-item {
-                    color: $text-01;
-                    background-color: $ui-02;
-                }
-            }
-        }
-
-        @include dependencies-tooltip--theme;
-
-        @each $theme in map-keys($themes) {
-            .#{$prefix}--#{$theme} & {
-                @include carbon--theme(map-get($themes, $theme)) {
-                     @include dependencies-tooltip--theme;
-                }
-            }
-        }
+    &__group {
+      margin-top: carbon--mini-units(1);
     }
+
+    &__title {
+      @include carbon--type-style('productive-heading-01');
+      margin-bottom: carbon--mini-units(1);
+    }
+
+    &__sub {
+      @include carbon--type-style('label-01');
+      margin-bottom: carbon--mini-units(0.5);
+      display: inline-block;
+    }
+
+    p#{&}__empty {
+      @include carbon--type-style('helper-text-01');
+      margin-right: 25%;
+    }
+
+    &__list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+
+      &-item {
+        margin-right: $carbon--grid-gutter--condensed * 2;
+        margin-bottom: $carbon--grid-gutter--condensed * 2;
+        display: inline-block;
+        padding: 0 carbon--mini-units(1);
+        border-radius: 3px;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    // tooltip theme
+    @mixin dependencies-tooltip--theme {
+      &__title {
+        color: $text-01;
+      }
+
+      &__empty,
+      &__sub {
+        color: $text-02;
+      }
+
+      &__list {
+        &--unorder,
+        &-item {
+          color: $text-01;
+          background-color: $ui-02;
+        }
+      }
+    }
+
+    @include dependencies-tooltip--theme;
+
+    @each $theme in map-keys($themes) {
+      .#{$prefix}--#{$theme} & {
+        @include carbon--theme(map-get($themes, $theme)) {
+          @include dependencies-tooltip--theme;
+        }
+      }
+    }
+  }
 }

@@ -1,23 +1,23 @@
 .#{$prefix}--options-reset {
-    &__title {
-        @include carbon--type-style('productive-heading-01');
-        color: $text-01;
-        margin-bottom: carbon--mini-units(2);
+  &__title {
+    @include carbon--type-style('productive-heading-01');
+    color: $text-01;
+    margin-bottom: carbon--mini-units(2);
+  }
+
+  &__helper {
+    @include carbon--type-style('helper-text-01');
+    margin-bottom: carbon--mini-units(2);
+    color: $text-02;
+  }
+
+  &__status {
+    @include carbon--type-style('helper-text-01');
+    margin-top: carbon--mini-units(2);
+    color: $support-02;
+
+    svg {
+      margin-bottom: -3px; // offsets icon
     }
-    
-    &__helper {
-        @include carbon--type-style('helper-text-01');
-        margin-bottom: carbon--mini-units(2);
-        color: $text-02;
-    }
-    
-    &__status {
-        @include carbon--type-style('helper-text-01');
-        margin-top: carbon--mini-units(2);
-        color: $support-02;
-        
-        svg {
-            margin-bottom: -3px; // offsets icon
-        }
-    }
+  }
 }

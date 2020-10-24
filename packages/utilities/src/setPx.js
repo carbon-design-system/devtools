@@ -1,5 +1,5 @@
-function setPx (value) {
-    return value + 'px';
+function setPx(value) {
+  return value + 'px';
 }
 
 export { setPx };

@@ -23,30 +23,30 @@ $carbon--theme: $carbon--theme--white;
 @import './components/Reset';
 
 body {
-    background: $ui-background;
-    color: $text-01;
+  background: $ui-background;
+  color: $text-01;
 }
 
 .#{$prefix}--options {
-    margin-top: $carbon--spacing-05;
-    margin-bottom: $carbon--spacing-07;
+  margin-top: $carbon--spacing-05;
+  margin-bottom: $carbon--spacing-07;
 
-    .#{$prefix}--accordion {
-        margin-left: -($carbon--grid-gutter/2);
-        margin-right: -($carbon--grid-gutter/2);
-        width: auto;
+  .#{$prefix}--accordion {
+    margin-left: -($carbon--grid-gutter/2);
+    margin-right: -($carbon--grid-gutter/2);
+    width: auto;
 
-        &__content {
-            margin-top: $carbon--spacing-05;
-        }
+    &__content {
+      margin-top: $carbon--spacing-05;
     }
-    
-    &__title,
-    .#{$prefix}--form-item {
-        margin-bottom: $carbon--spacing-05;
-    }
-    
-    &__title {
-        @include carbon--type-style('productive-heading-04');
-    }
+  }
+
+  &__title,
+  .#{$prefix}--form-item {
+    margin-bottom: $carbon--spacing-05;
+  }
+
+  &__title {
+    @include carbon--type-style('productive-heading-04');
+  }
 }
