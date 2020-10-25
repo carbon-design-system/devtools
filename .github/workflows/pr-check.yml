@@ -27,10 +27,10 @@ jobs:
     - name: Build project
       run: yarn build
     - name: carbon-devtools
-      run: lerna run --scope=carbon-devtools test --if-present
+      run: yarn test --scope=carbon-devtools --if-present
     - name: devtools-utilities
-      run: lerna run --scope=@carbon/devtools-utilities test --if-present
+      run: yarn test --scope=@carbon/devtools-utilities --if-present
     - name: devtools-token-server
-      run: lerna run --scope=@carbon/devtools-token-server test --if-present
+      run: yarn test --scope=@carbon/devtools-token-server --if-present
     - name: devtools-demo-site
-      run: lerna run --scope=@carbon/devtools-demo-site test --if-present
+      run: yarn test --scope=@carbon/devtools-demo-site --if-present
