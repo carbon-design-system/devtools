@@ -24,13 +24,7 @@ jobs:
   
     - name: Install dependencies
       run: yarn
-    - name: Build project
+    - name: Build packages
       run: yarn build
-    - name: carbon-devtools
-      run: yarn test --scope=carbon-devtools --if-present
-    - name: devtools-utilities
-      run: yarn test --scope=@carbon/devtools-utilities --if-present
-    - name: devtools-token-server
-      run: yarn test --scope=@carbon/devtools-token-server --if-present
-    - name: devtools-demo-site
-      run: yarn test --scope=@carbon/devtools-demo-site --if-present
+    - name: Test packages
+      run: yarn test
