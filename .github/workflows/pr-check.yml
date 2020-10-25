@@ -1,14 +1,18 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+ This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Node.js CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ base ]
+  pull_request:
+    branches: [ base ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -19,13 +23,17 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }} 
-    - uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: install # will run `yarn install` command
-    - uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: build # will run `yarn build` command
-    - uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: test # will run `yarn test` command
+        node-version: ${{ matrix.node-version }}
+  
+    - name: Install dependencies
+      run: yarn
+    - name: Build project
+      run: yarn build
+    - name: carbon-devtools
+      run: lerna run --scope=carbon-devtools test --if-present
+    - name: devtools-utilities
+      run: lerna run --scope=@carbon/devtools-utilities test --if-present
+    - name: devtools-token-server
+      run: lerna run --scope=@carbon/devtools-token-server test --if-present
+    - name: devtools-demo-site
+      run: lerna run --scope=@carbon/devtools-demo-site test --if-present
