@@ -5,8 +5,9 @@
 
     .#{$prefix}--popup-resize-browser__label {
       @include carbon--type-style('label-01');
-      color: $text-02;
+
       margin-bottom: $carbon--spacing-03;
+      color: $text-02;
     }
 
     .#{$prefix}--content-switcher-btn {

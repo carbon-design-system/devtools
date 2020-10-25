@@ -9,36 +9,39 @@
 
     &__title {
       @include carbon--type-style('productive-heading-01');
+
       margin-bottom: carbon--mini-units(1);
     }
 
     &__sub {
       @include carbon--type-style('label-01');
-      margin-bottom: carbon--mini-units(0.5);
+
       display: inline-block;
+      margin-bottom: carbon--mini-units(0.5);
     }
 
     p#{&}__empty {
       @include carbon--type-style('helper-text-01');
+
       margin-right: 25%;
     }
 
     &__list {
-      list-style-type: none;
+      display: inline-block;
       margin: 0;
       padding: 0;
-      display: inline-block;
+      list-style-type: none;
 
       &-item {
+        display: inline-block;
         margin-right: $carbon--grid-gutter--condensed * 2;
         margin-bottom: $carbon--grid-gutter--condensed * 2;
-        display: inline-block;
         padding: 0 carbon--mini-units(1);
         border-radius: 3px;
+      }
 
-        &::before {
-          display: none;
-        }
+      &-item::before {
+        display: none;
       }
     }
 
@@ -53,12 +56,10 @@
         color: $text-02;
       }
 
-      &__list {
-        &--unorder,
-        &-item {
-          color: $text-01;
-          background-color: $ui-02;
-        }
+      &__list--unorder,
+      &__list-item {
+        color: $text-01;
+        background-color: $ui-02;
       }
     }
 
@@ -66,9 +67,11 @@
 
     @each $theme in map-keys($themes) {
       .#{$prefix}--#{$theme} & {
+        /* stylelint-disable max-nesting-depth */
         @include carbon--theme(map-get($themes, $theme)) {
           @include dependencies-tooltip--theme;
         }
+        /* stylelint-enable max-nesting-depth */
       }
     }
   }

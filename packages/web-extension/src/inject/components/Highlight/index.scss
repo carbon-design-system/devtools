@@ -15,22 +15,22 @@ $highlight-opacity: 0.5;
       --highlight-color-type-background: transparent;
 
       &::after {
-        content: attr(data-highlightcontent);
-        pointer-events: none;
         position: absolute;
-        height: 100%;
-        width: 100%;
         top: 0;
         left: 0;
-        transform: translate(0, 0);
         z-index: $zindex - 1;
-        opacity: 1;
-        background-color: var(--highlight-color-type-background);
-        color: #fff;
-        text-align: center;
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: #ffffff; /* TODO use carbon color */
+        text-align: center;
+        background-color: var(--highlight-color-type-background);
+        transform: translate(0, 0);
+        opacity: 1;
+        content: attr(data-highlightcontent);
+        pointer-events: none;
 
         @include carbon--type-style('expressive-paragraph-01');
       }
@@ -38,8 +38,8 @@ $highlight-opacity: 0.5;
 
     &--outline::after {
       background: none;
-      opacity: 1;
       box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
+      opacity: 1;
     }
 
     &--inline::after {

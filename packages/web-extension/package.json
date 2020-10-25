@@ -103,6 +103,9 @@
   "stylelint": {
     "extends": [
       "stylelint-config-carbon"
-    ]
+    ],
+    "rules": {
+      "max-nesting-depth": 3
+    }
   }
 }

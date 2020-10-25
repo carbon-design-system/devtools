@@ -53,9 +53,8 @@ $feature-flags: (
 @include resize-browser;
 
 body {
-  background: $ui-background;
   color: $text-01;
-  // min-height: carbon--mini-units(19);
+  background: $ui-background;
 }
 
 .#{$prefix}--popup {
@@ -64,14 +63,14 @@ body {
   overflow: hidden;
 
   &__header {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    width: 100%;
     padding-top: $carbon--spacing-03 - carbon--rem(1px);
     padding-bottom: $carbon--spacing-03 - carbon--rem(1px);
     background-color: $ui-01;
-    position: fixed;
-    display: flex;
-    width: 100%;
-    top: 0;
-    z-index: 100;
     box-shadow: inset 0 -1px 0 0 $ui-background;
   }
 
@@ -84,10 +83,10 @@ body {
   }
 
   &__experimental-tag {
-    padding: 0;
-    font-size: 10px;
     width: 80px;
     min-height: initial;
+    padding: 0;
+    font-size: 10px;
   }
 
   &__panel {
@@ -106,24 +105,22 @@ body {
     }
 
     &-container {
-      width: 200%;
-      display: flex;
-      margin-left: 0;
       position: relative;
+      display: flex;
+      width: 200%;
+      margin-left: 0;
       transition: margin-left $panel-transition;
     }
 
     &--shift {
       margin-left: -100%;
 
-      .#{$prefix}--popup__panel {
-        &:first-child {
-          opacity: 0;
-        }
+      .#{$prefix}--popup__panel:first-child {
+        opacity: 0;
+      }
 
-        &:last-child {
-          opacity: 1;
-        }
+      .#{$prefix}--popup__panel:last-child {
+        opacity: 1;
       }
     }
   }

@@ -1,17 +1,17 @@
 .#{$specs-prefix} {
   &-color-tooltip {
     &__color {
-      border-radius: 50%;
       display: inline-block;
+      margin-bottom: carbon--mini-units(1);
       overflow: hidden;
       background: repeating-linear-gradient(
         90deg,
-        #fff,
-        #fff 8px,
-        #000 8px,
-        #000 16px
+        #ffffff,
+        #ffffff 8px,
+        #000000 8px,
+        #000000 16px
       );
-      margin-bottom: carbon--mini-units(1);
+      border-radius: 50%;
 
       span {
         display: block;
@@ -31,9 +31,11 @@
 
     @each $theme in map-keys($themes) {
       .#{$prefix}--#{$theme} & {
+        /* stylelint-disable max-nesting-depth */
         @include carbon--theme(map-get($themes, $theme)) {
           @include color-tooltip--theme;
         }
+        /* stylelint-enable max-nesting-depth */
       }
     }
   }

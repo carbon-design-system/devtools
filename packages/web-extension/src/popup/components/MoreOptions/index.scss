@@ -1,10 +1,8 @@
 @mixin more-options {
-  // @include overflow-menu;
-
   .#{$prefix}--more-options {
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
 
     svg {
       // fixes issue where the click event gets hung up on svg and won't get executed.
@@ -25,12 +23,12 @@
     position: absolute;
     width: 1px;
     height: 1px;
-    padding: 0;
     margin: -1px;
+    padding: 0;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
     border: 0;
     visibility: visible;
-    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }

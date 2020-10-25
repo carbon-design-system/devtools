@@ -1,8 +1,8 @@
 @mixin loading {
   .#{$prefix}--popup-loading {
-    height: 120px;
     width: initial;
-    margin-left: -$carbon--grid-gutter / 2;
+    height: 120px;
     margin-right: -$carbon--grid-gutter / 2;
+    margin-left: -$carbon--grid-gutter / 2;
   }
 }
