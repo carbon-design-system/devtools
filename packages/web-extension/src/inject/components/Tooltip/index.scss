@@ -2,36 +2,37 @@
 
 .#{$prefix}--tooltip {
   @include carbon--type-style('helper-text-01');
-  padding: carbon--mini-units(1);
+
+  position: fixed;
+  z-index: $zindex;
   display: block;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity $transition-fade, visibility $transition-fade;
   min-width: initial;
   max-width: 100vw;
-  position: fixed;
   margin-top: 0;
-  z-index: $zindex;
+  padding: carbon--mini-units(1);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2),
     inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity $transition-fade, visibility $transition-fade;
 
   &[data-floating-menu-direction='top'] {
     margin-top: -1 * carbon--mini-units(1);
   }
 
   &__content {
-    width: 100%;
     display: flex;
+    width: 100%;
   }
 
   &--shown {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
   }
 
   &--primary {
-    font-weight: bold;
     margin-right: carbon--mini-units(2);
+    font-weight: bold;
   }
 
   // spec detail groups
@@ -45,16 +46,17 @@
 
     &__title {
       @include carbon--type-style('productive-heading-01');
-      margin-bottom: carbon--mini-units(1);
+
       float: left;
       margin-right: 8px;
+      margin-bottom: carbon--mini-units(1);
     }
 
     &__group {
+      width: 50%;
+      min-width: carbon--mini-units(30);
       padding: carbon--mini-units(1);
       padding-right: carbon--mini-units(2);
-      min-width: carbon--mini-units(30);
-      width: 50%;
 
       @include carbon--breakpoint('md') {
         width: 25%;
@@ -70,8 +72,8 @@
 
       ul {
         clear: both;
-        padding: 0;
         margin: 0;
+        padding: 0;
         list-style-type: none;
       }
 
@@ -79,43 +81,46 @@
         display: flex;
         margin: 0;
         padding: 0;
+      }
 
-        &::before {
-          display: none;
-        }
+      li::before {
+        display: none;
+      }
 
-        &:last-of-type {
-          margin-bottom: 0;
-        }
+      li:last-of-type {
+        margin-bottom: 0;
       }
     }
 
     &__prop {
       @include carbon--type-style('code-01');
+
+      margin-top: carbon--mini-units(0.25);
       margin-right: carbon--mini-units(1);
       font-weight: 500;
-      margin-top: carbon--mini-units(0.25);
     }
 
     p#{&}__value {
       @include carbon--type-style('code-01');
+
       margin-top: carbon--mini-units(0.25);
     }
 
     li#{&}__warning {
       @include carbon--type-style('helper-text-01');
       $yellow: map-get(map-get($carbon--colors, 'yellow'), 30);
-      border-left: 3px solid $yellow;
-      padding-left: carbon--mini-units(1);
+
       margin-bottom: carbon--mini-units(1);
+      padding-left: carbon--mini-units(1);
       font-weight: 500;
+      border-left: 3px solid $yellow;
     }
   }
 
   // tooltip theme
   @mixin tooltip--theme {
-    background: $ui-01;
     color: $text-01;
+    background: $ui-01;
 
     .#{$prefix}--tooltip__caret {
       border-bottom-color: $ui-01;
@@ -133,8 +138,8 @@
       }
 
       &__warning {
-        background-color: $ui-01;
         color: $text-01;
+        background-color: $ui-01;
       }
 
       &__title,

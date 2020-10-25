@@ -1,8 +1,8 @@
 @mixin main {
   .#{$prefix}--popup-main {
-    margin-left: -($carbon--grid-gutter / 2);
-    margin-right: -($carbon--grid-gutter / 2);
     width: initial;
+    margin-right: -($carbon--grid-gutter / 2);
+    margin-left: -($carbon--grid-gutter / 2);
 
     &__item > .#{$prefix}--accordion__heading {
       height: carbon--mini-units(6);
@@ -34,9 +34,10 @@
 
         &__arrow {
           $size: carbon--rem(20px);
+
+          flex: 0 0 $size;
           width: $size;
           height: $size;
-          flex: 0 0 $size;
         }
       }
     }
@@ -60,57 +61,57 @@
 
     &__info {
       position: absolute;
-      padding: 0;
-      margin: 0;
       top: 4px;
+      margin: 0;
       margin-left: carbon--mini-units(1);
+      padding: 0;
+      color: $text-01;
       background: transparent;
       border: 0;
-      color: $text-01;
       outline: none;
-      opacity: 0;
       visibility: hidden;
-      transition: all $duration--fast-02 carbon--motion(standard, productive);
       cursor: pointer;
+      opacity: 0;
+      transition: all $duration--fast-02 carbon--motion(standard, productive);
 
       &:focus {
         box-shadow: 0 0 0 1px $focus;
       }
 
       svg {
-        fill: currentColor;
         display: block;
+        fill: currentColor;
       }
 
       .#{$prefix}--checkbox-wrapper:hover & {
-        opacity: 1;
         visibility: visible;
+        opacity: 1;
       }
     }
 
     &__section {
       $border-width: carbon--rem(2px);
 
-      padding-top: $carbon--spacing-03 + $border-width;
-      padding-left: $carbon--grid-gutter / 2;
-      padding-right: $carbon--grid-gutter / 2;
+      position: relative;
       margin-top: $carbon--spacing-06;
       margin-bottom: $carbon--spacing-09;
-      position: relative;
+      padding-top: $carbon--spacing-03 + $border-width;
+      padding-right: $carbon--grid-gutter / 2;
+      padding-left: $carbon--grid-gutter / 2;
 
       &:last-child {
         margin-bottom: $carbon--spacing-06;
       }
 
       &::before {
-        content: '';
-        height: $border-width;
         position: absolute;
         top: 0;
         left: $carbon--grid-gutter / 2;
         width: 100%;
         max-width: carbon--mini-units(4);
+        height: $border-width;
         background-color: $ui-03;
+        content: '';
       }
 
       &-title {
@@ -122,10 +123,8 @@
       &-toggle {
         margin-top: 3px;
 
-        .#{$prefix}--toggle {
-          &__switch {
-            margin: 0;
-          }
+        .#{$prefix}--toggle__switch {
+          margin: 0;
         }
       }
 
@@ -135,8 +134,8 @@
     }
 
     &__toggle {
-      margin-top: 4px;
       float: left;
+      margin-top: 4px;
 
       .#{$prefix}--toggle {
         &__switch {

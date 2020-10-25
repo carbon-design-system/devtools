@@ -1,16 +1,12 @@
-// @mixin empty--theme { }
-
 @mixin empty {
-  // @include link;
-
   .#{$prefix}--popup-empty {
     margin-top: $carbon--spacing-06;
     margin-bottom: $carbon--spacing-07;
 
     &__heading,
     &__copy {
-      margin-bottom: $spacing-03;
       width: 90%;
+      margin-bottom: $spacing-03;
     }
 
     &__heading {

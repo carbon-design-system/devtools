@@ -1,7 +1,6 @@
 @import '@carbon/grid/scss/prefix';
 @import '@carbon/layout/scss/breakpoint';
 @import '@carbon/layout/scss/spacing';
-@import '@carbon/themes/scss/themes';
 @import '@carbon/type/scss/font-family';
 @import '@carbon/type/scss/styles';
 @import '@carbon/type/scss/font-face/sans';
@@ -23,8 +22,8 @@ $carbon--theme: $carbon--theme--white;
 @import './components/Reset';
 
 body {
-  background: $ui-background;
   color: $text-01;
+  background: $ui-background;
 }
 
 .#{$prefix}--options {
@@ -32,9 +31,9 @@ body {
   margin-bottom: $carbon--spacing-07;
 
   .#{$prefix}--accordion {
-    margin-left: -($carbon--grid-gutter/2);
-    margin-right: -($carbon--grid-gutter/2);
     width: auto;
+    margin-right: -($carbon--grid-gutter/2);
+    margin-left: -($carbon--grid-gutter/2);
 
     &__content {
       margin-top: $carbon--spacing-05;

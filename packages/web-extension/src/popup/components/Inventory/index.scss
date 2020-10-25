@@ -1,7 +1,7 @@
 @mixin inventory {
   .#{$prefix}--inventory {
-    margin-right: -($carbon--grid-gutter / 2);
     width: initial;
+    margin-right: -($carbon--grid-gutter / 2);
 
     &__info {
       margin-bottom: carbon--mini-units(2);
@@ -28,8 +28,9 @@
 
       &-count {
         @include carbon--type-style('helper-text-01');
-        color: $text-02;
+
         float: right;
+        color: $text-02;
       }
 
       .#{$prefix}--accordion__heading {
@@ -44,71 +45,73 @@
     }
 
     &__sub-item {
-      padding: $carbon--grid-gutter / 2;
-      margin-left: -($carbon--grid-gutter / 2);
       margin-right: -($carbon--grid-gutter / 2);
       margin-bottom: $carbon--grid-gutter--condensed;
+      margin-left: -($carbon--grid-gutter / 2);
+      padding: $carbon--grid-gutter / 2;
 
       &__name {
         @include carbon--type-style('code-01');
-        border-left: 3px solid $ui-03;
-        padding-left: carbon--mini-units(2);
+
+        margin-bottom: carbon--mini-units(3);
         padding-top: carbon--mini-units(1);
         padding-bottom: carbon--mini-units(1);
-        margin-bottom: carbon--mini-units(3);
+        padding-left: carbon--mini-units(2);
+        border-left: 3px solid $ui-03;
 
         &__tag {
           color: $text-04;
           font-weight: bold;
+        }
 
-          &::before {
-            content: '<';
-          }
+        &__tag::before {
+          content: '<';
+        }
 
-          &::after {
-            content: '>';
-          }
+        &__tag::after {
+          content: '>';
         }
 
         &__id {
           color: $text-02;
           font-style: italic;
+        }
 
-          &::before {
-            content: '#';
-          }
+        &__id::before {
+          content: '#';
         }
 
         &__class {
           color: $text-01;
+        }
 
-          &::before {
-            content: '.';
-          }
+        &__class::before {
+          content: '.';
         }
       }
 
       &__text {
         @include carbon--type-style('body-short-01');
+
+        position: relative;
+        display: flex;
         margin-bottom: carbon--mini-units(2);
         // font-style: italic;
         color: $text-01;
         font-weight: bold;
-        position: relative;
-        display: flex;
 
-        & > span {
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
+        > span {
           display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
 
         &::before {
-          content: '“';
           position: absolute;
           top: 0;
           right: 100%;
+          content: '“';
         }
 
         &::after {
@@ -118,8 +121,9 @@
 
       &__unique-id {
         @include carbon--type-style('helper-text-01');
-        text-align: right;
+
         color: $text-03;
+        text-align: right;
       }
     }
   }

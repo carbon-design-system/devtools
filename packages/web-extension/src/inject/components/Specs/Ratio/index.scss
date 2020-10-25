@@ -5,54 +5,56 @@
 
     &__title {
       @include carbon--type-style('productive-heading-01');
+
       margin-bottom: carbon--mini-units(0.5);
     }
 
     &__title,
     &__classlist li {
-      margin-right: carbon--mini-units(0.5);
       display: inline-block;
+      margin-right: carbon--mini-units(0.5);
     }
 
     &__classlist {
       @include carbon--type-style('code-01');
+
       display: inline-block;
       margin: 0;
+      margin-bottom: carbon--mini-units(0.5);
       padding: 0;
       list-style-type: none;
-      margin-bottom: carbon--mini-units(0.5);
 
       li {
         display: inline-block;
-        padding: 0;
         margin: 0;
-        border-radius: 3px;
-        margin-bottom: carbon--mini-units(0.5);
         margin-right: carbon--mini-units(0.5);
+        margin-bottom: carbon--mini-units(0.5);
+        padding: 0;
+        border-radius: 3px;
+      }
 
-        &::before {
-          display: none;
-        }
+      li::before {
+        display: none;
+      }
 
-        &::after {
-          content: ',';
-        }
+      li::after {
+        content: ',';
+      }
 
-        &:last-child {
-          margin-right: 0;
+      li:last-child {
+        margin-right: 0;
+      }
 
-          &::after {
-            content: '';
-          }
-        }
+      li:last-child::after {
+        content: '';
       }
 
       li#{&}--active {
         padding: 0 carbon--mini-units(1);
+      }
 
-        &::after {
-          display: none;
-        }
+      li#{&}--active::after {
+        display: none;
       }
     }
 
@@ -62,11 +64,9 @@
         color: $text-01;
       }
 
-      &__classlist {
-        &--active {
-          color: $text-01;
-          background-color: $ui-02;
-        }
+      &__classlist--active {
+        color: $text-01;
+        background-color: $ui-02;
       }
     }
 
@@ -74,9 +74,11 @@
 
     @each $theme in map-keys($themes) {
       .#{$prefix}--#{$theme} & {
+        /* stylelint-disable max-nesting-depth */
         @include carbon--theme(map-get($themes, $theme)) {
           @include grid-tooltip--theme;
         }
+        /* stylelint-enable max-nesting-depth */
       }
     }
   }
