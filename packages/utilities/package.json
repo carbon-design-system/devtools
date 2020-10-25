@@ -6,9 +6,9 @@
   "scripts": {
     "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
     "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
-    "lint": "yarn lint:js && yarn lint:css",
+    "lint": "yarn lint:js",
     "lint:js": "eslint . --ext .js",
-    "lint:css": "ECHO 'lint:css'"
+    "test": "yarn format && yarn lint"
   },
   "keywords": [
     "Carbon",

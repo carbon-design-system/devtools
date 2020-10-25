@@ -13,7 +13,8 @@
     "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint . --ext .js",
-    "lint:css": "ECHO 'lint:css'"
+    "lint:css": "stylelint 'src/**/*.{css,scss}' --report-needless-disables --report-invalid-scope-disables",
+    "test": "yarn format && yarn lint"
   },
   "dependencies": {
     "@carbon/colors": "^10.13.0",
@@ -62,6 +63,8 @@
     "rimraf": "^3.0.2",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
+    "stylelint": "^13.7.2",
+    "stylelint-config-carbon": "^1.2.0",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
@@ -96,5 +99,10 @@
     "globals": {
       "chrome": "readonly"
     }
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-carbon"
+    ]
   }
 }
