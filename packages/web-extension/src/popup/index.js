@@ -56,6 +56,9 @@ function Popup() {
     getMessage((msg) => {
       const msgKeys = Object.keys(msg);
 
+      console.log(msg.digitalData);
+      console.log(msg.jQuery);
+
       if (msgKeys.indexOf('runningCarbon') > -1) {
         carbonStatus = true;
         setOnCarbon(true);
