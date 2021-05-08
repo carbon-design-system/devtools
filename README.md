@@ -12,8 +12,8 @@ The [Carbon Devtools](http://ibm.biz/carbon-devtools) provides designers, develo
 
 | Package name | Description |
 |:------------ |:----------- |
-| [`web-extension`](./packages/web-extension) | The [Carbon Devtools](./) cross-browser web extension build package. |
-| [`utilities`](./packages/utilities) | Common utilities and functions used across throughout [Carbon Devtools](./). |
+| [`web-extension`](./packages/web-extension) | The [Carbon Devtools](http://ibm.biz/carbon-devtools) cross-browser web extension build package. |
+| [`utilities`](./packages/utilities) | Common utilities and functions used across throughout [Carbon Devtools](http://ibm.biz/carbon-devtools). |
 | [`token-server`](./packages/token-server) | A distribution server that maintains and versions Carbon tokens separately. |
 | [`demo-site`](./packages/demo-site) | A static webpage with basic UI elements that can be used for testing and demoing. |
 
