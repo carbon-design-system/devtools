@@ -12,15 +12,23 @@ import {
 
 const { prefix } = settings;
 
-const CARBON_VERSION = dependencies['@carbon/grid']
-  .split('.')[0]
-  .replace('^', '');
-const DOTCOM_VERSION = dependencies['@carbon/ibmdotcom-react']
-  .split('.')[0]
-  .replace('^', '');
-const SECURITY_VERSION = dependencies['@carbon/ibm-security']
-  .split('.')[0]
-  .replace('^', '');
+function normalizeSemVer(version) {
+  return version.replace('^', '');
+}
+
+const CARBON_VERSION = normalizeSemVer(
+  dependencies['@carbon/grid'].split('.')[0]
+);
+
+const DOTCOM_VERSION = normalizeSemVer(
+  dependencies['@carbon/ibmdotcom-react'].split('.')[0]
+);
+
+const CLOUD_COGNITIVE = '@carbon/ibm-cloud-cognitive';
+
+const SECURITY_VERSION = normalizeSemVer(
+  dependencies['@carbon/ibm-security'].split('.')[0]
+);
 
 function Footer() {
   return (
@@ -30,6 +38,11 @@ function Footer() {
           {name} v{version}
         </li>
         <li>carbon v{CARBON_VERSION}</li>
+
+        <li>
+          {CLOUD_COGNITIVE} {normalizeSemVer(dependencies[CLOUD_COGNITIVE])}
+        </li>
+
         <li>ibm.com library v{DOTCOM_VERSION}</li>
         <li>ibm security v{SECURITY_VERSION}</li>
         <li>

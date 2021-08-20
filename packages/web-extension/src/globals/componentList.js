@@ -1,5 +1,11 @@
+import * as CloudCognitive from '@carbon/ibm-cloud-cognitive/es/components';
+
+import { paramCase } from 'param-case';
+import { pascalCase } from 'pascal-case';
+
 import {
   carbonPrefix,
+  cloudCognitivePrefix,
   dotcomPrefix,
   cloudPalPrefix,
   getSecurityPrefix,
@@ -66,6 +72,17 @@ carbonComponents[`.${carbonPrefix}--copy-btn`] = 'CopyButton';
 carbonComponents[`.${carbonPrefix}--skeleton`] = 'Skeleton';
 carbonComponents[`.${carbonPrefix}--text-area`] = 'TextArea';
 carbonComponents[`.${carbonPrefix}--time-picker`] = 'TimePicker';
+
+const cloudCognitiveComponents = Object.keys(CloudCognitive).reduce(
+  (components, component) => {
+    components[
+      `.${cloudCognitivePrefix}--${paramCase(component)}`
+    ] = pascalCase(component);
+
+    return components;
+  },
+  {}
+);
 
 const ibmdotcomComponents = {};
 // internal
@@ -233,6 +250,7 @@ securityComponents[`.${cloudPalPrefix}--tables-layout`] = 'Tables';
 
 const allComponents = {
   ...carbonComponents,
+  ...cloudCognitiveComponents,
   ...ibmdotcomComponents,
   ...securityComponents,
   ...cloudPalComponents,
@@ -241,6 +259,7 @@ const allComponents = {
 export {
   allComponents,
   carbonComponents,
+  cloudCognitiveComponents,
   ibmdotcomComponents,
   securityComponents,
   cloudPalComponents,
