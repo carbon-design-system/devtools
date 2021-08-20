@@ -71,11 +71,17 @@ carbonComponents[`.${carbonPrefix}--skeleton`] = 'Skeleton';
 carbonComponents[`.${carbonPrefix}--text-area`] = 'TextArea';
 carbonComponents[`.${carbonPrefix}--time-picker`] = 'TimePicker';
 
-let { pkg: _, ...cloudCognitiveComponents } = CloudCognitive;
+let { pkg, ...cloudCognitiveComponents } = CloudCognitive;
 
-cloudCognitiveComponents = Object.keys(CloudCognitive).reduce(
-  (components, component) => {
-    components[`.${cloudCognitivePrefix}--${paramCase(component)}`] = component;
+cloudCognitiveComponents = Object.entries(cloudCognitiveComponents).reduce(
+  (components, [name, Component]) => {
+    const devtoolsId = Component.devtoolsId || paramCase(name);
+
+    components[
+      `[${pkg.devtoolsAttribute || 'data-carbon-devtools-id'}="${devtoolsId}"]`
+    ] = name;
+
+    components[`.${cloudCognitivePrefix}--${devtoolsId}`] = name; // TODO: Remove
 
     return components;
   },

@@ -11,7 +11,8 @@ const cloudPalPrefix = 'pal'; // static hardcoded
 
 const prefixSelectors =
   `[class*="${carbonPrefix}--"], ` + // carbon
-  `[class*="${cloudCognitivePrefix}--"]` + // Carbon for Cloud & Cognitive — https://github.com/carbon-design-system/ibm-cloud-cognitive
+  `[data-carbon-devtools-id]` + // `[${pkg.devtoolsAttribute}]` + // `Carbon for Cloud & Cognitive — https://github.com/carbon-design-system/ibm-cloud-cognitive
+  `[class*="${cloudCognitivePrefix}--"]` + // TODO: Remove.
   `[data-autoid*="${dotcomPrefix}--"], [data-auto-id*="${dotcomPrefix}--"], ` + // DDS
   `[class*="${securityPrefix}"], ` + // security
   `[class*="${cloudPalPrefix}--"]`; // pal
