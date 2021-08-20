@@ -34,7 +34,6 @@
     "color": "^3.1.2",
     "node-fetch": "^2.6.1",
     "param-case": "^3.0.4",
-    "pascal-case": "^3.1.2",
     "url": "^0.11.0"
   },
   "devDependencies": {
