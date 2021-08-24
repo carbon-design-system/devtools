@@ -2,7 +2,6 @@ import * as CloudCognitive from '@carbon/ibm-cloud-cognitive';
 
 import {
   carbonPrefix,
-  cloudCognitivePrefix,
   dotcomPrefix,
   cloudPalPrefix,
   getSecurityPrefix,
