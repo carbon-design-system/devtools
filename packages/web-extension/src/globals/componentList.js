@@ -1,5 +1,4 @@
 import * as CloudCognitive from '@carbon/ibm-cloud-cognitive';
-import { paramCase } from 'param-case';
 
 import {
   carbonPrefix,
@@ -71,17 +70,16 @@ carbonComponents[`.${carbonPrefix}--skeleton`] = 'Skeleton';
 carbonComponents[`.${carbonPrefix}--text-area`] = 'TextArea';
 carbonComponents[`.${carbonPrefix}--time-picker`] = 'TimePicker';
 
-let { pkg, ...cloudCognitiveComponents } = CloudCognitive;
+let {
+  pkg: { devtoolsAttribute, getDevtoolsId },
+  ...cloudCognitiveComponents
+} = CloudCognitive;
 
-cloudCognitiveComponents = Object.entries(cloudCognitiveComponents).reduce(
-  (components, [name, Component]) => {
-    const devtoolsId = Component.devtoolsId || paramCase(name);
-
+cloudCognitiveComponents = Object.values(cloudCognitiveComponents).reduce(
+  (components, { displayName }) => {
     components[
-      `[${pkg.devtoolsAttribute || 'data-carbon-devtools-id'}="${devtoolsId}"]`
-    ] = name;
-
-    components[`.${cloudCognitivePrefix}--${devtoolsId}`] = name; // TODO: Remove
+      `[${devtoolsAttribute}="${getDevtoolsId(displayName)}"]`
+    ] = displayName;
 
     return components;
   },
