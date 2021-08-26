@@ -12,6 +12,10 @@ import {
 
 const { prefix } = settings;
 
+function formatVersion(version) {
+  return `v${version}`;
+}
+
 function normalizeSemVer(version) {
   return version.replace('^', '');
 }
@@ -35,16 +39,17 @@ function Footer() {
     <footer className={`${prefix}--row`}>
       <ul className={`${prefix}--options__meta ${prefix}--col`}>
         <li>
-          {name} v{version}
+          {name} {formatVersion(version)}
         </li>
-        <li>carbon v{CARBON_VERSION}</li>
+        <li>carbon {formatVersion(CARBON_VERSION)}</li>
 
         <li>
-          {CLOUD_COGNITIVE} {normalizeSemVer(dependencies[CLOUD_COGNITIVE])}
+          {CLOUD_COGNITIVE}{' '}
+          {formatVersion(normalizeSemVer(dependencies[CLOUD_COGNITIVE]))}
         </li>
 
-        <li>ibm.com library v{DOTCOM_VERSION}</li>
-        <li>ibm security v{SECURITY_VERSION}</li>
+        <li>ibm.com library {formatVersion(DOTCOM_VERSION)}</li>
+        <li>ibm security {formatVersion(SECURITY_VERSION)}</li>
         <li>
           <Link
             onClick={() => gaNavigationEvent('click', 'code-repository')}

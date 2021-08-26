@@ -70,14 +70,18 @@ carbonComponents[`.${carbonPrefix}--text-area`] = 'TextArea';
 carbonComponents[`.${carbonPrefix}--time-picker`] = 'TimePicker';
 
 let {
-  pkg: { devtoolsAttribute, getDevtoolsId },
+  pkg: {
+    devtoolsAttribute: _cloudCognitiveDevtoolsAttribute,
+    getDevtoolsId: _getCloudCognitiveDevtoolsId,
+    prefix, // TODO: Remove.
+  },
   ...cloudCognitiveComponents
 } = CloudCognitive;
 
 cloudCognitiveComponents = Object.values(cloudCognitiveComponents).reduce(
   (components, { displayName }) => {
     components[
-      `[${devtoolsAttribute}="${getDevtoolsId(displayName)}"]`
+      `[data-carbon-devtools-id="${prefix}--${displayName}"]` // `[${cloudCognitiveDevtoolsAttribute}="${getCloudCognitiveDevtoolsId(displayName)}"]`
     ] = displayName;
 
     return components;
@@ -260,7 +264,6 @@ const allComponents = {
 export {
   allComponents,
   carbonComponents,
-  cloudCognitiveComponents,
   ibmdotcomComponents,
   securityComponents,
   cloudPalComponents,
