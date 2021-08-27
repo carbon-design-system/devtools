@@ -12,8 +12,12 @@ import {
 
 const { prefix } = settings;
 
+function getVersion(dependency) {
+  return dependencies[dependency];
+}
+
 function getMajorVersion(dependency) {
-  return dependencies[dependency].split('.')[0];
+  return getVersion(dependency).split('.')[0];
 }
 
 const CLOUD_COGNITIVE = '@carbon/ibm-cloud-cognitive';
@@ -26,8 +30,9 @@ const packages = [
   },
   {
     name: CLOUD_COGNITIVE,
-    version: dependencies[CLOUD_COGNITIVE],
+    version: getVersion(CLOUD_COGNITIVE),
   },
+
   {
     name: 'ibm.com library',
     version: getMajorVersion('@carbon/ibmdotcom-react'),
