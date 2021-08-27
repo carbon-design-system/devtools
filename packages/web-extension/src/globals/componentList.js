@@ -71,9 +71,8 @@ carbonComponents[`.${carbonPrefix}--time-picker`] = 'TimePicker';
 
 let {
   pkg: {
-    devtoolsAttribute: _cloudCognitiveDevtoolsAttribute,
-    getDevtoolsId: _getCloudCognitiveDevtoolsId,
-    prefix, // TODO: Remove.
+    devtoolsAttribute: cloudCognitiveDevtoolsAttribute,
+    getDevtoolsId: getCloudCognitiveDevtoolsId,
   },
   ...cloudCognitiveComponents
 } = CloudCognitive;
@@ -81,7 +80,9 @@ let {
 cloudCognitiveComponents = Object.values(cloudCognitiveComponents).reduce(
   (components, { displayName }) => {
     components[
-      `[data-carbon-devtools-id="${prefix}--${displayName}"]` // `[${cloudCognitiveDevtoolsAttribute}="${getCloudCognitiveDevtoolsId(displayName)}"]`
+      `[${cloudCognitiveDevtoolsAttribute}="${getCloudCognitiveDevtoolsId(
+        displayName
+      )}"]`
     ] = displayName;
 
     return components;

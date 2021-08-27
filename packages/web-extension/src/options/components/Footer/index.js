@@ -16,40 +16,46 @@ function formatVersion(version) {
   return `v${version}`;
 }
 
+function getMajorVersion(dependency) {
+  return dependencies[dependency].split('.')[0];
+}
+
 function normalizeSemVer(version) {
   return version.replace('^', '');
 }
 
-const CARBON_VERSION = normalizeSemVer(
-  dependencies['@carbon/grid'].split('.')[0]
-);
-
-const DOTCOM_VERSION = normalizeSemVer(
-  dependencies['@carbon/ibmdotcom-react'].split('.')[0]
-);
-
 const CLOUD_COGNITIVE = '@carbon/ibm-cloud-cognitive';
 
-const SECURITY_VERSION = normalizeSemVer(
-  dependencies['@carbon/ibm-security'].split('.')[0]
-);
+const packages = [
+  { name, version },
+  {
+    name: 'carbon',
+    version: normalizeSemVer(getMajorVersion('carbon-components')),
+  },
+  {
+    name: CLOUD_COGNITIVE,
+    version: normalizeSemVer(dependencies[CLOUD_COGNITIVE]),
+  },
+  {
+    name: 'ibm.com library',
+    version: normalizeSemVer(getMajorVersion('@carbon/ibmdotcom-react')),
+  },
+  {
+    name: 'ibm security',
+    version: normalizeSemVer(getMajorVersion('@carbon/ibm-security')),
+  },
+];
 
 function Footer() {
   return (
     <footer className={`${prefix}--row`}>
       <ul className={`${prefix}--options__meta ${prefix}--col`}>
-        <li>
-          {name} {formatVersion(version)}
-        </li>
-        <li>carbon {formatVersion(CARBON_VERSION)}</li>
+        {packages.map(({ name, version }, id) => (
+          <li key={`list-item--${id}`}>
+            {name} {formatVersion(version)}
+          </li>
+        ))}
 
-        <li>
-          {CLOUD_COGNITIVE}{' '}
-          {formatVersion(normalizeSemVer(dependencies[CLOUD_COGNITIVE]))}
-        </li>
-
-        <li>ibm.com library {formatVersion(DOTCOM_VERSION)}</li>
-        <li>ibm security {formatVersion(SECURITY_VERSION)}</li>
         <li>
           <Link
             onClick={() => gaNavigationEvent('click', 'code-repository')}
