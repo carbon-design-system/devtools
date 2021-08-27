@@ -12,16 +12,8 @@ import {
 
 const { prefix } = settings;
 
-function formatVersion(version) {
-  return `v${version}`;
-}
-
 function getMajorVersion(dependency) {
   return dependencies[dependency].split('.')[0];
-}
-
-function normalizeSemVer(version) {
-  return version.replace('^', '');
 }
 
 const CLOUD_COGNITIVE = '@carbon/ibm-cloud-cognitive';
@@ -30,19 +22,19 @@ const packages = [
   { name, version },
   {
     name: 'carbon',
-    version: normalizeSemVer(getMajorVersion('carbon-components')),
+    version: getMajorVersion('carbon-components'),
   },
   {
     name: CLOUD_COGNITIVE,
-    version: normalizeSemVer(dependencies[CLOUD_COGNITIVE]),
+    version: dependencies[CLOUD_COGNITIVE],
   },
   {
     name: 'ibm.com library',
-    version: normalizeSemVer(getMajorVersion('@carbon/ibmdotcom-react')),
+    version: getMajorVersion('@carbon/ibmdotcom-react'),
   },
   {
     name: 'ibm security',
-    version: normalizeSemVer(getMajorVersion('@carbon/ibm-security')),
+    version: getMajorVersion('@carbon/ibm-security'),
   },
 ];
 
@@ -52,7 +44,7 @@ function Footer() {
       <ul className={`${prefix}--options__meta ${prefix}--col`}>
         {packages.map(({ name, version }, id) => (
           <li key={`list-item--${id}`}>
-            {name} {formatVersion(version)}
+            {name} {`v${version.replace('^', '')}`}
           </li>
         ))}
 
