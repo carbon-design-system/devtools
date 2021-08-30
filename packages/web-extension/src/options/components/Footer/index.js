@@ -1,7 +1,8 @@
-import React from 'react';
+import { gaNavigationEvent } from '@carbon/devtools-utilities';
 import { settings } from 'carbon-components';
 import { Link } from 'carbon-components-react';
-import { gaNavigationEvent } from '@carbon/devtools-utilities';
+import React from 'react';
+
 import {
   name,
   version,
@@ -13,7 +14,7 @@ import {
 const { prefix } = settings;
 
 function getVersion(dependency) {
-  return dependencies[dependency];
+  return `v${dependencies[dependency].replace('^', '')}`;
 }
 
 function getMajorVersion(dependency) {
@@ -49,7 +50,7 @@ function Footer() {
       <ul className={`${prefix}--options__meta ${prefix}--col`}>
         {packages.map(({ name, version }, id) => (
           <li key={`list-item--${id}`}>
-            {name} {`v${version.replace('^', '')}`}
+            {name} {version}
           </li>
         ))}
 
