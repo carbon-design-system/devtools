@@ -7,25 +7,31 @@ const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const packageJSON = require('./package');
 
+process.traceDeprecation = true;
+
 module.exports = {
   entry: {
-    popup: [
-      // './src/setPrefix.js',
-      './src/popup/index.js',
-    ],
-    options: [
-      // './src/setPrefix.js',
-      './src/options/index.js',
-    ],
     background: [
-      // './src/setPrefix.js',
+      // './src/globals/setPrefix.js',
       './src/background/index.js',
     ],
+    inject: ['./src/globals/setPrefix.js', './src/inject/index.js'],
+    options: [
+      // './src/globals/setPrefix.js',
+      './src/options/index.js',
+    ],
+    popup: [
+      // './src/globals/setPrefix.js',
+      './src/popup/index.js',
+    ],
     validate: [
-      // './src/setPrefix.js',
+      // './src/globals/setPrefix.js',
       './src/validate/index.js',
     ],
-    inject: ['./src/globals/setPrefix.js', './src/inject/index.js'],
+  },
+  performance: {
+    maxEntrypointSize: 1000000,
+    maxAssetSize: 1000000,
   },
   module: {
     rules: [
@@ -118,6 +124,17 @@ module.exports = {
       react: 'preact/compat',
       'react-dom': 'preact/compat',
       '@carbon/devtools-utilities': path.resolve(__dirname, '../utilities'),
+    },
+    fallback: {
+      buffer: false,
+      path: false,
+      util: false,
+      stream: false,
+      zlib: false,
+      crypto: false,
+      http: false,
+      fs: false,
+      net: false,
     },
   },
 };

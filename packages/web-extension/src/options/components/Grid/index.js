@@ -2,7 +2,7 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import { Select, SelectItem } from 'carbon-components-react';
 import { configuration } from '../';
-import { gridVersions } from '../../../globals';
+import { gridVersions } from '@carbon/devtools-token-server';
 
 const { prefix } = settings;
 const gridVersionList = Object.keys(gridVersions);

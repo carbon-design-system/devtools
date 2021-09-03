@@ -7,7 +7,7 @@ import {
   removeHighlight,
 } from '../';
 import { sendMessage, getMessage, randomId } from '@carbon/devtools-utilities';
-import { allComponents } from '../../../globals';
+import { allComponents } from '@carbon/devtools-token-server';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?

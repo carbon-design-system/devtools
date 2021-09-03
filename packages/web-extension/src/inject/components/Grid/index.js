@@ -1,6 +1,6 @@
 import { settings } from 'carbon-components';
 import { storageItemChanged, getStorage } from '@carbon/devtools-utilities';
-import { gridVersions } from '../../../globals';
+import { gridVersions } from '@carbon/devtools-token-server';
 import { manage2xGrid } from './2x';
 import { manageMiniUnitGrid } from './mini-unit';
 import { themes } from '@carbon/themes';

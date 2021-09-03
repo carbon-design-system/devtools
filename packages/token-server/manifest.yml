@@ -1,0 +1,3 @@
+applications:
+- name: carbon-devtools-token-server
+  command: nodemon index.js

@@ -1,6 +1,6 @@
 import { settings } from 'carbon-components';
 import { breakpoints, rem } from '@carbon/layout';
-import { carbonPrefix } from '../../../../globals';
+import { carbonPrefix } from '@carbon/devtools-token-server';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import {
   positionTooltip,

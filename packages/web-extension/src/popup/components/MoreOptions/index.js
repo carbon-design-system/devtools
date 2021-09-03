@@ -2,8 +2,9 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import { gaNavigationEvent } from '@carbon/devtools-utilities';
-import { bugs, repository } from '../../../../package.json';
+import packageJSON from '../../../../package.json';
 
+const { bugs, repository } = packageJSON;
 const { prefix } = settings;
 
 function MoreOptions() {

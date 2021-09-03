@@ -5,7 +5,7 @@ import {
   showHideTooltip,
   updateTooltipContent,
 } from '../../Tooltip';
-import { allComponents } from '../../../../globals';
+import { allComponents } from '@carbon/devtools-token-server';
 
 const { prefix } = settings;
 const selectors = Object.keys(allComponents).join(',');

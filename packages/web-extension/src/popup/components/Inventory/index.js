@@ -5,7 +5,7 @@ import {
   getMessage,
   gaNavigationEvent,
   gaDomEvent,
-  gaExcpetion,
+  gaException,
 } from '@carbon/devtools-utilities';
 import {
   Accordion,
@@ -14,7 +14,7 @@ import {
   ClickableTile,
   Link,
 } from 'carbon-components-react';
-import { bugs } from '../../../../package.json';
+import packageJSON from '../../../../package.json';
 
 const { prefix } = settings;
 
@@ -201,7 +201,7 @@ function emptyInventory() {
       We could not find any components that matched our records. If you believe
       this to be in error please{' '}
       <Link
-        href={bugs.url}
+        href={packageJSON.bugs.url}
         target="_blank"
         onClick={() => gaNavigationEvent('click', 'submit-an-issue')}>
         submit an issue
@@ -222,7 +222,7 @@ function perfCheck(startTime) {
   gaDomEvent('inventory', 'audit', Math.round(time));
 
   if (time > timeToCheck) {
-    gaExcpetion(`Slow inventory audit: ${time}ms`, 0);
+    gaException(`Slow inventory audit: ${time}ms`, 0);
   }
 }
 

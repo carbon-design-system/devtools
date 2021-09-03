@@ -2,14 +2,9 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import { Link } from 'carbon-components-react';
 import { gaNavigationEvent } from '@carbon/devtools-utilities';
-import {
-  name,
-  version,
-  bugs,
-  repository,
-  dependencies,
-} from '../../../../package.json';
+import packageJSON from '../../../../package.json';
 
+const { name, version, bugs, repository, dependencies } = packageJSON;
 const { prefix } = settings;
 
 const CARBON_VERSION = dependencies['@carbon/grid']

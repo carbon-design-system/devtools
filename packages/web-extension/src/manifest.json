@@ -14,7 +14,11 @@
     "scripts": ["/background/index.js"],
     "persistent": false
   },
-  "web_accessible_resources": ["/inject/index.css"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "web_accessible_resources": [
+      "/inject/index.css",
+      "http*://carbon-devtools-token-server.us-south.cf.appdomain.cloud"
+  ],
   "icons": {
     "16": "/media/16x16-mid.png",
     "32": "/media/32x32-mid.png",

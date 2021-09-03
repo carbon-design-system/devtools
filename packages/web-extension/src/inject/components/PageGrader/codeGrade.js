@@ -2,7 +2,7 @@
 // additional or overidden CSS?
 // total components found
 
-import { prefixSelectors, allComponents } from '../../../globals';
+import { prefixSelectors, allComponents } from '@carbon/devtools-token-server';
 
 function codeGrade(pageGrades = {}) {
   let grades = {};

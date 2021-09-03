@@ -8,7 +8,8 @@
     "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
     "lint": "yarn lint:js",
     "lint:js": "eslint . --ext .js",
-    "test": "yarn format && yarn lint"
+    "test": "yarn format && yarn lint",
+    "clean": "rimraf node_modules"
   },
   "keywords": [
     "Carbon",
@@ -21,7 +22,7 @@
     "Functions"
   ],
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "license": "Apache-2.0",
   "author": "James Dow",
@@ -35,13 +36,14 @@
   },
   "homepage": "https://github.com/carbon-design-system/devtools#readme",
   "dependencies": {
-    "@carbon/layout": "^10.13.0"
+    "@carbon/layout": "^10.17.0"
   },
   "devDependencies": {
-    "eslint": "^7.12.0",
+    "eslint": "^7.19.0",
     "eslint-config-carbon": "^2.1.0",
-    "prettier": "^2.1.2",
-    "prettier-config-carbon": "^0.4.0"
+    "prettier": "^2.2.1",
+    "prettier-config-carbon": "^0.4.0",
+    "rimraf": "^3.0.2"
   },
   "eslintConfig": {
     "extends": [

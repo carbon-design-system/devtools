@@ -1,3 +1,3 @@
 export * from './validatePage';
-export * from './injectGrid';
+export * from './clientInsert';
 export * from './setBadge';
