@@ -5,7 +5,7 @@ import {
   getMessage,
   gaNavigationEvent,
   gaDomEvent,
-  gaExcpetion,
+  gaException,
 } from '@carbon/devtools-utilities';
 import {
   Accordion,
@@ -222,7 +222,7 @@ function perfCheck(startTime) {
   gaDomEvent('inventory', 'audit', Math.round(time));
 
   if (time > timeToCheck) {
-    gaExcpetion(`Slow inventory audit: ${time}ms`, 0);
+    gaException(`Slow inventory audit: ${time}ms`, 0);
   }
 }
 

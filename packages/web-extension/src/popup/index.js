@@ -10,7 +10,7 @@ import {
   gaPageview,
   gaDomEvent,
   gaNavigationEvent,
-  gaExcpetion,
+  gaException,
 } from '@carbon/devtools-utilities';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
@@ -55,9 +55,6 @@ function Popup() {
 
     getMessage((msg) => {
       const msgKeys = Object.keys(msg);
-
-      console.log(msg.digitalData);
-      console.log(msg.jQuery);
 
       if (msgKeys.indexOf('runningCarbon') > -1) {
         carbonStatus = true;
@@ -142,7 +139,7 @@ function perfCheck(startTime, msg) {
     gaDomEvent('validate', status, Math.round(time));
 
     if (time > timeToCheck) {
-      gaExcpetion(`Slow validation: ${time}ms`, 0);
+      gaException(`Slow validation: ${time}ms`, 0);
     }
   }
 }
