@@ -6,7 +6,7 @@ import {
   getStorage,
   gaConfigurationEvent,
 } from '@carbon/devtools-utilities';
-import { ToggleSmall } from 'carbon-components-react';
+import { Toggle } from 'carbon-components-react';
 import { Grid2xOptions } from './Grid2xOptions';
 import { GridMiniUnitOptions } from './GridMiniUnitOptions';
 
@@ -63,7 +63,8 @@ function Grid({ disabled }) {
             </h2>
           </div>
           <div className={`${prefix}--col-sm-2`}>
-            <ToggleSmall
+            <Toggle
+              size="sm"
               className={`${prefix}--popup-main__section-toggle`}
               disabled={disabled}
               id="toggle2xGrid"
@@ -87,7 +88,8 @@ function Grid({ disabled }) {
             </h2>
           </div>
           <div className={`${prefix}--col-sm-2`}>
-            <ToggleSmall
+            <Toggle
+              size="sm"
               className={`${prefix}--popup-main__section-toggle`}
               disabled={disabled}
               id="toggleMiniUnitGrid"

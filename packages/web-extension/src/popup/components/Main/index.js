@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
-import { Accordion, AccordionItem, ToggleSmall } from 'carbon-components-react';
+import { Accordion, AccordionItem, Toggle } from 'carbon-components-react';
 import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
 import {
   setStorage,
@@ -111,7 +111,8 @@ function Main({ initialMsg, panelControls }) {
             <div className={`${prefix}--row`}>
               <div className={`${prefix}--col-sm-2`}>{title}</div>
               <div className={`${prefix}--col-sm-2`}>
-                <ToggleSmall
+                <Toggle
+                  size="sm"
                   id={id}
                   className={`${prefix}--popup-main__toggle`}
                   toggled={globalToggleStates[id]}
