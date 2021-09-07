@@ -942,14 +942,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.1":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
-  integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.15.3":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.15.3", "@babel/runtime@^7.4.3", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.1":
   version "7.15.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
   integrity sha512-OvwMLqNXkCXSz1kSm58sEsNuhqOx/fKpnUnKnFB5v8uDda5bLNEHNgKPvhDN6IU0LDcnHQ90LlJ0Q6jnyBSIBA==
@@ -1058,9 +1051,9 @@
     "@carbon/layout" "^10.29.0"
 
 "@carbon/ibm-cloud-cognitive@^0.82.0":
-  version "0.82.0"
-  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.82.0.tgz#d8ae51b92dcdecba2cdc259e593d5f2da562a32c"
-  integrity sha512-LykVnIy2r1GReEg7/iUN8gcO6dPrOoKyabG+Nxln/L5+zt3+lEWgYOqKna1NANEO6N0GjmCnXtMytj5rAAXVNQ==
+  version "0.82.1"
+  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.82.1.tgz#3c6f59614780a91782d062cd562c3c1e2830947b"
+  integrity sha512-0Rn5iiLtwIwfYxoWqlfZDeqJ6/eLBZaWLUP4cz4mAF1avh9TbXFyB/m9u7+fnO/LnYb8XyzvINfypnH8B/yEcg==
   dependencies:
     "@babel/runtime" "^7.15.3"
     "@carbon/telemetry" "^0.0.0-alpha.6"
