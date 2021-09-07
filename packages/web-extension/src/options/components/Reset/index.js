@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
 import { Button } from 'carbon-components-react';
 import { CheckmarkOutline16 } from '@carbon/icons-react';
@@ -47,5 +48,9 @@ function Reset({ settingKeys = [] }) {
     </div>
   );
 }
+
+Reset.propTypes = {
+  settingKeys: PropTypes.array,
+};
 
 export { Reset };
