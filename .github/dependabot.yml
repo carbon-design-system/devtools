@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    allow:
+      # If the package contains carbon in the name we'll let dependabot update for now
+      - dependency-name: "*carbon*"
