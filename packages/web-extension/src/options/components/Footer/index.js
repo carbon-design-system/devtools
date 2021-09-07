@@ -1,7 +1,8 @@
-import React from 'react';
+import { gaNavigationEvent } from '@carbon/devtools-utilities';
 import { settings } from 'carbon-components';
 import { Link } from 'carbon-components-react';
-import { gaNavigationEvent } from '@carbon/devtools-utilities';
+import React from 'react';
+
 import {
   name,
   version,
@@ -12,26 +13,47 @@ import {
 
 const { prefix } = settings;
 
-const CARBON_VERSION = dependencies['@carbon/grid']
-  .split('.')[0]
-  .replace('^', '');
-const DOTCOM_VERSION = dependencies['@carbon/ibmdotcom-react']
-  .split('.')[0]
-  .replace('^', '');
-const SECURITY_VERSION = dependencies['@carbon/ibm-security']
-  .split('.')[0]
-  .replace('^', '');
+function getVersion(dependency) {
+  return `v${dependencies[dependency].replace('^', '')}`;
+}
+
+function getMajorVersion(dependency) {
+  return getVersion(dependency).split('.')[0];
+}
+
+const CLOUD_COGNITIVE = '@carbon/ibm-cloud-cognitive';
+
+const packages = [
+  { name, version },
+  {
+    name: 'carbon',
+    version: getMajorVersion('carbon-components'),
+  },
+  {
+    name: CLOUD_COGNITIVE,
+    version: getVersion(CLOUD_COGNITIVE),
+  },
+
+  {
+    name: 'ibm.com library',
+    version: getMajorVersion('@carbon/ibmdotcom-react'),
+  },
+  {
+    name: 'ibm security',
+    version: getMajorVersion('@carbon/ibm-security'),
+  },
+];
 
 function Footer() {
   return (
     <footer className={`${prefix}--row`}>
       <ul className={`${prefix}--options__meta ${prefix}--col`}>
-        <li>
-          {name} v{version}
-        </li>
-        <li>carbon v{CARBON_VERSION}</li>
-        <li>ibm.com library v{DOTCOM_VERSION}</li>
-        <li>ibm security v{SECURITY_VERSION}</li>
+        {packages.map(({ name, version }, id) => (
+          <li key={`list-item--${id}`}>
+            {name} {version}
+          </li>
+        ))}
+
         <li>
           <Link
             onClick={() => gaNavigationEvent('click', 'code-repository')}

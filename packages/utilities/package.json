@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/carbon-design-system/devtools#readme",
   "dependencies": {
-    "@carbon/layout": "^10.13.0"
+    "@carbon/layout": "^10.29.0"
   },
   "devDependencies": {
     "eslint": "^7.12.0",

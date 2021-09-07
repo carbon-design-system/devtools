@@ -1,3 +1,5 @@
+import * as CloudCognitive from '@carbon/ibm-cloud-cognitive';
+
 import {
   carbonPrefix,
   dotcomPrefix,
@@ -66,6 +68,27 @@ carbonComponents[`.${carbonPrefix}--copy-btn`] = 'CopyButton';
 carbonComponents[`.${carbonPrefix}--skeleton`] = 'Skeleton';
 carbonComponents[`.${carbonPrefix}--text-area`] = 'TextArea';
 carbonComponents[`.${carbonPrefix}--time-picker`] = 'TimePicker';
+
+let {
+  pkg: {
+    devtoolsAttribute: cloudCognitiveDevtoolsAttribute,
+    getDevtoolsId: getCloudCognitiveDevtoolsId,
+  },
+  ...cloudCognitiveComponents
+} = CloudCognitive;
+
+cloudCognitiveComponents = Object.values(cloudCognitiveComponents).reduce(
+  (components, { displayName }) => {
+    components[
+      `[${cloudCognitiveDevtoolsAttribute}="${getCloudCognitiveDevtoolsId(
+        displayName
+      )}"]`
+    ] = displayName;
+
+    return components;
+  },
+  {}
+);
 
 const ibmdotcomComponents = {};
 // internal
@@ -233,6 +256,7 @@ securityComponents[`.${cloudPalPrefix}--tables-layout`] = 'Tables';
 
 const allComponents = {
   ...carbonComponents,
+  ...cloudCognitiveComponents,
   ...ibmdotcomComponents,
   ...securityComponents,
   ...cloudPalComponents,
