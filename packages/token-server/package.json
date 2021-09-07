@@ -17,9 +17,6 @@
     "Development",
     "Tokens"
   ],
-  "engines": {
-    "node": "12.x"
-  },
   "license": "Apache-2.0",
   "author": "James Dow",
   "repository": {
