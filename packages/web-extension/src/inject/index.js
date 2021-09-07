@@ -3,7 +3,6 @@ import {
   initGrid,
   initSpecs,
   initInventory,
-  initPageGrade,
   initTooltip,
   initShortcuts,
 } from './components';
@@ -13,7 +12,6 @@ if (!window.carbonDevtoolsInjected) {
   initSpecs();
   initTooltip();
   initInventory();
-  initPageGrade();
   initShortcuts();
 
   window.carbonDevtoolsInjected = true;
