@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
 import { ContentSwitcher, Switch } from 'carbon-components-react';
 import { breakpoints } from '@carbon/layout';
@@ -57,5 +58,9 @@ function resizeBrowser({ text, name: width }) {
   chrome.windows.update(-2, { width: width });
   gaConfigurationEvent('browser-resize-change', text, width);
 }
+
+ResizeBrowser.propTypes = {
+  windowWidth: PropTypes.number,
+};
 
 export { ResizeBrowser };

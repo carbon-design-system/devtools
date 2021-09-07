@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
 import { Select, SelectItem } from 'carbon-components-react';
 import { configuration } from '../';
@@ -31,5 +32,9 @@ function Grid({ gridVersion = 'carbon-v10' }) {
     </div>
   );
 }
+
+Grid.propTypes = {
+  gridVersion: PropTypes.string,
+};
 
 export { Grid };
