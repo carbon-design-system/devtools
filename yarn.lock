@@ -1057,10 +1057,10 @@
     "@carbon/import-once" "^10.6.0"
     "@carbon/layout" "^10.29.0"
 
-"@carbon/ibm-cloud-cognitive@^0.81.1":
-  version "0.81.1"
-  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.81.1.tgz#fad2b528f5c11fbdd1452c851136c037772318d3"
-  integrity sha512-yPVI/BphmvPjHxwjKrPtwexK55jfrS143JJSRsDXPMrq063KYvaCKLP8PGKUOZ2vllxX2iy76ORrxkrdimTk+g==
+"@carbon/ibm-cloud-cognitive@^0.82.0":
+  version "0.82.0"
+  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.82.0.tgz#d8ae51b92dcdecba2cdc259e593d5f2da562a32c"
+  integrity sha512-LykVnIy2r1GReEg7/iUN8gcO6dPrOoKyabG+Nxln/L5+zt3+lEWgYOqKna1NANEO6N0GjmCnXtMytj5rAAXVNQ==
   dependencies:
     "@babel/runtime" "^7.15.3"
     "@carbon/telemetry" "^0.0.0-alpha.6"
