@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
-import { Select, SelectItem, ToggleSmall } from 'carbon-components-react';
+import { Select, SelectItem, Toggle } from 'carbon-components-react';
 import { configuration } from '../';
 import { themes } from '@carbon/themes';
 
@@ -17,7 +17,8 @@ function General({
     <>
       <div className={`${prefix}--row`}>
         <div className={`${prefix}--col-sm-2`}>
-          <ToggleSmall
+          <Toggle
+            size="sm"
             labelText="Non-carbon pages"
             className={`${prefix}--options__non-carbon`}
             id="nonCarbon"
@@ -30,7 +31,8 @@ function General({
           />
         </div>
         <div className={`${prefix}--col-sm-2`}>
-          <ToggleSmall
+          <Toggle
+            size="sm"
             labelText="Experimental features"
             className={`${prefix}--options__experimental`}
             id="experimental"
