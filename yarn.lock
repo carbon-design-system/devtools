@@ -1140,13 +1140,26 @@
     "@carbon/type" "10.16.0"
     carbon-components "10.21.0"
 
-"@carbon/ibmdotcom-utilities@1.12.0", "@carbon/ibmdotcom-utilities@^1.10.1":
+"@carbon/ibmdotcom-utilities@1.12.0":
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.12.0.tgz#c87377d3ce0071b136239c417f7ed208e293e0d9"
   integrity sha512-SU3NnnqswAFbWYUwzNxhjUQ16WCneMsY3HfeCFrmyJVPb1FGj5dS6qtYvzPS4Q+jXNSIAxadPc6jbJC9/t/9UQ==
   dependencies:
     axios "^0.19.0"
     carbon-components "10.21.0"
+    isomorphic-dompurify "0.4.0"
+    js-cookie "^2.2.1"
+    marked "1.1.0"
+    window-or-global "^1.0.1"
+
+"@carbon/ibmdotcom-utilities@^1.10.1":
+  version "1.23.3"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.23.3.tgz#b688d2326a74de4ebeb6b29b917453736011533b"
+  integrity sha512-biljr/JhhlSYtUTD2gnKVHwKG84hK5Xnf1/9vXn1HravCi9sJR+iLMZ/ZN1ZEs79gpocnxa60nNT04QtpukRzg==
+  dependencies:
+    "@carbon/telemetry" "0.0.0-alpha.6"
+    axios "^0.21.1"
+    carbon-components "10.40.2"
     isomorphic-dompurify "0.4.0"
     js-cookie "^2.2.1"
     marked "1.1.0"
@@ -3196,6 +3209,13 @@ axios@^0.19.0:
   dependencies:
     follow-redirects "1.5.10"
 
+axios@^0.21.1:
+  version "0.21.4"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
+  integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
+  dependencies:
+    follow-redirects "^1.14.0"
+
 axobject-query@^2.1.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
@@ -3781,6 +3801,16 @@ carbon-components@10.21.0:
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.21.0.tgz#3e7f79530af79039aab7bf937f0f129642806316"
   integrity sha512-IS8WPFGg74g6ZyWpJc4cDlkhqGeNZ1sJshAVTftkb7Nur9W58lSRcu6G9cRMgeL+I/YAia3Q+X4lPh/X16JsGw==
   dependencies:
+    flatpickr "4.6.1"
+    lodash.debounce "^4.0.8"
+    warning "^3.0.0"
+
+carbon-components@10.40.2:
+  version "10.40.2"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.40.2.tgz#fbb87309460513db2440bf7f539120f34e28eacd"
+  integrity sha512-uRnG6JO0riUu4pZCa8MlHwk3g17uWwEOU0RXLD7S3uFL1At2okfNPfZJddf9gTZNRqHjEB7Luu4Jecg++dEPQA==
+  dependencies:
+    "@carbon/telemetry" "0.0.0-alpha.6"
     flatpickr "4.6.1"
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
@@ -6357,6 +6387,11 @@ follow-redirects@^1.0.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
+
+follow-redirects@^1.14.0:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.3.tgz#6ada78118d8d24caee595595accdc0ac6abd022e"
+  integrity sha512-3MkHxknWMUtb23apkgz/83fDoe+y+qr0TdgacGIA7bew+QLBo3vdgEN2xEsuXNivpFy4CyDhBBZnNZOtalmenw==
 
 for-in@^1.0.2:
   version "1.0.2"
