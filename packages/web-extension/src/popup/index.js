@@ -107,7 +107,7 @@ function Popup() {
           panelState
         )}`}>
         <main className={`${prefix}--grid ${prefix}--popup__panel`}>
-          <Content initialMsg={initialMsg} panelControls={panelControls} />
+          <Content initialMsg={initialMsg} _panelControls={panelControls} />
         </main>
         <aside className={`${prefix}--popup__panel`}>
           {panelState.children}

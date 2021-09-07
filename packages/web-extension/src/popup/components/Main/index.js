@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { settings } from 'carbon-components';
+import { activeTab } from '@carbon/devtools-utilities';
 import { Accordion, AccordionItem, Toggle } from 'carbon-components-react';
-import { Inventory, Specs, Grid, Validation, ResizeBrowser } from '../';
+import { Inventory, Specs, Grid, ResizeBrowser } from '../';
 import {
   setStorage,
   getStorage,
@@ -17,7 +18,7 @@ const defaults = {
 };
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
-function Main({ initialMsg, panelControls }) {
+function Main({ initialMsg, _panelControls }) {
   const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
   const [isOpenStates, setIsOpenStates] = useState(defaults);
   const [onLoad, setOnLoad] = useState(false);
@@ -71,12 +72,7 @@ function Main({ initialMsg, panelControls }) {
           <AccordionItem
             title={'Validate page'}
             className={`${prefix}--popup-main__item ${prefix}--popup-main__validate`}
-            onHeadingClick={() =>
-              panelControls.open(
-                'validate',
-                <Validation panelControls={panelControls} />
-              )
-            }
+            onHeadingClick={() => validatePageWithBeacon()}
           />
         ))}
         {groupsList.map((groupName) =>
@@ -134,9 +130,17 @@ function Main({ initialMsg, panelControls }) {
   }
 }
 
+function validatePageWithBeacon() {
+  const beaconURL =
+    'https://beacon-for-ibm-dotcom-api.herokuapp.com/?raw=true&url=';
+  activeTab((tab) => {
+    chrome.tabs.create({ url: beaconURL + tab.url });
+  });
+}
+
 Main.propTypes = {
+  _panelControls: PropTypes.func,
   initialMsg: PropTypes.object,
-  panelControls: PropTypes.func,
 };
 
 export { Main };
