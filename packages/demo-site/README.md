@@ -23,9 +23,7 @@ to it in action.
 | :------------ | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fixed`       | `boolean` | `true` will fix whatever state you're in, and copy that over to the next page you click on. `false` will randomly generate new animations on each page you visit. |
 | `contentType` | `string`  | `grouped` will randomly add scroll animation to larger chunks of content. `individual` will do individual components. `all` will mix and match the above.         |
-| `singleType`  | `string`  | `singleType` adds a single type of scroll animation direction. If not set it will randomize the direction across different components.                            |
-
-|
+| `singleType`  | `string`  | `singleType` adds a single type of scroll animation direction. If not set it will randomize the direction across different components. |
 
 #### By selector
 
