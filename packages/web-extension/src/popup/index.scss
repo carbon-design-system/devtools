@@ -1,3 +1,5 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+
 $feature-flags: (
   enable-css-custom-properties: true,
 );
@@ -53,19 +55,19 @@ $feature-flags: (
 @include resize-browser;
 
 body {
-  color: $text-01;
   background: $ui-background;
+  color: $text-01;
 }
 
 .#{$prefix}--popup {
+  overflow: hidden;
   width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
   padding-top: carbon--mini-units(4);
-  overflow: hidden;
 
   &__header {
     position: fixed;
-    top: 0;
     z-index: 100;
+    top: 0;
     display: flex;
     width: 100%;
     padding-top: $carbon--spacing-03 - carbon--rem(1px);

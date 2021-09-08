@@ -94,9 +94,8 @@ function highlightInventoryItem(component, id, showTooltip) {
 
   if (showTooltip) {
     const idPosition = component.dataset[idselector].split(',').indexOf(id);
-    const componentName = component.dataset.componentname.split(',')[
-      idPosition
-    ];
+    const componentName =
+      component.dataset.componentname.split(',')[idPosition];
 
     showHideTooltip(true);
     positionTooltip(component);

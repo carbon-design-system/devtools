@@ -16,21 +16,21 @@ $highlight-opacity: 0.5;
 
       &::after {
         position: absolute;
+        z-index: $zindex - 1;
         top: 0;
         left: 0;
-        z-index: $zindex - 1;
         display: flex;
-        align-items: center;
-        justify-content: center;
         width: 100%;
         height: 100%;
-        color: #ffffff; /* TODO use carbon color */
-        text-align: center;
+        align-items: center;
+        justify-content: center;
         background-color: var(--highlight-color-type-background);
-        transform: translate(0, 0);
-        opacity: 1;
+        color: #ffffff; /* TODO use carbon color */
         content: attr(data-highlightcontent);
+        opacity: 1;
         pointer-events: none;
+        text-align: center;
+        transform: translate(0, 0);
 
         @include carbon--type-style('expressive-paragraph-01');
       }

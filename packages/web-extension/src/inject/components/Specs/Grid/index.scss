@@ -19,17 +19,17 @@
       @include carbon--type-style('code-01');
 
       display: inline-block;
+      padding: 0;
       margin: 0;
       margin-bottom: carbon--mini-units(0.5);
-      padding: 0;
       list-style-type: none;
 
       li {
         display: inline-block;
+        padding: 0;
         margin: 0;
         margin-right: carbon--mini-units(0.5);
         margin-bottom: carbon--mini-units(0.5);
-        padding: 0;
         border-radius: 3px;
       }
 
@@ -65,8 +65,8 @@
       }
 
       &__classlist--active {
-        color: $text-01;
         background-color: $ui-02;
+        color: $text-01;
       }
     }
 

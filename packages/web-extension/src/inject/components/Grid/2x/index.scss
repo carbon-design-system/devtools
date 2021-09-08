@@ -27,9 +27,9 @@ $grid-outer-border-opacity: $grid-border-opacity;
 
   &-2x {
     position: fixed;
+    z-index: 3;
     top: 0;
     left: 0;
-    z-index: 3;
     width: 100%;
     height: 100vh;
     transition: height $transition-in, padding $transition-fade;
@@ -142,10 +142,10 @@ $grid-outer-border-opacity: $grid-border-opacity;
     @mixin breakpoint-label--theme {
       $border-style: 1px solid $ui-03;
 
-      color: $text-01;
-      background: $ui-01;
       border-top: $border-style;
       border-left: $border-style;
+      background: $ui-01;
+      color: $text-01;
     }
 
     // breakpoint label
@@ -155,8 +155,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
       @include breakpoint-label--theme;
 
       position: fixed;
-      right: 0;
       z-index: 4;
+      right: 0;
       padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
       border-bottom: 0;
       transition: bottom $transition-in;

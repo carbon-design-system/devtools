@@ -2,12 +2,19 @@
   "name": "@carbon/devtools-demo-site",
   "version": "2.4.0",
   "private": true,
-  "description": "A static webpage with basic UI elements that can be used for testing and demoing.",
-  "main": "index.js",
-  "scripts": { },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carbon-design-system/devtools.git"
+    "url": "https://github.com/carbon-design-system/devtools"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/devtools/issues/new",
+    "email": "james.dow@us.ibm.com"
+  },
+  "homepage": "https://github.com/carbon-design-system/devtools#readme",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "keywords": [
     "IBM",
@@ -18,15 +25,66 @@
     "Demo",
     "Test"
   ],
-  "license": "Apache-2.0",
-  "author": "James Dow",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/carbon-design-system/devtools"
+  "scripts": {
+    "watch": "next dev",
+    "build": "next build && next export",
+    "start": "node server.js",
+    "clean": "rimraf dist && rimraf node_modules",
+    "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint . --ext .js",
+    "lint:css": "stylelint 'styles/*.{css,scss}' --report-needless-disables --report-invalid-scope-disables",
+    "test": "yarn format && yarn lint"
   },
-  "bugs": {
-    "url": "https://github.com/carbon-design-system/devtools/issues/new",
-    "email": "james.dow@us.ibm.com"
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@carbon/ibmdotcom-react": "^1.10.1",
+    "@carbon/ibmdotcom-styles": "^1.21.0",
+    "@carbon/ibmdotcom-web-components": "^1.6.0",
+    "@carbon/icons-react": "^10.37.0",
+    "@carbon/pictograms-react": "^10.9.0",
+    "@zeit/next-sass": "^1.0.1",
+    "autoprefixer": "9.8.6",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.12.0",
+    "eslint-config-carbon": "^2.1.0",
+    "express": "^4.17.1",
+    "fast-sass-loader": "1.5.0",
+    "lit-element": "^2.5.1",
+    "lorem-ipsum": "^2.0.3",
+    "next": "10.2.0",
+    "next-compose-plugins": "^2.2.0",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.1.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rtlcss": "^2.6.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-carbon": "^1.2.0",
+    "webpack": "^4.43.0"
   },
-  "homepage": "https://github.com/carbon-design-system/devtools#readme"
+  "resolutions": {
+    "dot-prop": ">=5.1.1",
+    "node-fetch": ">=2.6.1",
+    "object-path": ">=0.11.5",
+    "serialize-javascript": ">= 3.1.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "carbon"
+    ],
+    "globals": {
+      "chrome": "readonly"
+    }
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-carbon"
+    ],
+    "rules": {
+      "max-nesting-depth": 3
+    }
+  }
 }

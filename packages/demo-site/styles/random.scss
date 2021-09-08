@@ -1,0 +1,380 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+
+/* elements */
+$feature-flags: (
+  enable-css-custom-properties: true,
+);
+
+// @import "~@carbon/type/scss/font-face/sans";
+@import '~@carbon/layout/scss/_breakpoint.scss';
+@import '~@carbon/type/scss/styles';
+@import '~@carbon/grid/scss/mixins';
+@import '~@carbon/themes/scss/themes';
+
+:root {
+  @include carbon--theme(
+    $theme: $carbon--theme--white,
+    $emit-custom-properties: true
+  );
+}
+
+/* low level */
+@import '~@carbon/ibmdotcom-styles/scss/components/layout/layout';
+@import '~@carbon/ibmdotcom-styles/scss/internal/content-block/content-block';
+@import '~@carbon/ibmdotcom-styles/scss/internal/content-group/content-group';
+@import '~@carbon/ibmdotcom-styles/scss/internal/content-item/content-item';
+@import '~@carbon/ibmdotcom-styles/scss/internal/content-section/content-section';
+@import '~@carbon/ibmdotcom-styles/scss/components/card/index';
+
+/* cta */
+@import '~@carbon/ibmdotcom-styles/scss/components/buttongroup/buttongroup';
+@import '~@carbon/ibmdotcom-styles/scss/components/card-link/card-link';
+@import '~@carbon/ibmdotcom-styles/scss/components/feature-card/feature-card';
+@import '~@carbon/ibmdotcom-styles/scss/components/link-with-icon/link-with-icon';
+
+/* other components */
+@import '~@carbon/ibmdotcom-styles/scss/components/image/image';
+@import '~@carbon/ibmdotcom-styles/scss/components/image-with-caption/image-with-caption';
+@import '~@carbon/ibmdotcom-styles/scss/components/lightbox-media-viewer/lightbox-media-viewer';
+@import '~@carbon/ibmdotcom-styles/scss/components/tableofcontents/tableofcontents';
+@import '~@carbon/ibmdotcom-styles/scss/components/leadspace/leadspace';
+@import '~@carbon/ibmdotcom-styles/scss/components/card-group/card-group';
+@import '~@carbon/ibmdotcom-styles/scss/components/pictogram-item/pictogram-item';
+@import '~@carbon/ibmdotcom-styles/scss/components/link-list/link-list';
+@import '~@carbon/ibmdotcom-styles/scss/components/leadspace-block/leadspace-block';
+
+/* animations */
+@import '~@carbon/ibmdotcom-styles/scss/components/scroll-into-view/_scroll-into-view.scss';
+
+/* overrides */
+
+.random [data-autoid='dds--card-group'] {
+  .bx--card {
+    margin: 0;
+  }
+}
+
+.random .bx--content-block__children {
+  margin-top: 64px;
+  margin-bottom: 64px;
+
+  > [data-autoid='dds--card-group'] {
+    @include carbon--breakpoint('lg') {
+      margin-right: calc(-1 * 50% - 2rem);
+    }
+  }
+}
+
+// delay for 2 cards
+.random .bx--content-group__children > [data-autoid='dds--card-group'] {
+  @include carbon--breakpoint('lg') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bx--card-group__cards__col {
+    @include carbon--breakpoint('md') {
+      &:nth-child(2n + 1) {
+        transition-delay: 0;
+      }
+
+      &:nth-child(2n + 2) {
+        transition-delay: 0.1s;
+      }
+    }
+  }
+}
+
+// delay for 3 cards
+.random .bx--content-section .bx--content-section__children,
+.random .bx--content-block .bx--content-block__children {
+  @include carbon--breakpoint('md') {
+    .bx--card-group__cards__col {
+      &:nth-child(3n + 1) {
+        transition-delay: 0;
+      }
+
+      &:nth-child(3n + 2) {
+        transition-delay: 0.1s;
+      }
+
+      &:nth-child(3n + 3) {
+        transition-delay: 0.2s;
+      }
+    }
+  }
+}
+
+.random {
+  &--white {
+    @include carbon--theme(
+      $theme: $carbon--theme--white,
+      $emit-custom-properties: true
+    );
+  }
+
+  &--g10 {
+    @include carbon--theme(
+      $theme: $carbon--theme--g10,
+      $emit-custom-properties: true
+    );
+  }
+
+  &--g90 {
+    @include carbon--theme(
+      $theme: $carbon--theme--g90,
+      $emit-custom-properties: true
+    );
+  }
+
+  &--g100 {
+    @include carbon--theme(
+      $theme: $carbon--theme--g100,
+      $emit-custom-properties: true
+    );
+  }
+
+  .bx--content-block.bx--content-block {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 32px;
+    margin-bottom: 64px;
+
+    @include carbon--breakpoint('md') {
+      margin-bottom: 96px;
+    }
+
+    @include carbon--breakpoint('lg') {
+      margin-top: 64px;
+      margin-bottom: 160px;
+    }
+  }
+
+  .bx--content-block__heading {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  .bx--content-section section:first-child {
+    .bx--leadspace-block__title,
+    .bx--content-block,
+    .bx--content-block__heading {
+      padding-top: 0;
+      margin-top: 16px;
+    }
+  }
+
+  .bx--content-section section:last-child {
+    .bx--content-block {
+      margin-bottom: 0;
+    }
+
+    .bx--layout--border {
+      border-bottom: 0;
+    }
+  }
+
+  .bx--content-block__copy {
+    margin-top: 32px;
+    margin-bottom: 32px;
+
+    @include carbon--breakpoint('md') {
+      margin-bottom: 64px;
+    }
+
+    @include carbon--breakpoint('lg') {
+      margin-bottom: 96px;
+    }
+  }
+
+  .bx--leadspace-block {
+    .bx--content-block.bx--content-block {
+      &,
+      .bx--content-block__heading {
+        margin-top: 16px;
+      }
+    }
+
+    hr {
+      display: none;
+    }
+  }
+
+  .bx--layout--border.bx--layout--border {
+    padding: 0;
+  }
+
+  .bx--content-group.bx--content-group {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 32px;
+    margin-bottom: 32px;
+
+    @include carbon--breakpoint('md') {
+      margin-bottom: 48px;
+    }
+
+    .bx--content-group__title {
+      color: $text-01;
+    }
+
+    .bx--content-group__copy {
+      margin-top: 32px;
+      margin-bottom: 32px;
+      color: $text-01;
+    }
+
+    .bx--content-group__cta {
+      margin-bottom: 64px;
+    }
+  }
+
+  .bx--content-item.bx--content-item {
+    .bx--content-item__cta {
+      margin-bottom: 48px;
+    }
+  }
+
+  .bx--link-with-icon.bx--link-with-icon {
+    @include carbon--type-style('body-long-02');
+  }
+
+  .bx--link-list:first-of-type {
+    padding-top: 0;
+  }
+
+  .bx--content-section__heading {
+    color: $text-01;
+  }
+
+  .bx--pictogram-item__pictogram {
+    color: $text-01;
+    fill: currentColor;
+  }
+}
+
+.bx--leadspace {
+  & &--g100.bx--leadspace__section {
+    @include carbon--theme($carbon--theme--g100) {
+      background: $ui-background;
+    }
+  }
+
+  & &--g90.bx--leadspace__section {
+    @include carbon--theme($carbon--theme--g90) {
+      background: $ui-background;
+    }
+  }
+
+  & &--g10.bx--leadspace__section {
+    @include carbon--theme($carbon--theme--g10) {
+      background: $ui-background;
+    }
+  }
+
+  & &--white.bx--leadspace__section {
+    @include carbon--theme($carbon--theme--white) {
+      background: $ui-background;
+    }
+  }
+}
+
+.bx--buttongroup-item {
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      transition-delay: 0.1 * $i + s;
+    }
+  }
+}
+
+.random .bx--leadspace {
+  // fixing lead space full bleed option
+  &__section {
+    position: relative;
+    max-width: initial;
+
+    body:not(.random--bleed) & {
+      @include carbon--make-container();
+    }
+  }
+
+  &__container.bx--leadspace__container {
+    @include carbon--make-container();
+
+    position: static;
+
+    body:not(.random--bleed) & {
+      @include carbon--make-row();
+
+      width: initial;
+      max-width: initial;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  &__overlay.bx--leadspace__overlay {
+    @include carbon--make-row();
+
+    position: static;
+    width: initial;
+    padding-right: 0;
+    padding-left: 0;
+
+    body:not(.random--bleed) & {
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  // &__gradient {
+  //   z-index: 1;
+  // }
+
+  &--content__container.bx--leadspace--content__container {
+    @include carbon--make-col-ready();
+  }
+
+  &--centered
+    .bx--leadspace--content__container.bx--leadspace--content__container {
+    @include carbon--breakpoint('lg') {
+      @include carbon--make-col-offset(4, 16);
+    }
+  }
+
+  .bx--image picture {
+    max-width: initial;
+  }
+
+  .bx--buttongroup-item {
+    z-index: 1;
+  }
+}
+
+.random--bleed .bx--dotcom-shell__content {
+  max-width: initial;
+}
+
+/* custom */
+.bx--pictogram-item .bx--content-item {
+  transition-delay: 0.1s;
+}
+
+aside.bx--layout-1-3 > * {
+  @include carbon--breakpoint('lg') {
+    padding-top: 0;
+    padding-left: calc(25% + 0.5rem);
+    margin-top: 64px;
+  }
+}
+
+.random--themed-section {
+  &:last-child {
+    @include carbon--theme(
+      $theme: $carbon--theme--g10,
+      $emit-custom-properties: true
+    );
+  }
+
+  background: $ui-background;
+}

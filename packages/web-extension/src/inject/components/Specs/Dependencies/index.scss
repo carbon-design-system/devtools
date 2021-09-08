@@ -28,15 +28,15 @@
 
     &__list {
       display: inline-block;
-      margin: 0;
       padding: 0;
+      margin: 0;
       list-style-type: none;
 
       &-item {
         display: inline-block;
+        padding: 0 carbon--mini-units(1);
         margin-right: $carbon--grid-gutter--condensed * 2;
         margin-bottom: $carbon--grid-gutter--condensed * 2;
-        padding: 0 carbon--mini-units(1);
         border-radius: 3px;
       }
 
@@ -58,8 +58,8 @@
 
       &__list--unorder,
       &__list-item {
-        color: $text-01;
         background-color: $ui-02;
+        color: $text-01;
       }
     }
 
