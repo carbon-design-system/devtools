@@ -29,8 +29,8 @@
       &-count {
         @include carbon--type-style('helper-text-01');
 
-        float: right;
         color: $text-02;
+        float: right;
       }
 
       .#{$prefix}--accordion__heading {
@@ -45,19 +45,19 @@
     }
 
     &__sub-item {
+      padding: $carbon--grid-gutter / 2;
       margin-right: -($carbon--grid-gutter / 2);
       margin-bottom: $carbon--grid-gutter--condensed;
       margin-left: -($carbon--grid-gutter / 2);
-      padding: $carbon--grid-gutter / 2;
 
       &__name {
         @include carbon--type-style('code-01');
 
-        margin-bottom: carbon--mini-units(3);
         padding-top: carbon--mini-units(1);
         padding-bottom: carbon--mini-units(1);
         padding-left: carbon--mini-units(2);
         border-left: 3px solid $ui-03;
+        margin-bottom: carbon--mini-units(3);
 
         &__tag {
           color: $text-04;
@@ -103,8 +103,8 @@
         > span {
           display: block;
           overflow: hidden;
-          white-space: nowrap;
           text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         &::before {

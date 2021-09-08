@@ -8,16 +8,16 @@ $grid-border-opacity: 1;
 
 .#{$prefix}--devtools {
   position: absolute;
+  z-index: $zindex;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: $zindex;
   width: auto;
   height: auto;
   opacity: 1;
-  transition: opacity $transition-fade;
   pointer-events: none;
+  transition: opacity $transition-fade;
 
   * {
     box-sizing: border-box;

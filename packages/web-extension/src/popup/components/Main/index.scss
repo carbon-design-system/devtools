@@ -35,9 +35,9 @@
         &__arrow {
           $size: carbon--rem(20px);
 
-          flex: 0 0 $size;
           width: $size;
           height: $size;
+          flex: 0 0 $size;
         }
       }
     }
@@ -62,17 +62,17 @@
     &__info {
       position: absolute;
       top: 4px;
+      padding: 0;
+      border: 0;
       margin: 0;
       margin-left: carbon--mini-units(1);
-      padding: 0;
-      color: $text-01;
       background: transparent;
-      border: 0;
-      outline: none;
-      visibility: hidden;
+      color: $text-01;
       cursor: pointer;
       opacity: 0;
+      outline: none;
       transition: all $duration--fast-02 carbon--motion(standard, productive);
+      visibility: hidden;
 
       &:focus {
         box-shadow: 0 0 0 1px $focus;
@@ -84,8 +84,8 @@
       }
 
       .#{$prefix}--checkbox-wrapper:hover & {
-        visibility: visible;
         opacity: 1;
+        visibility: visible;
       }
     }
 
@@ -93,11 +93,11 @@
       $border-width: carbon--rem(2px);
 
       position: relative;
-      margin-top: $carbon--spacing-06;
-      margin-bottom: $carbon--spacing-09;
       padding-top: $carbon--spacing-03 + $border-width;
       padding-right: $carbon--grid-gutter / 2;
       padding-left: $carbon--grid-gutter / 2;
+      margin-top: $carbon--spacing-06;
+      margin-bottom: $carbon--spacing-09;
 
       &:last-child {
         margin-bottom: $carbon--spacing-06;
@@ -134,8 +134,8 @@
     }
 
     &__toggle {
-      float: left;
       margin-top: 4px;
+      float: left;
 
       .#{$prefix}--toggle {
         &__switch {

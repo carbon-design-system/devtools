@@ -8,13 +8,13 @@
   display: block;
   min-width: initial;
   max-width: 100vw;
-  margin-top: 0;
   padding: carbon--mini-units(1);
+  margin-top: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2),
     inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-  visibility: hidden;
   opacity: 0;
   transition: opacity $transition-fade, visibility $transition-fade;
+  visibility: hidden;
 
   &[data-floating-menu-direction='top'] {
     margin-top: -1 * carbon--mini-units(1);
@@ -26,8 +26,8 @@
   }
 
   &--shown {
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
   }
 
   &--primary {
@@ -47,9 +47,9 @@
     &__title {
       @include carbon--type-style('productive-heading-01');
 
-      float: left;
       margin-right: 8px;
       margin-bottom: carbon--mini-units(1);
+      float: left;
     }
 
     &__group {
@@ -71,16 +71,16 @@
       }
 
       ul {
-        clear: both;
-        margin: 0;
         padding: 0;
+        margin: 0;
+        clear: both;
         list-style-type: none;
       }
 
       li {
         display: flex;
-        margin: 0;
         padding: 0;
+        margin: 0;
       }
 
       li::before {
@@ -110,17 +110,17 @@
       @include carbon--type-style('helper-text-01');
       $yellow: map-get(map-get($carbon--colors, 'yellow'), 30);
 
-      margin-bottom: carbon--mini-units(1);
       padding-left: carbon--mini-units(1);
-      font-weight: 500;
       border-left: 3px solid $yellow;
+      margin-bottom: carbon--mini-units(1);
+      font-weight: 500;
     }
   }
 
   // tooltip theme
   @mixin tooltip--theme {
-    color: $text-01;
     background: $ui-01;
+    color: $text-01;
 
     .#{$prefix}--tooltip__caret {
       border-bottom-color: $ui-01;
@@ -132,14 +132,14 @@
 
     &-specs {
       &__group {
-        background-color: $ui-background;
         border-right: $carbon--grid-gutter--condensed solid $ui-01;
         border-bottom: $carbon--grid-gutter--condensed solid $ui-01;
+        background-color: $ui-background;
       }
 
       &__warning {
-        color: $text-01;
         background-color: $ui-01;
+        color: $text-01;
       }
 
       &__title,
