@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "watch": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "node server.js",
     "clean": "rimraf dist && rimraf node_modules",
     "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
