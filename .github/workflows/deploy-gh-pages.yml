@@ -15,8 +15,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: Change directory
-        run: cd ./packages/demo-site
       - name: Install dependencies
         env:
           SASS_PATH: node_modules:src
@@ -27,7 +25,7 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v2.5.0
         with:
           # Build directory to deploy
-          build_dir: ./out
+          build_dir: ./packages/demo-site/out
           jekyll: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
