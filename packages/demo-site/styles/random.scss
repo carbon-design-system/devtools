@@ -1,5 +1,6 @@
-/* elements */
 /* stylelint-disable no-invalid-position-at-import-rule */
+
+/* elements */
 $feature-flags: (
   enable-css-custom-properties: true,
 );
@@ -44,8 +45,6 @@ $feature-flags: (
 
 /* animations */
 @import '~@carbon/ibmdotcom-styles/scss/components/scroll-into-view/_scroll-into-view.scss';
-
-/* stylelint-enable */
 
 /* overrides */
 
