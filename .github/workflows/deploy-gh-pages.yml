@@ -1,0 +1,33 @@
+name: Deploy demo site to gh-pages
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Change directory
+        run: cd ./packages/demo-site
+      - name: Install dependencies
+        run: yarn install
+      - name: Set .env vars
+        env:
+          SASS_PATH: node_modules:src
+      - name: Build project
+        run: yarn build
+      - name: GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2.5.0
+        with:
+          # Build directory to deploy
+          build_dir: ./out
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
