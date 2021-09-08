@@ -16,9 +16,8 @@ const defaults = {
 };
 
 function GridMiniUnitOptions({ disabled }) {
-  const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] = useState(
-    defaults
-  );
+  const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] =
+    useState(defaults);
   const [onLoad, setOnLoad] = useState(false);
 
   useEffect(() => {
