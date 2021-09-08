@@ -18,10 +18,9 @@ jobs:
       - name: Change directory
         run: cd ./packages/demo-site
       - name: Install dependencies
-        run: yarn install
-      - name: Set .env vars
         env:
           SASS_PATH: node_modules:src
+        run: yarn install
       - name: Build project
         run: yarn build
       - name: GitHub Pages
