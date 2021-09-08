@@ -1,9 +1,10 @@
 name: Deploy demo site to gh-pages
+
 on:
-  workflow_dispatch:
   push:
-    branches:
-    - base
+    branches: [ base ]
+  pull_request:
+    branches: [ base ]
 
 jobs:
   update:
