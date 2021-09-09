@@ -11,12 +11,12 @@ https://carbon-design-system.github.io/devtools/
 generate a random page built with Carbon for IBM.com components. Each refresh
 will generate a new page with dummy content.
 
-### [Scroll animation configurations](https://photodow.github.io/random-ibm?card=true&cardDelay=0&cardRepeat=false&copy=true&copyRepeat=false&cta=true&ctaDelay=0&ctaRepeat=false&full-bleed=true&heading=true&headingRepeat=false&mediaWithCaption=true&mediaWithCaptionRepeat=false&pictogram=true&pictogramRepeat=false&singleType=slide-up)
+### [Scroll animation configurations](https://carbon-design-system.github.io/devtools?card=true&cardDelay=0&cardRepeat=false&copy=true&copyRepeat=false&cta=true&ctaDelay=0&ctaRepeat=false&full-bleed=true&heading=true&headingRepeat=false&mediaWithCaption=true&mediaWithCaptionRepeat=false&pictogram=true&pictogramRepeat=false&singleType=slide-up)
 
 There is also an additional option to add random or fixed scroll animations
 across the random page generator. These animations can be configured below, or
 you can
-[click here](https://photodow.github.io/random-ibm?card=true&cardDelay=0&cardRepeat=false&copy=true&copyRepeat=false&cta=true&ctaDelay=0&ctaRepeat=false&full-bleed=true&heading=true&headingRepeat=false&mediaWithCaption=true&mediaWithCaptionRepeat=false&pictogram=true&pictogramRepeat=false&singleType=slide-up)
+[click here](https://carbon-design-system.github.io/devtools?card=true&cardDelay=0&cardRepeat=false&copy=true&copyRepeat=false&cta=true&ctaDelay=0&ctaRepeat=false&full-bleed=true&heading=true&headingRepeat=false&mediaWithCaption=true&mediaWithCaptionRepeat=false&pictogram=true&pictogramRepeat=false&singleType=slide-up)
 to it in action.
 
 | name          | type      | description                                                                                                                                                       |
@@ -57,5 +57,5 @@ selectorRepeat=false (whether it repeats the animation every time it comes into 
 ###### Example in use
 
 ```
-https://photodow.github.io/random-ibm?card=true&cardDelay=0&cardRepeat=false&copy=true&copyRepeat=false&cta=true&ctaDelay=0&ctaRepeat=false&full-bleed=true&heading=true&headingRepeat=false&mediaWithCaption=true&mediaWithCaptionRepeat=false&pictogram=true&pictogramRepeat=false&singleType=slide-up
+https://carbon-design-system.github.io/devtools?card=true&cardDelay=0&cardRepeat=false&copy=true&copyRepeat=false&cta=true&ctaDelay=0&ctaRepeat=false&full-bleed=true&heading=true&headingRepeat=false&mediaWithCaption=true&mediaWithCaptionRepeat=false&pictogram=true&pictogramRepeat=false&singleType=slide-up
 ```
