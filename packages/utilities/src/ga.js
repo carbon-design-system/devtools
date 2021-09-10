@@ -47,10 +47,7 @@ function sendGaResponse(data) {
         data.cd4 = String(generalExperimental); // boolean experimental
         data.cd5 = String(generalNonCarbon); // boolean ignore validation
         data.cd6 = generalTheme; // theme
-        data.cd8 = isIBMer; // IBMer
-
-        console.log(data.cd8);
-        // ddo
+        data.cd8 = isIBMer; // IBMer from ddo
 
         if (tab) {
           if (tab.width && tab.height) {
@@ -102,10 +99,8 @@ function getClientId(callback) {
 function setIBMer(ddoValue = 0) {
   getStorage(['isIBMer'], ({ isIBMer }) => {
     // string: 'true', 'false', 'unknown'
-    console.log('currentValue', isIBMer);
     if (isIBMer !== 'true') {
       // don't run if we already know its an ibmer
-      console.log('need to set value, ddoValue');
       switch (
         ddoValue // set value from ddo object
       ) {

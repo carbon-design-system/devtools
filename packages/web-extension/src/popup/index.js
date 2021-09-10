@@ -56,7 +56,7 @@ function Popup() {
 
     getMessage((msg) => {
       const msgKeys = Object.keys(msg);
-      console.log(msg);
+
       if (
         msg.digitalData &&
         msg.digitalData.user &&
