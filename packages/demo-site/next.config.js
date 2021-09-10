@@ -3,8 +3,10 @@ const path = require('path');
 const withSass = require('@zeit/next-sass');
 const rtlcss = require('rtlcss');
 
+const assetPrefix = process.env.ASSET_PREFIX || '/devtools/';
+
 module.exports = withSass({
-  assetPrefix: process.env.ASSET_PREFIX || '/devtools/',
+  assetPrefix: assetPrefix,
   basePath: process.env.BASE_PATH || '',
   env: {
     ALTLANG_ROOT_PATH: process.env.ALTLANG_ROOT_PATH || '/',
@@ -12,6 +14,9 @@ module.exports = withSass({
     KALTURA_UICONF_ID: process.env.KALTURA_UICONF_ID || '27941801',
     DDS_CALLOUT_DATA: process.env.DDS_CALLOUT_DATA || 'false',
     ENABLE_RTL: process.env.ENABLE_RTL || 'false',
+  },
+  publicRuntimeConfig: {
+    _assetPrefix: assetPrefix,
   },
   sassLoaderOptions: {
     sassOptions: {
