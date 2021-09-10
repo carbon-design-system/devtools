@@ -82,14 +82,10 @@ body {
     align-items: center;
   }
 
-  &--experimental {
-    padding-top: carbon--mini-units(6) + carbon--rem(5px);
-  }
-
   &__experimental-tag {
-    width: 80px;
     min-height: initial;
     padding: 0;
+    margin-left: carbon--mini-units(1);
     font-size: 10px;
   }
 

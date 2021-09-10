@@ -96,17 +96,19 @@ function Popup() {
         () => `${prefix}--popup--experimental`
       )}`}>
       <header className={`${prefix}--popup__header`}>
-        <div className={`${prefix}--col-sm-2`}>
-          <h1 className={`${prefix}--popup__heading`}>Carbon Devtools</h1>
-          {experimentalFlag(() => (
-            <Tag
-              type="magenta"
-              className={`${prefix}--popup__experimental-tag`}>
-              Experimental
-            </Tag>
-          ))}
+        <div className={`${prefix}--col-sm-3`}>
+          <h1 className={`${prefix}--popup__heading`}>
+            Carbon Devtools
+            {experimentalFlag(() => (
+              <Tag
+                type="magenta"
+                className={`${prefix}--popup__experimental-tag`}>
+                Exp
+              </Tag>
+            ))}
+          </h1>
         </div>
-        <div className={`${prefix}--col-sm-2`}>
+        <div className={`${prefix}--col-sm-1`}>
           <MoreOptions />
         </div>
       </header>
