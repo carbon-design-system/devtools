@@ -45,7 +45,7 @@ export default class CarbonForIBMDotcom extends App {
     return (
       <>
         <Head>
-          <link rel="icon" href="//www.ibm.com/favicon.ico" />
+          <link rel="icon" href="/favicon.png" />
 
           <meta name="ibmdotcom.version.react" content={reactVersion} />
           <meta name="ibmdotcom.version.styles" content={stylesVersion} />
