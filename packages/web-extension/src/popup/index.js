@@ -11,6 +11,7 @@ import {
   gaDomEvent,
   gaNavigationEvent,
   gaException,
+  setIBMer,
 } from '@carbon/devtools-utilities';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
@@ -55,6 +56,16 @@ function Popup() {
 
     getMessage((msg) => {
       const msgKeys = Object.keys(msg);
+      console.log(msg);
+      if (
+        msg.digitalData &&
+        msg.digitalData.user &&
+        msg.digitalData.user.segment
+      ) {
+        setIBMer(msg.digitalData.user.segment.isIBMer);
+      } else {
+        setIBMer(3); // unknown, but probably not
+      }
 
       if (msgKeys.indexOf('runningCarbon') > -1) {
         carbonStatus = true;
