@@ -2,6 +2,7 @@
 import '../styles/random.scss';
 import * as icons from '@carbon/icons-react';
 import * as pictograms from '@carbon/pictograms-react';
+import Head from 'next/head';
 import {
   Card,
   CardGroup,
@@ -142,6 +143,9 @@ const Random = () => {
 
     setContent(
       <div className="random">
+        <Head>
+          <title key="title">Carbon devtools: Random page generator</title>
+        </Head>
         <style>
           {selectorKeys.map((selector) => {
             if (searchParams.get(selector)) {

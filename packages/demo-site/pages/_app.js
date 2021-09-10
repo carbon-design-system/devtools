@@ -45,6 +45,8 @@ export default class CarbonForIBMDotcom extends App {
     return (
       <>
         <Head>
+          <title key="title">Carbon devtools: Playground</title>
+
           <link rel="icon" href="/favicon.png" />
 
           <meta name="ibmdotcom.version.react" content={reactVersion} />
