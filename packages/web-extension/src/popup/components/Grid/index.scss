@@ -1,9 +1,12 @@
 @mixin grid {
   .#{$prefix}--number {
-    margin-top: $carbon--spacing-03;
+    &.#{$prefix}--number--sm {
+      margin-top: $carbon--spacing-03;
 
-    input[type='number'] {
-      min-width: initial;
+      input[type='number'] {
+        min-width: initial;
+        padding-right: 0;
+      }
     }
   }
 }
