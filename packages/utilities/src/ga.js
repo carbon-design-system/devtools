@@ -199,6 +199,15 @@ function gaNavigationEvent(action, label, value, moreData) {
   gaEvent('navigation', action, label, value, moreData);
 }
 
+function gaSearchEvent(action, label, value, moreData) {
+  // category: search
+  // action: type | clear
+  // label: component-list
+  // value: open (1) | close (0)
+
+  gaEvent('search', action, label, value, moreData);
+}
+
 function gaConfigurationEvent(action, label, value, moreData) {
   // ---
   // category: configuration
@@ -258,4 +267,5 @@ export {
   gaNavigationEvent,
   gaConfigurationEvent,
   gaDomEvent,
+  gaSearchEvent,
 };

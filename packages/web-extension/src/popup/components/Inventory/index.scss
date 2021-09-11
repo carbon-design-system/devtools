@@ -1,23 +1,71 @@
 @mixin inventory {
   .#{$prefix}--inventory {
-    width: initial;
-    margin-right: -($carbon--grid-gutter / 2);
+    &,
+    &__search {
+      width: initial;
+      margin-right: -($carbon--grid-gutter / 2);
+    }
 
-    &__info {
+    &__meta {
+      justify-content: flex-end;
       margin-bottom: carbon--mini-units(2);
-      text-align: center;
 
-      &-title {
-        // font-weight: bold;
+      &--none {
+        justify-content: flex-start;
+      }
+
+      .#{$prefix}--inventory__meta-item {
+        $transition-values: $moderate-01
+          carbon--motion('standard', 'productive');
+
+        transition: max-width $transition-values $moderate-02,
+          flex $transition-values $moderate-02;
+
+        sub {
+          @include carbon--type-style('body-short-01');
+
+          position: absolute;
+          // to align with bottom of value text
+          bottom: 5px;
+          margin-left: carbon--mini-units(2);
+          opacity: 0;
+          transition: opacity $transition-values, visibility $transition-values,
+            margin-left $transition-values;
+          visibility: hidden;
+        }
+
+        &--active {
+          max-width: 50%;
+          flex: 0 0 50%;
+          transition: max-width $transition-values, flex $transition-values;
+        }
+
+        &--active sub {
+          margin-left: carbon--mini-units(0.5);
+          opacity: 1;
+          transition: opacity $transition-values $fast-02,
+            visibility $transition-values $fast-02,
+            margin-left $transition-values $fast-02;
+          visibility: visible;
+        }
+      }
+
+      &__title {
         color: $text-02;
         @include carbon--type-style('helper-text-01');
       }
 
-      &-value {
+      &__value {
+        position: relative;
         color: $text-01;
         font-weight: bold;
         @include carbon--type-style('productive-heading-05');
       }
+    }
+
+    &__empty {
+      margin-top: carbon--mini-units(2);
+      margin-bottom: carbon--mini-units(2);
     }
 
     &__item {
@@ -124,6 +172,16 @@
 
         color: $text-03;
         text-align: right;
+      }
+    }
+
+    &__search {
+      .#{$prefix}--search-close {
+        width: carbon--mini-units(6.5);
+      }
+
+      .#{$prefix}--search-input {
+        padding-left: carbon--mini-units(5);
       }
     }
   }
