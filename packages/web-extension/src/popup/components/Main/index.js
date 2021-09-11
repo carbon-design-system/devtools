@@ -134,6 +134,7 @@ function validatePageWithBeacon() {
     'https://beacon-for-ibm-dotcom-api.herokuapp.com/?raw=true&url=';
   activeTab((tab) => {
     chrome.tabs.create({ url: beaconURL + tab.url });
+    gaNavigationEvent('click', 'beacon', 1);
   });
 }
 
