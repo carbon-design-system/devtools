@@ -12,7 +12,7 @@ import {
 // {
 //  'COMPONENT_SELECTOR': 'COMPONENT_NAME'
 // }
-
+console.log(carbonPrefix);
 const carbonComponents = {};
 carbonComponents[`.${carbonPrefix}--accordion`] = 'Accordion';
 carbonComponents[`.${carbonPrefix}--accordion__item`] = 'AccordionItem';
