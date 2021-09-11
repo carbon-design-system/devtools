@@ -30,8 +30,6 @@ const prefixSelectors = [
   ''
 );
 
-console.log(prefixSelectors);
-
 export {
   prefixSelectors,
   carbonPrefix,
