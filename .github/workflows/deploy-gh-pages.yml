@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: "12.x"
       - name: Install dependencies
-        env:
-          SASS_PATH: node_modules:src
         run: yarn install
       - name: Build project
         run: yarn build
