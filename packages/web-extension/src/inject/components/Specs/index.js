@@ -37,10 +37,13 @@ function initSpecs() {
   storageItemChanged('toggleSpecs', (toggleSpecs) =>
     manageSpecsState('specType', toggleSpecs)
   );
+  storageItemChanged('generalExperimental', () => manageSpecs(state));
 }
 
 function manageSpecsState(type, value) {
   if (state[type] !== value) {
+    // if the current state value doesn't match the new value that means
+    // something changed and we need to update the ui using manageSpecs().
     state[type] = value;
     manageSpecs(state);
   }

@@ -12,7 +12,6 @@ import {
 // {
 //  'COMPONENT_SELECTOR': 'COMPONENT_NAME'
 // }
-
 const carbonComponents = {};
 carbonComponents[`.${carbonPrefix}--accordion`] = 'Accordion';
 carbonComponents[`.${carbonPrefix}--accordion__item`] = 'AccordionItem';
@@ -265,6 +264,7 @@ const allComponents = {
 export {
   allComponents,
   carbonComponents,
+  cloudCognitiveComponents,
   ibmdotcomComponents,
   securityComponents,
   cloudPalComponents,

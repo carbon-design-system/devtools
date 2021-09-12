@@ -28,10 +28,9 @@ function Main({ initialMsg, _panelControls }) {
        for some reason imports come back undefined outside of Main()
        Need a better way to loop through and name panels/groups from line 4 */
   const groups = {};
-  experimentalFlag(() => {
-    groups['Component list'] = Inventory;
-    groups['Specs'] = Specs;
-  });
+  // experimentalFlag(() => {  });
+  groups['Component list'] = Inventory;
+  groups['Specs'] = Specs;
   groups['Grid overlay'] = Grid;
 
   const groupsList = Object.keys(groups);
@@ -135,6 +134,7 @@ function validatePageWithBeacon() {
     'https://beacon-for-ibm-dotcom-api.herokuapp.com/?raw=true&url=';
   activeTab((tab) => {
     chrome.tabs.create({ url: beaconURL + tab.url });
+    gaNavigationEvent('click', 'beacon', 1);
   });
 }
 

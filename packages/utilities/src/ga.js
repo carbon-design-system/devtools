@@ -19,12 +19,14 @@ function sendGaResponse(data) {
     getStorage(
       [
         'clientId',
+        'isIBMer',
         'gridVersion',
         'generalTheme',
         'generalExperimental',
         'generalNonCarbon',
       ],
       ({
+        isIBMer = 'unknown',
         clientId = 5555,
         gridVersion = 'carbon-v10',
         generalTheme = 'g90',
@@ -45,6 +47,7 @@ function sendGaResponse(data) {
         data.cd4 = String(generalExperimental); // boolean experimental
         data.cd5 = String(generalNonCarbon); // boolean ignore validation
         data.cd6 = generalTheme; // theme
+        data.cd8 = isIBMer; // IBMer from ddo
 
         if (tab) {
           if (tab.width && tab.height) {
@@ -91,6 +94,27 @@ function setClientId(callback) {
 
 function getClientId(callback) {
   setClientId(callback);
+}
+
+function setIBMer(ddoValue = 0) {
+  getStorage(['isIBMer'], ({ isIBMer }) => {
+    // string: 'true', 'false', 'unknown'
+    if (isIBMer !== 'true') {
+      // don't run if we already know its an ibmer
+      switch (
+        ddoValue // set value from ddo object
+      ) {
+        case 0:
+          setStorage({ isIBMer: 'false' });
+          break;
+        case 1:
+          setStorage({ isIBMer: 'true' });
+          break;
+        default:
+          setStorage({ isIBMer: 'unknown' });
+      }
+    }
+  });
 }
 
 function buildGaResponse(data) {
@@ -175,6 +199,15 @@ function gaNavigationEvent(action, label, value, moreData) {
   gaEvent('navigation', action, label, value, moreData);
 }
 
+function gaSearchEvent(action, label, value, moreData) {
+  // category: search
+  // action: type | clear
+  // label: component-list
+  // value: open (1) | close (0)
+
+  gaEvent('search', action, label, value, moreData);
+}
+
 function gaConfigurationEvent(action, label, value, moreData) {
   // ---
   // category: configuration
@@ -226,6 +259,7 @@ export {
   setVersion,
   setClientId,
   getClientId,
+  setIBMer,
   gaPageview,
   gaEvent,
   gaException,
@@ -233,4 +267,5 @@ export {
   gaNavigationEvent,
   gaConfigurationEvent,
   gaDomEvent,
+  gaSearchEvent,
 };

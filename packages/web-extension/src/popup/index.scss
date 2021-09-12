@@ -35,6 +35,7 @@ $feature-flags: (
 @import '~carbon-components/scss/components/tile/tile';
 @import '~carbon-components/scss/components/content-switcher/content-switcher';
 @import '~carbon-components/scss/components/button/button';
+@import '~carbon-components/scss/components/search/search';
 
 @import 'components/MoreOptions';
 @import 'components/Loading';
@@ -62,7 +63,7 @@ body {
 .#{$prefix}--popup {
   overflow: hidden;
   width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
-  padding-top: carbon--mini-units(4);
+  padding-top: carbon--mini-units(5);
 
   &__header {
     position: fixed;
@@ -70,24 +71,22 @@ body {
     top: 0;
     display: flex;
     width: 100%;
-    padding-top: $carbon--spacing-03 - carbon--rem(1px);
-    padding-bottom: $carbon--spacing-03 - carbon--rem(1px);
     background-color: $ui-01;
-    box-shadow: inset 0 -1px 0 0 $ui-background;
+    box-shadow: inset 0 1px 0 0 $ui-background;
   }
 
   &__heading {
     @include carbon--type-style('productive-heading-01');
-  }
 
-  &--experimental {
-    padding-top: carbon--mini-units(6) + carbon--rem(5px);
+    display: flex;
+    height: 100%;
+    align-items: center;
   }
 
   &__experimental-tag {
-    width: 80px;
     min-height: initial;
     padding: 0;
+    margin-left: carbon--mini-units(1);
     font-size: 10px;
   }
 

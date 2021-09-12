@@ -1,6 +1,6 @@
 import { settings } from 'carbon-components';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
-import { getComponentName } from '@carbon/devtools-utilities';
+import { getComponentName, experimentalFlag } from '@carbon/devtools-utilities';
 import {
   positionTooltip,
   showHideTooltip,
@@ -13,7 +13,13 @@ const aspectRatios = ['16:9', '9:16', '2:1', '1:2', '4:3', '3:4', '1:1'];
 const aspectRatiosCalc = [16 / 9, 9 / 16, 2 / 1, 1 / 2, 4 / 3, 3 / 4, 1 / 1];
 
 function manageSpecsRatio(specs, specType) {
-  if (specs && specType === 'ratio') {
+  let exp = false;
+
+  experimentalFlag(() => {
+    exp = true;
+  });
+
+  if (specs && specType === 'ratio' && exp) {
     activateRatio();
   } else {
     deactivateRatio();

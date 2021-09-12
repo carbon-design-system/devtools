@@ -197,6 +197,10 @@ function updateInventory(componentName, components) {
           tag: component.localName,
           id: component.id,
           classes: component.classList.value.split(' '),
+          autoid:
+            component.dataset['autoid'] || component.dataset['auto-id'] || '',
+          href: component.href,
+          src: component.src,
         });
       }
     }

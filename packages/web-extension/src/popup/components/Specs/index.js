@@ -3,6 +3,7 @@ import { settings } from 'carbon-components';
 import {
   setStorage,
   getStorage,
+  experimentalFlag,
   gaConfigurationEvent,
 } from '@carbon/devtools-utilities';
 import { TileGroup, RadioTile } from 'carbon-components-react';
@@ -67,10 +68,12 @@ function Specs() {
         <CustomOutline32 className={`${prefix}--popup__specs-icon`} />
         Outline
       </RadioTile>
-      <RadioTile id="specsRatio" name="specs" value="ratio">
-        <Scale32 className={`${prefix}--popup__specs-icon`} />
-        Ratio
-      </RadioTile>
+      {experimentalFlag(() => (
+        <RadioTile id="specsRatio" name="specs" value="ratio">
+          <Scale32 className={`${prefix}--popup__specs-icon`} />
+          Ratio
+        </RadioTile>
+      ))}
       <RadioTile id="specsSpacing" name="specs" value="spacing">
         <VirtualColumn32 className={`${prefix}--popup__specs-icon`} />
         Spacing

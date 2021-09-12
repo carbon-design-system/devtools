@@ -11,6 +11,7 @@ import {
   gaDomEvent,
   gaNavigationEvent,
   gaException,
+  setIBMer,
 } from '@carbon/devtools-utilities';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
@@ -56,6 +57,16 @@ function Popup() {
     getMessage((msg) => {
       const msgKeys = Object.keys(msg);
 
+      if (
+        msg.digitalData &&
+        msg.digitalData.user &&
+        msg.digitalData.user.segment
+      ) {
+        setIBMer(msg.digitalData.user.segment.isIBMer);
+      } else {
+        setIBMer(3); // unknown, but probably not
+      }
+
       if (msgKeys.indexOf('runningCarbon') > -1) {
         carbonStatus = true;
         setOnCarbon(true);
@@ -85,17 +96,19 @@ function Popup() {
         () => `${prefix}--popup--experimental`
       )}`}>
       <header className={`${prefix}--popup__header`}>
-        <div className={`${prefix}--col-sm-2`}>
-          <h1 className={`${prefix}--popup__heading`}>Carbon Devtools</h1>
-          {experimentalFlag(() => (
-            <Tag
-              type="magenta"
-              className={`${prefix}--popup__experimental-tag`}>
-              Experimental
-            </Tag>
-          ))}
+        <div className={`${prefix}--col-sm-3`}>
+          <h1 className={`${prefix}--popup__heading`}>
+            Carbon Devtools
+            {experimentalFlag(() => (
+              <Tag
+                type="magenta"
+                className={`${prefix}--popup__experimental-tag`}>
+                Exp
+              </Tag>
+            ))}
+          </h1>
         </div>
-        <div className={`${prefix}--col-sm-2`}>
+        <div className={`${prefix}--col-sm-1`}>
           <MoreOptions />
         </div>
       </header>

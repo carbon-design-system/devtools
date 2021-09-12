@@ -7,6 +7,9 @@ import { DotcomShell } from '@carbon/ibmdotcom-react';
 import Head from 'next/head';
 import packageJson from '../package.json';
 import React from 'react';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
 
 /**
  * Sets the root path of the alternative urls
@@ -45,7 +48,9 @@ export default class CarbonForIBMDotcom extends App {
     return (
       <>
         <Head>
-          <link rel="icon" href="//www.ibm.com/favicon.ico" />
+          <title key="title">Carbon devtools playground</title>
+
+          <link rel="icon" href="/favicon.png" />
 
           <meta name="ibmdotcom.version.react" content={reactVersion} />
           <meta name="ibmdotcom.version.styles" content={stylesVersion} />
@@ -92,7 +97,22 @@ export default class CarbonForIBMDotcom extends App {
         </Head>
         <DotcomShell
           mastheadProps={{
-            navigation: 'default',
+            navigation: [
+              {
+                title: 'Random page',
+                titleEnglish: 'Random page',
+                url: publicRuntimeConfig._assetPrefix,
+                hasMenu: false,
+                hasMegapanel: false,
+                menuSections: [],
+              },
+            ],
+            platform: {
+              name: 'Carbon devtools',
+              url: 'https://ibm.biz/carbon-devtools',
+            },
+            hasProfile: false,
+            hasSearch: false,
           }}>
           <Component {...pageProps} />
         </DotcomShell>
