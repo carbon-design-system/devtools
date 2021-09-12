@@ -264,6 +264,7 @@ const allComponents = {
 export {
   allComponents,
   carbonComponents,
+  cloudCognitiveComponents,
   ibmdotcomComponents,
   securityComponents,
   cloudPalComponents,
