@@ -2,7 +2,7 @@
   "name": "carbon-devtools",
   "version": "2.4.0",
   "private": true,
-  "description": "Basic tools to aide in the development of Carbon pages. asdf",
+  "description": "A basic set of tools to aide in the development of building pages with Carbon.",
   "main": "dist/manifest.json",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
