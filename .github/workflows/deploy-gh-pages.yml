@@ -3,8 +3,6 @@ name: Deploy demo site to gh-pages
 on:
   push:
     branches: [ base ]
-  pull_request:
-    branches: [ base ]
 
 jobs:
   update:
