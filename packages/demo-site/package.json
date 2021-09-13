@@ -43,7 +43,7 @@
     "@carbon/ibmdotcom-styles": "^1.21.0",
     "@carbon/ibmdotcom-web-components": "^1.6.0",
     "@carbon/icons-react": "^10.37.0",
-    "@carbon/pictograms-react": "^10.9.0",
+    "@carbon/pictograms-react": "^11.17.0",
     "@zeit/next-sass": "^1.0.1",
     "autoprefixer": "9.8.6",
     "dotenv": "^8.2.0",
