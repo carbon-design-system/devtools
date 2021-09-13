@@ -2,7 +2,7 @@ import React from 'react';
 import { settings } from 'carbon-components';
 import { OverflowMenu, OverflowMenuItem } from 'carbon-components-react';
 import { gaNavigationEvent } from '@carbon/devtools-utilities';
-import { bugs, repository } from '../../../../package.json';
+import packageJSON from '../../../../package.json';
 
 const { prefix } = settings;
 
@@ -23,14 +23,14 @@ function MoreOptions() {
         primaryFocus={true} //
         isDelete={true}
         hasDivider={false}
-        href={bugs.url}
+        href={packageJSON.bugs.url}
         target="_blank"
         itemText="Report an issue"
         onClick={() => gaNavigationEvent('click', 'report-an-issue')}
       />
       <OverflowMenuItem
         hasDivider={false}
-        href={repository.url}
+        href={packageJSON.repository.url}
         target="_blank"
         itemText="Go to GitHub"
         onClick={() => gaNavigationEvent('click', 'go-to-github')}

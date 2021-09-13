@@ -1,6 +1,7 @@
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
-import { getComponentName, experimentalFlag } from '@carbon/devtools-utilities';
+import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
+import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import {
   positionTooltip,
   showHideTooltip,

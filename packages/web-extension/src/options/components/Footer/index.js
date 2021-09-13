@@ -3,15 +3,10 @@ import { settings } from 'carbon-components';
 import { Link } from 'carbon-components-react';
 import React from 'react';
 
-import {
-  name,
-  version,
-  bugs,
-  repository,
-  dependencies,
-} from '../../../../package.json';
+import packageJSON from '../../../../package.json';
 
 const { prefix } = settings;
+const { name, version, bugs, repository, dependencies } = packageJSON;
 
 function getVersion(dependency) {
   return `v${dependencies[dependency].replace('^', '')}`;

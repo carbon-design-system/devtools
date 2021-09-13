@@ -1,5 +1,6 @@
-import { settings } from 'carbon-components';
-import { getStorage, storageItemChanged } from '@carbon/devtools-utilities';
+import settings from 'carbon-components/es/globals/js/settings';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
 
 const { prefix } = settings;
 

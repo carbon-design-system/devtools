@@ -1,5 +1,6 @@
-import { settings } from 'carbon-components';
-import { getStorage, storageItemChanged } from '@carbon/devtools-utilities';
+import settings from 'carbon-components/es/globals/js/settings';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
 import {
   manageSpecsColor,
   manageSpecsDependencies,
@@ -8,7 +9,7 @@ import {
   manageSpecsRatio,
   manageSpecsSpacing,
   manageSpecsType,
-  manageSpecsWireframe,
+  // manageSpecsWireframe,
 } from './collection';
 
 const { prefix } = settings;
@@ -63,7 +64,7 @@ function manageSpecs({ specs, specType }) {
   manageSpecsRatio(specs, specType);
   manageSpecsSpacing(specs, specType);
   manageSpecsType(specs, specType);
-  manageSpecsWireframe(specs, specType);
+  // manageSpecsWireframe(specs, specType);
 }
 
 function addSpecs() {

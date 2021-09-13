@@ -16,7 +16,7 @@ import {
   Search,
 } from 'carbon-components-react';
 import { moderate02 } from '@carbon/motion';
-import { bugs } from '../../../../package.json';
+import packageJSON from '../../../../package.json';
 
 const { prefix } = settings;
 
@@ -322,7 +322,7 @@ function emptyInventory(search) {
       {`We could not find any components that matched our records. If you believe
           this to be in error please `}
       <Link
-        href={bugs.url}
+        href={packageJSON.bugs.url}
         target="_blank"
         onClick={() => gaNavigationEvent('click', 'submit-an-issue')}>
         submit an issue

@@ -1,11 +1,11 @@
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import {
   positionTooltip,
   showHideTooltip,
   updateTooltipContent,
 } from '../../Tooltip';
-import { allComponents } from '../../../../globals';
+import { allComponents } from '../../../../globals/componentList';
 
 const { prefix } = settings;
 const selectors = Object.keys(allComponents).join(',');

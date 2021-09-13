@@ -1,4 +1,5 @@
-import { getStorage, setStorage } from '@carbon/devtools-utilities';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import {
   initToggleColumns,
   addGridInteraction,

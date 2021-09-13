@@ -1,4 +1,4 @@
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import {
   positionTooltip,
@@ -7,7 +7,8 @@ import {
   __specValueItem,
   __specsContainer,
 } from '../../Tooltip';
-import { getComponentName, doesItHaveText } from '@carbon/devtools-utilities';
+import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
+import { doesItHaveText } from '@carbon/devtools-utilities/src/doesItHaveText';
 import { colors } from '@carbon/colors';
 import { themes } from '@carbon/themes';
 import { searchCarbonTokens } from './searchCarbonTokens';

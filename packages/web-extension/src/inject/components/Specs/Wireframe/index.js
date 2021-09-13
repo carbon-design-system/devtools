@@ -44,7 +44,7 @@
 // spec on?
 // this item on?
 //
-// import { settings } from 'carbon-components';
+// import settings from 'carbon-components/es/globals/js/settings';
 //
 // const { prefix } = settings;
 

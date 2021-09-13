@@ -1,4 +1,4 @@
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { breakpoints, rem } from '@carbon/layout';
 import { carbonPrefix } from '../../../../globals';
 import { addHighlight, removeAllHighlights } from '../../Highlight';

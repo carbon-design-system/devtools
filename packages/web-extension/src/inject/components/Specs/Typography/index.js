@@ -6,13 +6,12 @@ import {
   __specValueItem,
   __specsContainer,
 } from '../../Tooltip';
-import {
-  getComponentName,
-  doesItHaveText,
-  getActiveBreakpoint,
-  removeLeadingZero,
-} from '@carbon/devtools-utilities';
-import { fontWeights, styles } from '@carbon/type';
+import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
+import { doesItHaveText } from '@carbon/devtools-utilities/src/doesItHaveText';
+import { getActiveBreakpoint } from '@carbon/devtools-utilities/src/getActiveBreakpoint';
+import { removeLeadingZero } from '@carbon/devtools-utilities/src/removeLeadingZero';
+import { fontWeights } from '@carbon/type/src/fontWeight';
+import * as styles from '@carbon/type/src/styles';
 import { rem } from '@carbon/layout';
 
 function manageSpecsType(specs, specType) {

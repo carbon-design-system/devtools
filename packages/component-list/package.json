@@ -1,0 +1,72 @@
+{
+  "name": "@carbon/devtools-component-list",
+  "version": "2.4.2",
+  "description": "Generates a list of components and their selectors across all of the Carbon libraries.",
+  "main": "./dist/index.json",
+  "scripts": {
+    "start": "",
+    "bundle": "webpack --config webpack.js",
+    "build": "npm run bundle && node index.js",
+    "watch": "",
+    "clean": "rimraf dist && rimraf node_modules",
+    "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "lint": "yarn lint:js",
+    "lint:js": "eslint . --ext .js",
+    "test": "yarn format && yarn lint"
+  },
+  "dependencies": {
+    "@carbon/ibm-cloud-cognitive": "^0.83.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "eslint": "^7.12.0",
+    "eslint-config-carbon": "^2.1.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-carbon": "^1.2.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "carbon"
+    ],
+    "globals": {
+      "chrome": "readonly"
+    }
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-carbon"
+    ],
+    "rules": {
+      "max-nesting-depth": 3
+    }
+  },
+  "private": true,
+  "sideEffects": false,
+  "keywords": [
+    "IBM",
+    "Dotcom",
+    "IBM.com",
+    "Carbon",
+    "Tools",
+    "Development"
+  ],
+  "author": "James Dow",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carbon-design-system/devtools"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/devtools/issues/new",
+    "email": "james.dow@us.ibm.com"
+  },
+  "homepage": "https://github.com/carbon-design-system/devtools#readme"
+}

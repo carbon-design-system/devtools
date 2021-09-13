@@ -1,4 +1,4 @@
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import {
   positionTooltip,
   showHideTooltip,
@@ -6,8 +6,10 @@ import {
   addHighlight,
   removeHighlight,
 } from '../';
-import { sendMessage, getMessage, randomId } from '@carbon/devtools-utilities';
-import { allComponents } from '../../../globals';
+import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
+import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
+import { randomId } from '@carbon/devtools-utilities/src/randomId';
+import { allComponents } from '../../../globals/componentList';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?

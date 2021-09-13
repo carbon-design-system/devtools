@@ -8,6 +8,10 @@ const Dotenv = require('dotenv-webpack');
 const packageJSON = require('./package');
 
 module.exports = {
+  performance: {
+    maxAssetSize: 4000000,
+    maxEntrypointSize: 4000000,
+  },
   entry: {
     popup: [
       // './src/setPrefix.js',
@@ -118,6 +122,10 @@ module.exports = {
       react: 'preact/compat',
       'react-dom': 'preact/compat',
       '@carbon/devtools-utilities': path.resolve(__dirname, '../utilities'),
+      '@carbon/devtools-component-list': path.resolve(
+        __dirname,
+        '../component-list'
+      ),
     },
   },
 };

@@ -1,8 +1,8 @@
 import { validatePage, injectGrid, setBadge } from './tasks';
 import { setVersion, setClientId } from '@carbon/devtools-utilities';
-import { version } from '../../package.json';
+import packageJSON from '../../package.json';
 
-setVersion(version);
+setVersion(packageJSON.version);
 setClientId();
 setBadge();
 validatePage();

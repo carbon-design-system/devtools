@@ -1,4 +1,4 @@
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { addHighlight, removeAllHighlights } from '../../Highlight';
 import {
   positionTooltip,
@@ -7,11 +7,9 @@ import {
   __specValueItem,
   __specsContainer,
 } from '../../Tooltip';
-import {
-  getComponentName,
-  setPx,
-  removeLeadingZero,
-} from '@carbon/devtools-utilities';
+import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
+import { setPx } from '@carbon/devtools-utilities/src/setPx';
+import { removeLeadingZero } from '@carbon/devtools-utilities/src/removeLeadingZero';
 import { rem, spacing, layout } from '@carbon/layout';
 
 const { prefix } = settings;

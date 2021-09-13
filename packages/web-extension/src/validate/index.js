@@ -1,5 +1,6 @@
-import { sendMessage, getStorage } from '@carbon/devtools-utilities';
-import { prefixSelectors } from '../globals';
+import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { prefixSelectors } from '../globals/prefixSelectors';
 
 const scriptId = 'bx-dev--window-var';
 
