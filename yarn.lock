@@ -1254,7 +1254,7 @@
     "@carbon/telemetry" "0.0.0-alpha.6"
     prop-types "^15.7.2"
 
-"@carbon/icons-react@10.37.0", "@carbon/icons-react@^10.36.0", "@carbon/icons-react@^10.37.0":
+"@carbon/icons-react@10.37.0":
   version "10.37.0"
   resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.37.0.tgz#3d4355eb03c2165ddd7705ce977df03d6beaea78"
   integrity sha512-13wHwN9BikOj9RhT/m8jeJQ61l5yNXiXQ0KR//9rFnz27gWO0huWb8qiBnHsicbQdl4oe+TVcm/WKF3PcJwUJA==
@@ -1263,7 +1263,7 @@
     "@carbon/telemetry" "0.0.0-alpha.6"
     prop-types "^15.7.2"
 
-"@carbon/icons-react@^10.38.0":
+"@carbon/icons-react@^10.36.0", "@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0":
   version "10.38.0"
   resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.38.0.tgz#fd5050f3a630a20a2d46a21ba2b141adcd65c548"
   integrity sha512-Ww02MHIdA2q5hskZVmzEZQByT8lQ743JGWzIl5oolPp+E38wJopEm3+SZsM1lwDrimP7Nm4+GifOMNddoHmplA==
