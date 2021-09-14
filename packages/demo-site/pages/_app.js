@@ -50,7 +50,10 @@ export default class CarbonForIBMDotcom extends App {
         <Head>
           <title key="title">Carbon devtools playground</title>
 
-          <link rel="icon" href="/favicon.png" />
+          <link
+            rel="icon"
+            href={`${publicRuntimeConfig._assetPrefix}favicon.png`}
+          />
 
           <meta name="ibmdotcom.version.react" content={reactVersion} />
           <meta name="ibmdotcom.version.styles" content={stylesVersion} />
