@@ -1,4 +1,4 @@
-# Carbon Devtools — Web extension
+# @carbon/devtools-web-extension
 
 The [Carbon Devtools](http://ibm.biz/carbon-devtools) web extension is a plugin
 tool for browsers that provides designers, developers, QA teams and anyone

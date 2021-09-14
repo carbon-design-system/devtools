@@ -1,4 +1,4 @@
-import { cloudPalPrefix } from '../../web-extension/src/globals/prefixSelectors.js';
+import { cloudPalPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
 
 const cloudPal = {};
 cloudPal[`.${cloudPalPrefix}--card`] = 'Card';

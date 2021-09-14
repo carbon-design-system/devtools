@@ -1,4 +1,4 @@
-import { getSecurityPrefix } from '../../web-extension/src/globals/prefixSelectors.js';
+import { getSecurityPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
 
 const security = {};
 security[`.${getSecurityPrefix('combo-button')}`] = 'ComboButton';

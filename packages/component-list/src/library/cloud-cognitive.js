@@ -1,4 +1,4 @@
-import * as _CloudCognitive from '@carbon/ibm-cloud-cognitive'; // adds 6.48 mb to file size
+import * as _CloudCognitive from '@carbon/ibm-cloud-cognitive';
 
 let {
   pkg: {

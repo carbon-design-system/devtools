@@ -1,4 +1,4 @@
-import { carbonPrefix } from '../../web-extension/src/globals/prefixSelectors.js';
+import { carbonPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
 
 const carbon = {};
 carbon[`.${carbonPrefix}--accordion`] = 'Accordion';

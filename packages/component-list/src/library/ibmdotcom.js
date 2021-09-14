@@ -1,7 +1,7 @@
 import {
   dotcomPrefix,
   carbonPrefix,
-} from '../../web-extension/src/globals/prefixSelectors.js';
+} from '../../../web-extension/src/globals/prefixSelectors.js';
 
 const ibmdotcom = {};
 // internal
