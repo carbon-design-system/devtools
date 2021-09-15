@@ -8,16 +8,13 @@ import {
 } from '../';
 
 const gaId = 'UA-28030649-4';
-let setPath, setTitle, version;
-
-function setVersion(getVersion) {
-  version = getVersion;
-}
+let setPath, setTitle;
 
 function sendGaResponse(data) {
   activeTab((tab) => {
     getStorage(
       [
+        'version',
         'clientId',
         'isIBMer',
         'gridVersion',
@@ -26,6 +23,7 @@ function sendGaResponse(data) {
         'generalNonCarbon',
       ],
       ({
+        version,
         isIBMer = 'unknown',
         clientId = 5555,
         gridVersion = 'carbon-v10',
@@ -48,6 +46,9 @@ function sendGaResponse(data) {
         data.cd5 = String(generalNonCarbon); // boolean ignore validation
         data.cd6 = generalTheme; // theme
         data.cd8 = isIBMer; // IBMer from ddo
+
+        console.log('dp', data.dp);
+        console.log('dt', data.dt);
 
         if (tab) {
           if (tab.width && tab.height) {
@@ -256,7 +257,6 @@ function gaDomEvent(action, label, value, moreData) {
 }
 
 export {
-  setVersion,
   setClientId,
   getClientId,
   setIBMer,

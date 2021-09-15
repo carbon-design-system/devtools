@@ -1,8 +1,9 @@
 import { validatePage, injectGrid, setBadge } from './tasks';
-import { setVersion, setClientId } from '@carbon/devtools-utilities';
+import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
+import { setClientId } from '@carbon/devtools-utilities/src/ga';
 import packageJSON from '../../package.json';
 
-setVersion(packageJSON.version);
+setStorage({ version: packageJSON.version });
 setClientId();
 setBadge();
 validatePage();
