@@ -47,9 +47,6 @@ function sendGaResponse(data) {
         data.cd6 = generalTheme; // theme
         data.cd8 = isIBMer; // IBMer from ddo
 
-        console.log('dp', data.dp);
-        console.log('dt', data.dt);
-
         if (tab) {
           if (tab.width && tab.height) {
             data.vp = `${tab.width}x${tab.height}`; // viewport
