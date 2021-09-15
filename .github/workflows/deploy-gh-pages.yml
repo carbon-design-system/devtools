@@ -13,10 +13,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: Install dependencies
-        run: yarn install
-      - name: Build project
-        run: yarn build
+      - name: Build demo site
+        run: |
+          cd packages/demo-site
+          yarn install
+          yarn build
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.5.0
         with:
