@@ -1,0 +1,28 @@
+name: Test
+
+#on:
+#  release:
+#    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: "12.x"
+    - name: Install dependencies
+      run: yarn install
+    - name: Build project
+      run: yarn build
+    - name: Upload & release to Chrome Web Store
+      uses: mnao305/chrome-extension-upload@1.1.1
+      with:
+        file-path: packages/web-extension/dist/*.zip
+        extension-id: mjdmaehffnlbgclehebkchepdpkokafa
+        client-id: ${{ secrets.GWE_PUBLISH_CLIENT_ID }}
+        client-secret: ${{ secrets.GWE_PUBLISH_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.GWE_PUBLISH_REFRESH_TOKEN }}
+        glob: true
