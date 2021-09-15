@@ -22,7 +22,7 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v2.5.0
         with:
           # Build directory to deploy
-          build_dir: ./packages/demo-site/out
+          build_dir: ./out
           jekyll: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
