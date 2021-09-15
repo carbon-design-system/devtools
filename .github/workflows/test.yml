@@ -2,8 +2,7 @@ name: Test
 
 on:
   release:
-    type:
-      - created
+    types: [created]
 
 jobs:
   build:
