@@ -1,7 +1,9 @@
 name: Test
 
 on:
-  release
+  release:
+    type:
+      - created
 
 jobs:
   build:
