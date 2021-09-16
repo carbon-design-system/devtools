@@ -13,9 +13,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: "12.x"
-    - name: Build extension
+    - name: Install dependencies
       run: |
         yarn install
+    - name: Build component-list
+      run: |
+        cd packages/web-extension
+        yarn build
+    - name: Build web-extension
+      run: |
+        cd packages/web-extension
         yarn build
     - name: Upload & release to Chrome Web Store
       uses: mnao305/chrome-extension-upload@1.1.1
