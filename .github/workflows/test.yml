@@ -24,14 +24,6 @@ jobs:
       run: |
         cd packages/web-extension
         yarn build
-    # - name: Publish to Chrome
-    #   uses: trmcnvn/chrome-addon@v2
-    #   with:
-    #     extension: ${{ secrets.GWE_EXTENSION_ID }}
-    #     zip: packages/web-extension/dist/web-extension.zip
-    #     client-id: ${{ secrets.GWE_PUBLISH_CLIENT_ID }}
-    #     client-secret: ${{ secrets.GWE_PUBLISH_CLIENT_SECRET }}
-    #     refresh-token: ${{ secrets.GWE_PUBLISH_REFRESH_TOKEN }}
     - name: Publish to Firefox
       uses: trmcnvn/firefox-addon@v1
         with:
