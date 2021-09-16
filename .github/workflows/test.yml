@@ -18,7 +18,7 @@ jobs:
         yarn install
     - name: Build component-list
       run: |
-        cd packages/web-extension
+        cd packages/component-list
         yarn build
     - name: Build web-extension
       run: |
