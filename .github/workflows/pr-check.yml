@@ -22,7 +22,7 @@ jobs:
   
     - name: Install dependencies
       run: yarn
-    - name: Build packages
-      run: yarn build
     - name: Test packages
       run: yarn test
+    - name: Build packages
+      run: yarn build
