@@ -15,8 +15,8 @@ jobs:
         node-version: "12.x"
     - name: Build extension
       run: |
-        cd packages/web-extension
         yarn install
+        cd packages/web-extension
         yarn build
     - name: Upload & release to Chrome Web Store
       uses: mnao305/chrome-extension-upload@1.1.1
