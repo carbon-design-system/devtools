@@ -1,4 +1,4 @@
-name: Deploy demo site to gh-pages
+name: Deploy gh-pages
 
 on:
   push:
@@ -15,14 +15,14 @@ jobs:
           node-version: "12.x"
       - name: Build demo site
         run: |
-          cd packages/demo-site
           yarn install
+          cd packages/demo-site
           yarn build
       - name: GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.5.0
         with:
           # Build directory to deploy
-          build_dir: ./out
+          build_dir: ./packages/demo-site/out
           jekyll: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
