@@ -1,10 +1,10 @@
-import carbonLibraries from '@carbon/devtools-component-list/dist/index.json';
+import { libraries } from '@carbon/devtools-component-list/dist/index.json';
 
-const libraries = Object.keys(carbonLibraries);
+const libraryKeys = Object.keys(libraries);
 const allComponents = {};
 
-libraries.forEach((key) => {
-  Object.assign(allComponents, carbonLibraries[key]);
+libraryKeys.forEach((key) => {
+  Object.assign(allComponents, libraries[key]);
 });
 
 export { allComponents };

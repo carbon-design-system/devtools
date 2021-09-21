@@ -1,4 +1,7 @@
 import * as _CloudCognitive from '@carbon/ibm-cloud-cognitive';
+import { _initStats } from '../helpers.js';
+
+const { _stats, success } = new _initStats();
 
 let {
   pkg: {
@@ -16,9 +19,13 @@ cloudCognitive = Object.values(cloudCognitive).reduce(
       )}"]`
     ] = displayName;
 
+    success();
+
     return components;
   },
   {}
 );
+
+cloudCognitive = { ...cloudCognitive, _stats }
 
 export { cloudCognitive };

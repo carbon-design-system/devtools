@@ -1,3 +1,7 @@
+global.navigator = {userAgent: ''};
+global.addEventListener = ( ) => { };
+// global.join = ( ) => { };
+
 const fs = require('fs');
 const path = require('path');
 const _carbonLibraries = require('./dist');
