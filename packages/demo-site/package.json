@@ -1,6 +1,6 @@
 {
   "name": "@carbon/devtools-demo-site",
-  "version": "2.4.5",
+  "version": "2.4.6",
   "private": true,
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "@actions/core": "^1.2.6",
     "@carbon/ibmdotcom-react": "^1.10.1",
     "@carbon/ibmdotcom-styles": "^1.21.0",
-    "@carbon/ibmdotcom-web-components": "^1.6.0",
+    "@carbon/ibmdotcom-web-components": "^1.9.0",
     "@carbon/icons-react": "^10.37.0",
     "@carbon/pictograms-react": "^11.17.0",
     "@zeit/next-sass": "^1.0.1",

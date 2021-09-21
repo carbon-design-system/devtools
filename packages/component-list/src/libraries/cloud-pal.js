@@ -1,6 +1,11 @@
 import { cloudPalPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
+import { _initStats } from '../helpers.js';
 
-const cloudPal = {};
+const { _stats, setStats } = new _initStats();
+
+let manualTotal,
+    cloudPal = {};
+
 cloudPal[`.${cloudPalPrefix}--card`] = 'Card';
 cloudPal[`.${cloudPalPrefix}--catalog-tile`] = 'CatalogTile';
 cloudPal[`.${cloudPalPrefix}--create-resource-group`] = 'CreateResourceGroup';
@@ -8,15 +13,13 @@ cloudPal[`.${cloudPalPrefix}--data-table`] = 'DataTable';
 cloudPal[`.${cloudPalPrefix}--side-nav`] = 'SideNav';
 cloudPal[`.${cloudPalPrefix}--media-gallery`] = 'MediaGallery';
 cloudPal[`.${cloudPalPrefix}--message`] = 'Message';
-cloudPal[`.${cloudPalPrefix}--observe-button__flex-responsive`] =
-  'ObserveButton';
+cloudPal[`.${cloudPalPrefix}--observe-button__flex-responsive`] = 'ObserveButton';
 cloudPal[`.${cloudPalPrefix}--order-summary`] = 'OrderSummary';
 cloudPal[`.${cloudPalPrefix}--order-summary-v2`] = 'OrderSummaryV2';
 cloudPal[`.${cloudPalPrefix}--page-header`] = 'PageHeader';
 cloudPal[`.${cloudPalPrefix}--progress-bar`] = 'ProgressBar';
 cloudPal[`.${cloudPalPrefix}--resource-tag-area`] = 'ResourceTag';
-cloudPal[`.${cloudPalPrefix}--service-usage-breakdown__container`] =
-  'ServiceUsageBreakdown';
+cloudPal[`.${cloudPalPrefix}--service-usage-breakdown__container`] = 'ServiceUsageBreakdown';
 cloudPal[`.${cloudPalPrefix}--status`] = 'Status';
 cloudPal[`.${cloudPalPrefix}--submit-promo__container`] = 'SubmitPromo';
 cloudPal[`.${cloudPalPrefix}--tag-list`] = 'TagList';
@@ -26,5 +29,14 @@ cloudPal[`.${cloudPalPrefix}--titled-section-layout`] = 'TitledSectionLayout';
 cloudPal[`.${cloudPalPrefix}--card-layout`] = 'CardLayout';
 cloudPal[`.${cloudPalPrefix}--provision-about-page`] = 'ProvisionAboutPage';
 cloudPal[`.${cloudPalPrefix}--tables-layout`] = 'Tables';
+
+manualTotal = Object.keys(cloudPal).length;
+
+setStats({
+    total: manualTotal,
+    success: manualTotal
+});
+
+cloudPal = { ...cloudPal, _stats };
 
 export { cloudPal };
