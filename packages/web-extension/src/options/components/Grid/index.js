@@ -17,7 +17,8 @@ function Grid({ gridVersion = 'carbon-v10' }) {
         className={`${prefix}--options__select`}
         onChange={(e) =>
           configuration('grid-version', { gridVersion: e.target.value })
-        }>
+        }
+      >
         {gridVersionList.map((gridVersionItem, i) => {
           return (
             <SelectItem

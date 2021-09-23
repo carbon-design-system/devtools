@@ -5,14 +5,20 @@ import { buildReactComponentList } from '../helpers.js';
 const prefix = carbonPrefix + '--';
 
 const mockedProps = {
-    pageSizes: [0],
-    items: []
+  pageSizes: [0],
+  items: [],
 };
 
 const customComps = [];
 
 const filterByTheseComponents = []; // compKey/name for debugging
 
-const carbon = buildReactComponentList(componentList, prefix, mockedProps, customComps, filterByTheseComponents);
+const carbon = buildReactComponentList(
+  componentList,
+  prefix,
+  mockedProps,
+  customComps,
+  filterByTheseComponents
+);
 
 export { carbon };

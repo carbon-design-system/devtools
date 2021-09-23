@@ -16,7 +16,8 @@ function Empty() {
         <Link
           href={packageJSON.bugs.url}
           target="_blank"
-          onClick={() => gaNavigationEvent('click', 'submit-an-issue')}>
+          onClick={() => gaNavigationEvent('click', 'submit-an-issue')}
+        >
           submit an issue
         </Link>
         .

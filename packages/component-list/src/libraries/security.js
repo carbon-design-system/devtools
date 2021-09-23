@@ -8,43 +8,43 @@ import { buildReactComponentList } from '../helpers.js';
 const componentList = {};
 
 // filtering out carbon components already being tracked in ./carbon.js
-Object.keys(securityComponentList).forEach(key => {
-    if (!carbonComponentList[key]) {
-        componentList[key] = securityComponentList[key];
-    }
+Object.keys(securityComponentList).forEach((key) => {
+  if (!carbonComponentList[key]) {
+    componentList[key] = securityComponentList[key];
+  }
 });
 
 const prefix = getSecurityPrefix('');
 
 const mockedProps = {
-    // pageSizes: [0],
-    profile: {
-        name: {
-            first_name: '',
-            surname: ''
-        }
+  // pageSizes: [0],
+  profile: {
+    name: {
+      first_name: '',
+      surname: '',
     },
-    items: [],
-    labels: {
-        mainNavigation: { ariaLabel: '' },
-        menu: { button: '' }
-    },
-    title: 'asdf',
-    closeButton: {onClick: () => {}},
-    primaryButton: {onClick: () => {}},
-    secondaryButton: {onClick: () => {}}
+  },
+  items: [],
+  labels: {
+    mainNavigation: { ariaLabel: '' },
+    menu: { button: '' },
+  },
+  title: 'asdf',
+  closeButton: { onClick: () => {} },
+  primaryButton: { onClick: () => {} },
+  secondaryButton: { onClick: () => {} },
 };
 
-const customComps = [
-    (Comp) => (
-        <Comp>
-            {() => ''}
-        </Comp>
-    )
-];
+const customComps = [(Comp) => <Comp>{() => ''}</Comp>];
 
 const filterByTheseComponents = []; // compKey/name for debugging
 
-const security = buildReactComponentList(componentList, prefix, mockedProps, customComps, filterByTheseComponents);
+const security = buildReactComponentList(
+  componentList,
+  prefix,
+  mockedProps,
+  customComps,
+  filterByTheseComponents
+);
 
 export { security };

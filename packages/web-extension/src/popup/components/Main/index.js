@@ -122,7 +122,8 @@ function Main({ initialMsg, _panelControls }) {
               </div>
             </div>
           )
-        }>
+        }
+      >
         <Content disabled={!globalToggleStates[id]} isOpen={isOpenStates[id]} />
       </AccordionItem>
     );

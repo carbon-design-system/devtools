@@ -1,5 +1,5 @@
-global.navigator = {userAgent: ''};
-global.addEventListener = ( ) => { };
+global.navigator = { userAgent: '' };
+global.addEventListener = () => {};
 // global.join = ( ) => { };
 
 const fs = require('fs');

@@ -26,6 +26,6 @@ cloudCognitive = Object.values(cloudCognitive).reduce(
   {}
 );
 
-cloudCognitive = { ...cloudCognitive, _stats }
+cloudCognitive = { ...cloudCognitive, _stats };
 
 export { cloudCognitive };
