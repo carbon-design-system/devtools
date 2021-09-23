@@ -18,7 +18,8 @@ function MoreOptions() {
           menuBody.style.right = 0;
         }, 0);
       }}
-      ariaLabel="More options">
+      ariaLabel="More options"
+    >
       <OverflowMenuItem
         primaryFocus={true} //
         isDelete={true}

@@ -51,7 +51,8 @@ function Specs() {
       onChange={(e) => {
         setToggleSpecs(e);
         gaConfigurationEvent('specs-change', e);
-      }}>
+      }}
+    >
       <RadioTile id="specsColor" name="specs" value="color">
         <ColorPalette32 className={`${prefix}--popup__specs-icon`} />
         Color

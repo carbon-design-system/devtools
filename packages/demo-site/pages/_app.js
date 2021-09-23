@@ -116,7 +116,8 @@ export default class CarbonForIBMDotcom extends App {
             },
             hasProfile: false,
             hasSearch: false,
-          }}>
+          }}
+        >
           <Component {...pageProps} />
         </DotcomShell>
       </>

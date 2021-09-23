@@ -94,7 +94,8 @@ function Popup() {
     <article
       className={`${prefix}--popup ${experimentalFlag(
         () => `${prefix}--popup--experimental`
-      )}`}>
+      )}`}
+    >
       <header className={`${prefix}--popup__header`}>
         <div className={`${prefix}--col-sm-3`}>
           <h1 className={`${prefix}--popup__heading`}>
@@ -102,7 +103,8 @@ function Popup() {
             {experimentalFlag(() => (
               <Tag
                 type="magenta"
-                className={`${prefix}--popup__experimental-tag`}>
+                className={`${prefix}--popup__experimental-tag`}
+              >
                 Exp
               </Tag>
             ))}
@@ -115,7 +117,8 @@ function Popup() {
       <section
         className={`${prefix}--popup__panel-container ${activePanel(
           panelState
-        )}`}>
+        )}`}
+      >
         <main className={`${prefix}--grid ${prefix}--popup__panel`}>
           <Content initialMsg={initialMsg} _panelControls={panelControls} />
         </main>

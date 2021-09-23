@@ -18,7 +18,8 @@ function ResizeBrowser({ windowWidth = 0 }) {
         <ContentSwitcher
           onChange={resizeBrowser}
           selectedIndex={getBreakpointIndex(windowWidth)}
-          selectionMode="manual">
+          selectionMode="manual"
+        >
           {breakpointKeys.map((breakpointKey, i) => {
             return (
               <Switch

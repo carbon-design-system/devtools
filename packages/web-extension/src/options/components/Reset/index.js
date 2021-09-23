@@ -35,7 +35,8 @@ function Reset({ settingKeys = [] }) {
           <Button
             onClick={resetSettings}
             kind="danger"
-            disabled={!settingKeys.length}>
+            disabled={!settingKeys.length}
+          >
             Clear all settings
           </Button>
         </p>

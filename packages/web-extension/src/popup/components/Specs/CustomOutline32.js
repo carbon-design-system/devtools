@@ -8,7 +8,8 @@ function CustomOutline32(props) {
       height="32"
       viewBox="0 0 32 32"
       fill="currentColor"
-      {...props}>
+      {...props}
+    >
       <path d="M27 11H29V13H27z"></path>
       <path d="M27 7H29V9H27z"></path>
       <path d="M27 3H29V5H27z"></path>
