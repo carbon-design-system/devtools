@@ -141,6 +141,7 @@ function resetInventory() {
 
 function getInventory(componentList, reset = true) {
   const selectors = Object.keys(componentList);
+  const shadowCollection = shadowDomCollector(document.body);
 
   if (reset) {
     resetInventory();
@@ -150,7 +151,9 @@ function getInventory(componentList, reset = true) {
     // loop through indidivual selectors/components
     const selector = selectors[i];
     const componentName = componentList[selector];
-    const components = document.querySelectorAll(selector);
+    const foundInDom = document.body.querySelectorAll(selector);
+    const foundInShadow = queryFromArray(selector, shadowCollection);
+    const components = [...foundInDom, ...foundInShadow];
     const inventoryData = updateInventory(componentName, components);
 
     if (inventoryData.length > 0) {
@@ -209,6 +212,38 @@ function updateInventory(componentName, components) {
   }
 
   return inventory;
+}
+
+function shadowDomCollector(root) {
+  const components = root.querySelectorAll('*:not(script)');
+  let collection = [];
+
+  if (components.length) {
+    for (let i = 0; i < components.length; i++) {
+      const component = components[i];
+      const shadow = component.shadowRoot;
+
+      if (shadow) {
+        collection = [...collection, shadow, ...shadowDomCollector(shadow)];
+      }
+    }
+  }
+
+  return collection;
+}
+
+function queryFromArray(selector, components) {
+  let query = [];
+
+  for (let i = 0; i < components.length; i++) {
+    const found = components[i].querySelectorAll(selector);
+
+    if (found.length) {
+      query = [...query, ...found];
+    }
+  }
+
+  return query;
 }
 
 export { initInventory };
