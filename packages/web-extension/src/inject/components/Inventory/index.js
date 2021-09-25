@@ -13,6 +13,8 @@ import { allComponents } from '../../../globals/componentList';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
+
+let shadowCollection;
 let inventory;
 
 function initInventory() {
@@ -56,7 +58,7 @@ function initInventory() {
 }
 
 function scrollIntoView(id) {
-  const component = document.querySelector(`[data-${idselector}*="${id}"]`);
+  const component = findAllDomShadow(`[data-${idselector}*="${id}"]`)[0];
 
   if (component) {
     const bodyRect = document.body.getBoundingClientRect();
@@ -111,7 +113,7 @@ function doThisByIds(ids, callback) {
   const beginning = `[data-${idselector}*="`;
   const end = `"]`;
   const selector = beginning + ids.join(end + ', ' + beginning) + end;
-  const components = document.querySelectorAll(selector);
+  const components = findAllDomShadow(selector);
 
   if (components.length === 1) {
     callback(components[0], ids[0], true);
@@ -123,7 +125,9 @@ function doThisByIds(ids, callback) {
 }
 
 function resetInventory() {
-  const components = document.querySelectorAll(`[data-${idselector}]`);
+  shadowCollection = shadowDomCollector(document.body);
+
+  const components = findAllDomShadow(`[data-${idselector}]`);
 
   inventory = {
     totalCount: 0,
@@ -141,7 +145,6 @@ function resetInventory() {
 
 function getInventory(componentList, reset = true) {
   const selectors = Object.keys(componentList);
-  const shadowCollection = shadowDomCollector(document.body);
 
   if (reset) {
     resetInventory();
@@ -151,9 +154,7 @@ function getInventory(componentList, reset = true) {
     // loop through indidivual selectors/components
     const selector = selectors[i];
     const componentName = componentList[selector];
-    const foundInDom = document.body.querySelectorAll(selector);
-    const foundInShadow = queryFromArray(selector, shadowCollection);
-    const components = [...foundInDom, ...foundInShadow];
+    const components = findAllDomShadow(selector);
     const inventoryData = updateInventory(componentName, components);
 
     if (inventoryData.length > 0) {
@@ -212,6 +213,13 @@ function updateInventory(componentName, components) {
   }
 
   return inventory;
+}
+
+function findAllDomShadow(selector) {
+  const foundInDom = document.body.querySelectorAll(selector);
+  const foundInShadow = queryFromArray(selector, shadowCollection);
+
+  return [...foundInDom, ...foundInShadow];
 }
 
 function shadowDomCollector(root) {
