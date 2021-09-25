@@ -9,12 +9,16 @@ import {
 import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import { randomId } from '@carbon/devtools-utilities/src/randomId';
+import {
+  shadowCollection,
+  shadowDomCollector,
+  findAllDomShadow,
+} from '@carbon/devtools-utilities/src/shadowDom';
 import { allComponents } from '../../../globals/componentList';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
 
-let shadowCollection;
 let inventory;
 
 function initInventory() {
@@ -125,7 +129,7 @@ function doThisByIds(ids, callback) {
 }
 
 function resetInventory() {
-  shadowCollection = shadowDomCollector(document.body);
+  shadowCollection.components = shadowDomCollector(document.body);
 
   const components = findAllDomShadow(`[data-${idselector}]`);
 
@@ -213,45 +217,6 @@ function updateInventory(componentName, components) {
   }
 
   return inventory;
-}
-
-function findAllDomShadow(selector) {
-  const foundInDom = document.body.querySelectorAll(selector);
-  const foundInShadow = queryFromArray(selector, shadowCollection);
-
-  return [...foundInDom, ...foundInShadow];
-}
-
-function shadowDomCollector(root) {
-  const components = root.querySelectorAll('*:not(script)');
-  let collection = [];
-
-  if (components.length) {
-    for (let i = 0; i < components.length; i++) {
-      const component = components[i];
-      const shadow = component.shadowRoot;
-
-      if (shadow) {
-        collection = [...collection, shadow, ...shadowDomCollector(shadow)];
-      }
-    }
-  }
-
-  return collection;
-}
-
-function queryFromArray(selector, components) {
-  let query = [];
-
-  for (let i = 0; i < components.length; i++) {
-    const found = components[i].querySelectorAll(selector);
-
-    if (found.length) {
-      query = [...query, ...found];
-    }
-  }
-
-  return query;
 }
 
 export { initInventory };

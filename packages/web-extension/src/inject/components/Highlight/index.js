@@ -1,4 +1,5 @@
 import settings from 'carbon-components/es/globals/js/settings';
+import { findAllDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 
 const { prefix } = settings;
 
@@ -34,7 +35,7 @@ function removeHighlight(component, type) {
 }
 
 function removeAllHighlights() {
-  const comps = document.querySelectorAll('.' + highlightClass);
+  const comps = findAllDomShadow('.' + highlightClass);
 
   if (comps.length > 0) {
     for (let i = 0; i < comps.length; i += 1) {
