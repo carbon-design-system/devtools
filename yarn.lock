@@ -1243,12 +1243,12 @@
     "@carbon/layout" "^10.29.0"
 
 "@carbon/type@^10.33.0", "@carbon/type@^10.35.0":
-  version "10.35.0"
-  resolved "https://registry.yarnpkg.com/@carbon/type/-/type-10.35.0.tgz#f9ea8a7077e5a5fc97711be1cbe158319ad0c3e7"
-  integrity sha512-8eQWUa+box1hv6UJ0W+9cXgtxTVdMKvLOoXEsjt9vWARKgwtFL+t+jYA0ttPXDOc+X/V35hEp0VD/aHf46Jhsw==
+  version "10.36.0"
+  resolved "https://registry.yarnpkg.com/@carbon/type/-/type-10.36.0.tgz#528b94599931e1558b1b134911c045d3a2794f6e"
+  integrity sha512-mXwswDzTDT2ShIFHmAPqgnUBswx1oZuMxzAVQRDtuB9/U7hyGg2QY1zNkz86cKemcnSpbDkhzzd6ngiW07k76w==
   dependencies:
     "@carbon/import-once" "^10.6.0"
-    "@carbon/layout" "^10.31.0"
+    "@carbon/layout" "^10.32.0"
 
 "@choojs/findup@^0.2.1":
   version "0.2.1"
