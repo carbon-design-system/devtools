@@ -8,11 +8,15 @@ import {
 } from '../../Tooltip';
 import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
 import { doesItHaveText } from '@carbon/devtools-utilities/src/doesItHaveText';
+import { randomId } from '@carbon/devtools-utilities/src/randomId';
+import { findSingleDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 import { getActiveBreakpoint } from '@carbon/devtools-utilities/src/getActiveBreakpoint';
 import { removeLeadingZero } from '@carbon/devtools-utilities/src/removeLeadingZero';
 import { fontWeights } from '@carbon/type/src/fontWeight';
 import * as styles from '@carbon/type/src/styles';
 import { rem } from '@carbon/layout';
+
+let shadowEventCollection = [];
 
 function manageSpecsType(specs, specType) {
   if (specs && specType === 'typography') {
@@ -30,68 +34,105 @@ function activateType() {
 function deactivateType() {
   document.body.removeEventListener('mouseover', mouseOver);
   document.body.removeEventListener('mouseout', mouseOut);
+
+  if (shadowEventCollection.length) {
+    for (let i = 0; i < shadowEventCollection.length; i++) {
+      shadowEventCollection[i].removeEventListener('mouseover', mouseOver);
+    }
+
+    shadowEventCollection = [];
+  }
 }
 
 function mouseOver(e) {
   let target = e.srcElement || e;
+  let ignoreNodes = ['BODY', 'SLOT', '#document-fragment'];
 
-  if (target.nodeName !== 'BODY' && !highlightType(target)) {
-    mouseOver(target.parentNode);
+  // does it have a shadow root?
+  // add an event listener
+  if (target.shadowRoot) {
+    target.dataset.shadowId = randomId();
+    const children = [...target.shadowRoot.children];
+
+    if (children.length) {
+      children.forEach((child) => {
+        child.dataset.shadowParent = target.dataset.shadowId; // skip shadow dom and provide reference to parent
+        child.addEventListener('mouseover', mouseOver);
+        shadowEventCollection.push(child);
+      });
+    }
+  }
+
+  if (ignoreNodes.indexOf(target.nodeName) === -1 && !highlightType(target)) {
+    let parent = target.parentNode;
+
+    if (target.dataset.shadowParent) {
+      parent = findSingleDomShadow(
+        `[data-shadow-id="${target.dataset.shadowParent}"]`
+      );
+    }
+
+    mouseOver(parent);
   }
 }
 
 function highlightType(target) {
-  const compStyles = window.getComputedStyle(target);
+  if (target) {
+    const compStyles = window.getComputedStyle(target);
 
-  let typeToken,
-    typeCount = 0,
-    tooltipGroups = [],
-    tooltipContent = '';
+    let typeToken,
+      typeCount = 0,
+      tooltipGroups = [],
+      tooltipContent = '';
 
-  if (doesItHaveText(target.childNodes)) {
-    typeCount = 1;
-    typeToken = getTypeToken(target, compStyles, styles);
+    if (doesItHaveText(target.childNodes, target)) {
+      typeCount = 1;
+      typeToken = getTypeToken(target, compStyles, styles);
 
-    tooltipContent += `<ul>`;
+      tooltipContent += `<ul>`;
 
-    if (!typeToken) {
-      tooltipContent += __specValueItem('warning', 'Token not found');
+      if (!typeToken) {
+        tooltipContent += __specValueItem('warning', 'Token not found');
+      }
+
+      tooltipContent += `
+                    ${__specValueItem(
+                      'type:',
+                      formatFontFamily(compStyles.fontFamily)
+                    )}
+                    ${__specValueItem(
+                      'size:',
+                      formatPxValue(compStyles.fontSize)
+                    )}
+                    ${__specValueItem(
+                      'line-height:',
+                      formatPxValue(compStyles.lineHeight)
+                    )}
+                    ${__specValueItem(
+                      'weight:',
+                      getFontWeight(compStyles.fontWeight, fontWeights)
+                    )}
+                    ${__specValueItem(
+                      'letter-spacing:',
+                      formatLetterSpacing(compStyles.letterSpacing)
+                    )}
+                </ul>`;
+
+      tooltipGroups.push({
+        eyebrow: getComponentName(target),
+        title: typeToken || 'Type styles',
+        content: tooltipContent,
+      });
     }
 
-    tooltipContent += `
-                ${__specValueItem(
-                  'type:',
-                  formatFontFamily(compStyles.fontFamily)
-                )}
-                ${__specValueItem('size:', formatPxValue(compStyles.fontSize))}
-                ${__specValueItem(
-                  'line-height:',
-                  formatPxValue(compStyles.lineHeight)
-                )}
-                ${__specValueItem(
-                  'weight:',
-                  getFontWeight(compStyles.fontWeight, fontWeights)
-                )}
-                ${__specValueItem(
-                  'letter-spacing:',
-                  formatLetterSpacing(compStyles.letterSpacing)
-                )}
-            </ul>`;
-
-    tooltipGroups.push({
-      eyebrow: getComponentName(target),
-      title: typeToken || 'Type styles',
-      content: tooltipContent,
-    });
-  }
-
-  if (typeCount > 0) {
-    updateTooltipContent(__specsContainer(tooltipGroups));
-    addHighlight(target, 'specs');
-    positionTooltip(target); // mouse location?
-    showHideTooltip(true);
-    document.addEventListener('scroll', clearOnScroll, true);
-    return typeCount;
+    if (typeCount > 0) {
+      updateTooltipContent(__specsContainer(tooltipGroups));
+      addHighlight(target, 'specs');
+      positionTooltip(target); // mouse location?
+      showHideTooltip(true);
+      document.addEventListener('scroll', clearOnScroll, true);
+      return typeCount;
+    }
   }
 }
 
@@ -174,7 +215,6 @@ function getTypeToken(target, compStyles, carbonStyles) {
 
 function fixedChecks(compStyles, tokenStyles, range) {
   let matches = 0;
-
   if (!range) {
     if (tokenStyles.fontSize) {
       if (

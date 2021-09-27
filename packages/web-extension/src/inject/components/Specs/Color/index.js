@@ -9,6 +9,8 @@ import {
 } from '../../Tooltip';
 import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
 import { doesItHaveText } from '@carbon/devtools-utilities/src/doesItHaveText';
+import { randomId } from '@carbon/devtools-utilities/src/randomId';
+import { findSingleDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 import { colors } from '@carbon/colors';
 import { themes } from '@carbon/themes';
 import { searchCarbonTokens } from './searchCarbonTokens';
@@ -17,6 +19,8 @@ import { getThemeName } from './getThemeName';
 import Color from 'color';
 
 const { prefix } = settings;
+
+let shadowEventCollection = [];
 
 function manageSpecsColor(specs, specType) {
   if (specs && specType === 'color') {
@@ -34,67 +38,101 @@ function activateColor() {
 function deactivateColor() {
   document.body.removeEventListener('mouseover', mouseOver);
   document.body.removeEventListener('mouseout', mouseOut);
+
+  if (shadowEventCollection.length) {
+    for (let i = 0; i < shadowEventCollection.length; i++) {
+      shadowEventCollection[i].removeEventListener('mouseover', mouseOver);
+    }
+
+    shadowEventCollection = [];
+  }
 }
 
 function mouseOver(e) {
   let target = e.srcElement || e;
+  let ignoreNodes = ['BODY', 'SLOT', '#document-fragment'];
 
-  if (target.nodeName !== 'BODY' && !highlightColor(target)) {
-    mouseOver(target.parentNode);
+  // does it have a shadow root?
+  // add an event listener
+  if (target.shadowRoot) {
+    target.dataset.shadowId = randomId();
+    const children = [...target.shadowRoot.children];
+
+    if (children.length) {
+      children.forEach((child) => {
+        child.dataset.shadowParent = target.dataset.shadowId; // skip shadow dom and provide reference to parent
+        child.addEventListener('mouseover', mouseOver);
+        shadowEventCollection.push(child);
+      });
+    }
+  }
+
+  if (ignoreNodes.indexOf(target.nodeName) === -1 && !highlightColor(target)) {
+    let parent = target.parentNode;
+
+    if (target.dataset.shadowParent) {
+      parent = findSingleDomShadow(
+        `[data-shadow-id="${target.dataset.shadowParent}"]`
+      );
+    }
+
+    mouseOver(parent);
   }
 }
 
 function highlightColor(target) {
-  const styles = window.getComputedStyle(target);
-  const themeName = getThemeName(target);
-  const themes = themeName || themeKeys.theme; // do we know the current theme? If not give them all of them.
-  const borderColorGroups = combineBorderColors(styles, themes);
+  if (target) {
+    const styles = window.getComputedStyle(target);
+    const themeName = getThemeName(target);
+    const themes = themeName || themeKeys.theme; // do we know the current theme? If not give them all of them.
+    const borderColorGroups = combineBorderColors(styles, themes);
 
-  let tooltipGroups = [];
+    let tooltipGroups = [];
 
-  if (doesItHaveText(target.childNodes)) {
-    tooltipGroups.push({
-      eyebrow: '<!--componentnameplaceholder-->',
-      title: 'Type color',
-      content: tooltipContent(styles.color, themeKeys.text.concat(themes)),
-    });
-  }
+    if (doesItHaveText(target.childNodes, target)) {
+      tooltipGroups.push({
+        eyebrow: '<!--componentnameplaceholder-->',
+        title: 'Type color',
+        content: tooltipContent(styles.color, themeKeys.text.concat(themes)),
+      });
+    }
 
-  if (styles.backgroundColor !== 'rgba(0, 0, 0, 0)') {
-    tooltipGroups.push({
-      eyebrow: '<!--componentnameplaceholder-->',
-      title: 'Background color',
-      content: tooltipContent(
-        styles.backgroundColor,
-        themeKeys.background.concat(themes)
-      ),
-    });
-  }
+    if (styles.backgroundColor !== 'rgba(0, 0, 0, 0)') {
+      tooltipGroups.push({
+        eyebrow: '<!--componentnameplaceholder-->',
+        title: 'Background color',
+        content: tooltipContent(
+          styles.backgroundColor,
+          themeKeys.background.concat(themes)
+        ),
+      });
+    }
 
-  if (target.nodeName === 'path') {
-    tooltipGroups.push({
-      eyebrow: '<!--componentnameplaceholder-->',
-      title: 'Fill',
-      content: tooltipContent(styles.fill, themeKeys.icon.concat(themes)),
-    });
-  }
+    if (target.nodeName === 'path') {
+      tooltipGroups.push({
+        eyebrow: '<!--componentnameplaceholder-->',
+        title: 'Fill',
+        content: tooltipContent(styles.fill, themeKeys.icon.concat(themes)),
+      });
+    }
 
-  if (borderColorGroups.length > 0) {
-    tooltipGroups = tooltipGroups.concat(borderColorGroups);
-  }
+    if (borderColorGroups.length > 0) {
+      tooltipGroups = tooltipGroups.concat(borderColorGroups);
+    }
 
-  if (tooltipGroups.length > 0) {
-    updateTooltipContent(
-      __specsContainer(tooltipGroups).replace(
-        /<!--componentnameplaceholder-->/g,
-        getComponentName(target)
-      )
-    );
-    addHighlight(target, 'specs');
-    positionTooltip(target); // mouse location?
-    showHideTooltip(true);
-    document.addEventListener('scroll', clearOnScroll, true);
-    return tooltipGroups.length;
+    if (tooltipGroups.length > 0) {
+      updateTooltipContent(
+        __specsContainer(tooltipGroups).replace(
+          /<!--componentnameplaceholder-->/g,
+          getComponentName(target)
+        )
+      );
+      addHighlight(target, 'specs');
+      positionTooltip(target); // mouse location?
+      showHideTooltip(true);
+      document.addEventListener('scroll', clearOnScroll, true);
+      return tooltipGroups.length;
+    }
   }
 }
 
