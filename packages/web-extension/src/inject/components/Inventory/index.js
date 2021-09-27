@@ -14,6 +14,7 @@ import {
   shadowDomCollector,
   findAllDomShadow,
   findSingleDomShadow,
+  shadowContent,
 } from '@carbon/devtools-utilities/src/shadowDom';
 import { allComponents } from '../../../globals/componentList';
 
@@ -225,7 +226,7 @@ function updateInventory(componentName, components) {
           name: componentName,
           uniqueID: uniqueID,
           outerHTML: component.outerHTML,
-          innerText: component.innerText,
+          innerText: shadowContent(component.childNodes), // not really innertext anymore
           tag: component.localName,
           id: component.id,
           classes: component.classList.value.split(' '),

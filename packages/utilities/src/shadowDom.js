@@ -63,10 +63,34 @@ function queryFromArray(selector, components, single) {
   return query;
 }
 
+function shadowContent(children) {
+  let text = '';
+
+  if (children.length) {
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+
+      if (child.nodeType === 3 && child.wholeText.length > 0) {
+        text += child.wholeText;
+      } else if (child.nodeType === 1) {
+        text += shadowContent(child.childNodes);
+
+        if (child.nodeName === 'SLOT') {
+          const slot = child.assignedNodes();
+          text += shadowContent(slot);
+        }
+      }
+    }
+  }
+
+  return text;
+}
+
 export {
   queryFromArray,
   shadowDomCollector,
   findAllDomShadow,
   shadowCollection,
   findSingleDomShadow,
+  shadowContent,
 };
