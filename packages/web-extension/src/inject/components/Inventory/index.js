@@ -4,7 +4,7 @@ import {
   showHideTooltip,
   updateTooltipContent,
   addHighlight,
-  removeHighlight,
+  removeAllHighlights,
 } from '../';
 import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
@@ -108,13 +108,14 @@ function highlightInventoryItems(ids) {
   doThisByIds(ids, highlightInventoryItem);
 }
 
-function removeInventoryHighlights(ids) {
-  doThisByIds(ids, (comp) => removeHighlight(comp, 'inventory'));
+function removeInventoryHighlights() {
+  // doThisByIds(ids, (comp) => removeHighlight(comp, 'inventory'));
+  removeAllHighlights();
   showHideTooltip(false);
 }
 
 function highlightInventoryItem(component, id, showTooltip) {
-  addHighlight(component, 'inventory');
+  addHighlight(component, { type: 'inventory' });
 
   if (showTooltip) {
     const idPosition = component.dataset[idselector].split(',').indexOf(id);

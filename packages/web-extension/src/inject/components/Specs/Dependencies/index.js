@@ -87,7 +87,7 @@ function highlightSpecsDependencies(target) {
             }
           }
 
-          addHighlight(dependency, 'specs');
+          addHighlight(dependency, { type: 'specs' });
         }
       }
 
@@ -112,7 +112,7 @@ function highlightSpecsDependencies(target) {
                 ${tooltipContent}
             </div>
         `);
-    addHighlight(target, 'specs', { outline: true });
+    addHighlight(target, { type: 'specs', outline: true });
     positionTooltip(target);
     showHideTooltip(true);
     return dependencies;

@@ -59,7 +59,7 @@ function highlightSpecsSpacing(target) {
 
   if (spacerCount) {
     activeTarget = target;
-    addHighlight(target, 'specs', { outline: true });
+    addHighlight(target, { type: 'specs', outline: true });
     return spacerCount;
   }
 }

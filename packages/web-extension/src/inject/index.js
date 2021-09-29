@@ -5,9 +5,11 @@ import {
   initInventory,
   initTooltip,
   initShortcuts,
+  injectHighlights,
 } from './components';
 
 if (!window.carbonDevtoolsInjected) {
+  injectHighlights();
   initGrid();
   initSpecs();
   initTooltip();

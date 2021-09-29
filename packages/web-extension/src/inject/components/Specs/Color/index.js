@@ -65,7 +65,7 @@ function highlightSpecsColor(target) {
           getComponentName(target)
         )
       );
-      addHighlight(target, 'specs');
+      addHighlight(target, { type: 'specs' });
       positionTooltip(target); // mouse location?
       showHideTooltip(true);
       return tooltipGroups.length;

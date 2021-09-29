@@ -65,7 +65,7 @@ function highlightSpecsType(target) {
 
     if (typeCount > 0) {
       updateTooltipContent(__specsContainer(tooltipGroups));
-      addHighlight(target, 'specs');
+      addHighlight(target, { type: 'specs' });
       positionTooltip(target); // mouse location?
       showHideTooltip(true);
       return typeCount;

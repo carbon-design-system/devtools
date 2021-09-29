@@ -1,84 +1,64 @@
 $highlight-opacity: 0.5;
 
 .#{$prefix}--highlight {
+  position: absolute;
+
   &::after {
     opacity: 0;
     transition: opacity $transition-fade, background-color $transition-fade,
       box-shadow $transition-fade;
   }
 
-  &.#{$prefix}--highlight {
-    &--grid,
-    &--specs,
-    &--inventory {
-      --highlight-color-type-border: transparent;
-      --highlight-color-type-background: transparent;
-
-      &::after {
-        position: absolute;
-        z-index: $zindex - 1;
-        top: 0;
-        left: 0;
-        display: flex;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--highlight-color-type-background);
-        color: #ffffff; /* TODO use carbon color */
-        content: attr(data-highlightcontent);
-        opacity: 1;
-        pointer-events: none;
-        text-align: center;
-        transform: translate(0, 0);
-
-        @include carbon--type-style('expressive-paragraph-01');
-      }
-    }
-
-    &--outline::after {
-      background: none;
-      box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
-      opacity: 1;
-    }
-
-    &--inline::after {
-      display: none;
-    }
-  }
-
-  &--relative {
-    position: relative;
-  }
-
+  &--grid,
+  &--specs,
   &--inventory {
-    &::after,
-    &.#{$prefix}--highlight--inline {
-      --highlight-color-type-border: #{$inventory-color};
-      --highlight-color-type-background: #{rgba(
-          $inventory-color,
-          $highlight-opacity
-        )};
+    --highlight-color-type-border: transparent;
+    --highlight-color-type-background: transparent;
+
+    &::after {
+      position: absolute;
+      z-index: $zindex - 1;
+      top: 0;
+      left: 0;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--highlight-color-type-background);
+      color: #ffffff; /* TODO use carbon color */
+      content: attr(data-highlightcontent);
+      opacity: 1;
+      pointer-events: none;
+      text-align: center;
+      transform: translate(0, 0);
+
+      @include carbon--type-style('expressive-paragraph-01');
     }
   }
 
-  &--specs {
-    &::after,
-    &.#{$prefix}--highlight--inline {
-      --highlight-color-type-border: #{$specs-color};
-      --highlight-color-type-background: #{rgba(
-          $specs-color,
-          $highlight-opacity
-        )};
-    }
+  &--outline::after {
+    background: none;
+    box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
+    opacity: 1;
   }
 
-  &--grid {
-    &::after,
-    &.#{$prefix}--highlight--inline {
-      --highlight-color-type-border: #{$grid-color};
-      --highlight-color-type-background: #{rgba($grid-color, $highlight-opacity)};
-    }
+  &--inventory::after {
+    --highlight-color-type-border: #{$inventory-color};
+    --highlight-color-type-background: #{rgba(
+        $inventory-color,
+        $highlight-opacity
+      )};
+  }
+
+  &--specs::after {
+    --highlight-color-type-border: #{$specs-color};
+    --highlight-color-type-background: #{rgba($specs-color, $highlight-opacity)};
+  }
+
+  &--grid::after {
+    --highlight-color-type-border: #{$grid-color};
+    --highlight-color-type-background: #{rgba($grid-color, $highlight-opacity)};
   }
 
   body:active &::after {

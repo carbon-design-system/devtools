@@ -80,7 +80,7 @@ function highlightSpecsGrid(target) {
   tooltipContent += '</div>';
 
   if (grid) {
-    addHighlight(target, 'specs', highlightOptions);
+    addHighlight(target, { ...highlightOptions, type: 'specs' });
     updateTooltipContent(tooltipContent);
     positionTooltip(target);
     showHideTooltip(true);

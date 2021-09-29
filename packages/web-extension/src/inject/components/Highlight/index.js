@@ -1,43 +1,90 @@
 import settings from 'carbon-components/es/globals/js/settings';
 import { findAllDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
+import { randomId } from '@carbon/devtools-utilities/src/randomId';
 
 const { prefix } = settings;
 
+const devtoolsClass = `${prefix}--devtools`;
+const highlightsContainerClass = `${prefix}--highlights`;
 const highlightClass = `${prefix}--highlight`;
-const relativeClass = `${highlightClass}--relative`;
 const outlineClass = `${highlightClass}--outline`;
-const inlineClass = `${highlightClass}--inline`;
 
-function addHighlight(component, type = '', options = {}) {
-  if (type) {
-    type = '--' + type; // "specs" type becomes "--specs"
+function injectHighlights() {
+  let highlightContainer = document.querySelector(
+    '.' + highlightsContainerClass
+  );
+
+  if (!highlightContainer) {
+    const devtools = document.querySelector('.' + devtoolsClass);
+
+    if (devtools) {
+      highlightContainer = document.createElement('div');
+      highlightContainer.classList.add(highlightsContainerClass);
+
+      devtools.prepend(highlightContainer);
+    }
   }
 
-  if (options.outline) {
-    component.classList.add(outlineClass);
-  }
-
-  if (options.content) {
-    component.dataset.highlightcontent = options.content;
-  }
-
-  conditionalHighlights(component);
-  component.classList.add(highlightClass);
-  component.classList.add(highlightClass + type);
+  return highlightContainer;
 }
 
-function removeHighlight(component, type) {
-  if (type) {
-    type = '--' + type; // "specs" type becomes "--specs"
+function addHighlight(component, options = {}) {
+  const highlightContainer = injectHighlights();
+  const matchingHighlight = highlightContainer.querySelector(
+    `[data-highlightid="${component.dataset.highlightid}"]`
+  );
+
+  if (!matchingHighlight) {
+    // if the component is already highlight ignore adding another one
+
+    let highlight, type;
+    const highlightID = randomId();
+    const comp = component.getBoundingClientRect();
+    const reuseHighlight = highlightContainer.querySelector(
+      `div:not(.${highlightClass})`
+    );
+
+    if (reuseHighlight) {
+      highlight = reuseHighlight;
+    } else {
+      highlight = document.createElement('div');
+    }
+
+    if (options.type) {
+      type = '--' + options.type; // "specs" type becomes "--specs"
+    }
+
+    if (options.outline) {
+      highlight.classList.add(outlineClass);
+    }
+
+    if (options.content) {
+      highlight.dataset.highlightcontent = options.content;
+    }
+
+    highlight.classList.add(highlightClass);
+    highlight.classList.add(highlightClass + type);
+
+    highlight.style.top = comp.top + window.scrollY + 'px';
+    highlight.style.left = comp.left + window.scrollX + 'px';
+    highlight.style.width = comp.width + 'px';
+    highlight.style.height = comp.height + 'px';
+
+    highlight.dataset.highlightid = highlightID;
+    component.dataset.highlightid = highlightID;
+
+    // new styling
+    if (!reuseHighlight) {
+      highlightContainer.append(highlight);
+    }
   }
+}
 
-  component.classList.remove(highlightClass);
-  component.classList.remove(highlightClass + type);
-  component.classList.remove(relativeClass);
-  component.classList.remove(inlineClass);
-  component.classList.remove(outlineClass);
-
-  component.dataset.highlightcontent = '';
+function removeHighlight(component) {
+  component.setAttribute('class', '');
+  component.setAttribute('style', '');
+  component.setAttribute('data-highlightcontent', '');
+  component.setAttribute('data-highlightid', '');
 }
 
 function removeAllHighlights() {
@@ -45,30 +92,9 @@ function removeAllHighlights() {
 
   if (comps.length > 0) {
     for (let i = 0; i < comps.length; i += 1) {
-      removeHighlight(comps[i], 'grid');
-      removeHighlight(comps[i], 'specs');
-      removeHighlight(comps[i], 'inventory');
+      removeHighlight(comps[i]);
     }
   }
 }
 
-function conditionalHighlights(component) {
-  const computed = getComputedStyle(component);
-  const position = computed.position;
-  const display = computed.display;
-
-  if (
-    position !== 'fixed' &&
-    position !== 'absolute' &&
-    position !== 'relative' &&
-    position !== 'sticky'
-  ) {
-    component.classList.add(relativeClass);
-  }
-
-  if (display === 'inline') {
-    component.classList.add(inlineClass);
-  }
-}
-
-export { addHighlight, removeHighlight, removeAllHighlights };
+export { addHighlight, removeHighlight, removeAllHighlights, injectHighlights };
