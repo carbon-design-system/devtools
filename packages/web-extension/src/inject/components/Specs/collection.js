@@ -5,4 +5,3 @@ export * from './Outline';
 export * from './Ratio';
 export * from './Spacing';
 export * from './Typography';
-// export * from './Wireframe';

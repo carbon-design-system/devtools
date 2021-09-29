@@ -7,7 +7,6 @@ import { removeAllHighlights } from '../Highlight';
 import { showHideTooltip } from '../Tooltip';
 import {
   // manageSpecsOutline,
-  // manageSpecsWireframe,
   highlightSpecsType,
   highlightSpecsColor,
   highlightSpecsDependencies,
@@ -79,7 +78,6 @@ function manageSpecs({ specs }) {
   }
 
   // manageSpecsOutline(specs, specType); // this one is different than the others...
-  // manageSpecsWireframe(specs, specType);
 }
 
 function addSpecs() {
