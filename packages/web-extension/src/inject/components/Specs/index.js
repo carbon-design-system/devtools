@@ -6,7 +6,7 @@ import { findSingleDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 import { removeAllHighlights } from '../Highlight';
 import { showHideTooltip } from '../Tooltip';
 import {
-  // manageSpecsOutline,
+  manageSpecsOutline,
   highlightSpecsType,
   highlightSpecsColor,
   highlightSpecsDependencies,
@@ -36,6 +36,7 @@ const specToolOptions = {
 const state = {
   specs: false,
   specType: false,
+  specOutline: false,
 };
 
 let shadowEventCollection = [];
@@ -46,7 +47,8 @@ function initSpecs() {
     ['globalToggleStates', 'toggleSpecs'],
     ({ globalToggleStates, toggleSpecs }) => {
       manageSpecsState('specs', globalToggleStates.specs);
-      manageSpecsState('specType', toggleSpecs);
+      manageSpecsState('specType', toggleSpecs.type);
+      manageSpecsState('specOutline', toggleSpecs.outline);
     }
   );
 
@@ -54,9 +56,10 @@ function initSpecs() {
   storageItemChanged('globalToggleStates', ({ specs }) =>
     manageSpecsState('specs', specs)
   );
-  storageItemChanged('toggleSpecs', (toggleSpecs) =>
-    manageSpecsState('specType', toggleSpecs)
-  );
+  storageItemChanged('toggleSpecs', (toggleSpecs) => {
+    manageSpecsState('specType', toggleSpecs.type);
+    manageSpecsState('specOutline', toggleSpecs.outline);
+  });
   storageItemChanged('generalExperimental', () => manageSpecs(state));
 }
 
@@ -69,15 +72,14 @@ function manageSpecsState(type, value) {
   }
 }
 
-function manageSpecs({ specs }) {
-  // , specType
+function manageSpecs({ specs, specOutline }) {
   if (specs) {
     addSpecs();
   } else {
     removeSpecs();
   }
 
-  // manageSpecsOutline(specs, specType); // this one is different than the others...
+  manageSpecsOutline(specs, specOutline);
 }
 
 function addSpecs() {
