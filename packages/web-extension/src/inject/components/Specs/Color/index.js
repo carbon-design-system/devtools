@@ -1,5 +1,5 @@
 import settings from 'carbon-components/es/globals/js/settings';
-import { addHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
   showHideTooltip,
@@ -9,8 +9,6 @@ import {
 } from '../../Tooltip';
 import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
 import { doesItHaveText } from '@carbon/devtools-utilities/src/doesItHaveText';
-import { randomId } from '@carbon/devtools-utilities/src/randomId';
-import { findSingleDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 import { colors } from '@carbon/colors';
 import { themes } from '@carbon/themes';
 import { searchCarbonTokens } from './searchCarbonTokens';
@@ -20,67 +18,7 @@ import Color from 'color';
 
 const { prefix } = settings;
 
-let shadowEventCollection = [];
-
-function manageSpecsColor(specs, specType) {
-  if (specs && specType === 'color') {
-    activateColor();
-  } else {
-    deactivateColor();
-  }
-}
-
-function activateColor() {
-  document.body.addEventListener('mouseover', mouseOver);
-  document.body.addEventListener('mouseout', mouseOut);
-}
-
-function deactivateColor() {
-  document.body.removeEventListener('mouseover', mouseOver);
-  document.body.removeEventListener('mouseout', mouseOut);
-
-  if (shadowEventCollection.length) {
-    for (let i = 0; i < shadowEventCollection.length; i++) {
-      shadowEventCollection[i].removeEventListener('mouseover', mouseOver);
-    }
-
-    shadowEventCollection = [];
-  }
-}
-
-function mouseOver(e) {
-  let target = e.srcElement || e;
-  let ignoreNodes = ['BODY', 'SLOT', '#document-fragment'];
-
-  // does it have a shadow root?
-  // add an event listener
-  if (target.shadowRoot) {
-    target.dataset.shadowId = randomId();
-    const children = [...target.shadowRoot.children];
-
-    if (children.length) {
-      children.forEach((child) => {
-        child.dataset.shadowParent = target.dataset.shadowId; // skip shadow dom and provide reference to parent
-        child.addEventListener('mouseover', mouseOver);
-        shadowEventCollection.push(child);
-      });
-    }
-  }
-
-  if (ignoreNodes.indexOf(target.nodeName) === -1 && !highlightColor(target)) {
-    let parent = target.parentNode;
-
-    if (target.dataset.shadowParent) {
-      parent = findSingleDomShadow(
-        `[data-shadow-id="${target.dataset.shadowParent}"]`
-      );
-    }
-
-    mouseOver(parent);
-  }
-}
-
-function highlightColor(target) {
+function highlightSpecsColor(target) {
   if (target) {
     const styles = window.getComputedStyle(target);
     const themeName = getThemeName(target);
@@ -130,22 +68,9 @@ function highlightColor(target) {
       addHighlight(target, 'specs');
       positionTooltip(target); // mouse location?
       showHideTooltip(true);
-      document.addEventListener('scroll', clearOnScroll, true);
       return tooltipGroups.length;
     }
   }
-}
-
-function clearOnScroll() {
-  showHideTooltip(false);
-  removeAllHighlights();
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-function mouseOut() {
-  removeAllHighlights();
-  showHideTooltip(false);
-  document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function combineBorderColors(styles, themes) {
@@ -306,4 +231,4 @@ function tooltipContent(value, scopedKeys) {
   return html;
 }
 
-export { manageSpecsColor };
+export { highlightSpecsColor };

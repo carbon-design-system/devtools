@@ -1,5 +1,5 @@
 import settings from 'carbon-components/es/globals/js/settings';
-import { addHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight } from '../../Highlight';
 import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import {
@@ -12,80 +12,46 @@ const { prefix } = settings;
 
 const aspectRatios = ['16:9', '9:16', '2:1', '1:2', '4:3', '3:4', '1:1'];
 const aspectRatiosCalc = [16 / 9, 9 / 16, 2 / 1, 1 / 2, 4 / 3, 3 / 4, 1 / 1];
+const svgMarkup = ['svg', 'g', 'path', 'rect', 'polygon', 'circle'];
 
-function manageSpecsRatio(specs, specType) {
-  let exp = false;
-
-  experimentalFlag(() => {
-    exp = true;
-  });
-
-  if (specs && specType === 'ratio' && exp) {
-    activateRatio();
-  } else {
-    deactivateRatio();
-  }
-}
-
-function activateRatio() {
-  document.body.addEventListener('mouseover', mouseOver);
-  document.body.addEventListener('mouseout', mouseOut);
-}
-
-function deactivateRatio() {
-  document.body.removeEventListener('mouseover', mouseOver);
-  document.body.removeEventListener('mouseout', mouseOut);
-}
-
-function mouseOver(e) {
-  let target = e.srcElement || e;
-
-  highlightRatio(target);
-}
-
-function highlightRatio(target) {
-  const highlightOptions = {};
+function highlightSpecsRatio(target) {
   const comp = target.getBoundingClientRect();
   const width = Math.round(comp.width);
   const height = Math.round(comp.height);
-  const ratioIndex = aspectRatiosCalc.indexOf(width / height);
+  const minValue = 16; // get from two mini units?
 
-  let tooltipContent = ``;
+  if (width > minValue && height > minValue) {
+    experimentalFlag(() => {
+      const highlightOptions = {};
+      const ratioIndex = aspectRatiosCalc.indexOf(width / height);
+      const componentName =
+        svgMarkup.indexOf(target.nodeName.toLowerCase()) > -1
+          ? 'SVG'
+          : getComponentName(target); // build this logic into the get component name?
 
-  if (ratioIndex > -1) {
-    target.dataset['highlightcontent'] = aspectRatios[ratioIndex];
+      let tooltipContent = ``;
 
-    tooltipContent += `<span class="${prefix}--tooltip--primary">${aspectRatios[ratioIndex]} 
-        <span class="${prefix}--tooltip--secondary">(${width}x${height})</span></span>`;
-    // tooltipContent += ``;
-  } else {
-    highlightOptions.outline = true;
+      if (ratioIndex > -1) {
+        highlightOptions.content = aspectRatios[ratioIndex];
 
-    tooltipContent += `<span class="${prefix}--tooltip--primary">${width}x${height}</span>`;
+        tooltipContent += `<span class="${prefix}--tooltip--primary">${aspectRatios[ratioIndex]} 
+                    <span class="${prefix}--tooltip--secondary">(${width}x${height})</span></span>`;
+      } else {
+        highlightOptions.outline = true;
+
+        tooltipContent += `<span class="${prefix}--tooltip--primary">${width}x${height}</span>`;
+      }
+
+      tooltipContent += `<span class="${prefix}--tooltip--secondary">${componentName}</span>`;
+
+      addHighlight(target, 'specs', highlightOptions);
+      updateTooltipContent(tooltipContent);
+      positionTooltip(target);
+      showHideTooltip(true);
+    });
+
+    return true;
   }
-
-  tooltipContent += `<span class="${prefix}--tooltip--secondary">${getComponentName(
-    target
-  )}</span>`;
-
-  addHighlight(target, 'specs', highlightOptions);
-  updateTooltipContent(tooltipContent);
-  positionTooltip(target);
-  showHideTooltip(true);
-  document.addEventListener('scroll', clearOnScroll, true);
 }
 
-function clearOnScroll() {
-  showHideTooltip(false);
-  removeAllHighlights();
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-function mouseOut(e) {
-  e.srcElement.dataset['highlightcontent'] = '';
-  removeAllHighlights();
-  showHideTooltip(false);
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-export { manageSpecsRatio };
+export { highlightSpecsRatio };

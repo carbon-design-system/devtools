@@ -17,6 +17,10 @@ function addHighlight(component, type = '', options = {}) {
     component.classList.add(outlineClass);
   }
 
+  if (options.content) {
+    component.dataset.highlightcontent = options.content;
+  }
+
   conditionalHighlights(component);
   component.classList.add(highlightClass);
   component.classList.add(highlightClass + type);
@@ -32,6 +36,8 @@ function removeHighlight(component, type) {
   component.classList.remove(relativeClass);
   component.classList.remove(inlineClass);
   component.classList.remove(outlineClass);
+
+  component.dataset.highlightcontent = '';
 }
 
 function removeAllHighlights() {
