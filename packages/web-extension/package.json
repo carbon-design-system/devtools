@@ -1,6 +1,6 @@
 {
   "name": "carbon-devtools",
-  "version": "2.4.7",
+  "version": "2.5.0",
   "private": true,
   "description": "A basic set of tools to aide in the development of building pages with Carbon.",
   "main": "dist/manifest.json",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@carbon/colors": "^10.30.0",
     "@carbon/grid": "^10.33.0",
-    "@carbon/ibm-cloud-cognitive": "^0.87.3",
+    "@carbon/ibm-cloud-cognitive": "^0.88.1",
     "@carbon/ibm-security": "^1.31.0",
     "@carbon/ibmdotcom-react": "^1.10.1",
     "@carbon/ibmdotcom-utilities": "^1.10.1",

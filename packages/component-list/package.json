@@ -1,6 +1,6 @@
 {
   "name": "@carbon/devtools-component-list",
-  "version": "2.4.7",
+  "version": "2.5.0",
   "description": "Generates a list of components and their selectors across all of the Carbon libraries.",
   "main": "./dist/index.json",
   "scripts": {
@@ -17,7 +17,7 @@
     "test": "yarn format && yarn lint"
   },
   "dependencies": {
-    "@carbon/ibm-cloud-cognitive": "^0.87.3",
+    "@carbon/ibm-cloud-cognitive": "^0.88.1",
     "@carbon/ibm-security": "^1.31.0",
     "@carbon/ibmdotcom-react": "^1.10.1",
     "@carbon/ibmdotcom-web-components": "^1.9.0",
