@@ -3,7 +3,11 @@ import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemCh
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { gridVersions } from '../../../globals';
 import { manage2xGrid } from './2x';
-import { manageMiniUnitGrid } from './mini-unit';
+import {
+  manageMiniUnitGrid,
+  showMiniUnitGrid,
+  hideMiniUnitGrid,
+} from './mini-unit';
 import { themes } from '@carbon/themes';
 
 const { prefix } = settings;
@@ -93,9 +97,9 @@ function manageGlobals() {
 
     // show or hide mini unit grid
     if (toggleMiniUnitGrid) {
-      html.classList.add(`${prefix}--grid-mini-unit--show`);
+      showMiniUnitGrid();
     } else {
-      html.classList.remove(`${prefix}--grid-mini-unit--show`);
+      hideMiniUnitGrid();
     }
   }
 
