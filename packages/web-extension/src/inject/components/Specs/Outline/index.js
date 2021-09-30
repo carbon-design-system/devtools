@@ -5,8 +5,8 @@ const { prefix } = settings;
 const html = document.querySelector('html');
 const outlineClass = `${prefix}--specs--outline`;
 
-function manageSpecsOutline(specs, specType) {
-  if (specs && specType === 'outline') {
+function manageSpecsOutline(specs, specOutline) {
+  if (specs && specOutline) {
     activateOutline();
   } else {
     deactiveOutline();

@@ -1,7 +1,7 @@
 import settings from 'carbon-components/es/globals/js/settings';
 import { breakpoints, rem } from '@carbon/layout';
 import { carbonPrefix } from '../../../../globals';
-import { addHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
   showHideTooltip,
@@ -17,33 +17,7 @@ const specsGridClass = `${prefix}--specs-grid-tooltip`;
 const titleClass = `${specsGridClass}__title`;
 const classListClass = `${specsGridClass}__classlist`;
 
-function manageSpecsGrid(specs, specType) {
-  if (specs && specType === 'grid') {
-    activateGrid();
-  } else {
-    deactivateGrid();
-  }
-}
-
-function activateGrid() {
-  document.body.addEventListener('mouseover', mouseOver);
-  document.body.addEventListener('mouseout', mouseOut);
-}
-
-function deactivateGrid() {
-  document.body.removeEventListener('mouseover', mouseOver);
-  document.body.removeEventListener('mouseout', mouseOut);
-}
-
-function mouseOver(e) {
-  let target = e.srcElement || e;
-
-  if (target.nodeName !== 'BODY' && !highlightGrid(target)) {
-    mouseOver(target.parentNode);
-  }
-}
-
-function highlightGrid(target) {
+function highlightSpecsGrid(target) {
   // can we use computed values to determine grid, row, col,
   // and free ourselves from class names incase adopters are using mixins?
   const highlightOptions = { outline: true };
@@ -106,25 +80,12 @@ function highlightGrid(target) {
   tooltipContent += '</div>';
 
   if (grid) {
-    addHighlight(target, 'specs', highlightOptions);
+    addHighlight(target, { ...highlightOptions, type: 'specs' });
     updateTooltipContent(tooltipContent);
     positionTooltip(target);
     showHideTooltip(true);
-    document.addEventListener('scroll', clearOnScroll, true);
     return grid;
   }
-}
-
-function clearOnScroll() {
-  showHideTooltip(false);
-  removeAllHighlights();
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-function mouseOut() {
-  removeAllHighlights();
-  showHideTooltip(false);
-  document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function activeBreakpoint(classList) {
@@ -150,4 +111,4 @@ function activeBreakpoint(classList) {
   return active;
 }
 
-export { manageSpecsGrid };
+export { highlightSpecsGrid };

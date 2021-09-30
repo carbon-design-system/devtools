@@ -1,5 +1,5 @@
 import settings from 'carbon-components/es/globals/js/settings';
-import { addHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
   showHideTooltip,
@@ -18,96 +18,59 @@ import Color from 'color';
 
 const { prefix } = settings;
 
-function manageSpecsColor(specs, specType) {
-  if (specs && specType === 'color') {
-    activateColor();
-  } else {
-    deactivateColor();
+function highlightSpecsColor(target) {
+  if (target) {
+    const styles = window.getComputedStyle(target);
+    const themeName = getThemeName(target);
+    const themes = themeName || themeKeys.theme; // do we know the current theme? If not give them all of them.
+    const borderColorGroups = combineBorderColors(styles, themes);
+
+    let tooltipGroups = [];
+
+    if (doesItHaveText(target.childNodes, target)) {
+      tooltipGroups.push({
+        eyebrow: '<!--componentnameplaceholder-->',
+        title: 'Type color',
+        content: tooltipContent(styles.color, themeKeys.text.concat(themes)),
+      });
+    }
+
+    if (styles.backgroundColor !== 'rgba(0, 0, 0, 0)') {
+      tooltipGroups.push({
+        eyebrow: '<!--componentnameplaceholder-->',
+        title: 'Background color',
+        content: tooltipContent(
+          styles.backgroundColor,
+          themeKeys.background.concat(themes)
+        ),
+      });
+    }
+
+    if (target.nodeName === 'path') {
+      tooltipGroups.push({
+        eyebrow: '<!--componentnameplaceholder-->',
+        title: 'Fill',
+        content: tooltipContent(styles.fill, themeKeys.icon.concat(themes)),
+      });
+    }
+
+    if (borderColorGroups.length > 0) {
+      tooltipGroups = tooltipGroups.concat(borderColorGroups);
+    }
+
+    if (tooltipGroups.length > 0) {
+      updateTooltipContent(
+        __specsContainer(tooltipGroups).replace(
+          /<!--componentnameplaceholder-->/g,
+          getComponentName(target)
+        )
+      );
+      addHighlight(target, { type: 'specs' });
+      positionTooltip(target); // mouse location?
+      showHideTooltip(true);
+      return tooltipGroups.length;
+    }
   }
-}
-
-function activateColor() {
-  document.body.addEventListener('mouseover', mouseOver);
-  document.body.addEventListener('mouseout', mouseOut);
-}
-
-function deactivateColor() {
-  document.body.removeEventListener('mouseover', mouseOver);
-  document.body.removeEventListener('mouseout', mouseOut);
-}
-
-function mouseOver(e) {
-  let target = e.srcElement || e;
-
-  if (target.nodeName !== 'BODY' && !highlightColor(target)) {
-    mouseOver(target.parentNode);
-  }
-}
-
-function highlightColor(target) {
-  const styles = window.getComputedStyle(target);
-  const themeName = getThemeName(target);
-  const themes = themeName || themeKeys.theme; // do we know the current theme? If not give them all of them.
-  const borderColorGroups = combineBorderColors(styles, themes);
-
-  let tooltipGroups = [];
-
-  if (doesItHaveText(target.childNodes)) {
-    tooltipGroups.push({
-      eyebrow: '<!--componentnameplaceholder-->',
-      title: 'Type color',
-      content: tooltipContent(styles.color, themeKeys.text.concat(themes)),
-    });
-  }
-
-  if (styles.backgroundColor !== 'rgba(0, 0, 0, 0)') {
-    tooltipGroups.push({
-      eyebrow: '<!--componentnameplaceholder-->',
-      title: 'Background color',
-      content: tooltipContent(
-        styles.backgroundColor,
-        themeKeys.background.concat(themes)
-      ),
-    });
-  }
-
-  if (target.nodeName === 'path') {
-    tooltipGroups.push({
-      eyebrow: '<!--componentnameplaceholder-->',
-      title: 'Fill',
-      content: tooltipContent(styles.fill, themeKeys.icon.concat(themes)),
-    });
-  }
-
-  if (borderColorGroups.length > 0) {
-    tooltipGroups = tooltipGroups.concat(borderColorGroups);
-  }
-
-  if (tooltipGroups.length > 0) {
-    updateTooltipContent(
-      __specsContainer(tooltipGroups).replace(
-        /<!--componentnameplaceholder-->/g,
-        getComponentName(target)
-      )
-    );
-    addHighlight(target, 'specs');
-    positionTooltip(target); // mouse location?
-    showHideTooltip(true);
-    document.addEventListener('scroll', clearOnScroll, true);
-    return tooltipGroups.length;
-  }
-}
-
-function clearOnScroll() {
-  showHideTooltip(false);
-  removeAllHighlights();
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-function mouseOut() {
-  removeAllHighlights();
-  showHideTooltip(false);
-  document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function combineBorderColors(styles, themes) {
@@ -268,4 +231,4 @@ function tooltipContent(value, scopedKeys) {
   return html;
 }
 
-export { manageSpecsColor };
+export { highlightSpecsColor };

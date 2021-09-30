@@ -1,44 +1,19 @@
 import settings from 'carbon-components/es/globals/js/settings';
-import { addHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
   showHideTooltip,
   updateTooltipContent,
 } from '../../Tooltip';
 import { allComponents } from '../../../../globals/componentList';
+import { findAllDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 
 const { prefix } = settings;
 const selectors = Object.keys(allComponents).join(',');
 
 const specsDependenciesClass = `${prefix}--specs-dependencies-tooltip`;
 
-function manageSpecsDependencies(specs, specType) {
-  if (specs && specType === 'dependencies') {
-    activateDependencies();
-  } else {
-    deactivateDependencies();
-  }
-}
-
-function activateDependencies() {
-  document.body.addEventListener('mouseover', mouseOver);
-  document.body.addEventListener('mouseout', mouseOut);
-}
-
-function deactivateDependencies() {
-  document.body.removeEventListener('mouseover', mouseOver);
-  document.body.removeEventListener('mouseout', mouseOut);
-}
-
-function mouseOver(e) {
-  let target = e.srcElement || e;
-
-  if (!highlightDependencies(target) && target.nodeName !== 'BODY') {
-    mouseOver(target.parentNode);
-  }
-}
-
-function highlightDependencies(target) {
+function highlightSpecsDependencies(target) {
   let componentName;
   let componentIdentified = false;
   let tooltipContent = ``;
@@ -54,7 +29,7 @@ function highlightDependencies(target) {
     componentIdentified = true;
     siblings = siblings.split(','); // create array from list of names
     componentName = siblings.pop(); // pull off the last item for point name
-    dependencies = target.querySelectorAll(selectors); // get dependencies
+    dependencies = findAllDomShadow(selectors, target); // get dependencies
 
     tooltipContent += `<h2 class="${specsDependenciesClass}__title">${componentName}</h2>`;
 
@@ -112,7 +87,7 @@ function highlightDependencies(target) {
             }
           }
 
-          addHighlight(dependency, 'specs');
+          addHighlight(dependency, { type: 'specs' });
         }
       }
 
@@ -137,24 +112,11 @@ function highlightDependencies(target) {
                 ${tooltipContent}
             </div>
         `);
-    addHighlight(target, 'specs', { outline: true });
+    addHighlight(target, { type: 'specs', outline: true });
     positionTooltip(target);
     showHideTooltip(true);
-    document.addEventListener('scroll', clearOnScroll, true);
     return dependencies;
   }
 }
 
-function clearOnScroll() {
-  showHideTooltip(false);
-  removeAllHighlights();
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-function mouseOut() {
-  removeAllHighlights();
-  showHideTooltip(false);
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-export { manageSpecsDependencies };
+export { highlightSpecsDependencies };

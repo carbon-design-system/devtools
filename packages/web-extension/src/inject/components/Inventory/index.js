@@ -4,15 +4,25 @@ import {
   showHideTooltip,
   updateTooltipContent,
   addHighlight,
-  removeHighlight,
+  removeAllHighlights,
 } from '../';
 import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import { randomId } from '@carbon/devtools-utilities/src/randomId';
+import {
+  shadowCollection,
+  shadowDomCollector,
+  findAllDomShadow,
+  findSingleDomShadow,
+  shadowContent,
+} from '@carbon/devtools-utilities/src/shadowDom';
 import { allComponents } from '../../../globals/componentList';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
+
+let DOMwatch;
+let waitForObserverToEnd;
 let inventory;
 
 function initInventory() {
@@ -21,21 +31,33 @@ function initInventory() {
       sendMessage({ inventoryData: getInventory(allComponents) });
 
       // re-render if page updates
-      const DOMwatch = new MutationObserver((mutationList) => {
-        mutationList.forEach((mutation) => {
-          if (mutation.type === 'childList') {
-            getInventory(allComponents, false);
-            // do we need to send a message back to pop up
-            // incase a component has been added or removed?s
-          }
-        });
-      });
+      if (!DOMwatch) {
+        // don't add more than once
+        DOMwatch = new MutationObserver((mutationList) => {
+          const isSpecs = document.querySelector(`html.${prefix}--specs`);
 
-      DOMwatch.observe(document.body, {
-        childList: true,
-        attributes: false,
-        subtree: true,
-      });
+          mutationList.forEach((mutation) => {
+            if (mutation.type === 'childList' && isSpecs) {
+              clearTimeout(waitForObserverToEnd);
+
+              waitForObserverToEnd = setTimeout(() => {
+                getInventory(allComponents, false);
+                // do we need to send a message back to pop up
+                // incase a component has been added or removed while open?
+              }, 100);
+            }
+          });
+        });
+
+        DOMwatch.observe(
+          document.querySelector(`body > *:not(.${prefix}--devtools)`),
+          {
+            childList: true,
+            attributes: false,
+            subtree: true,
+          }
+        );
+      }
     }
 
     if (msg.inventoryComponentMouseOut) {
@@ -56,7 +78,7 @@ function initInventory() {
 }
 
 function scrollIntoView(id) {
-  const component = document.querySelector(`[data-${idselector}*="${id}"]`);
+  const component = findSingleDomShadow(`[data-${idselector}*="${id}"]`);
 
   if (component) {
     const bodyRect = document.body.getBoundingClientRect();
@@ -86,13 +108,14 @@ function highlightInventoryItems(ids) {
   doThisByIds(ids, highlightInventoryItem);
 }
 
-function removeInventoryHighlights(ids) {
-  doThisByIds(ids, (comp) => removeHighlight(comp, 'inventory'));
+function removeInventoryHighlights() {
+  // doThisByIds(ids, (comp) => removeHighlight(comp, 'inventory'));
+  removeAllHighlights();
   showHideTooltip(false);
 }
 
 function highlightInventoryItem(component, id, showTooltip) {
-  addHighlight(component, 'inventory');
+  addHighlight(component, { type: 'inventory' });
 
   if (showTooltip) {
     const idPosition = component.dataset[idselector].split(',').indexOf(id);
@@ -111,19 +134,28 @@ function doThisByIds(ids, callback) {
   const beginning = `[data-${idselector}*="`;
   const end = `"]`;
   const selector = beginning + ids.join(end + ', ' + beginning) + end;
-  const components = document.querySelectorAll(selector);
 
-  if (components.length === 1) {
-    callback(components[0], ids[0], true);
-  } else if (components.length > 0) {
-    for (let i = 0; i < components.length; i++) {
-      callback(components[i], ids[i], false);
+  if (ids.length === 1) {
+    const component = findSingleDomShadow(selector);
+
+    if (component) {
+      callback(component, ids[0], true);
+    }
+  } else if (ids.length > 0) {
+    const components = findAllDomShadow(selector);
+
+    if (components.length) {
+      for (let i = 0; i < components.length; i++) {
+        callback(components[i], ids[i], false);
+      }
     }
   }
 }
 
 function resetInventory() {
-  const components = document.querySelectorAll(`[data-${idselector}]`);
+  shadowCollection.set = shadowDomCollector(document.body);
+
+  const components = findAllDomShadow(`[data-${idselector}]`);
 
   inventory = {
     totalCount: 0,
@@ -150,7 +182,7 @@ function getInventory(componentList, reset = true) {
     // loop through indidivual selectors/components
     const selector = selectors[i];
     const componentName = componentList[selector];
-    const components = document.querySelectorAll(selector);
+    const components = findAllDomShadow(selector);
     const inventoryData = updateInventory(componentName, components);
 
     if (inventoryData.length > 0) {
@@ -195,7 +227,7 @@ function updateInventory(componentName, components) {
           name: componentName,
           uniqueID: uniqueID,
           outerHTML: component.outerHTML,
-          innerText: component.innerText,
+          innerText: shadowContent(component.childNodes), // not really innertext anymore
           tag: component.localName,
           id: component.id,
           classes: component.classList.value.split(' '),

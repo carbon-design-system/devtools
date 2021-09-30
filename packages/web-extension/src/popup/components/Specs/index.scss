@@ -2,11 +2,16 @@
   .#{$prefix}--popup__specs {
     margin-right: -($carbon--grid-gutter / 2);
 
+    &-outline {
+      margin-top: $carbon--spacing-03;
+      margin-bottom: $carbon--spacing-03;
+    }
+
     &-icon {
       width: 20px;
       height: 20px;
       margin-top: -2px;
-      margin-right: 8px;
+      margin-right: $carbon--spacing-03;
       float: left;
     }
 

@@ -1,5 +1,5 @@
 import settings from 'carbon-components/es/globals/js/settings';
-import { addHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
   showHideTooltip,
@@ -19,42 +19,16 @@ const spacerBoxClass = `${spacersClass}__box`;
 
 let spacerList, activeTarget;
 
-function manageSpecsSpacing(specs, specType) {
-  if (specs && specType === 'spacing') {
-    activateSpacing();
-  } else {
-    deactivateSpacing();
-  }
-}
-
-function activateSpacing() {
-  document.body.addEventListener('mouseover', mouseOver);
-  document.body.addEventListener('mouseout', mouseOut);
-  injectHTML();
-}
-
-function deactivateSpacing() {
-  document.body.removeEventListener('mouseover', mouseOver);
-  document.body.removeEventListener('mouseout', mouseOut);
-}
-
-function mouseOver(e) {
-  let target = e.srcElement || e;
+function highlightSpecsSpacing(target) {
+  injectSpacers(); // remove and refactor if this becomes a problem
 
   if (
-    target.nodeName !== 'BODY' && // stop everything if we've hit the highest node
-    !target.classList.contains(spacerBoxClass) && // don't run if we are on a spacer box
-    !target.isSameNode(activeTarget)
+    target.classList.contains(spacerBoxClass) && // don't run if we are on a spacer box
+    target === activeTarget
   ) {
-    // don't run if we're already on the activeTarget
-    if (!highlightSpacing(target)) {
-      // keep going up a the tree if nothing matches
-      mouseOver(target.parentNode);
-    }
+    return true; // return true to let them know we are on top of something, and don't want to clear it yet.
   }
-}
 
-function highlightSpacing(target) {
   const boundingBox = target.getBoundingClientRect();
   const styles = window.getComputedStyle(target);
 
@@ -85,96 +59,8 @@ function highlightSpacing(target) {
 
   if (spacerCount) {
     activeTarget = target;
-    addHighlight(target, 'specs', { outline: true });
-    window.addEventListener('scroll', clearOnScroll, true);
+    addHighlight(target, { type: 'specs', outline: true });
     return spacerCount;
-  }
-}
-
-function clearOnScroll() {
-  resetAllSpacers();
-  removeAllHighlights();
-  showHideTooltip(false);
-  window.removeEventListener('scroll', clearOnScroll, true);
-}
-
-function mouseOut(e) {
-  let target = e.relatedTarget;
-
-  if (
-    !target || // if target is null clear it all
-    (!target.isSameNode(activeTarget) && // clear it if not going to active target
-      !target.classList.contains(spacerBoxClass))
-  ) {
-    // and if not a spacer
-    // if we've hit the end let's stop and remove everything
-    activeTarget = null;
-    resetAllSpacers();
-    removeAllHighlights();
-    showHideTooltip(false);
-    window.removeEventListener('scroll', clearOnScroll, true);
-  }
-}
-
-function injectHTML() {
-  const spacers = document.querySelector(`.${spacersClass}`);
-  const devtoolsContainer = document.querySelector(`.${prefix}--devtools`);
-
-  if (!spacers) {
-    const spacersHTML = document.createElement('div');
-    spacersHTML.classList.add(spacersClass);
-
-    for (let i = 0; i < 8; i++) {
-      spacersHTML.innerHTML += `<div class="${prefix}--spacers__box"></div>`;
-    }
-
-    devtoolsContainer.appendChild(spacersHTML);
-
-    spacerList = document.querySelectorAll(`.${spacerBoxClass}`);
-    spacerList.forEach((spacer) => {
-      spacer.addEventListener('mouseenter', spacerHover);
-      spacer.addEventListener('mouseleave', () => showHideTooltip(false));
-    });
-  }
-}
-
-function spacerHover(e) {
-  const spacer = e.currentTarget;
-
-  if (spacer.dataset.value.length > 0 && spacer.dataset.component.length > 0) {
-    // get token
-    // no token value warning
-    const value = spacer.dataset.value;
-    const spacingToken = getSpacingToken(value);
-
-    let tooltipContent = `<p class="${prefix}--tooltip-specs__value">
-                                ${removeLeadingZero(
-                                  Math.round(value * 1000) / 1000
-                                )}px /
-                                ${removeLeadingZero(
-                                  Math.round(
-                                    parseFloat(rem(value), 10) * 1000
-                                  ) / 1000
-                                )}rem
-                              </p>`;
-
-    if (!spacingToken) {
-      tooltipContent += `<ul>
-                                ${__specValueItem('warning', 'Token not found')}
-                               </ul>`;
-    }
-
-    updateTooltipContent(
-      __specsContainer([
-        {
-          eyebrow: spacer.dataset.component,
-          title: spacingToken || 'Spacing',
-          content: tooltipContent,
-        },
-      ])
-    );
-    positionTooltip(spacer); // mouse location?
-    showHideTooltip(true);
   }
 }
 
@@ -264,6 +150,8 @@ function positionSpacer(
   offset,
   ignoreBorders
 ) {
+  resetSpacer(spacer);
+
   const maxWidth =
     target.clientWidth -
     spacingStyles.left.padding -
@@ -360,28 +248,107 @@ function positionSpacer(
   return 1;
 }
 
-function resetAllSpacers() {
-  if (spacerList.length > 0) {
-    spacerList.forEach((spacer) => {
-      spacer.innerHTML = ``;
-      spacer.style.width = null;
-      spacer.style.height = null;
-      spacer.style.minHeight = null;
-      spacer.style.maxHeight = null;
-      spacer.style.minWidth = null;
-      spacer.style.maxWidth = null;
-      spacer.style.top = null;
-      spacer.style.left = null;
-      spacer.style.opacity = null;
-      spacer.style.visibility = null;
-      spacer.dataset.value = '';
-      spacer.dataset.component = '';
-    });
-  }
-}
-
 function stripUnit(value) {
   return parseFloat(value, 10);
 }
 
-export { manageSpecsSpacing };
+function spacerHover(e) {
+  const spacer = e.currentTarget;
+
+  if (spacer.dataset.value.length > 0 && spacer.dataset.component.length > 0) {
+    // get token
+    // no token value warning
+    const value = spacer.dataset.value;
+    const spacingToken = getSpacingToken(value);
+
+    let tooltipContent = `<p class="${prefix}--tooltip-specs__value">
+                                ${removeLeadingZero(
+                                  Math.round(value * 1000) / 1000
+                                )}px /
+                                ${removeLeadingZero(
+                                  Math.round(
+                                    parseFloat(rem(value), 10) * 1000
+                                  ) / 1000
+                                )}rem
+                              </p>`;
+
+    if (!spacingToken) {
+      tooltipContent += `<ul>
+                                ${__specValueItem('warning', 'Token not found')}
+                               </ul>`;
+    }
+
+    updateTooltipContent(
+      __specsContainer([
+        {
+          eyebrow: spacer.dataset.component,
+          title: spacingToken || 'Spacing',
+          content: tooltipContent,
+        },
+      ])
+    );
+    positionTooltip(spacer); // mouse location?
+    showHideTooltip(true);
+  }
+}
+
+function resetAllSpacers() {
+  if (spacerList && spacerList.length) {
+    spacerList.forEach(resetSpacer);
+  }
+}
+
+function resetSpacer(spacer) {
+  spacer.innerHTML = ``;
+  spacer.style.width = null;
+  spacer.style.height = null;
+  spacer.style.minHeight = null;
+  spacer.style.maxHeight = null;
+  spacer.style.minWidth = null;
+  spacer.style.maxWidth = null;
+  spacer.style.top = null;
+  spacer.style.left = null;
+  spacer.style.opacity = null;
+  spacer.style.visibility = null;
+  spacer.dataset.value = '';
+  spacer.dataset.component = '';
+}
+
+function mouseOutSpacing(e) {
+  let target = e.relatedTarget;
+
+  const result =
+    !target || // if target is null clear it all
+    (target !== activeTarget && !target.classList.contains(spacerBoxClass)); // clear it if not going to active target
+  if (result) {
+    // and if not a spacer
+    // if we've hit the end let's stop and remove everything
+    activeTarget = null;
+  }
+
+  return result;
+}
+
+function injectSpacers() {
+  const spacers = document.querySelector(`.${spacersClass}`);
+
+  if (!spacers) {
+    const devtoolsContainer = document.querySelector(`.${prefix}--devtools`);
+    const spacersHTML = document.createElement('div');
+    spacersHTML.classList.add(spacersClass);
+
+    for (let i = 0; i < 8; i++) {
+      spacersHTML.innerHTML += `<div class="${prefix}--spacers__box"></div>`;
+    }
+
+    devtoolsContainer.appendChild(spacersHTML);
+
+    spacerList = document.querySelectorAll(`.${spacerBoxClass}`);
+    spacerList.forEach((spacer) => {
+      spacer.addEventListener('mouseenter', spacerHover);
+      spacer.addEventListener('mouseleave', () => showHideTooltip(false));
+    });
+  }
+}
+
+export { highlightSpecsSpacing, resetAllSpacers, mouseOutSpacing };

@@ -1,4 +1,4 @@
-import { addHighlight, removeAllHighlights } from '../../Highlight';
+import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
   showHideTooltip,
@@ -14,97 +14,63 @@ import { fontWeights } from '@carbon/type/src/fontWeight';
 import * as styles from '@carbon/type/src/styles';
 import { rem } from '@carbon/layout';
 
-function manageSpecsType(specs, specType) {
-  if (specs && specType === 'typography') {
-    activateType();
-  } else {
-    deactivateType();
-  }
-}
+function highlightSpecsType(target) {
+  if (target) {
+    const compStyles = window.getComputedStyle(target);
 
-function activateType() {
-  document.body.addEventListener('mouseover', mouseOver);
-  document.body.addEventListener('mouseout', mouseOut);
-}
+    let typeToken,
+      typeCount = 0,
+      tooltipGroups = [],
+      tooltipContent = '';
 
-function deactivateType() {
-  document.body.removeEventListener('mouseover', mouseOver);
-  document.body.removeEventListener('mouseout', mouseOut);
-}
+    if (doesItHaveText(target.childNodes, target)) {
+      typeCount = 1;
+      typeToken = getTypeToken(target, compStyles, styles);
 
-function mouseOver(e) {
-  let target = e.srcElement || e;
+      tooltipContent += `<ul>`;
 
-  if (target.nodeName !== 'BODY' && !highlightType(target)) {
-    mouseOver(target.parentNode);
-  }
-}
+      if (!typeToken) {
+        tooltipContent += __specValueItem('warning', 'Token not found');
+      }
 
-function highlightType(target) {
-  const compStyles = window.getComputedStyle(target);
+      tooltipContent += `
+                    ${__specValueItem(
+                      'type:',
+                      formatFontFamily(compStyles.fontFamily)
+                    )}
+                    ${__specValueItem(
+                      'size:',
+                      formatPxValue(compStyles.fontSize)
+                    )}
+                    ${__specValueItem(
+                      'line-height:',
+                      formatPxValue(compStyles.lineHeight)
+                    )}
+                    ${__specValueItem(
+                      'weight:',
+                      getFontWeight(compStyles.fontWeight, fontWeights)
+                    )}
+                    ${__specValueItem(
+                      'letter-spacing:',
+                      formatLetterSpacing(compStyles.letterSpacing)
+                    )}
+                </ul>`;
 
-  let typeToken,
-    typeCount = 0,
-    tooltipGroups = [],
-    tooltipContent = '';
-
-  if (doesItHaveText(target.childNodes)) {
-    typeCount = 1;
-    typeToken = getTypeToken(target, compStyles, styles);
-
-    tooltipContent += `<ul>`;
-
-    if (!typeToken) {
-      tooltipContent += __specValueItem('warning', 'Token not found');
+      tooltipGroups.push({
+        eyebrow: getComponentName(target),
+        title: typeToken || 'Type styles',
+        content: tooltipContent,
+      });
     }
 
-    tooltipContent += `
-                ${__specValueItem(
-                  'type:',
-                  formatFontFamily(compStyles.fontFamily)
-                )}
-                ${__specValueItem('size:', formatPxValue(compStyles.fontSize))}
-                ${__specValueItem(
-                  'line-height:',
-                  formatPxValue(compStyles.lineHeight)
-                )}
-                ${__specValueItem(
-                  'weight:',
-                  getFontWeight(compStyles.fontWeight, fontWeights)
-                )}
-                ${__specValueItem(
-                  'letter-spacing:',
-                  formatLetterSpacing(compStyles.letterSpacing)
-                )}
-            </ul>`;
-
-    tooltipGroups.push({
-      eyebrow: getComponentName(target),
-      title: typeToken || 'Type styles',
-      content: tooltipContent,
-    });
+    if (typeCount > 0) {
+      updateTooltipContent(__specsContainer(tooltipGroups));
+      addHighlight(target, { type: 'specs' });
+      positionTooltip(target); // mouse location?
+      showHideTooltip(true);
+      return typeCount;
+    }
   }
-
-  if (typeCount > 0) {
-    updateTooltipContent(__specsContainer(tooltipGroups));
-    addHighlight(target, 'specs');
-    positionTooltip(target); // mouse location?
-    showHideTooltip(true);
-    document.addEventListener('scroll', clearOnScroll, true);
-    return typeCount;
-  }
-}
-
-function clearOnScroll() {
-  showHideTooltip(false);
-  removeAllHighlights();
-  document.removeEventListener('scroll', clearOnScroll, true);
-}
-
-function mouseOut() {
-  removeAllHighlights();
-  showHideTooltip(false);
-  document.removeEventListener('scroll', clearOnScroll, true);
 }
 
 function getTypeToken(target, compStyles, carbonStyles) {
@@ -174,7 +140,6 @@ function getTypeToken(target, compStyles, carbonStyles) {
 
 function fixedChecks(compStyles, tokenStyles, range) {
   let matches = 0;
-
   if (!range) {
     if (tokenStyles.fontSize) {
       if (
@@ -411,4 +376,4 @@ function getFontWeight(compValue, carbonWeights) {
   return returnedWeight;
 }
 
-export { manageSpecsType };
+export { highlightSpecsType };
