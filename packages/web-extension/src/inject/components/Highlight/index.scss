@@ -2,12 +2,9 @@ $highlight-opacity: 0.5;
 
 .#{$prefix}--highlight {
   position: absolute;
-
-  &::after {
-    opacity: 0;
-    transition: opacity $transition-fade, background-color $transition-fade,
-      box-shadow $transition-fade;
-  }
+  opacity: 0;
+  transition: opacity $transition-fade, background-color $transition-fade,
+    box-shadow $transition-fade;
 
   &--grid,
   &--specs,
@@ -15,35 +12,26 @@ $highlight-opacity: 0.5;
     --highlight-color-type-border: transparent;
     --highlight-color-type-background: transparent;
 
-    &::after {
-      position: absolute;
-      z-index: $zindex - 1;
-      top: 0;
-      left: 0;
-      display: flex;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--highlight-color-type-background);
-      color: #ffffff; /* TODO use carbon color */
-      content: attr(data-highlightcontent);
-      opacity: 1;
-      pointer-events: none;
-      text-align: center;
-      transform: translate(0, 0);
+    display: grid;
+    background-color: var(--highlight-color-type-background);
+    opacity: 1;
 
+    span {
       @include carbon--type-style('expressive-paragraph-01');
+
+      display: inline-block;
+      margin: auto;
+      color: map-get(map-get($carbon--colors, 'magenta'), 10);
     }
   }
 
-  &--outline::after {
+  &--outline {
     background: none;
     box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
     opacity: 1;
   }
 
-  &--inventory::after {
+  &--inventory {
     --highlight-color-type-border: #{$inventory-color};
     --highlight-color-type-background: #{rgba(
         $inventory-color,
@@ -51,17 +39,17 @@ $highlight-opacity: 0.5;
       )};
   }
 
-  &--specs::after {
+  &--specs {
     --highlight-color-type-border: #{$specs-color};
     --highlight-color-type-background: #{rgba($specs-color, $highlight-opacity)};
   }
 
-  &--grid::after {
+  &--grid {
     --highlight-color-type-border: #{$grid-color};
     --highlight-color-type-background: #{rgba($grid-color, $highlight-opacity)};
   }
 
-  body:active &::after {
+  body:active & {
     opacity: 0;
   }
 }

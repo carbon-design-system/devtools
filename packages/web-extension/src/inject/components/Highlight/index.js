@@ -38,6 +38,7 @@ function addHighlight(component, options = {}) {
     // if the component is already highlight ignore adding another one
 
     let highlight, type;
+    const contentMax = 40;
     const highlightID = randomId();
     const comp = component.getBoundingClientRect();
     const reuseHighlight = highlightContainer.querySelector(
@@ -58,10 +59,6 @@ function addHighlight(component, options = {}) {
       highlight.classList.add(outlineClass);
     }
 
-    if (options.content) {
-      highlight.dataset.highlightcontent = options.content;
-    }
-
     highlight.classList.add(highlightClass);
     highlight.classList.add(highlightClass + type);
 
@@ -77,14 +74,46 @@ function addHighlight(component, options = {}) {
     if (!reuseHighlight) {
       highlightContainer.append(highlight);
     }
+
+    if (
+      options.content &&
+      comp.width >= contentMax &&
+      comp.height >= contentMax
+    ) {
+      highlight.innerHTML = `<span>${options.content}</span>`;
+      setContenSize(highlight, highlight.querySelector('span'));
+    }
   }
+}
+
+function setContenSize(highligh, content) {
+  // resizes content to 50% of highlight box
+  const match = 0.5;
+  const maxWidth = 640; // per content guidelines max width standards
+  let contentSize = content.offsetWidth;
+  let containerSize = highligh.clientWidth;
+
+  if (content.offsetHeight > contentSize) {
+    // if the content height is larger than the width than we'll adjust things based on height so not to exceed to the container's boundaries
+    contentSize = content.offsetHeight;
+    containerSize = highligh.clientHeight;
+  }
+
+  if (containerSize > maxWidth) {
+    // this keeps this text from becoming too much on larger images for now
+    containerSize = maxWidth;
+  }
+
+  content.style.transform = `scale(${
+    (containerSize * match * 1) / contentSize
+  })`;
 }
 
 function removeHighlight(component) {
   component.setAttribute('class', '');
   component.setAttribute('style', '');
-  component.setAttribute('data-highlightcontent', '');
   component.setAttribute('data-highlightid', '');
+  component.innerHTML = '';
 }
 
 function removeAllHighlights() {
