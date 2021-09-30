@@ -40,6 +40,7 @@ const state = {
 };
 
 let shadowEventCollection = [];
+let _noPointerRef = [];
 
 function initSpecs() {
   // set onload based on defaults
@@ -93,6 +94,7 @@ function removeSpecs() {
   document.body.removeEventListener('mouseover', mouseOver);
   document.body.removeEventListener('mouseout', mouseOut);
   cleanUpShadowEvents();
+  removeNoPointers();
 }
 
 function mouseOver(e) {
@@ -114,12 +116,52 @@ function mouseOver(e) {
         }
       }
 
+      injectNoPointer(target);
+
       if (!targetFound) {
         mouseOver(getShadowParent(target));
       } else {
         document.addEventListener('scroll', clearOnScroll, true);
       }
     }
+  }
+}
+
+function injectNoPointer(target) {
+  // This solves a pretty extreme edge case where carbon for ibm.com is setting a pseudo element over
+  // their cards to fix an accessibility problem and in turn blocking our mouse events.
+  // This solution looks for those pseudo elements with an inste of `0px` and sets its pointer
+  // events to none so we can see underneath temporarily.
+  // This seems a little intense to touch the dom this much, but it works for now.
+  const obstruction = window.getComputedStyle(target, ':after');
+
+  if (obstruction.inset !== 'auto' && obstruction.pointerEvents !== 'none') {
+    const className = `${prefix}--no-pointer`;
+    const parent = target.parentNode;
+    let style = parent.querySelector(`style.${className}`);
+
+    if (!style) {
+      style = document.createElement('style');
+      style.classList.add(className);
+      style.innerHTML = `
+                *::after {
+                    pointer-events: none;
+                }
+            `;
+
+      parent.prepend(style);
+      _noPointerRef.push(style);
+    }
+  }
+}
+
+function removeNoPointers() {
+  if (_noPointerRef.length) {
+    _noPointerRef.forEach((ref) => {
+      ref.remove();
+    });
+
+    _noPointerRef = [];
   }
 }
 
