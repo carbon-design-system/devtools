@@ -10,9 +10,22 @@ import {
 
 const { prefix } = settings;
 
-const aspectRatios = ['16:9', '9:16', '2:1', '1:2', '4:3', '3:4', '1:1'];
-const aspectRatiosCalc = [16 / 9, 9 / 16, 2 / 1, 1 / 2, 4 / 3, 3 / 4, 1 / 1];
+const aspectRatios = [
+  '16:9',
+  '9:16',
+  '2:1',
+  '1:2',
+  '4:3',
+  '3:4',
+  '3:2',
+  '2:3',
+  '1:1',
+];
 const svgMarkup = ['svg', 'g', 'path', 'rect', 'polygon', 'circle'];
+const aspectRatiosCalc = aspectRatios.map((ratio) => {
+  const vals = ratio.split(':');
+  return vals[0] / vals[1];
+});
 
 function highlightSpecsRatio(target) {
   const comp = target.getBoundingClientRect();
