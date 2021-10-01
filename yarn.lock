@@ -1234,9 +1234,9 @@
   integrity sha512-FoHyioCUkss3yBdxBDXOqSGXag4MeBlPbVgmNyzSWY+ucK/BYum0ZKQjYD8ITQEPWkmJ1Sx7JiELLrO5aa+Ihw==
 
 "@carbon/motion@^10.22.0":
-  version "10.24.0"
-  resolved "https://registry.yarnpkg.com/@carbon/motion/-/motion-10.24.0.tgz#a270869f49be7ee659a72e4d07e584b11c61fb0a"
-  integrity sha512-zlwdQV2lPtIjGfZIdkRtWZB5kol5B185BxQbs8XligvXyqroCL8NskSdEmRJ3WdSuU/sjwcjWPcAqj7U3Ce+wQ==
+  version "10.25.0"
+  resolved "https://registry.yarnpkg.com/@carbon/motion/-/motion-10.25.0.tgz#e4a83eb73be33eaa8bd1e4e42ace25e1554e5370"
+  integrity sha512-q6dMkLyeUkdQa5JljWT+TQn/qY0+i67qwkm0jnYQvBRwoxF6CfNedY/wQM2KcuHnRVjCjCmdrRxAcP+yQRvQyw==
 
 "@carbon/pictograms-react@^11.17.0":
   version "11.17.0"
