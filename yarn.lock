@@ -1180,9 +1180,9 @@
   integrity sha512-+Gc7i6ys8ySuyCFvj2Fke23paU1NaOirRQLQ63zDzKLLu2XwAVaBKq9msdUdolfOTmrQwAs9dQ83QBB9AGqS8g==
 
 "@carbon/layout@^10.29.0", "@carbon/layout@^10.32.0":
-  version "10.32.0"
-  resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.32.0.tgz#4a88eaaf8592a939876be300131893100af0b0a7"
-  integrity sha512-1E87tcqdXIeUjaUyxn8H009bs6RVDGgBp27eG26goRKMocn5sSfJkHVqBVRQIYoSlp0rU4r/HvfKis7UM5qRXw==
+  version "10.33.0"
+  resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.33.0.tgz#15fa1db6f80f02f76c84aa1665c67751bb0ec472"
+  integrity sha512-3yHf/5tPVkvGUYC4ueUSoo5Tw1UxpKxAmigVZCf7MRe9dc06z68xyxrz+mZ5bIPBzbbfLYfz/y6FaD3Toeo30g==
 
 "@carbon/motion@10.22.0":
   version "10.22.0"
