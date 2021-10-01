@@ -1168,12 +1168,7 @@
     react-dom "^16.10.0 || ^17.0.0"
     react-redux "^7.2.0"
 
-"@carbon/icon-helpers@^10.21.0", "@carbon/icon-helpers@^10.22.0":
-  version "10.23.0"
-  resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-10.23.0.tgz#9811b44baead9422bb809f082ff6da27db8be1fa"
-  integrity sha512-nx2QoHMz9AoNWPwowsdgw2PfFhOR2sFw5G0DyuwuY1ZNUFkevKZ+qfK86XXB25L1h6gHn9dw1F1F1yvQHw/C8A==
-
-"@carbon/icon-helpers@^10.24.0":
+"@carbon/icon-helpers@^10.21.0", "@carbon/icon-helpers@^10.22.0", "@carbon/icon-helpers@^10.24.0":
   version "10.24.0"
   resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-10.24.0.tgz#2f3fbc8b0b64090c21833cd81eabadc41d56b684"
   integrity sha512-kmzN2Zjyp4EmCAlGu561+dJVABH96n5+RnjmsPdv4wrSx+FNyzbxnKYV1x2FYrTxtZ9LB+pd3EofEyVuQM6V0Q==
