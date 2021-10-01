@@ -984,7 +984,7 @@
   resolved "https://registry.yarnpkg.com/@carbon/colors/-/colors-10.30.0.tgz#942db7c4ed14df8a989861b931548f732c8463e3"
   integrity sha512-jwLZcUSq7qdR68r6sGQyY4qTgTnSbaWjGqPUsh1spxXED2E3xMbBwvnHHVjEmHknBZnFp9wSfl/xjOmyzDhEDQ==
 
-"@carbon/colors@^10.30.0", "@carbon/colors@^10.32.0":
+"@carbon/colors@^10.30.0", "@carbon/colors@^10.33.0":
   version "10.33.0"
   resolved "https://registry.yarnpkg.com/@carbon/colors/-/colors-10.33.0.tgz#c3fc0da44b1f6f6582e138540b71a1b0f756e1f2"
   integrity sha512-szmYimpNNSeCazLFoBzT1XvcUpO3oY3zJMJtA8BaSBFos3eY7cxIEhU7pNWKs7sW5CED/0LMuuYyRjOL+KGkCA==
@@ -1223,7 +1223,7 @@
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.29.0.tgz#ae140bb535fbbf293f6197ff51bf8f698d05cfa2"
   integrity sha512-+Gc7i6ys8ySuyCFvj2Fke23paU1NaOirRQLQ63zDzKLLu2XwAVaBKq9msdUdolfOTmrQwAs9dQ83QBB9AGqS8g==
 
-"@carbon/layout@^10.29.0", "@carbon/layout@^10.32.0", "@carbon/layout@^10.33.0":
+"@carbon/layout@^10.29.0", "@carbon/layout@^10.33.0":
   version "10.33.0"
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.33.0.tgz#15fa1db6f80f02f76c84aa1665c67751bb0ec472"
   integrity sha512-3yHf/5tPVkvGUYC4ueUSoo5Tw1UxpKxAmigVZCf7MRe9dc06z68xyxrz+mZ5bIPBzbbfLYfz/y6FaD3Toeo30g==
@@ -1274,13 +1274,13 @@
     color "^3.1.2"
 
 "@carbon/themes@^10.40.0":
-  version "10.43.0"
-  resolved "https://registry.yarnpkg.com/@carbon/themes/-/themes-10.43.0.tgz#2d816e8392f874a9bcadcadf428c077be02be8aa"
-  integrity sha512-IdLOrIRUkSTKb0syxIxp8xwivOd7DsHfNqqWZz0MzMCajsclaUbATA3lMDENYTNu1TXZvvYLeKKoE3m0FjbehA==
+  version "10.44.0"
+  resolved "https://registry.yarnpkg.com/@carbon/themes/-/themes-10.44.0.tgz#29b34566c85ca2df3ef99ffaff2fa022aa48bb4b"
+  integrity sha512-tmOqH+/ocChLeeuEwWPfEliqDYMi58/sibLpzfS2WQsCPhqZN1B78g6UiwB0hYCiSUFWnBWNEIjTHx/Fbh62bw==
   dependencies:
-    "@carbon/colors" "^10.32.0"
-    "@carbon/layout" "^10.32.0"
-    "@carbon/type" "^10.36.0"
+    "@carbon/colors" "^10.33.0"
+    "@carbon/layout" "^10.33.0"
+    "@carbon/type" "^10.37.0"
     color "^3.1.2"
 
 "@carbon/type@10.33.0":
@@ -1291,7 +1291,7 @@
     "@carbon/import-once" "^10.6.0"
     "@carbon/layout" "^10.29.0"
 
-"@carbon/type@^10.33.0", "@carbon/type@^10.36.0":
+"@carbon/type@^10.33.0", "@carbon/type@^10.37.0":
   version "10.37.0"
   resolved "https://registry.yarnpkg.com/@carbon/type/-/type-10.37.0.tgz#639e2bfebb73eb847e1ca653575e3fe60022dfaf"
   integrity sha512-OT8W9ySdj8PX/EuydcKRV02gdre3qcGVY2uUcXYTj/sIUTnx8f8xQKJLfeo1eLKCah2qF5VklKHFrB2eJs0KHA==
