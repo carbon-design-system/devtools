@@ -183,7 +183,7 @@ function randomIntroSection() {
       {!includeLeadspace && randomLeadspaceBlock()}
       {randomChildren(randomNum(3, 6), childrenOptions)}
     </TableOfContents>,
-    <ContentSection heading={false} key={Math.random()}>
+    <ContentSection heading={''} key={Math.random()}>
       {!includeLeadspace && randomLeadspaceBlock()}
       {randomChildren(randomNum(0, 3), childrenOptions)}
     </ContentSection>,
@@ -695,7 +695,7 @@ function randomPictogramItem() {
 
     data.pictogram = {
       src: pictograms[chosenKey],
-      ariaLabel: chosenKey,
+      'aria-label': chosenKey,
     };
   }
 
@@ -938,7 +938,7 @@ function renderButtonGroup(dataOnly) {
         sentenceUpperBound: 5,
         units: 'sentence',
       }).replace('.', ''),
-      renderIcon: includeMedia && icons['ArrowRight20'],
+      renderIcon: includeMedia ? icons['ArrowRight20'] : null,
       href: randomUrl(),
     });
   }

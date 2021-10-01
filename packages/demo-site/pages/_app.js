@@ -1,5 +1,9 @@
 import '../styles/global.scss';
 
+if (!global.location) {
+  global.location = { href: '' };
+}
+
 import altlangs from './data/altlang.json';
 import App from 'next/app';
 import DDO from './data/DDO.json';
@@ -110,6 +114,7 @@ export default class CarbonForIBMDotcom extends App {
                 menuSections: [],
               },
             ],
+            selectedMenuItem: 'Random page',
             platform: {
               name: 'Carbon devtools',
               url: 'https://ibm.biz/carbon-devtools',

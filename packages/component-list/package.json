@@ -19,8 +19,8 @@
   "dependencies": {
     "@carbon/ibm-cloud-cognitive": "^0.88.1",
     "@carbon/ibm-security": "^1.31.0",
-    "@carbon/ibmdotcom-react": "^1.10.1",
-    "@carbon/ibmdotcom-web-components": "^1.9.0",
+    "@carbon/ibmdotcom-react": "^1.25.0",
+    "@carbon/ibmdotcom-web-components": "^1.10.0",
     "carbon-components": "^10.41.0",
     "carbon-components-react": "^7.43.0",
     "carbon-web-components": "^1.16.2"
