@@ -149,11 +149,14 @@ function cleanupSelector(fullSelector, prefix) {
 
   fullSelector = fullSelector
     .map((selector) => {
-      selector = selector.split(' ').filter((singleClassName) => {
-        const filterModifier =
-          singleClassName.replace(`${prefix}`, '').indexOf('--') === -1;
-        return filterModifier;
-      });
+      selector = selector
+        .replace(/[^\w\d-_\s]/g, '') // stripping out undesirable characters
+        .split(' ')
+        .filter((singleClassName) => {
+          const filterModifier =
+            singleClassName.replace(`${prefix}`, '').indexOf('--') === -1;
+          return filterModifier;
+        });
 
       if (selector.length) {
         return '.' + selector.join('.');

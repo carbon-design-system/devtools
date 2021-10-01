@@ -7,4 +7,6 @@ libraryKeys.forEach((key) => {
   Object.assign(allComponents, libraries[key]);
 });
 
+console.log(allComponents);
+
 export { allComponents };

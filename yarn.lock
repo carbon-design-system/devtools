@@ -4123,7 +4123,7 @@ carbon-components-react@7.41.0:
     use-resize-observer "^6.0.0"
     window-or-global "^1.0.1"
 
-carbon-components-react@^7.41.0, carbon-components-react@^7.43.0:
+carbon-components-react@^7.41.0, carbon-components-react@^7.45.0:
   version "7.45.0"
   resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.45.0.tgz#e7f603ea5ec5bd7704d67a0fd43447e32f5877e0"
   integrity sha512-1KoPSsOGEULhFzc5yjJECSwmawH5QRmY6BhQuKHfsLpnx2O8mQdfYXry3kOh8M9/+T91HWDA1YhHSUIo/1/IzA==
