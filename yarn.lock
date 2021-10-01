@@ -1003,12 +1003,12 @@
     "@carbon/layout" "^10.29.0"
 
 "@carbon/grid@^10.33.0":
-  version "10.36.0"
-  resolved "https://registry.yarnpkg.com/@carbon/grid/-/grid-10.36.0.tgz#280d5a824cf9742c525b6f0ced530ffa9bda2464"
-  integrity sha512-SAz4hxc3SZriTvgRTbxh5kkbm5Br1xYqLddnv9EGIPDK+C+nHdjCjrUG3PMyvFQgR9hkeN6ancEPiSyq8YHPPg==
+  version "10.37.0"
+  resolved "https://registry.yarnpkg.com/@carbon/grid/-/grid-10.37.0.tgz#0ab86ae6c71a4d6245d6dc77b5559e6e6d42d194"
+  integrity sha512-knpYPRnT2R7Hfr9OCh4skU0vbgDrkpH3AEBtVG9iekvxH6H7CH8Bmr+sTCqkcBd8BcihNC6sxT/wwQ/hAs/aaQ==
   dependencies:
     "@carbon/import-once" "^10.6.0"
-    "@carbon/layout" "^10.32.0"
+    "@carbon/layout" "^10.33.0"
 
 "@carbon/ibm-cloud-cognitive@^0.87.3":
   version "0.87.3"
@@ -1179,10 +1179,10 @@
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.29.0.tgz#ae140bb535fbbf293f6197ff51bf8f698d05cfa2"
   integrity sha512-+Gc7i6ys8ySuyCFvj2Fke23paU1NaOirRQLQ63zDzKLLu2XwAVaBKq9msdUdolfOTmrQwAs9dQ83QBB9AGqS8g==
 
-"@carbon/layout@^10.29.0", "@carbon/layout@^10.32.0":
-  version "10.32.0"
-  resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.32.0.tgz#4a88eaaf8592a939876be300131893100af0b0a7"
-  integrity sha512-1E87tcqdXIeUjaUyxn8H009bs6RVDGgBp27eG26goRKMocn5sSfJkHVqBVRQIYoSlp0rU4r/HvfKis7UM5qRXw==
+"@carbon/layout@^10.29.0", "@carbon/layout@^10.32.0", "@carbon/layout@^10.33.0":
+  version "10.33.0"
+  resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.33.0.tgz#15fa1db6f80f02f76c84aa1665c67751bb0ec472"
+  integrity sha512-3yHf/5tPVkvGUYC4ueUSoo5Tw1UxpKxAmigVZCf7MRe9dc06z68xyxrz+mZ5bIPBzbbfLYfz/y6FaD3Toeo30g==
 
 "@carbon/motion@10.22.0":
   version "10.22.0"
