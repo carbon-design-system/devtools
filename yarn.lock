@@ -985,9 +985,9 @@
   integrity sha512-jwLZcUSq7qdR68r6sGQyY4qTgTnSbaWjGqPUsh1spxXED2E3xMbBwvnHHVjEmHknBZnFp9wSfl/xjOmyzDhEDQ==
 
 "@carbon/colors@^10.30.0", "@carbon/colors@^10.32.0":
-  version "10.32.0"
-  resolved "https://registry.yarnpkg.com/@carbon/colors/-/colors-10.32.0.tgz#989f8d87678f1b962981c63eb9fefc3ace7c6cee"
-  integrity sha512-39ccB+IoWfw57B5mSiw9QGv+2DTiCL/nVPC7Hsi90neiHqO17BAg6RJtEK0S2/4kqiOnkyoq6Wf9kjheQKMbYA==
+  version "10.33.0"
+  resolved "https://registry.yarnpkg.com/@carbon/colors/-/colors-10.33.0.tgz#c3fc0da44b1f6f6582e138540b71a1b0f756e1f2"
+  integrity sha512-szmYimpNNSeCazLFoBzT1XvcUpO3oY3zJMJtA8BaSBFos3eY7cxIEhU7pNWKs7sW5CED/0LMuuYyRjOL+KGkCA==
 
 "@carbon/feature-flags@^0.6.0":
   version "0.6.0"
