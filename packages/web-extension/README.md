@@ -13,28 +13,40 @@ collaborating to build and validate Carbon pages with a simple set of tools.
 
 ## Features
 
-##### Resize browser
+### Grid overlay
 
-Identify what Carbon breakpoint you're browser is actively using, and quickly
-resize your browser to see how your page responds at various supported
+Use the grid overlay feature to lay the 2x and mini unit grid on top of your
+page to quickly check the alignment of your page's layout.
 breakpoints.
 
-##### Component list
+![chrome - screenshot - 1280x800  (2)](https://user-images.githubusercontent.com/3793636/135755372-1682626a-cf4f-45f9-a709-860ee7dce417.png)
 
-Quickly get an inventory of all the Carbon supported components being used on a
-given page. Search for a specific component, and click on it to find where it's
-located on the page.
+<a href="https://user-images.githubusercontent.com/3793636/135755378-d1b232bc-5894-457b-bc3f-2850934ed906.png" target="_blank"><img src="https://user-images.githubusercontent.com/3793636/135755378-d1b232bc-5894-457b-bc3f-2850934ed906.png" alt="Grid overlay visual example" width="320px" /></a>
 
-##### Specs
+
+### Specs
 
 Switch between a number of speccing options like color, spacing, and typography
 to identify what Carbon tokens are being used for a given component or element
 on the page.
 
-##### Grid overlay
+![chrome - screenshot - 1280x800  (3)](https://user-images.githubusercontent.com/3793636/135755431-36f3a2af-be58-464d-9c57-e8f3d70986fa.png)
 
-Use the grid overlay feature to lay the 2x and mini unit grid on top of your
-page to quickly check the alignment of your page's layout.
+<a href="https://user-images.githubusercontent.com/3793636/135755428-6e90d04c-2c63-45b7-8b97-4e978f0a03d4.png" target="_blank"><img src="https://user-images.githubusercontent.com/3793636/135755428-6e90d04c-2c63-45b7-8b97-4e978f0a03d4.png" alt="Token identifier visual example" width="320px" /></a>
+
+
+### Component list
+
+Quickly get an inventory of all the Carbon supported components being used on a
+given page. Search for a specific component, and click on it to find where it's
+located on the page.
+
+![chrome - screenshot - 1280x800  (4)](https://user-images.githubusercontent.com/3793636/135755438-817709eb-3cc5-47c7-b45d-a4cb7e12cff2.png)
+
+### Resize browser
+
+Identify what Carbon breakpoint you're browser is actively using, and quickly
+resize your browser to see how your page responds at various supported
 
 ## Install on Chrome
 
