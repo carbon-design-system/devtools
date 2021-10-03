@@ -1,3 +1,5 @@
+![chrome - promo - 1400x560  (3)](https://user-images.githubusercontent.com/3793636/135755257-bfad36f1-9c7e-40d3-b768-017897ff7962.png)
+
 # Carbon Devtools
 
 The [Carbon Devtools](http://ibm.biz/carbon-devtools) provides designers, developers, QA teams and anyone collaborating to build Carbon pages with a simple set of tools.
