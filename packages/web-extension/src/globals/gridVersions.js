@@ -6,4 +6,6 @@ const gridVersions = {
   // "northstar-adaptive": 'Northstar adaptive'
 };
 
+// TODO: move to options
+
 export { gridVersions };
