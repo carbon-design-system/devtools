@@ -12,8 +12,6 @@ import { Toggle } from 'carbon-components-react';
 import { Grid2xOptions } from './Grid2xOptions';
 import { GridMiniUnitOptions } from './GridMiniUnitOptions';
 
-console.log(defaults.grid);
-
 const { prefix } = settings;
 
 function Grid({ disabled }) {
