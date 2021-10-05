@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { Button } from 'carbon-components-react';
 import { CheckmarkOutline16 } from '@carbon/icons-react';
 import { configuration } from '../';

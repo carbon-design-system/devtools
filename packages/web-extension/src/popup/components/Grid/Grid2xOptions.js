@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import Checkbox from 'carbon-components-react/lib/components/Checkbox';
 import FormGroup from 'carbon-components-react/lib/components/FormGroup';
 import NumberInput from 'carbon-components-react/lib/components/NumberInput';

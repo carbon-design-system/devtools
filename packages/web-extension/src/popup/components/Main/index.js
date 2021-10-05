@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { activeTab } from '@carbon/devtools-utilities';
 import { Accordion, AccordionItem, Toggle } from 'carbon-components-react';
 import { Inventory, Specs, Grid, ResizeBrowser } from '../';

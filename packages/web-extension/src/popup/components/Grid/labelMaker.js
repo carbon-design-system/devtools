@@ -1,5 +1,5 @@
 import React from 'react';
-// import { settings } from 'carbon-components';
+// import settings from 'carbon-components/es/globals/js/settings';
 // import { Information16 } from '@carbon/icons-react';
 
 // const { prefix } = settings;

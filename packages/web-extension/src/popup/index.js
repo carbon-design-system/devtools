@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Tag } from 'carbon-components-react';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import {
   getMessage,
   sendMessage,
