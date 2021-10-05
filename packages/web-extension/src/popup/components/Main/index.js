@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
 import { activeTab } from '@carbon/devtools-utilities';
 import { Accordion, AccordionItem, Toggle } from 'carbon-components-react';
+import { defaults } from '../../../globals/defaults';
 import { Inventory, Specs, Grid, ResizeBrowser } from '../';
 import {
   setStorage,
@@ -13,14 +14,11 @@ import {
 } from '@carbon/devtools-utilities';
 
 const { prefix } = settings;
-const defaults = {
-  gridoverlay: true,
-};
 
 // can we get defaults before settings state? Maybe via a prop from higher up?
 function Main({ initialMsg, _panelControls }) {
-  const [globalToggleStates, setGlobalToggleStates] = useState(defaults);
-  const [isOpenStates, setIsOpenStates] = useState(defaults);
+  const [globalToggleStates, setGlobalToggleStates] = useState(defaults.global);
+  const [isOpenStates, setIsOpenStates] = useState(defaults.global);
   const [onLoad, setOnLoad] = useState(false);
 
   /* temporary groups,

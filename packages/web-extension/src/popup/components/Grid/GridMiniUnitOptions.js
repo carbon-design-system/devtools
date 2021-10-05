@@ -7,17 +7,15 @@ import {
   getStorage,
   gaConfigurationEvent,
 } from '@carbon/devtools-utilities';
+import { defaults } from '../../../globals/defaults';
 import { labelMaker } from './labelMaker';
 
 const { prefix } = settings;
-const defaults = {
-  miniUnitVerticalBorders: true,
-  miniUnitHorizontalBorders: true,
-};
 
 function GridMiniUnitOptions({ disabled }) {
-  const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] =
-    useState(defaults);
+  const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] = useState(
+    defaults.miniUnit
+  );
   const [onLoad, setOnLoad] = useState(false);
 
   useEffect(() => {

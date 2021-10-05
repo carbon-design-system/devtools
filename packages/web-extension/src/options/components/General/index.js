@@ -4,14 +4,15 @@ import settings from 'carbon-components/es/globals/js/settings';
 import { Select, SelectItem, Toggle } from 'carbon-components-react';
 import { configuration } from '../';
 import { themes } from '@carbon/themes';
+import { defaults } from '../../../globals/defaults';
 
 const { prefix } = settings;
 const themeList = Object.keys(themes);
 
 function General({
-  generalTheme = 'g90',
   generalExperimental,
   generalNonCarbon,
+  generalTheme = defaults.generalTheme,
 }) {
   return (
     <>

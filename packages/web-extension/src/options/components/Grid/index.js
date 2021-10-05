@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
 import { Select, SelectItem } from 'carbon-components-react';
 import { configuration } from '../';
-import { gridVersions } from '../../../globals';
+import { gridVersions } from '../../../globals/options';
+import { defaults } from '../../../globals/defaults';
 
 const { prefix } = settings;
 const gridVersionList = Object.keys(gridVersions);
 
-function Grid({ gridVersion = 'carbon-v10' }) {
+function Grid({ gridVersion = defaults.gridVersion }) {
   return (
     <div>
       <Select

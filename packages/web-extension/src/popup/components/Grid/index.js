@@ -6,25 +6,20 @@ import {
   getStorage,
   gaConfigurationEvent,
 } from '@carbon/devtools-utilities';
+import { gridVersions } from '../../../globals/options';
+import { defaults } from '../../../globals/defaults';
 import { Toggle } from 'carbon-components-react';
 import { Grid2xOptions } from './Grid2xOptions';
 import { GridMiniUnitOptions } from './GridMiniUnitOptions';
 
+console.log(defaults.grid);
+
 const { prefix } = settings;
 
-const gridVersionTitles = {
-  'carbon-v10': '2x grid',
-  'carbon-v9': 'v9 grid',
-};
-
-const defaults = {
-  toggle2xGrid: true,
-};
-
 function Grid({ disabled }) {
-  const [toggleGrids, setToggleGrids] = useState(defaults);
+  const [toggleGrids, setToggleGrids] = useState(defaults.grid);
   const [gridVersionTitle, setGridVersionTitle] = useState(
-    gridVersionTitles['carbon-v10']
+    gridVersions[Object.keys(gridVersions)[0]]
   );
   const [onLoad, setOnLoad] = useState(false);
 
@@ -41,7 +36,7 @@ function Grid({ disabled }) {
     // gets and sets the grid version title
     getStorage(['gridVersion'], ({ gridVersion }) => {
       if (gridVersion) {
-        setGridVersionTitle(gridVersionTitles[gridVersion]);
+        setGridVersionTitle(gridVersions[gridVersion]);
       }
     });
   }, []);

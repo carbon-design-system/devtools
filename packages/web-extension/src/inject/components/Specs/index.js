@@ -5,6 +5,7 @@ import { randomId } from '@carbon/devtools-utilities/src/randomId';
 import { findSingleDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 import { removeAllHighlights } from '../Highlight';
 import { showHideTooltip } from '../Tooltip';
+import { defaults } from '../../../globals/defaults';
 import {
   manageSpecsOutline,
   highlightSpecsType,
@@ -34,9 +35,9 @@ const specToolOptions = {
 };
 
 const state = {
-  specs: false,
-  specType: false,
-  specOutline: false,
+  specs: defaults.global.specs,
+  specType: defaults.specs.type,
+  specOutline: defaults.specs.outline,
 };
 
 let shadowEventCollection = [];
