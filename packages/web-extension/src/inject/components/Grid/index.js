@@ -1,7 +1,7 @@
 import settings from 'carbon-components/es/globals/js/settings';
 import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
-import { gridVersions } from '../../../globals';
+import { gridVersions } from '../../../globals/options';
 import { manage2xGrid } from './2x';
 import {
   manageMiniUnitGrid,
