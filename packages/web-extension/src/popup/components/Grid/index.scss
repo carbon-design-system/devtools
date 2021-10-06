@@ -9,4 +9,9 @@
       }
     }
   }
+
+  .#{$prefix}--content-switcher__label {
+    // hack so proper title doesn't show up as `[object Object]`
+    pointer-events: none;
+  }
 }

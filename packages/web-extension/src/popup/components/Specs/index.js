@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
+import { defaults } from '../../../globals/defaults';
 
 import Checkbox from 'carbon-components-react/es/components/Checkbox';
 import TileGroup from 'carbon-components-react/es/components/TileGroup';
@@ -21,13 +22,8 @@ import Scale32 from '@carbon/icons-react/es/scale/32';
 
 const { prefix } = settings;
 
-const defaults = {
-  type: 'typography',
-  outline: true,
-};
-
 function Specs({ disabled }) {
-  const [toggleSpecs, setToggleSpecs] = useState(defaults);
+  const [toggleSpecs, setToggleSpecs] = useState(defaults.specs);
   const [onLoad, setOnLoad] = useState(false);
 
   useEffect(() => {

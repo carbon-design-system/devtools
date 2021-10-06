@@ -1,5 +1,5 @@
 import React from 'react';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import {
   StructuredListWrapper,
   StructuredListHead,

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { ContentSwitcher, Switch } from 'carbon-components-react';
 import { breakpoints } from '@carbon/layout';
 import { remtopx, gaConfigurationEvent } from '@carbon/devtools-utilities';

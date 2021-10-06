@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import {
   sendTabMessage,
   getMessage,
