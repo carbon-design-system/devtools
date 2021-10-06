@@ -22,8 +22,17 @@ $grid-outer-border-opacity: $grid-border-opacity;
 
 // 2x grid
 .#{$prefix}--grid {
-  // full-width transition effect
-  transition: max-width $transition-fade;
+  &.#{$prefix}--grid--left {
+    .#{$prefix}--devtools & {
+      margin-left: 0;
+    }
+  }
+
+  &.#{$prefix}--grid--right {
+    .#{$prefix}--devtools & {
+      margin-right: 0;
+    }
+  }
 
   &-2x {
     position: fixed;

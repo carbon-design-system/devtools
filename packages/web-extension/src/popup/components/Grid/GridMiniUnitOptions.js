@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import { Checkbox, FormGroup } from 'carbon-components-react';
 import {
   setStorage,
   getStorage,
   gaConfigurationEvent,
 } from '@carbon/devtools-utilities';
+import { defaults } from '../../../globals/defaults';
 import { labelMaker } from './labelMaker';
 
 const { prefix } = settings;
-const defaults = {
-  miniUnitVerticalBorders: true,
-  miniUnitHorizontalBorders: true,
-};
 
 function GridMiniUnitOptions({ disabled }) {
-  const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] =
-    useState(defaults);
+  const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] = useState(
+    defaults.miniUnit
+  );
   const [onLoad, setOnLoad] = useState(false);
 
   useEffect(() => {

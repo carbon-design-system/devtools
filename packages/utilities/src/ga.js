@@ -6,11 +6,13 @@ import {
   randomId,
   getActiveBreakpoint,
 } from '../';
+import { defaults } from '../../web-extension/src/globals/defaults';
 
 const gaId = 'UA-28030649-4';
 let setPath, setTitle;
 
 function sendGaResponse(data) {
+  console.log(defaults);
   activeTab((tab) => {
     getStorage(
       [
@@ -24,12 +26,12 @@ function sendGaResponse(data) {
       ],
       ({
         version,
-        isIBMer = 'unknown',
-        clientId = 5555,
-        gridVersion = 'carbon-v10',
-        generalTheme = 'g90',
-        generalExperimental = false,
-        generalNonCarbon = false,
+        isIBMer = defaults.ga.isIBMer,
+        clientId = defaults.ga.clientId,
+        gridVersion = defaults.ga.gridVersion,
+        generalTheme = defaults.ga.generalTheme,
+        generalExperimental = defaults.ga.generalExperimental,
+        generalNonCarbon = defaults.ga.generalNonCarbon,
       }) => {
         // building default responses
         data.v = 1; // version number

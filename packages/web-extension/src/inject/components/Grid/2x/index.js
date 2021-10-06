@@ -1,6 +1,7 @@
 import settings from 'carbon-components/es/globals/js/settings';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
+import { positions } from '../../../../globals/options';
 
 const { prefix } = settings;
 
@@ -15,17 +16,18 @@ function manage2xGridOptions({
   toggle2xColumns,
   toggle2xGutters,
   toggle2xBorders,
-  toggle2xFullWidth,
+  toggle2xPosition,
   toggle2xBreakpoints,
   toggle2xLeftInfluencer,
   toggle2xRightInfluencer,
 }) {
   const html = document.querySelector('html');
   const grid2x = html.querySelector(`.${prefix}--grid-2x`);
+  const gridRow = grid2x.querySelector(`.${prefix}--row`);
 
   // set grid influencers
-  grid2x.style.paddingLeft = `${toggle2xLeftInfluencer || 0}px`;
-  grid2x.style.paddingRight = `${toggle2xRightInfluencer || 0}px`;
+  gridRow.style.paddingLeft = `${toggle2xLeftInfluencer || 0}px`;
+  gridRow.style.paddingRight = `${toggle2xRightInfluencer || 0}px`;
 
   // hide or show columns
   if (toggle2xColumns) {
@@ -54,15 +56,12 @@ function manage2xGridOptions({
     );
   }
 
-  // toggle between full width and max-width modifier
-  if (toggle2xFullWidth) {
-    grid2x
-      .querySelector(`.${prefix}--grid`)
-      .classList.add(`${prefix}--grid--full-width`);
-  } else {
-    grid2x
-      .querySelector(`.${prefix}--grid`)
-      .classList.remove(`${prefix}--grid--full-width`);
+  // toggle between different position options
+  if (toggle2xPosition) {
+    const grid = resetPosition(grid2x);
+    grid.classList.add(
+      `${prefix}--grid--${toggle2xPosition.toLowerCase().replace(/ /g, '-')}`
+    );
   }
 
   // hide or show breakpoint label
@@ -71,6 +70,18 @@ function manage2xGridOptions({
   } else {
     html.classList.remove(`${prefix}--grid-2x--breakpoint-label`);
   }
+}
+
+function resetPosition(grid2x) {
+  const grid = grid2x.querySelector(`.${prefix}--grid`);
+
+  Object.keys(positions).forEach((position) => {
+    grid.classList.remove(
+      `${prefix}--grid--${position.toLowerCase().replace(/ /g, '-')}`
+    );
+  });
+
+  return grid;
 }
 
 export { manage2xGrid };

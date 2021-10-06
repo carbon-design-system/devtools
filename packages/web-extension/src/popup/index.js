@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Tag } from 'carbon-components-react';
-import { settings } from 'carbon-components';
+import settings from 'carbon-components/es/globals/js/settings';
 import {
   getMessage,
   sendMessage,
@@ -13,19 +13,21 @@ import {
   gaException,
   setIBMer,
 } from '@carbon/devtools-utilities';
+import { defaults } from '../globals/defaults';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
 import './index.scss';
 
 const { prefix } = settings;
-let carbonStatus = 'loading'; // 'loading', true, false
+
+let carbonStatus = defaults.popup.carbonStatus;
 
 gaPageview('/popup', document.title);
 
 function Popup() {
   const [onCarbon, setOnCarbon] = useState(carbonStatus); // eslint-disable-line no-unused-vars
   const [initialMsg, setInitialMsg] = useState();
-  const [panelState, setPanelState] = useState({ open: false, children: null });
+  const [panelState, setPanelState] = useState(defaults.popup.panelState);
 
   let Content = Loading,
     panelControls = {

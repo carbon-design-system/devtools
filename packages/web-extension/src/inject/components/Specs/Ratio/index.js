@@ -2,6 +2,7 @@ import settings from 'carbon-components/es/globals/js/settings';
 import { addHighlight } from '../../Highlight';
 import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
+import { aspectRatios, svgMarkup } from '../../../../globals/options';
 import {
   positionTooltip,
   showHideTooltip,
@@ -10,18 +11,6 @@ import {
 
 const { prefix } = settings;
 
-const aspectRatios = [
-  '16:9',
-  '9:16',
-  '2:1',
-  '1:2',
-  '4:3',
-  '3:4',
-  '3:2',
-  '2:3',
-  '1:1',
-];
-const svgMarkup = ['svg', 'g', 'path', 'rect', 'polygon', 'circle'];
 const aspectRatiosCalc = aspectRatios.map((ratio) => {
   const vals = ratio.split(':');
   return vals[0] / vals[1];
