@@ -12,7 +12,6 @@ const gaId = 'UA-28030649-4';
 let setPath, setTitle;
 
 function sendGaResponse(data) {
-  console.log(defaults);
   activeTab((tab) => {
     getStorage(
       [

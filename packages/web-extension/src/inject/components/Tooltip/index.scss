@@ -155,12 +155,4 @@
   }
 
   @include tooltip--theme;
-
-  @each $theme in map-keys($themes) {
-    .#{$prefix}--#{$theme} & {
-      @include carbon--theme(map-get($themes, $theme)) {
-        @include tooltip--theme;
-      }
-    }
-  }
 }

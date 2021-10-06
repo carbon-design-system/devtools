@@ -60,6 +60,15 @@ body {
   color: $text-01;
 }
 
+@media (prefers-color-scheme: light) {
+  .#{$prefix}--popup--system {
+    @include carbon--theme(
+      $theme: $carbon--theme--g10,
+      $emit-custom-properties: true
+    );
+  }
+}
+
 .#{$prefix}--popup {
   overflow: hidden;
   width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
@@ -136,6 +145,13 @@ body {
   &--g10 {
     @include carbon--theme(
       $theme: $carbon--theme--g10,
+      $emit-custom-properties: true
+    );
+  }
+
+  &--g80 {
+    @include carbon--theme(
+      $theme: $carbon--theme--g80,
       $emit-custom-properties: true
     );
   }
