@@ -53,7 +53,10 @@ function Popup() {
     sendMessage({ popup: true });
 
     getStorage(['generalTheme'], ({ generalTheme }) => {
-      document.body.setAttribute('class', `${prefix}--popup--${generalTheme}`);
+      document.body.setAttribute(
+        'class',
+        `${prefix}--popup--${generalTheme || defaults.generalSettings.theme}`
+      );
     });
 
     getMessage((msg) => {

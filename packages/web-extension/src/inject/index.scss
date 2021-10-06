@@ -4,6 +4,10 @@ $prefix: 'bx-dev';
 $carbonPrefix: 'bx';
 $zindex: 9999999999;
 
+$feature-flags: (
+  enable-css-custom-properties: true,
+);
+
 // cleanup imports
 // are all these imports still being used?
 @import '@carbon/type/scss/type';
@@ -30,7 +34,7 @@ $specs-color: map-get(map-get($carbon--colors, 'magenta'), 50);
 $themes: (
   'white': $carbon--theme--white,
   'g10': $carbon--theme--g10,
-  'g90': $carbon--theme--g90,
+  'g80': $carbon--theme--g80,
   'g100': $carbon--theme--g100,
   'v9': $carbon--theme--v9,
 );
@@ -39,4 +43,29 @@ $themes: (
 
 .#{$prefix}--grid--carbon-v9 {
   @import '@carbon/grid/scss/12';
+}
+
+.#{$prefix}--devtools {
+  @include carbon--theme(
+    $theme: $carbon--theme--g90,
+    $emit-custom-properties: true
+  );
+
+  @media (prefers-color-scheme: light) {
+    .#{$prefix}--system & {
+      @include carbon--theme(
+        $theme: $carbon--theme--g10,
+        $emit-custom-properties: true
+      );
+    }
+  }
+
+  @each $theme in map-keys($themes) {
+    .#{$prefix}--#{$theme} & {
+      @include carbon--theme(
+        map-get($themes, $theme),
+        $emit-custom-properties: true
+      );
+    }
+  }
 }

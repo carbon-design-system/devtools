@@ -29,6 +29,37 @@ const _rootPath = process.env.ALTLANG_ROOT_PATH || '/';
  * Class CarbonForIBMDotcom
  */
 export default class CarbonForIBMDotcom extends App {
+  constructor(props) {
+    super(props);
+    this.state = { theme: '' };
+    this.updateFavicon = this.updateFavicon.bind(this);
+  }
+
+  componentDidMount() {
+    if (window.matchMedia) {
+      const localUpdateFavicon = this.updateFavicon;
+
+      localUpdateFavicon();
+      window.addEventListener('load', localUpdateFavicon);
+
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', localUpdateFavicon);
+    }
+  }
+
+  updateFavicon() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.setState({
+        theme: 'dark',
+      });
+    } else {
+      this.setState({
+        theme: 'light',
+      });
+    }
+  }
+
   /**
    * Renders the DotcomShell
    *
@@ -56,7 +87,9 @@ export default class CarbonForIBMDotcom extends App {
 
           <link
             rel="icon"
-            href={`${publicRuntimeConfig._assetPrefix}favicon.png`}
+            href={`${publicRuntimeConfig._assetPrefix}favicon${
+              this.state.theme ? '-' + this.state.theme : ''
+            }.png`}
           />
 
           <meta name="ibmdotcom.version.react" content={reactVersion} />

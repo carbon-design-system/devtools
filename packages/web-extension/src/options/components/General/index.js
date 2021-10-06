@@ -12,7 +12,7 @@ const themeList = Object.keys(themes);
 function General({
   generalExperimental,
   generalNonCarbon,
-  generalTheme = defaults.generalTheme,
+  generalTheme = defaults.generalSettings.theme,
 }) {
   return (
     <>
@@ -56,6 +56,11 @@ function General({
             labelText="Choose a theme"
             className={`${prefix}--options__select`}
           >
+            <SelectItem
+              value={'system'}
+              text={'system'}
+              selected={'system' === generalTheme ? true : false}
+            />
             {themeList.map((theme, i) => (
               <SelectItem
                 key={theme + i}

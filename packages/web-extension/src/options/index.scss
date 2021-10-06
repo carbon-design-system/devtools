@@ -1,5 +1,9 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
 
+$feature-flags: (
+  enable-css-custom-properties: true,
+);
+
 @import '@carbon/grid/scss/prefix';
 @import '@carbon/layout/scss/breakpoint';
 @import '@carbon/layout/scss/spacing';
@@ -26,6 +30,15 @@ $carbon--theme: $carbon--theme--white;
 body {
   background: $ui-background;
   color: $text-01;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @include carbon--theme(
+      $theme: $carbon--theme--g100,
+      $emit-custom-properties: true
+    );
+  }
 }
 
 .#{$prefix}--options {

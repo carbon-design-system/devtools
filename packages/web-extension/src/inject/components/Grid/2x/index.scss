@@ -180,15 +180,5 @@ $grid-outer-border-opacity: $grid-border-opacity;
         bottom: -33px;
       }
     }
-
-    @each $theme in map-keys($themes) {
-      .#{$prefix}--#{$theme} &::after {
-        /* stylelint-disable max-nesting-depth */
-        @include carbon--theme(map-get($themes, $theme)) {
-          @include breakpoint-label--theme;
-        }
-        /* stylelint-enable max-nesting-depth */
-      }
-    }
   }
 }

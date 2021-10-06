@@ -2,6 +2,7 @@ import settings from 'carbon-components/es/globals/js/settings';
 import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { gridVersions } from '../../../globals/options';
+import { defaults } from '../../../globals/defaults';
 import { manage2xGrid } from './2x';
 import {
   manageMiniUnitGrid,
@@ -13,7 +14,7 @@ import { themes } from '@carbon/themes';
 const { prefix } = settings;
 const html = document.querySelector('html');
 const gridVersionsList = Object.keys(gridVersions);
-const themeList = Object.keys(themes);
+const themeList = [...Object.keys(themes), 'system'];
 
 let lastTheme = '';
 let lastGridVersion = '';
@@ -103,7 +104,7 @@ function manageGlobals() {
     }
   }
 
-  function manageGeneralTheme(generalTheme = 'g90') {
+  function manageGeneralTheme(generalTheme = defaults.generalSettings.theme) {
     if (generalTheme !== lastTheme) {
       html.classList.remove(...themeList.map((theme) => `${prefix}--${theme}`)); // remove any first
       html.classList.add(`${prefix}--${generalTheme}`); // set updated theme
@@ -111,7 +112,7 @@ function manageGlobals() {
     }
   }
 
-  function manageGridVersion(gridVersion = 'carbon-v10') {
+  function manageGridVersion(gridVersion = defaults.gridVersion) {
     if (gridVersion !== lastGridVersion) {
       html.classList.remove(
         ...gridVersionsList.map((version) => `${prefix}--grid--${version}`)

@@ -71,15 +71,5 @@
     }
 
     @include grid-tooltip--theme;
-
-    @each $theme in map-keys($themes) {
-      .#{$prefix}--#{$theme} & {
-        /* stylelint-disable max-nesting-depth */
-        @include carbon--theme(map-get($themes, $theme)) {
-          @include grid-tooltip--theme;
-        }
-        /* stylelint-enable max-nesting-depth */
-      }
-    }
   }
 }
