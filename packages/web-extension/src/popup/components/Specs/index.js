@@ -5,7 +5,6 @@ import settings from 'carbon-components/es/globals/js/settings';
 
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
-import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../../../globals/defaults';
 
@@ -110,17 +109,15 @@ function Specs({ disabled }) {
               <Grid size="32" className={`${prefix}--popup__specs-icon`} />
               Grid
             </RadioTile>
-            {experimentalFlag(() => (
-              <RadioTile
-                disabled={disabled}
-                id="specsRatio"
-                name="specs"
-                value="ratio"
-              >
-                <Scale size="32" className={`${prefix}--popup__specs-icon`} />
-                Ratio
-              </RadioTile>
-            ))}
+            <RadioTile
+              disabled={disabled}
+              id="specsRatio"
+              name="specs"
+              value="ratio"
+            >
+              <Scale size="32" className={`${prefix}--popup__specs-icon`} />
+              Ratio
+            </RadioTile>
             <RadioTile
               disabled={disabled}
               id="specsSpacing"
