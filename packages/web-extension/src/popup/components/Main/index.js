@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import { activeTab } from '@carbon/devtools-utilities';
-import { Accordion, AccordionItem, Toggle } from 'carbon-components-react';
-import { defaults } from '../../../globals/defaults';
-import { Inventory, Specs, Grid, ResizeBrowser } from '../';
+import Accordion, {
+  AccordionItem,
+} from 'carbon-components-react/es/components/Accordion';
+import Toggle from 'carbon-components-react/es/components/Toggle';
+import { activeTab } from '@carbon/devtools-utilities/src/activeTab';
+import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import {
-  setStorage,
-  getStorage,
-  experimentalFlag,
   gaNavigationEvent,
   gaConfigurationEvent,
-} from '@carbon/devtools-utilities';
+} from '@carbon/devtools-utilities/src/ga';
+import { defaults } from '../../../globals/defaults';
+import { Inventory, Specs, Grid, ResizeBrowser } from '../';
 
 const { prefix } = settings;
 

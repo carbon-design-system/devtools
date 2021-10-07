@@ -1,4 +1,5 @@
-import { setStorage, gaConfigurationEvent } from '@carbon/devtools-utilities';
+import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
+import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 
 function configuration(label, data) {
   if (data) {

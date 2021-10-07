@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import { ContentSwitcher, Switch } from 'carbon-components-react';
+import ContentSwitcher from 'carbon-components-react/es/components/ContentSwitcher';
+import Switch from 'carbon-components-react/es/components/Switch';
 import { breakpoints } from '@carbon/layout';
-import { remtopx, gaConfigurationEvent } from '@carbon/devtools-utilities';
+import { remtopx } from '@carbon/devtools-utilities/src/remtopx';
+import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 
 const { prefix } = settings;
 const breakpointKeys = Object.keys(breakpoints);

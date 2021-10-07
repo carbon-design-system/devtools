@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Tag } from 'carbon-components-react';
+
+import Tag from 'carbon-components-react/es/components/Tag';
 import settings from 'carbon-components/es/globals/js/settings';
+import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
+import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import {
-  getMessage,
-  sendMessage,
-  getStorage,
-  experimentalFlag,
   gaPageview,
   gaDomEvent,
   gaNavigationEvent,
   gaException,
   setIBMer,
-} from '@carbon/devtools-utilities';
+} from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../globals/defaults';
 import { Loading, Empty, Main, MoreOptions } from './components';
 

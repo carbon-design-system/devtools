@@ -1,8 +1,8 @@
 import React from 'react';
 import settings from 'carbon-components/es/globals/js/settings';
 import packageJSON from '../../../../package.json';
-import { Link } from 'carbon-components-react';
-import { gaNavigationEvent } from '@carbon/devtools-utilities';
+import Link from 'carbon-components-react/es/components/Link';
+import { gaNavigationEvent } from '@carbon/devtools-utilities/src/ga';
 
 const { prefix } = settings;
 

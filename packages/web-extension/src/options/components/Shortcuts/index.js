@@ -6,8 +6,9 @@ import {
   StructuredListBody,
   StructuredListRow,
   StructuredListCell,
-} from 'carbon-components-react';
-import { MacShift32, Cursor_132 } from '@carbon/icons-react';
+} from 'carbon-components-react/es/components/StructuredList';
+import MacShift from '@carbon/icons/svg/32/mac--shift.svg';
+import Cursor_1 from '@carbon/icons/svg/32/cursor--1.svg';
 
 const { prefix } = settings;
 
@@ -41,7 +42,7 @@ function Shortcuts() {
                   className={`${prefix}--options-shortcuts__keys`}
                 >
                   <span className={`${prefix}--options-shortcuts__key`}>
-                    <MacShift32 aria-label="Shift" />
+                    <MacShift width="32" aria-label="Shift" />
                   </span>
                   <span className={`${prefix}--options-shortcuts__key`}>
                     Ctrl
@@ -59,11 +60,11 @@ function Shortcuts() {
               className={`${prefix}--options-shortcuts__keys`}
             >
               <span className={`${prefix}--options-shortcuts__key`}>
-                <MacShift32 aria-label="Shift" />
+                <MacShift width="32" aria-label="Shift" />
               </span>
               <span className={`${prefix}--options-shortcuts__key`}>`</span>
               <span className={`${prefix}--options-shortcuts__key`}>
-                <Cursor_132 aria-label="Click" />
+                <Cursor_1 width="32" aria-label="Click" />
               </span>
             </StructuredListCell>
           </StructuredListRow>

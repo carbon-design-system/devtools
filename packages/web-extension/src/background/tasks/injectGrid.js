@@ -1,8 +1,6 @@
-import {
-  getMessage,
-  insertScript,
-  insertCSS,
-} from '@carbon/devtools-utilities';
+import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
+import { insertScript } from '@carbon/devtools-utilities/src/insertScript';
+import { insertCSS } from '@carbon/devtools-utilities/src/insertCSS';
 
 function injectGrid() {
   getMessage((msg, sender) => {

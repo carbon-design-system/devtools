@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import { Checkbox, FormGroup } from 'carbon-components-react';
-import {
-  setStorage,
-  getStorage,
-  gaConfigurationEvent,
-} from '@carbon/devtools-utilities';
+import Checkbox from 'carbon-components-react/es/components/Checkbox';
+import FormGroup from 'carbon-components-react/es/components/FormGroup';
+import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../../../globals/defaults';
 import { labelMaker } from './labelMaker';
 

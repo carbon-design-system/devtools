@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout32 } from '@carbon/icons-react';
+import Sprout from '@carbon/icons/svg/32/sprout.svg';
 
 function ComingSoon() {
   return (
@@ -13,7 +13,7 @@ function ComingSoon() {
     >
       <div style={{ textAlign: 'center' }}>
         <p>
-          <Sprout32 />
+          <Sprout size="32" />
         </p>
         <p>Coming soon!</p>
       </div>

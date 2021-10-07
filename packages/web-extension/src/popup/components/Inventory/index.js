@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import settings from 'carbon-components/es/globals/js/settings';
+import Accordion, {
+  AccordionItem,
+  AccordionSkeleton,
+} from 'carbon-components-react/es/components/Accordion';
+import { ClickableTile } from 'carbon-components-react/es/components/Tile';
+import Link from 'carbon-components-react/es/components/Link';
+import Search from 'carbon-components-react/es/components/Search';
+import { sendTabMessage } from '@carbon/devtools-utilities/src/sendMessage';
+import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import {
-  sendTabMessage,
-  getMessage,
   gaNavigationEvent,
   gaDomEvent,
   gaException,
-} from '@carbon/devtools-utilities';
-import {
-  Accordion,
-  AccordionItem,
-  AccordionSkeleton,
-  ClickableTile,
-  Link,
-  Search,
-} from 'carbon-components-react';
+} from '@carbon/devtools-utilities/src/ga';
 import { moderate02 } from '@carbon/motion';
 import packageJSON from '../../../../package.json';
 

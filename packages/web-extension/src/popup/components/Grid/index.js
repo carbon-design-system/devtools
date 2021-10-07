@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import {
-  setStorage,
-  getStorage,
-  gaConfigurationEvent,
-} from '@carbon/devtools-utilities';
+import Toggle from 'carbon-components-react/es/components/Toggle';
+import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
+import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 import { gridVersions } from '../../../globals/options';
 import { defaults } from '../../../globals/defaults';
-import { Toggle } from 'carbon-components-react';
 import { Grid2xOptions } from './Grid2xOptions';
 import { GridMiniUnitOptions } from './GridMiniUnitOptions';
 

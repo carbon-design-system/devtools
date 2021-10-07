@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import Checkbox from 'carbon-components-react/lib/components/Checkbox';
-import FormGroup from 'carbon-components-react/lib/components/FormGroup';
-import NumberInput from 'carbon-components-react/lib/components/NumberInput';
-import ContentSwitcher from 'carbon-components-react/lib/components/ContentSwitcher';
-import Switch from 'carbon-components-react/lib/components/Switch';
-import FormLabel from 'carbon-components-react/lib/components/FormLabel';
+import Checkbox from 'carbon-components-react/es/components/Checkbox';
+import FormGroup from 'carbon-components-react/es/components/FormGroup';
+import NumberInput from 'carbon-components-react/es/components/NumberInput';
+import ContentSwitcher from 'carbon-components-react/es/components/ContentSwitcher';
+import Switch from 'carbon-components-react/es/components/Switch';
+import FormLabel from 'carbon-components-react/es/components/FormLabel';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
@@ -130,7 +130,9 @@ function Grid2xOptions({ disabled }) {
                   key={position}
                   name={position}
                   aria-label={position}
-                  text={<Icon />}
+                  text={
+                    <Icon height="16" className={`${prefix}--position-icon`} />
+                  }
                 />
               );
             })}

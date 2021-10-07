@@ -13,12 +13,12 @@ import Checkbox from 'carbon-components-react/es/components/Checkbox';
 import TileGroup from 'carbon-components-react/es/components/TileGroup';
 import RadioTile from 'carbon-components-react/es/components/RadioTile';
 
-import ColorPalette32 from '@carbon/icons-react/es/color-palette/32';
-import TextScale32 from '@carbon/icons-react/es/text--scale/32';
-import Grid32 from '@carbon/icons-react/es/grid/32';
-import VirtualColumn32 from '@carbon/icons-react/es/virtual-column/32';
-import ParentChild32 from '@carbon/icons-react/es/parent-child/32';
-import Scale32 from '@carbon/icons-react/es/scale/32';
+import ColorPalette from '@carbon/icons/svg/32/color-palette.svg';
+import TextScale from '@carbon/icons/svg/32/text--scale.svg';
+import Grid from '@carbon/icons/svg/32/grid.svg';
+import VirtualColumn from '@carbon/icons/svg/32/virtual-column.svg';
+import ParentChild from '@carbon/icons/svg/32/parent-child.svg';
+import Scale from '@carbon/icons/svg/32/scale.svg';
 
 const { prefix } = settings;
 
@@ -78,29 +78,38 @@ function Specs({ disabled }) {
             }}
           >
             <RadioTile id="specsColor" name="specs" value="color">
-              <ColorPalette32 className={`${prefix}--popup__specs-icon`} />
+              <ColorPalette
+                size="32"
+                className={`${prefix}--popup__specs-icon`}
+              />
               Color
             </RadioTile>
             <RadioTile id="specsDependencies" name="specs" value="dependencies">
-              <ParentChild32 className={`${prefix}--popup__specs-icon`} />
+              <ParentChild
+                size="32"
+                className={`${prefix}--popup__specs-icon`}
+              />
               Dependencies
             </RadioTile>
             <RadioTile id="specsGrid" name="specs" value="grid">
-              <Grid32 className={`${prefix}--popup__specs-icon`} />
+              <Grid size="32" className={`${prefix}--popup__specs-icon`} />
               Grid
             </RadioTile>
             {experimentalFlag(() => (
               <RadioTile id="specsRatio" name="specs" value="ratio">
-                <Scale32 className={`${prefix}--popup__specs-icon`} />
+                <Scale size="32" className={`${prefix}--popup__specs-icon`} />
                 Ratio
               </RadioTile>
             ))}
             <RadioTile id="specsSpacing" name="specs" value="spacing">
-              <VirtualColumn32 className={`${prefix}--popup__specs-icon`} />
+              <VirtualColumn
+                size="32"
+                className={`${prefix}--popup__specs-icon`}
+              />
               Spacing
             </RadioTile>
             <RadioTile id="specsTypography" name="specs" value="typography">
-              <TextScale32 className={`${prefix}--popup__specs-icon`} />
+              <TextScale size="32" className={`${prefix}--popup__specs-icon`} />
               Typography
             </RadioTile>
           </TileGroup>

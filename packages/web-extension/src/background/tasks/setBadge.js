@@ -1,7 +1,7 @@
 import {
   experimentalStatusChanged,
   getExperimentalStatus,
-} from '@carbon/devtools-utilities';
+} from '@carbon/devtools-utilities/src/experimental';
 import { magenta } from '@carbon/colors';
 import { defaults } from '../../globals/defaults';
 

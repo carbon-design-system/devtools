@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import { Button } from 'carbon-components-react';
-import { CheckmarkOutline16 } from '@carbon/icons-react';
+import Button from 'carbon-components-react/es/components/Button';
+import CheckmarkOutline from '@carbon/icons/svg/32/checkmark--outline.svg';
 import { configuration } from '../';
 
 const { prefix } = settings;
@@ -42,7 +42,7 @@ function Reset({ settingKeys = [] }) {
         </p>
         {!statusMsg || Boolean(settingKeys.length) ? null : (
           <p className={`${prefix}--options-reset__status`}>
-            <CheckmarkOutline16 /> Settings successfully reset!
+            <CheckmarkOutline width="16" /> Settings successfully reset!
           </p>
         )}
       </div>

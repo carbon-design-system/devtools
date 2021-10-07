@@ -16,13 +16,11 @@ collaborating to build and validate Carbon pages with a simple set of tools.
 ### Grid overlay
 
 Use the grid overlay feature to lay the 2x and mini unit grid on top of your
-page to quickly check the alignment of your page's layout.
-breakpoints.
+page to quickly check the alignment of your page's layout. breakpoints.
 
 ![chrome - screenshot - 1280x800  (2)](https://user-images.githubusercontent.com/3793636/135755372-1682626a-cf4f-45f9-a709-860ee7dce417.png)
 
 <a href="https://user-images.githubusercontent.com/3793636/135755378-d1b232bc-5894-457b-bc3f-2850934ed906.png" target="_blank"><img src="https://user-images.githubusercontent.com/3793636/135755378-d1b232bc-5894-457b-bc3f-2850934ed906.png" alt="Grid overlay visual example" width="320px" /></a>
-
 
 ### Specs
 
@@ -33,7 +31,6 @@ on the page.
 ![chrome - screenshot - 1280x800  (3)](https://user-images.githubusercontent.com/3793636/135755431-36f3a2af-be58-464d-9c57-e8f3d70986fa.png)
 
 <a href="https://user-images.githubusercontent.com/3793636/135755428-6e90d04c-2c63-45b7-8b97-4e978f0a03d4.png" target="_blank"><img src="https://user-images.githubusercontent.com/3793636/135755428-6e90d04c-2c63-45b7-8b97-4e978f0a03d4.png" alt="Token identifier visual example" width="320px" /></a>
-
 
 ### Component list
 

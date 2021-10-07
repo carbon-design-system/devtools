@@ -1,6 +1,6 @@
-import { gaNavigationEvent } from '@carbon/devtools-utilities';
+import { gaNavigationEvent } from '@carbon/devtools-utilities/src/ga';
 import settings from 'carbon-components/es/globals/js/settings';
-import { Link } from 'carbon-components-react';
+import Link from 'carbon-components-react/es/components/Link';
 import React from 'react';
 
 import packageJSON from '../../../../package.json';

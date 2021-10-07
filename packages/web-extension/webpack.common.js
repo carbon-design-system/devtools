@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
 const Dotenv = require('dotenv-webpack');
 const packageJSON = require('./package');
 
@@ -64,6 +65,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+        sideEffects: false,
         use: {
           loader: 'babel-loader',
         },
@@ -73,6 +75,21 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'react-svg-loader',
+            options: {
+              svgo: {
+                plugins: [{ removeTitle: true }],
+                floatPrecision: 2,
+              },
+            },
           },
         ],
       },
@@ -112,6 +129,7 @@ module.exports = {
         },
       ],
     }),
+    new Visualizer(),
   ],
   output: {
     filename: '[name]/index.js',

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import settings from 'carbon-components/es/globals/js/settings';
-import { Accordion, AccordionItem } from 'carbon-components-react';
+import Accordion, {
+  AccordionItem,
+} from 'carbon-components-react/es/components/Accordion';
 import { Footer, General, Grid, Shortcuts, Reset } from './components';
+import { storageChanged } from '@carbon/devtools-utilities/src/storageChanged';
+import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import {
-  storageChanged,
-  getStorage,
   gaPageview,
   gaNavigationEvent,
-} from '@carbon/devtools-utilities';
+} from '@carbon/devtools-utilities/src/ga';
 
 import './index.scss';
 
