@@ -5,7 +5,6 @@ import Accordion, {
   AccordionItem,
 } from 'carbon-components-react/es/components/Accordion';
 import Toggle from 'carbon-components-react/es/components/Toggle';
-import { activeTab } from '@carbon/devtools-utilities/src/activeTab';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
@@ -14,7 +13,7 @@ import {
   gaConfigurationEvent,
 } from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../../../globals/defaults';
-import { Inventory, Specs, Grid, ResizeBrowser } from '../';
+import { Inventory, Specs, Grid, ResizeBrowser, PageInfo } from '../';
 
 const { prefix } = settings;
 
@@ -29,7 +28,11 @@ function Main({ initialMsg, _panelControls }) {
        for some reason imports come back undefined outside of Main()
        Need a better way to loop through and name panels/groups from line 4 */
   const groups = {};
-  // experimentalFlag(() => {  });
+
+  // experimentalFlag(() => {
+  //     groups['Page info'] = ComingSoon;
+  // });
+
   groups['Component list'] = Inventory;
   groups['Specs'] = Specs;
   groups['Grid overlay'] = Grid;
@@ -68,16 +71,21 @@ function Main({ initialMsg, _panelControls }) {
     <>
       <ResizeBrowser windowWidth={initialMsg.windowWidth} />
       <Accordion className={`${prefix}--popup-main`}>
-        {experimentalFlag(() => (
-          <AccordionItem
-            title={'Validate page'}
-            className={`${prefix}--popup-main__item ${prefix}--popup-main__validate`}
-            onHeadingClick={() => validatePageWithBeacon()}
-          />
-        ))}
         {groupsList.map((groupName) =>
           renderAccordionItem(groupName, groups[groupName])
         )}
+        {experimentalFlag(() => (
+          <AccordionItem
+            title={'Page info'}
+            className={`${prefix}--popup-main__item ${prefix}--popup-main__panel`}
+            onHeadingClick={() =>
+              _panelControls.open(
+                'Page info',
+                <PageInfo _panelControls={_panelControls} />
+              )
+            }
+          />
+        ))}
       </Accordion>
     </>
   );
@@ -129,15 +137,6 @@ function Main({ initialMsg, _panelControls }) {
       </AccordionItem>
     );
   }
-}
-
-function validatePageWithBeacon() {
-  const beaconURL =
-    'https://beacon-for-ibm-dotcom-api.herokuapp.com/?raw=true&url=';
-  activeTab((tab) => {
-    chrome.tabs.create({ url: beaconURL + tab.url });
-    gaNavigationEvent('click', 'beacon', 1);
-  });
 }
 
 Main.propTypes = {

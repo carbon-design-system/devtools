@@ -1,7 +1,7 @@
 import React from 'react';
 import Sprout from '@carbon/icons/svg/32/sprout.svg';
 
-function ComingSoon() {
+function PageInfo() {
   return (
     <div
       style={{
@@ -15,10 +15,10 @@ function ComingSoon() {
         <p>
           <Sprout width="32" style={{ fill: 'currentColor' }} />
         </p>
-        <p>Coming soon!</p>
+        <p>Page information is coming soon!</p>
       </div>
     </div>
   );
 }
 
-export { ComingSoon };
+export { PageInfo };

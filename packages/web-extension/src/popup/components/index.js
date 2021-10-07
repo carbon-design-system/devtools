@@ -7,3 +7,4 @@ export * from './ComingSoon';
 export * from './Grid';
 export * from './Specs';
 export * from './ResizeBrowser';
+export * from './PageInfo';

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import Tag from 'carbon-components-react/es/components/Tag';
 import settings from 'carbon-components/es/globals/js/settings';
+import Tag from 'carbon-components-react/es/components/Tag';
+import Button from 'carbon-components-react/es/components/Button';
+import ChevronLeft from '@carbon/icons/svg/32/chevron--left.svg';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
@@ -34,6 +36,7 @@ function Popup() {
     panelControls = {
       open: (name, children) => {
         setPanelState({
+          name: name,
           open: true,
           children: children,
         });
@@ -41,6 +44,7 @@ function Popup() {
       },
       close: (name) => {
         setPanelState({
+          name: name,
           open: false,
           children: panelState.children,
         });
@@ -129,7 +133,27 @@ function Popup() {
           <Content initialMsg={initialMsg} _panelControls={panelControls} />
         </main>
         <aside className={`${prefix}--popup__panel`}>
-          {panelState.children}
+          <Button
+            className={`${prefix}--popup__panel-close`}
+            kind="secondary"
+            size="sm"
+            onClick={() => panelControls.close(panelState.name)}
+          >
+            <ChevronLeft height="16" />
+            Back
+          </Button>
+          <div className={`${prefix}--grid`}>
+            <div className={`${prefix}--row`}>
+              <h1
+                className={`${prefix}--popup__panel-title ${prefix}--col-sm-3`}
+              >
+                {panelState.name}
+              </h1>
+            </div>
+            <div className={`${prefix}--popup__panel-content`}>
+              {panelState.children}
+            </div>
+          </div>
         </aside>
       </section>
     </article>

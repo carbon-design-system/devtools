@@ -133,6 +133,24 @@ body {
         opacity: 1;
       }
     }
+
+    &-close {
+      svg {
+        margin-right: carbon--mini-units(0.5);
+        fill: currentColor;
+      }
+    }
+
+    &-title {
+      @include carbon--type-style('productive-heading-04');
+
+      margin-top: carbon--mini-units(3);
+    }
+
+    &-content {
+      margin-top: carbon--mini-units(3);
+      margin-bottom: carbon--mini-units(6);
+    }
   }
 
   &--white {

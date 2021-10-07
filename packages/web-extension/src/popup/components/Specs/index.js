@@ -77,38 +77,68 @@ function Specs({ disabled }) {
               gaConfigurationEvent('specs-change', e);
             }}
           >
-            <RadioTile id="specsColor" name="specs" value="color">
+            <RadioTile
+              disabled={disabled}
+              id="specsColor"
+              name="specs"
+              value="color"
+            >
               <ColorPalette
                 size="32"
                 className={`${prefix}--popup__specs-icon`}
               />
               Color
             </RadioTile>
-            <RadioTile id="specsDependencies" name="specs" value="dependencies">
+            <RadioTile
+              disabled={disabled}
+              id="specsDependencies"
+              name="specs"
+              value="dependencies"
+            >
               <ParentChild
                 size="32"
                 className={`${prefix}--popup__specs-icon`}
               />
               Dependencies
             </RadioTile>
-            <RadioTile id="specsGrid" name="specs" value="grid">
+            <RadioTile
+              disabled={disabled}
+              id="specsGrid"
+              name="specs"
+              value="grid"
+            >
               <Grid size="32" className={`${prefix}--popup__specs-icon`} />
               Grid
             </RadioTile>
             {experimentalFlag(() => (
-              <RadioTile id="specsRatio" name="specs" value="ratio">
+              <RadioTile
+                disabled={disabled}
+                id="specsRatio"
+                name="specs"
+                value="ratio"
+              >
                 <Scale size="32" className={`${prefix}--popup__specs-icon`} />
                 Ratio
               </RadioTile>
             ))}
-            <RadioTile id="specsSpacing" name="specs" value="spacing">
+            <RadioTile
+              disabled={disabled}
+              id="specsSpacing"
+              name="specs"
+              value="spacing"
+            >
               <VirtualColumn
                 size="32"
                 className={`${prefix}--popup__specs-icon`}
               />
               Spacing
             </RadioTile>
-            <RadioTile id="specsTypography" name="specs" value="typography">
+            <RadioTile
+              disabled={disabled}
+              id="specsTypography"
+              name="specs"
+              value="typography"
+            >
               <TextScale size="32" className={`${prefix}--popup__specs-icon`} />
               Typography
             </RadioTile>

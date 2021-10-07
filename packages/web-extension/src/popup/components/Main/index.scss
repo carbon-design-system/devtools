@@ -42,7 +42,7 @@
       }
     }
 
-    &__validate {
+    &__panel {
       &.#{$prefix}--accordion__item--active > .#{$prefix}--accordion__content {
         display: none;
       }
