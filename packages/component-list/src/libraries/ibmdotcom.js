@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { dotcomPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
-import { _initStats } from '../helpers.js';
+import { _initStats, camelCase } from '../helpers.js';
 
 const _ibmdotcomWebComponentsDir =
   '../../node_modules/@carbon/ibmdotcom-web-components/es/components';
@@ -19,15 +19,6 @@ try {
   });
 } catch (e) {
   console.log(e);
-}
-
-function camelCase(str) {
-  return str
-    .split(' ')
-    .map((str) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    })
-    .join('');
 }
 
 export { ibmdotcom };

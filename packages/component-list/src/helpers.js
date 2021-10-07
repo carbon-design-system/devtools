@@ -171,4 +171,19 @@ function cleanupSelector(fullSelector, prefix) {
   return fullSelector;
 }
 
-export { buildReactComponentList, findClassName, cleanupSelector, _initStats };
+function camelCase(str) {
+  return str
+    .split(' ')
+    .map((str) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    })
+    .join('');
+}
+
+export {
+  buildReactComponentList,
+  findClassName,
+  cleanupSelector,
+  _initStats,
+  camelCase,
+};
