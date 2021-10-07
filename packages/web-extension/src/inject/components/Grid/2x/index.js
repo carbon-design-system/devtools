@@ -17,7 +17,6 @@ function manage2xGridOptions({
   toggle2xGutters,
   toggle2xBorders,
   toggle2xPosition,
-  toggle2xBreakpoints,
   toggle2xLeftInfluencer,
   toggle2xRightInfluencer,
 }) {
@@ -62,13 +61,6 @@ function manage2xGridOptions({
     grid.classList.add(
       `${prefix}--grid--${toggle2xPosition.toLowerCase().replace(/ /g, '-')}`
     );
-  }
-
-  // hide or show breakpoint label
-  if (toggle2xBreakpoints) {
-    html.classList.add(`${prefix}--grid-2x--breakpoint-label`);
-  } else {
-    html.classList.remove(`${prefix}--grid-2x--breakpoint-label`);
   }
 }
 

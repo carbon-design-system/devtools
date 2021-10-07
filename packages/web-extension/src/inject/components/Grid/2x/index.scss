@@ -10,16 +10,6 @@ $grid-outer-border-size: $grid-border-size;
 $grid-outer-border-color: $grid-border-color;
 $grid-outer-border-opacity: $grid-border-opacity;
 
-@mixin label-maker($breakpoints) {
-  &::after {
-    @each $breakpoint in map-keys($breakpoints) {
-      @include carbon--breakpoint($breakpoint) {
-        content: 'breakpoint: #{$breakpoint}';
-      }
-    }
-  }
-}
-
 // 2x grid
 .#{$prefix}--grid {
   &.#{$prefix}--grid--left {
@@ -142,42 +132,6 @@ $grid-outer-border-opacity: $grid-border-opacity;
             rgba($grid-outer-border-color, $grid-outer-border-opacity),
           inset $grid-outer-border-size 0 0
             rgba($grid-outer-border-color, $grid-outer-border-opacity);
-      }
-    }
-
-    @include label-maker($carbon--grid-breakpoints);
-
-    // breakpoint label theme
-    @mixin breakpoint-label--theme {
-      $border-style: 1px solid $ui-03;
-
-      border-top: $border-style;
-      border-left: $border-style;
-      background: $ui-01;
-      color: $text-01;
-    }
-
-    // breakpoint label
-    &::after {
-      @include carbon--type-style('code-01');
-      @include carbon--font-family('mono');
-      @include breakpoint-label--theme;
-
-      position: fixed;
-      z-index: 4;
-      right: 0;
-      padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
-      border-bottom: 0;
-      transition: bottom $transition-in;
-
-      .#{$prefix}--grid-2x--breakpoint-label & {
-        bottom: 0;
-      }
-
-      &,
-      .#{$prefix}--grid-2x--hide &,
-      .#{$prefix}--grid--hide & {
-        bottom: -33px;
       }
     }
   }

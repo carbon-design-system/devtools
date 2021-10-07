@@ -6,6 +6,7 @@ import {
   initTooltip,
   initShortcuts,
   injectHighlights,
+  initBreakpointLabel,
 } from './components';
 
 if (!window.carbonDevtoolsInjected) {
@@ -15,6 +16,7 @@ if (!window.carbonDevtoolsInjected) {
   initTooltip();
   initInventory();
   initShortcuts();
+  initBreakpointLabel();
 
   window.carbonDevtoolsInjected = true;
 }
