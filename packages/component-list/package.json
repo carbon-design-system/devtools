@@ -17,7 +17,7 @@
     "test": "yarn format && yarn lint"
   },
   "dependencies": {
-    "@carbon/ibm-cloud-cognitive": "^0.89.0",
+    "@carbon/ibm-cloud-cognitive": "^0.91.3",
     "@carbon/ibm-security": "^1.31.0",
     "@carbon/ibmdotcom-react": "^1.25.0",
     "@carbon/ibmdotcom-web-components": "^1.10.0",
