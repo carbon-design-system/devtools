@@ -1066,10 +1066,10 @@
     "@carbon/import-once" "^10.6.0"
     "@carbon/layout" "^10.33.0"
 
-"@carbon/ibm-cloud-cognitive@^0.89.0":
-  version "0.89.0"
-  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.89.0.tgz#e5799546b37490db00ab214a8dfdbdcaadaa0aa0"
-  integrity sha512-bFD427xquGXn3xefdFlI6y31m56tF/NoDOJcMUtLWXBBeJ/78j0EJoAQ5qdikqLSI3OsGRAJ2tr5wSvS3Q5H1g==
+"@carbon/ibm-cloud-cognitive@^0.91.3":
+  version "0.91.3"
+  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.91.3.tgz#bd94fff29372885104f0d55dc07b286be754cfc1"
+  integrity sha512-mcDpcSND43Orsw+/WsaBuI/Og7ApXqtkle36JZ+TXYdSKXc0R5EXEpIdpH8nedhYCMY75o5XXq9aSeVvHgjGVA==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@carbon/telemetry" "^0.0.0-alpha.6"
@@ -4240,10 +4240,18 @@ carbon-icons@7.0.7:
   resolved "https://registry.yarnpkg.com/carbon-icons/-/carbon-icons-7.0.7.tgz#ebafe3e9fa25df973796a8eca06d8a7c501cc610"
   integrity sha512-3vgkdXJRgCViCrH3fLUdyAXo0I8wmohO6QETv7vWFx6yc7s+SirWFBSFL38zUx4MHtR8iTxIlLEzkeU6FlFtXg==
 
-carbon-web-components@1.16.2, carbon-web-components@^1.16.2:
+carbon-web-components@1.16.2:
   version "1.16.2"
   resolved "https://registry.yarnpkg.com/carbon-web-components/-/carbon-web-components-1.16.2.tgz#bf2578015993dd9f922ff033b0fa23ccec1d0d3b"
   integrity sha512-k0vuYJ6DF6K+GRoTqbiw1beF9zKnV/8p/rM67TmkABfXkR2MWznXF4oCk8akSGT8tt56k3lUG7Maecgqkg23kg==
+  dependencies:
+    "@babel/runtime" "^7.8.0"
+    lodash-es "^4.17.0"
+
+carbon-web-components@^1.16.2:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/carbon-web-components/-/carbon-web-components-1.17.0.tgz#e0c29a4511e339f453275affb8cfab8c7e54e82e"
+  integrity sha512-UogYl3BSweME3j/Ptt+Gm4GxgKue3bKeNsPVGWJo9kkQ7uDKaFkROIxnav0jRMzj3/tqB4NuagO7Fz5eMIw3Lg==
   dependencies:
     "@babel/runtime" "^7.8.0"
     lodash-es "^4.17.0"
