@@ -135,8 +135,7 @@ function Popup() {
         <aside className={`${prefix}--popup__panel`}>
           <Button
             className={`${prefix}--popup__panel-close`}
-            kind="secondary"
-            size="sm"
+            kind="ghost"
             onClick={() => panelControls.close(panelState.name)}
           >
             <ChevronLeft height="16" />

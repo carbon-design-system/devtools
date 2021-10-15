@@ -36,6 +36,9 @@ $feature-flags: (
 @import '~carbon-components/scss/components/content-switcher/content-switcher';
 @import '~carbon-components/scss/components/button/button';
 @import '~carbon-components/scss/components/search/search';
+@import '~carbon-components/scss/components/structured-list/structured-list';
+@import '~carbon-components/scss/components/code-snippet/code-snippet';
+@import '~carbon-components/scss/components/notification/inline-notification';
 
 @import 'components/MoreOptions';
 @import 'components/Loading';
@@ -45,6 +48,7 @@ $feature-flags: (
 @import 'components/Grid';
 @import 'components/Specs';
 @import 'components/ResizeBrowser';
+@import 'components/PageInfo';
 
 @include more-options;
 @include loading;
@@ -54,6 +58,7 @@ $feature-flags: (
 @include grid;
 @include specs;
 @include resize-browser;
+@include page-info;
 
 body {
   background: $ui-background;
@@ -135,8 +140,12 @@ body {
     }
 
     &-close {
+      width: 100%;
+      justify-content: flex-start;
+
       svg {
         margin-right: carbon--mini-units(0.5);
+        margin-left: -4px;
         fill: currentColor;
       }
     }
@@ -144,7 +153,7 @@ body {
     &-title {
       @include carbon--type-style('productive-heading-04');
 
-      margin-top: carbon--mini-units(3);
+      margin-top: carbon--mini-units(1);
     }
 
     &-content {

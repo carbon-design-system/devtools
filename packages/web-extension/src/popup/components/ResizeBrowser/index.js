@@ -23,7 +23,7 @@ function ResizeBrowser({ windowWidth = 0 }) {
     const dataKey = 'toggleBreakpointLabel';
     getStorage([dataKey], (dataReceived) => {
       // should this be passed in via props?
-      if (dataReceived) {
+      if (dataReceived && typeof dataReceived[dataKey] === 'boolean') {
         setToggleBreakpointLabel(dataReceived[dataKey]);
       }
 

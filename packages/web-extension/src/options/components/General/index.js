@@ -4,6 +4,7 @@ import settings from 'carbon-components/es/globals/js/settings';
 import Select from 'carbon-components-react/es/components/Select';
 import SelectItem from 'carbon-components-react/es/components/SelectItem';
 import Toggle from 'carbon-components-react/es/components/Toggle';
+import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { configuration } from '../';
 import { themes } from '@carbon/themes';
 import { defaults } from '../../../globals/defaults';
@@ -26,11 +27,12 @@ function General({
             className={`${prefix}--options__non-carbon`}
             id="nonCarbon"
             toggled={generalNonCarbon}
-            onChange={(e) =>
+            onChange={(e) => {
               configuration('general-ignore-validation', {
                 generalNonCarbon: e.target.checked,
-              })
-            }
+              });
+              setStorage({ generalNonCarbonClear: false });
+            }}
           />
         </div>
         <div className={`${prefix}--col-sm-2`}>
@@ -40,11 +42,11 @@ function General({
             className={`${prefix}--options__experimental`}
             id="experimental"
             toggled={generalExperimental}
-            onChange={(e) =>
+            onChange={(e) => {
               configuration('general-experimental', {
                 generalExperimental: e.target.checked,
-              })
-            }
+              });
+            }}
           />
         </div>
       </div>

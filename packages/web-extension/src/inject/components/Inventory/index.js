@@ -26,6 +26,8 @@ let waitForObserverToEnd;
 let inventory;
 
 function initInventory() {
+  sendMessage({ initInventory: true });
+
   getMessage((msg) => {
     if (msg.requestInventory) {
       sendMessage({ inventoryData: getInventory(allComponents) });

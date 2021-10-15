@@ -47,12 +47,12 @@ function Inventory() {
       setFilteredTotal(msg.inventoryData.totalCount);
       perfCheck(startPerfCheck);
     }
-  });
 
-  useEffect(() => {
-    // send data on open so it's ready
-    sendTabMessage(-1, { requestInventory: true });
-  }, []);
+    // request data as soon as inventory is ready
+    if (msg.initInventory) {
+      sendTabMessage(-1, { requestInventory: true });
+    }
+  });
 
   useEffect(() => {
     document

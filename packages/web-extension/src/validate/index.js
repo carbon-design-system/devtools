@@ -4,10 +4,88 @@ import { prefixSelectors } from '../globals/prefixSelectors';
 
 const scriptId = 'bx-dev--window-var';
 
+// TODO: Material design
+// TODO: analytics
+// TODO: individual libraries, carbon, carbon for ibm.com, security...
+// TODO: W3 publisher/system library?
+// TODO: services?
+
 injectScript(
   `
-  document.body.dataset.digitalData = JSON.stringify(window.digitalData || false);
-  document.body.dataset.jQuery = JSON.stringify(Boolean(window.$ || window.jQuery || false));
+  bxDevGetLibraries();
+
+  function bxDevGetLibraries () {
+    const libraries = {
+      w3DS: window.w3ds && true,
+      jQuery: window.jQuery || window.$,
+      Dojo: window.dojo,
+      Angular: window.angular,
+      Bootstrap: window.bootstrap,
+      React: window.React,
+      Vue: window.Vue
+    };
+
+    const pageInfo = {
+      digitalData: window.digitalData,
+      libraries
+    };
+
+    if (libraries.jQuery) { // try to get version number
+      libraries.jQuery = libraries.jQuery().jquery || true;
+    }
+
+    if (libraries.Dojo) { // try to get version number
+      libraries.Dojo = (libraries.Dojo.version && libraries.Dojo.version.toString()) || true;
+    }
+
+    if (libraries.Bootstrap) { // try to get version number
+      libraries.Bootstrap = (libraries.Bootstrap.Alert && libraries.Bootstrap.Alert.VERSION) || true;
+    }
+
+    if (libraries.Vue) { // try to get version number
+      libraries.Vue = (libraries.Vue && libraries.Vue.version) || true;
+    }
+
+    if (libraries.React) { // try to get version number
+      libraries.React = libraries.React.version || true;
+    } else {
+      libraries.React = findReactRoot();
+    }
+
+    if (libraries.Angular) {
+      libraries.Angular = (window.angular.version && window.angular.version.full) || true;
+    } else {
+      const angularRoot = window.getAllAngularRootElements && window.getAllAngularRootElements();
+
+      if (angularRoot) {
+        if (angularRoot.length) {
+          libraries.Angular = angularRoot[0].getAttribute('ng-version') || true;
+        } else {
+          libraries.Angular= true;
+        }
+      }
+    }
+
+    document.body.dataset.pageInfo = JSON.stringify(pageInfo);
+  }
+
+  function findReactRoot (elem) {
+    elem = elem || document.querySelector('body');
+    const children = elem.children;
+    let result;
+
+    for (let i = 0; i < children.length; i++) {
+      if (children[i]._reactRootContainer) {
+        result = true;
+        break;
+      } else {
+        findReactRoot(children[i]);
+      }
+    }
+
+    return result;
+  }
+
   document.querySelector('#${scriptId}').remove();
 `,
   scriptId
@@ -17,18 +95,49 @@ sendValidation();
 
 function sendValidation() {
   const carbonComponents = document.querySelector(prefixSelectors);
-  const body = document.body;
+  const html = document.querySelector('html');
+  const body = document.querySelector('body');
+  const title = document.querySelector('title');
+  const description = document.querySelector('meta[name="description"]');
+  const keywords = document.querySelector('meta[name="keywords"]');
+
+  const pageInfo = {
+    // do as much as we can here since this code is already injected, and to avoid larger stringifys in dataset attributes.
+    Northstar: northstarCheck(),
+    title: title && title.innerText,
+    description: description && description.getAttribute('content'),
+    keywords:
+      keywords &&
+      keywords
+        .getAttribute('content')
+        .split(',')
+        .map((keyword) => keyword.trim())
+        .filter((k) => k),
+    location: {
+      domain: window.location.domain,
+      host: window.location.host,
+      hostname: window.location.hostname,
+      href: window.location.href,
+      origin: window.location.origin,
+      pathname: window.location.pathname,
+      port: window.location.port,
+      protocol: window.location.protocol,
+      search: window.location.search,
+      hash: window.location.hash,
+    },
+    language: html.getAttribute('lang'),
+  };
 
   const msg = {
     windowWidth: window.outerWidth,
     carbonDevtoolsInjected: window.carbonDevtoolsInjected || false,
-    digitalData: JSON.parse(body.dataset.digitalData),
-    jQuery: JSON.parse(body.dataset.jQuery),
-    // TODO: add window validations here.
+    pageInfo: {
+      ...pageInfo,
+      ...JSON.parse(body.dataset.pageInfo),
+    },
   };
 
-  delete body.dataset.digitalData;
-  delete body.dataset.jQuery;
+  delete body.dataset.pageInfo;
 
   getStorage(['generalNonCarbon'], ({ generalNonCarbon }) => {
     // at least components on page
@@ -51,6 +160,42 @@ function sendValidation() {
 
     sendMessage(msg);
   });
+}
+
+function northstarCheck() {
+  const versions = [
+    'v8',
+    'v9',
+    'v10',
+    'v11',
+    'v12',
+    'v13',
+    'v14',
+    'v15',
+    'v16',
+    'v17',
+    'v17e',
+    'v18',
+    'v19',
+    'v19a',
+  ];
+  const results = {
+    versions: {},
+    numOfFiles: 0,
+  };
+
+  performance.getEntriesByType('resource').forEach((entry) => {
+    versions.forEach((versions) => {
+      if (entry.name.indexOf('common/' + versions + '/') > -1) {
+        results.versions[versions] = true;
+        results.numOfFiles += 1;
+      }
+    });
+  });
+
+  if (results.numOfFiles) {
+    return results;
+  }
 }
 
 function injectStyles(url) {

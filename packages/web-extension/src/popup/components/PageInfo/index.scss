@@ -1,0 +1,39 @@
+@mixin page-info {
+  .#{$prefix}--page-info {
+    &__group {
+      margin-bottom: carbon--mini-units(6);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__notification {
+      max-width: initial;
+      margin: 1px 0;
+    }
+
+    &__group-title {
+      width: 50%;
+    }
+
+    &__row-title {
+      @include carbon--type-style('productive-heading-01');
+    }
+
+    &__row-subtitle {
+      @include carbon--type-style('helper-text-01');
+
+      margin-top: carbon--mini-units(0.5);
+    }
+
+    &__row-value {
+      word-break: break-word;
+    }
+
+    .#{$prefix}--snippet {
+      margin-right: carbon--mini-units(0.5);
+      margin-bottom: carbon--mini-units(0.5);
+    }
+  }
+}
