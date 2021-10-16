@@ -5,26 +5,26 @@ function formIBMRows(data) {
 
   const pageInfo = safeObj('page.pageInfo', data.digitalData);
   const owner = safeObj('ibm.owner', pageInfo);
-  const contact = safeObj('ibm.contentProducer', pageInfo);
+  const producer = safeObj('ibm.contentProducer', pageInfo);
   const delivery = safeObj('ibm.contentDelivery', pageInfo);
-  const source = safeObj('source', pageInfo);
   const version = safeObj('version', pageInfo);
+  // const source = safeObj('source', pageInfo);
 
   if (owner) {
     rows.push({
+      type: 'link',
       title: `Owner`,
       titleTitle: `digitalData.page.pageInfo.ibm.owner`,
       value: owner,
+      href: `https://w3.ibm.com/#/results?page=people&q=${owner}`,
     });
   }
 
-  if (contact) {
+  if (producer) {
     rows.push({
-      type: 'link',
-      title: `Contact`,
+      title: `Producer`,
       titleTitle: `digitalData.page.pageInfo.ibm.contentProducer`,
-      value: contact,
-      href: `https://w3.ibm.com/#/results?page=people&q=${contact}`,
+      value: producer,
     });
   }
 
@@ -45,14 +45,15 @@ function formIBMRows(data) {
     });
   }
 
-  if (source) {
-    rows.push({
-      type: 'code',
-      title: `Source`,
-      titleTitle: `digitalData.page.pageInfo.source`,
-      value: source,
-    });
-  }
+  // source just duplicates content using the template below and the information above already displayed.
+  // <version> DELIVERY:<contentDelivery> AUTHORING:<contentProducer>
+  // if (source) {
+  //   rows.push({
+  //     title: `Source`,
+  //     titleTitle: `digitalData.page.pageInfo.source`,
+  //     value: source,
+  //   });
+  // }
 
   return rows;
 }

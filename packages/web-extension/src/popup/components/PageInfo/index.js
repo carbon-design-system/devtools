@@ -42,8 +42,10 @@ const { prefix } = settings;
 // });
 //
 
-function PageInfo({ initialMsg }) {
+function PageInfo({ initialMsg, _inventoryData }) {
   const groups = {};
+
+  console.log(_inventoryData);
 
   groups.general = {
     title: '',
@@ -276,6 +278,7 @@ function handleErrors(data) {
 }
 
 PageInfo.propTypes = {
+  _inventoryData: PropTypes.object,
   initialMsg: PropTypes.object,
 };
 
