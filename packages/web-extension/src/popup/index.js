@@ -6,7 +6,10 @@ import Tag from 'carbon-components-react/es/components/Tag';
 import Button from 'carbon-components-react/es/components/Button';
 import ChevronLeft from '@carbon/icons/svg/32/chevron--left.svg';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
-import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
+import {
+  sendMessage,
+  sendTabMessage,
+} from '@carbon/devtools-utilities/src/sendMessage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import {
@@ -31,6 +34,15 @@ function Popup() {
   const [onCarbon, setOnCarbon] = useState(carbonStatus); // eslint-disable-line no-unused-vars
   const [initialMsg, setInitialMsg] = useState();
   const [panelState, setPanelState] = useState(defaults.popup.panelState);
+  const [inventoryData, setInventoryData] = useState();
+
+  useEffect(() => {
+    getMessage((msg) => {
+      if (msg.inventoryData) {
+        setInventoryData(msg.inventoryData);
+      }
+    });
+  });
 
   let Content = Loading,
     panelControls = {
@@ -65,7 +77,10 @@ function Popup() {
     });
 
     getMessage((msg) => {
-      const msgKeys = Object.keys(msg);
+      if (msg.carbonDevtoolsInjected) {
+        // request inventory once injection is complete
+        sendTabMessage(-1, { requestInventory: true });
+      }
 
       if (
         msg.digitalData &&
@@ -77,7 +92,7 @@ function Popup() {
         setIBMer(3); // unknown, but probably not
       }
 
-      if (msgKeys.indexOf('runningCarbon') > -1) {
+      if (msg.runningCarbon) {
         carbonStatus = true;
         setOnCarbon(true);
         setInitialMsg(msg);
@@ -130,7 +145,11 @@ function Popup() {
         )}`}
       >
         <main className={`${prefix}--grid ${prefix}--popup__panel`}>
-          <Content initialMsg={initialMsg} _panelControls={panelControls} />
+          <Content
+            initialMsg={initialMsg}
+            _inventoryData={inventoryData}
+            _panelControls={panelControls}
+          />
         </main>
         <aside className={`${prefix}--popup__panel`}>
           <Button

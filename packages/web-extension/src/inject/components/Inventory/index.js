@@ -26,11 +26,10 @@ let waitForObserverToEnd;
 let inventory;
 
 function initInventory() {
-  sendMessage({ initInventory: true });
-
   getMessage((msg) => {
     if (msg.requestInventory) {
-      sendMessage({ inventoryData: getInventory(allComponents) });
+      const inventoryData = getInventory(allComponents);
+      sendMessage({ inventoryData: inventoryData });
 
       // re-render if page updates
       if (!DOMwatch) {

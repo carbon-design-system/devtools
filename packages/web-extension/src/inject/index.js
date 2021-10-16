@@ -1,4 +1,5 @@
 import './index.scss';
+import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import {
   initGrid,
   initSpecs,
@@ -19,4 +20,5 @@ if (!window.carbonDevtoolsInjected) {
   initBreakpointLabel();
 
   window.carbonDevtoolsInjected = true;
+  sendMessage({ carbonDevtoolsInjected: true });
 }

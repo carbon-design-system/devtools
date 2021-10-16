@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
 import Accordion, {
   AccordionItem,
@@ -8,7 +9,6 @@ import { ClickableTile } from 'carbon-components-react/es/components/Tile';
 import Link from 'carbon-components-react/es/components/Link';
 import Search from 'carbon-components-react/es/components/Search';
 import { sendTabMessage } from '@carbon/devtools-utilities/src/sendMessage';
-import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import {
   gaNavigationEvent,
   gaDomEvent,
@@ -19,7 +19,7 @@ import packageJSON from '../../../../package.json';
 
 const { prefix } = settings;
 
-function Inventory() {
+function Inventory({ _inventoryData }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [inventorySource, setInventorySource] = useState(undefined);
   const [filteredInventory, setFilteredInventory] = useState({});
@@ -33,26 +33,18 @@ function Inventory() {
   let diffInUnique = uniqueCount - filteredUnique;
   let diffMetaClass = `${prefix}--inventory__meta-item--active`;
 
-  getMessage((msg) => {
-    const msgKeys = Object.keys(msg);
-    if (msgKeys.indexOf('inventoryData') > -1) {
-      msg.inventoryData.original = JSON.parse(
-        JSON.stringify(msg.inventoryData.all)
-      );
-      setInventorySource(msg.inventoryData.all);
-      setFilteredInventory(msg.inventoryData.all);
-      setUniqueCount(msg.inventoryData.uniqueCount);
-      setFilteredUnique(msg.inventoryData.uniqueCount);
-      setTotalCount(msg.inventoryData.totalCount);
-      setFilteredTotal(msg.inventoryData.totalCount);
+  useEffect(() => {
+    if (_inventoryData) {
+      _inventoryData.original = JSON.parse(JSON.stringify(_inventoryData.all));
+      setInventorySource(_inventoryData.all);
+      setFilteredInventory(_inventoryData.all);
+      setUniqueCount(_inventoryData.uniqueCount);
+      setFilteredUnique(_inventoryData.uniqueCount);
+      setTotalCount(_inventoryData.totalCount);
+      setFilteredTotal(_inventoryData.totalCount);
       perfCheck(startPerfCheck);
     }
-
-    // request data as soon as inventory is ready
-    if (msg.initInventory) {
-      sendTabMessage(-1, { requestInventory: true });
-    }
-  });
+  }, [_inventoryData, startPerfCheck]);
 
   useEffect(() => {
     document
@@ -358,5 +350,9 @@ function perfCheck(startTime) {
     gaException(`Slow inventory audit: ${time}ms`, 0);
   }
 }
+
+Inventory.propTypes = {
+  _inventoryData: PropTypes.object,
+};
 
 export { Inventory };

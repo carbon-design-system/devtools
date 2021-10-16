@@ -21,7 +21,7 @@ import { Inventory, Specs, Grid, ResizeBrowser, PageInfo } from '../';
 
 const { prefix } = settings;
 
-function Main({ initialMsg, _panelControls }) {
+function Main({ initialMsg, _inventoryData, _panelControls }) {
   const [globalToggleStates, setGlobalToggleStates] = useState(defaults.global);
   const [isOpenStates, setIsOpenStates] = useState(defaults.global);
   const [nonCarbon, setNonCarbon] = useState({});
@@ -94,6 +94,7 @@ function Main({ initialMsg, _panelControls }) {
                 'Page info',
                 <PageInfo
                   initialMsg={initialMsg}
+                  _inventoryData={_inventoryData}
                   _panelControls={_panelControls}
                 />
               )
@@ -192,13 +193,20 @@ function Main({ initialMsg, _panelControls }) {
           )
         }
       >
-        <Content disabled={!globalToggleStates[id]} isOpen={isOpenStates[id]} />
+        <Content
+          initialMsg={initialMsg}
+          _inventoryData={_inventoryData}
+          _panelControls={_panelControls}
+          disabled={!globalToggleStates[id]}
+          isOpen={isOpenStates[id]}
+        />
       </AccordionItem>
     );
   }
 }
 
 Main.propTypes = {
+  _inventoryData: PropTypes.object,
   _panelControls: PropTypes.func,
   initialMsg: PropTypes.object,
 };
