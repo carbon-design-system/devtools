@@ -12,6 +12,7 @@ import {
 } from '@carbon/devtools-utilities/src/sendMessage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
+import { formInventoryData } from '@carbon/devtools-utilities/src/formInventoryData';
 import {
   gaPageview,
   gaDomEvent,
@@ -38,7 +39,7 @@ function Popup() {
 
   useEffect(() => {
     getMessage((msg) => {
-      setInventoryData(transformInventoryData(msg.inventoryData));
+      setInventoryData(formInventoryData(msg.inventoryData));
     });
   });
 
@@ -174,23 +175,6 @@ function Popup() {
       </section>
     </article>
   );
-}
-
-function transformInventoryData(data) {
-  const allComponents = {};
-
-  const { _results, _totals, ...libraries } = data;
-
-  Object.keys(libraries).forEach((key) => {
-    Object.assign(allComponents, libraries[key].components);
-  });
-
-  return {
-    _results,
-    _totals,
-    libraries,
-    allComponents,
-  };
 }
 
 function activePanel(stateName) {

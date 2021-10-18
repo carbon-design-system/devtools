@@ -1,15 +1,18 @@
-function formLibraryRows(data, _inventoryData) {
+import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
+
+function formLibraryRows(data, _inventoryData = {}) {
   const rows = [];
   const northstar = data.Northstar;
   const libraries = data.libraries;
   const libraryKeys = Object.keys(libraries);
   const { _results, _totals, libraries: carbonLibraries } = _inventoryData;
-  const carbonKeys = Object.keys(carbonLibraries);
+
+  const carbonKeys = Object.keys(carbonLibraries || {});
 
   if (carbonKeys.length) {
     carbonKeys.forEach((libraryId) => {
       const library = carbonLibraries[libraryId];
-      const unique = _results[libraryId].unique;
+      const unique = safeObj(`${libraryId}.unique`, _results) || '';
 
       rows.push({
         title: library.name,

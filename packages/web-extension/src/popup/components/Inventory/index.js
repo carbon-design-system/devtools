@@ -136,7 +136,7 @@ function Inventory({ _inventoryData }) {
       gaNavigationEvent('search', e.type, diffInUnique && 1);
     }, moderate02);
   }
-  console.log(inventorySource);
+
   return !inventorySource ? (
     loadingInventory()
   ) : (

@@ -167,6 +167,7 @@ function resetInventory() {
       totalCount: 0,
       uniqueCount: 0,
     },
+    libraries: {},
   };
 
   if (components.length > 0) {
@@ -213,9 +214,9 @@ function getInventoryCollection(libraryId, libraryName, componentList) {
     );
 
     if (inventoryData.length > 0) {
-      if (!inventory[libraryId]) {
+      if (!inventory.libraries[libraryId]) {
         // set the library in place if it doesn't exist yet
-        inventory[libraryId] = {
+        inventory.libraries[libraryId] = {
           name: libraryName,
           components: {},
         };
@@ -225,12 +226,15 @@ function getInventoryCollection(libraryId, libraryName, componentList) {
         };
       }
 
-      if (!inventory[libraryId].components[componentName]) {
+      if (!inventory.libraries[libraryId].components[componentName]) {
         inventory._results.uniqueCount += 1; // add to the unique count
         inventory._results[libraryId].unique += 1; // add to the unique count for the library
-        inventory[libraryId].components[componentName] = inventoryData;
+        inventory.libraries[libraryId].components[componentName] =
+          inventoryData;
       } else {
-        inventory[libraryId].components[componentName].concat(inventoryData);
+        inventory.libraries[libraryId].components[componentName].concat(
+          inventoryData
+        );
       }
 
       inventory._results.totalCount += inventoryData.length; // add to the total count
