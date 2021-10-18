@@ -39,6 +39,10 @@ setStats({
   success: manualTotal,
 });
 
-cloudPal = { ...cloudPal, _stats };
+cloudPal = {
+  name: 'Cloud pal',
+  components: cloudPal,
+  _stats,
+};
 
 export { cloudPal };

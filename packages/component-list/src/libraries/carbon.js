@@ -13,12 +13,18 @@ const customComps = [];
 
 const filterByTheseComponents = []; // compKey/name for debugging
 
-const carbonReact = buildReactComponentList(
+const { _stats, ...components } = buildReactComponentList(
   componentList,
   prefix,
   mockedProps,
   customComps,
   filterByTheseComponents
 );
+
+const carbonReact = {
+  name: 'Carbon',
+  components,
+  _stats,
+};
 
 export { carbonReact };

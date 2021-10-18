@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import Tag from 'carbon-components-react/es/components/Tag';
 import settings from 'carbon-components/es/globals/js/settings';
+import Tag from 'carbon-components-react/es/components/Tag';
+import Button from 'carbon-components-react/es/components/Button';
+import ChevronLeft from '@carbon/icons/svg/32/chevron--left.svg';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
-import { sendMessage } from '@carbon/devtools-utilities/src/sendMessage';
+import {
+  sendMessage,
+  sendTabMessage,
+} from '@carbon/devtools-utilities/src/sendMessage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
+import { formInventoryData } from '@carbon/devtools-utilities/src/formInventoryData';
 import {
   gaPageview,
   gaDomEvent,
@@ -29,11 +35,19 @@ function Popup() {
   const [onCarbon, setOnCarbon] = useState(carbonStatus); // eslint-disable-line no-unused-vars
   const [initialMsg, setInitialMsg] = useState();
   const [panelState, setPanelState] = useState(defaults.popup.panelState);
+  const [inventoryData, setInventoryData] = useState(undefined);
+
+  useEffect(() => {
+    getMessage((msg) => {
+      setInventoryData(formInventoryData(msg.inventoryData));
+    });
+  });
 
   let Content = Loading,
     panelControls = {
       open: (name, children) => {
         setPanelState({
+          name: name,
           open: true,
           children: children,
         });
@@ -41,6 +55,7 @@ function Popup() {
       },
       close: (name) => {
         setPanelState({
+          name: name,
           open: false,
           children: panelState.children,
         });
@@ -61,7 +76,10 @@ function Popup() {
     });
 
     getMessage((msg) => {
-      const msgKeys = Object.keys(msg);
+      if (msg.carbonDevtoolsInjected) {
+        // request inventory once injection is complete
+        sendTabMessage(-1, { requestInventory: true });
+      }
 
       if (
         msg.digitalData &&
@@ -73,7 +91,7 @@ function Popup() {
         setIBMer(3); // unknown, but probably not
       }
 
-      if (msgKeys.indexOf('runningCarbon') > -1) {
+      if (msg.runningCarbon) {
         carbonStatus = true;
         setOnCarbon(true);
         setInitialMsg(msg);
@@ -126,10 +144,33 @@ function Popup() {
         )}`}
       >
         <main className={`${prefix}--grid ${prefix}--popup__panel`}>
-          <Content initialMsg={initialMsg} _panelControls={panelControls} />
+          <Content
+            initialMsg={initialMsg}
+            _inventoryData={inventoryData}
+            _panelControls={panelControls}
+          />
         </main>
         <aside className={`${prefix}--popup__panel`}>
-          {panelState.children}
+          <Button
+            className={`${prefix}--popup__panel-close`}
+            kind="ghost"
+            onClick={() => panelControls.close(panelState.name)}
+          >
+            <ChevronLeft height="16" />
+            Back
+          </Button>
+          <div className={`${prefix}--grid`}>
+            <div className={`${prefix}--row`}>
+              <h1
+                className={`${prefix}--popup__panel-title ${prefix}--col-sm-3`}
+              >
+                {panelState.name}
+              </h1>
+            </div>
+            <div className={`${prefix}--popup__panel-content`}>
+              {panelState.children}
+            </div>
+          </div>
         </aside>
       </section>
     </article>

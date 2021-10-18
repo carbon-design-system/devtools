@@ -5,10 +5,11 @@ import {
   showHideTooltip,
   updateTooltipContent,
 } from '../../Tooltip';
-import { allComponents } from '../../../../globals/componentList';
 import { findAllDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
-
+import { formInventoryData } from '@carbon/devtools-utilities/src/formInventoryData';
+import componentList from '@carbon/devtools-component-list/dist/index.json';
 const { prefix } = settings;
+const { allComponents } = formInventoryData(componentList);
 const selectors = Object.keys(allComponents).join(',');
 
 const specsDependenciesClass = `${prefix}--specs-dependencies-tooltip`;

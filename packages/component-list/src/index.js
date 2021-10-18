@@ -9,7 +9,6 @@ const _results = {
 
 libraryKeys.forEach((key) => {
   _results[key] = libraries[key]._stats;
-  delete libraries[key]._stats;
 
   success(_results[key].success);
   fail(_results[key].fail);

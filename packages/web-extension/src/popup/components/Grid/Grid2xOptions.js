@@ -87,20 +87,6 @@ function Grid2xOptions({ disabled }) {
             }}
           />
         </div>
-        <div className={`${prefix}--col-sm-2`}>
-          <Checkbox
-            disabled={disabled}
-            labelText={labelMaker('Breakpoints')}
-            id="toggle2xBreakpoints"
-            checked={toggle2xGridOptions['toggle2xBreakpoints']}
-            onChange={(e) => {
-              const changes = { ...toggle2xGridOptions };
-              changes['toggle2xBreakpoints'] = e;
-              setToggle2xGridOptions(changes);
-              gaConfigurationEvent('2x-grid-change', '2x-breapoints-label', e);
-            }}
-          />
-        </div>
       </div>
       <div className={`${prefix}--row`}>
         <div className={`${prefix}--col-sm-4`}>

@@ -39,12 +39,18 @@ const customComps = [(Comp) => <Comp>{() => ''}</Comp>];
 
 const filterByTheseComponents = []; // compKey/name for debugging
 
-const security = buildReactComponentList(
+const { _stats, ...components } = buildReactComponentList(
   componentList,
   prefix,
   mockedProps,
   customComps,
   filterByTheseComponents
 );
+
+const security = {
+  name: 'IBM security',
+  components,
+  _stats,
+};
 
 export { security };

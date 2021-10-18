@@ -13,7 +13,7 @@ function ComingSoon() {
     >
       <div style={{ textAlign: 'center' }}>
         <p>
-          <Sprout size="32" />
+          <Sprout width="32" style={{ fill: 'currentColor' }} />
         </p>
         <p>Coming soon!</p>
       </div>

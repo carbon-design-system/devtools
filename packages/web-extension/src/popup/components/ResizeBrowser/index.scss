@@ -1,7 +1,13 @@
 @mixin resize-browser {
   .#{$prefix}--popup-resize-browser {
-    margin-top: $carbon--spacing-07;
-    margin-bottom: $carbon--spacing-05;
+    &__container {
+      margin-top: $carbon--spacing-07;
+    }
+
+    &,
+    &__container {
+      margin-bottom: $carbon--spacing-05;
+    }
 
     .#{$prefix}--popup-resize-browser__label {
       @include carbon--type-style('label-01');

@@ -18,3 +18,6 @@ export * from './src/getActiveBreakpoint';
 export * from './src/setPx';
 export * from './src/removeLeadingZero';
 export * from './src/ga';
+export * from './src/safeObj';
+export * from './src/openChromeExtensionOptions';
+export * from './src/formInventoryData';

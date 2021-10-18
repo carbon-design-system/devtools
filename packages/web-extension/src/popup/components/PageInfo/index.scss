@@ -1,0 +1,84 @@
+@mixin page-info {
+  .#{$prefix}--page-info {
+    &__group {
+      margin-bottom: carbon--mini-units(6);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__notification {
+      max-width: initial;
+      margin: 1px 0;
+    }
+
+    &__group-title {
+      @include carbon--type-style('productive-heading-02');
+
+      padding-bottom: carbon--mini-units(1);
+      border-bottom: 1px solid $ui-03;
+      margin-top: carbon--mini-units(5);
+      color: $text-01;
+    }
+
+    &__row {
+      @include carbon--type-style('body-long-01');
+
+      padding-bottom: carbon--mini-units(3);
+      border-bottom: 1px solid $ui-03;
+      color: $text-02;
+    }
+
+    &__row-title,
+    &__row-value {
+      margin-top: carbon--mini-units(2);
+      // margin-bottom: carbon--mini-units(1);
+    }
+
+    &__row-title {
+      &__main {
+        @include carbon--type-style('productive-heading-01');
+      }
+
+      &__sub {
+        @include carbon--type-style('helper-text-01');
+
+        margin-top: carbon--mini-units(0.25);
+      }
+    }
+
+    .#{$prefix}--snippet {
+      max-width: 100%;
+      margin-right: carbon--mini-units(0.5);
+      margin-bottom: carbon--mini-units(0.5);
+      font-size: 0;
+
+      code {
+        display: block;
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .#{$prefix}--link {
+      word-break: break-all;
+    }
+
+    &__search {
+      margin-top: carbon--mini-units(2);
+    }
+
+    &__empty p {
+      @include carbon--type-style('body-long-01');
+
+      margin-top: carbon--mini-units(2);
+      color: $text-02;
+
+      span {
+        color: $text-01;
+      }
+    }
+  }
+}

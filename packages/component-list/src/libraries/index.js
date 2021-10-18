@@ -1,4 +1,4 @@
-export * from './carbon-react';
+export * from './carbon';
 export * from './carbon-web-components';
 export * from './ibmdotcom';
 export * from './cloud-cognitive';

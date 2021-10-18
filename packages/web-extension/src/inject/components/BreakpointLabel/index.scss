@@ -1,0 +1,42 @@
+@mixin label-maker($breakpoints) {
+  &::after {
+    @each $breakpoint in map-keys($breakpoints) {
+      @include carbon--breakpoint($breakpoint) {
+        content: 'breakpoint: #{$breakpoint}';
+      }
+    }
+  }
+}
+
+@mixin breakpoint-label--theme {
+  // breakpoint label theme
+  $border-style: 1px solid $ui-03;
+
+  border-top: $border-style;
+  border-left: $border-style;
+  background: $ui-01;
+  color: $text-01;
+}
+
+.#{$prefix}--devtools {
+  @include label-maker($carbon--grid-breakpoints);
+
+  // breakpoint label
+  &::after {
+    @include carbon--type-style('code-01');
+    @include carbon--font-family('mono');
+    @include breakpoint-label--theme;
+
+    position: fixed;
+    z-index: 4;
+    right: 0;
+    bottom: -33px;
+    padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
+    border-bottom: 0;
+    transition: bottom $transition-in;
+
+    .#{$prefix}--breakpoint-label & {
+      bottom: 0;
+    }
+  }
+}

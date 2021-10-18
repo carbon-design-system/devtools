@@ -1,14 +1,10 @@
 {
   "name": "@carbon/devtools-token-server",
-  "version": "2.6.2",
+  "version": "2.7.0",
   "private": true,
   "description": "A distribution server that maintains and versions Carbon tokens separately.",
   "main": "index.js",
   "scripts": { },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/carbon-design-system/devtools.git"
-  },
   "keywords": [
     "IBM",
     "Carbon",
@@ -21,7 +17,7 @@
   "author": "James Dow",
   "repository": {
     "type": "git",
-    "url": "https://github.com/carbon-design-system/devtools"
+    "url": "https://github.com/carbon-design-system/devtools.git"
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/devtools/issues/new",

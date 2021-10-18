@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
 import Accordion, {
   AccordionItem,
@@ -8,7 +9,7 @@ import { ClickableTile } from 'carbon-components-react/es/components/Tile';
 import Link from 'carbon-components-react/es/components/Link';
 import Search from 'carbon-components-react/es/components/Search';
 import { sendTabMessage } from '@carbon/devtools-utilities/src/sendMessage';
-import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
+import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
 import {
   gaNavigationEvent,
   gaDomEvent,
@@ -19,40 +20,37 @@ import packageJSON from '../../../../package.json';
 
 const { prefix } = settings;
 
-function Inventory() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [inventorySource, setInventorySource] = useState(undefined);
-  const [filteredInventory, setFilteredInventory] = useState({});
-  const [uniqueCount, setUniqueCount] = useState(0);
-  const [filteredUnique, setFilteredUnique] = useState(0);
-  const [totalCount, setTotalCount] = useState(0);
-  const [filteredTotal, setFilteredTotal] = useState(0);
+function Inventory({ _inventoryData }) {
+  const _inventorySource = safeObj('allComponents', _inventoryData);
+  const _uniqueCount = safeObj('_results.uniqueCount', _inventoryData) || 0;
+  const _totalCount = safeObj('_results.totalCount', _inventoryData) || 0;
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredInventory, setFilteredInventory] = useState(_inventorySource);
+  const [filteredUnique, setFilteredUnique] = useState(_uniqueCount);
+  const [filteredTotal, setFilteredTotal] = useState(_totalCount);
+  const [inventorySource, setInventorySource] = useState(undefined);
+  const [uniqueCount, setUniqueCount] = useState(_uniqueCount);
+  const [totalCount, setTotalCount] = useState(_totalCount);
+
+  let waitForTypingToStop;
   let startPerfCheck = performance.now(); // check performance;
   let diffInTotal = totalCount - filteredTotal;
   let diffInUnique = uniqueCount - filteredUnique;
   let diffMetaClass = `${prefix}--inventory__meta-item--active`;
 
-  getMessage((msg) => {
-    const msgKeys = Object.keys(msg);
-    if (msgKeys.indexOf('inventoryData') > -1) {
-      msg.inventoryData.original = JSON.parse(
-        JSON.stringify(msg.inventoryData.all)
-      );
-      setInventorySource(msg.inventoryData.all);
-      setFilteredInventory(msg.inventoryData.all);
-      setUniqueCount(msg.inventoryData.uniqueCount);
-      setFilteredUnique(msg.inventoryData.uniqueCount);
-      setTotalCount(msg.inventoryData.totalCount);
-      setFilteredTotal(msg.inventoryData.totalCount);
-      perfCheck(startPerfCheck);
-    }
-  });
+  useEffect(() => {
+    setFilteredInventory(_inventorySource);
+    setInventorySource(_inventorySource);
+    setFilteredUnique(_uniqueCount);
+    setFilteredTotal(_totalCount);
+    setUniqueCount(_uniqueCount);
+    setTotalCount(_totalCount);
+  }, [_inventorySource, _uniqueCount, _totalCount]);
 
   useEffect(() => {
-    // send data on open so it's ready
-    sendTabMessage(-1, { requestInventory: true });
-  }, []);
+    perfCheck(startPerfCheck);
+  }, [startPerfCheck]);
 
   useEffect(() => {
     document
@@ -65,8 +63,6 @@ function Inventory() {
       });
   });
 
-  let waitForTypingToStop;
-
   function searchComponentList(val = '', e) {
     clearTimeout(waitForTypingToStop);
 
@@ -74,6 +70,7 @@ function Inventory() {
       const searchValue = val.trim().toLowerCase();
       const compKeys = Object.keys(inventorySource);
       const searchIn = [
+        'library',
         'name',
         'classes',
         'id',
@@ -172,7 +169,7 @@ function Inventory() {
           </p>
         </div>
       </div>
-      {uniqueCount > 0 ? (
+      {uniqueCount > 0 && Object.keys(inventorySource).length ? (
         <Search
           onChange={(e) => searchComponentList(e.target.value, e)}
           className={`${prefix}--inventory__search`}
@@ -180,7 +177,7 @@ function Inventory() {
           size="sm"
         />
       ) : null}
-      {filteredUnique
+      {filteredUnique > 0 && Object.keys(inventorySource).length
         ? inventoryList(filteredInventory, uniqueCount)
         : emptyInventory(searchTerm)}
     </>
@@ -212,7 +209,7 @@ function inventoryList(filteredInventory, uniqueCount) {
           key={key + i}
         >
           {filteredInventory[key].map(
-            ({ uniqueID, innerText, tag, id, classes }) => (
+            ({ uniqueID, innerText, tag, id, classes, library, name }) => (
               <ClickableTile
                 href="#"
                 className={`${prefix}--inventory__sub-item`}
@@ -238,6 +235,9 @@ function inventoryList(filteredInventory, uniqueCount) {
                 )}
                 <p className={`${prefix}--inventory__sub-item__name`}>
                   {buildName(tag, id, classes)}
+                </p>
+                <p className={`${prefix}--inventory__sub-item__unique-id`}>
+                  {`${library} :: ${name}`}
                 </p>
                 <p className={`${prefix}--inventory__sub-item__unique-id`}>
                   {uniqueID}
@@ -309,19 +309,27 @@ function componentMouseOut(e) {
 }
 
 function getIdsData(target) {
+  const maxCount = 50;
   const dataset =
     target.dataset.identifier || target.parentNode.dataset.identifier;
   let idList = [];
 
   if (dataset) {
-    idList = dataset.split(',');
+    idList = dataset.split(',').slice(0, maxCount);
+    idList = idList.slice(0, maxCount); // only grab the first few for performance
   }
 
   return idList;
 }
 
 function emptyInventory(search) {
-  const searchEmpty = `Hmmm, we couldn't find any components related to "${search}".`;
+  const searchEmpty = (
+    <>
+      {`Hmmm, we couldn't find any components related to “`}
+      <span>{search}</span>
+      {`”.`}
+    </>
+  );
   const inventoryEmpty = (
     <>
       {`We could not find any components that matched our records. If you believe
@@ -358,5 +366,9 @@ function perfCheck(startTime) {
     gaException(`Slow inventory audit: ${time}ms`, 0);
   }
 }
+
+Inventory.propTypes = {
+  _inventoryData: PropTypes.object,
+};
 
 export { Inventory };
