@@ -7,14 +7,15 @@ function formLibraryRows(data, _inventoryData) {
   const carbonKeys = Object.keys(carbonLibraries);
 
   if (carbonKeys.length) {
-    carbonKeys.forEach((libraryName) => {
-      const unique = _results[libraryName].unique;
+    carbonKeys.forEach((libraryId) => {
+      const library = carbonLibraries[libraryId];
+      const unique = _results[libraryId].unique;
 
       rows.push({
-        title: libraryName,
+        title: library.name,
         type: 'code',
         subtitle: `${unique} component${unique > 1 ? 's' : ''}`,
-        subtitleTitle: `${unique} of ${libraryName}'s ${_totals[libraryName].total} components`,
+        subtitleTitle: `${unique} of ${library.name}'s ${_totals[libraryId].total} components`,
         value: 'true',
       });
     });

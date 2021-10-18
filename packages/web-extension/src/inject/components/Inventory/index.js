@@ -185,16 +185,17 @@ function getInventory(reset = true) {
   const libraryKeys = Object.keys(libraries);
 
   for (let i = 0; i < libraryKeys.length; i++) {
-    const libraryName = libraryKeys[i];
-    const librarySelectors = libraries[libraryName];
+    const libraryId = libraryKeys[i];
+    const libraryName = libraries[libraryId].name;
+    const librarySelectors = libraries[libraryId].components;
 
-    getInventoryCollection(libraryName, librarySelectors);
+    getInventoryCollection(libraryId, libraryName, librarySelectors);
   }
 
   return inventory;
 }
 
-function getInventoryCollection(libraryName, componentList) {
+function getInventoryCollection(libraryId, libraryName, componentList) {
   // TODO: prefix check first?
   // document.querySelector('.bx--');
 
@@ -212,25 +213,28 @@ function getInventoryCollection(libraryName, componentList) {
     );
 
     if (inventoryData.length > 0) {
-      if (!inventory[libraryName]) {
+      if (!inventory[libraryId]) {
         // set the library in place if it doesn't exist yet
-        inventory[libraryName] = {};
-        inventory._results[libraryName] = {
+        inventory[libraryId] = {
+          name: libraryName,
+          components: {},
+        };
+        inventory._results[libraryId] = {
           unique: 0,
           total: 0,
         };
       }
 
-      if (!inventory[libraryName][componentName]) {
+      if (!inventory[libraryId].components[componentName]) {
         inventory._results.uniqueCount += 1; // add to the unique count
-        inventory._results[libraryName].unique += 1; // add to the unique count for the library
-        inventory[libraryName][componentName] = inventoryData;
+        inventory._results[libraryId].unique += 1; // add to the unique count for the library
+        inventory[libraryId].components[componentName] = inventoryData;
       } else {
-        inventory[libraryName][componentName].concat(inventoryData);
+        inventory[libraryId].components[componentName].concat(inventoryData);
       }
 
       inventory._results.totalCount += inventoryData.length; // add to the total count
-      inventory._results[libraryName].total += inventoryData.length; // add to the total count for the library
+      inventory._results[libraryId].total += inventoryData.length; // add to the total count for the library
     }
   }
 

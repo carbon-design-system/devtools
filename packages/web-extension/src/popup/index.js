@@ -182,7 +182,7 @@ function transformInventoryData(data = {}) {
   const { _results, _totals, ...libraries } = data;
 
   Object.keys(libraries).forEach((key) => {
-    Object.assign(allComponents, libraries[key]);
+    Object.assign(allComponents, libraries[key].components);
   });
 
   return {
