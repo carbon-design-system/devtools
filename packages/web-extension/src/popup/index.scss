@@ -115,6 +115,7 @@ body {
     }
 
     &:last-child {
+      height: 0;
       opacity: 0;
     }
 
@@ -130,10 +131,12 @@ body {
       margin-left: -100%;
 
       .#{$prefix}--popup__panel:first-child {
+        height: 0;
         opacity: 0;
       }
 
       .#{$prefix}--popup__panel:last-child {
+        height: initial;
         opacity: 1;
       }
     }
