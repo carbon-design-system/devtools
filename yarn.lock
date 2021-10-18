@@ -1216,7 +1216,7 @@
     "@carbon/telemetry" "0.0.0-alpha.6"
     prop-types "^15.7.2"
 
-"@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.40.0":
+"@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.41.0":
   version "10.41.0"
   resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.41.0.tgz#d9e411f21cc93dbfa68520b32955fde439d7b159"
   integrity sha512-34+zTinj8fA6QOwlw35zMCVdto5uMKr6W0DNKHBLNM3omqAxS3RUIy4qxVjVNCk3mFnL7Knpun25haEaOnAcqw==
@@ -4267,12 +4267,12 @@ carbon-components-react@7.43.0:
     window-or-global "^1.0.1"
 
 carbon-components-react@^7.41.0, carbon-components-react@^7.45.0:
-  version "7.45.0"
-  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.45.0.tgz#e7f603ea5ec5bd7704d67a0fd43447e32f5877e0"
-  integrity sha512-1KoPSsOGEULhFzc5yjJECSwmawH5QRmY6BhQuKHfsLpnx2O8mQdfYXry3kOh8M9/+T91HWDA1YhHSUIo/1/IzA==
+  version "7.46.0"
+  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.46.0.tgz#dc44f4ba2fb180aa7fd5be80e16b3123ae05252c"
+  integrity sha512-y7TjG8TE8XZLe/IuE5iSdXjT7pnNkthi9V7XI4hWG9S1td8NQoccgInxt6T3dIFKzvhHkeNJEx7TnUJt/bYL5A==
   dependencies:
     "@carbon/feature-flags" "^0.6.0"
-    "@carbon/icons-react" "^10.40.0"
+    "@carbon/icons-react" "^10.41.0"
     "@carbon/telemetry" "0.0.0-alpha.6"
     classnames "2.3.1"
     copy-to-clipboard "^3.3.1"
