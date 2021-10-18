@@ -10,6 +10,9 @@ const pathname = './dist';
 const filename = 'index.json';
 const content = JSON.stringify(_carbonLibraries);
 
+console.log('asdf');
+console.log(JSON.stringify(_carbonLibraries));
+
 if (!fs.existsSync(pathname)) {
   fs.mkdirSync(pathname, { recursive: true });
 }

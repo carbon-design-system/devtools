@@ -21,4 +21,4 @@ try {
   console.log(e);
 }
 
-export { ibmdotcom };
+export default ibmdotcom;

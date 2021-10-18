@@ -28,4 +28,4 @@ cloudCognitive = Object.values(cloudCognitive).reduce(
 
 cloudCognitive = { ...cloudCognitive, _stats };
 
-export { cloudCognitive };
+export default { 'IBM cloud cognitive': cloudCognitive };

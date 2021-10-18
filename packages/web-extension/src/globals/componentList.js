@@ -1,4 +1,7 @@
-import { libraries } from '@carbon/devtools-component-list/dist/index.json';
+import {
+  libraries,
+  _results,
+} from '@carbon/devtools-component-list/dist/index.json';
 
 const libraryKeys = Object.keys(libraries);
 const allComponents = {};

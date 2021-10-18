@@ -66,6 +66,11 @@
     &__empty {
       margin-top: carbon--mini-units(2);
       margin-bottom: carbon--mini-units(2);
+      color: $text-02;
+
+      span {
+        color: $text-01;
+      }
     }
 
     &__item {

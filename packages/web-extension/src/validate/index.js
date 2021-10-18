@@ -31,7 +31,24 @@ injectScript(
     };
 
     if (libraries.jQuery) { // try to get version number
-      libraries.jQuery = libraries.jQuery().jquery || true;
+      try {
+        // let's try to see if there are more than one version lurking in the shadows
+        const versions = [];
+        Object.keys(window).forEach(key => {
+          if (key.indexOf('jQuery') === 0 || key.indexOf('$') === 0) {
+            if (typeof window[key] === 'function') {
+              const version = window[key]().jquery;
+              if (version) {
+                versions.push(version);
+              }
+            }
+          }
+        });
+
+        libraries.jQuery = versions.length ? versions : true;
+      } catch (e) {
+        libraries.jQuery = libraries.jQuery().jquery || true;
+      }
     }
 
     if (libraries.Dojo) { // try to get version number

@@ -16,7 +16,10 @@ import {
   findSingleDomShadow,
   shadowContent,
 } from '@carbon/devtools-utilities/src/shadowDom';
-import { allComponents } from '../../../globals/componentList';
+import {
+  libraries,
+  _results as _totals,
+} from '@carbon/devtools-component-list/dist/index.json';
 
 const { prefix } = settings;
 const idselector = 'bxdevid'; // should this be in prefix selector file?
@@ -28,7 +31,7 @@ let inventory;
 function initInventory() {
   getMessage((msg) => {
     if (msg.requestInventory) {
-      const inventoryData = getInventory(allComponents);
+      const inventoryData = getInventory(libraries);
       sendMessage({ inventoryData: inventoryData });
 
       // re-render if page updates
@@ -42,7 +45,7 @@ function initInventory() {
               clearTimeout(waitForObserverToEnd);
 
               waitForObserverToEnd = setTimeout(() => {
-                getInventory(allComponents, false);
+                getInventory(libraries, false);
                 // do we need to send a message back to pop up
                 // incase a component has been added or removed while open?
               }, 100);
@@ -159,9 +162,11 @@ function resetInventory() {
   const components = findAllDomShadow(`[data-${idselector}]`);
 
   inventory = {
-    totalCount: 0,
-    uniqueCount: 0,
-    all: {},
+    _totals,
+    _results: {
+      totalCount: 0,
+      uniqueCount: 0,
+    },
   };
 
   if (components.length > 0) {
@@ -172,36 +177,67 @@ function resetInventory() {
   }
 }
 
-function getInventory(componentList, reset = true) {
-  const selectors = Object.keys(componentList);
-
+function getInventory(reset = true) {
   if (reset) {
     resetInventory();
   }
+
+  const libraryKeys = Object.keys(libraries);
+
+  for (let i = 0; i < libraryKeys.length; i++) {
+    const libraryName = libraryKeys[i];
+    const librarySelectors = libraries[libraryName];
+
+    getInventoryCollection(libraryName, librarySelectors);
+  }
+
+  return inventory;
+}
+
+function getInventoryCollection(libraryName, componentList) {
+  // TODO: prefix check first?
+  // document.querySelector('.bx--');
+
+  const selectors = Object.keys(componentList);
 
   for (let i = 0; i < selectors.length; i++) {
     // loop through indidivual selectors/components
     const selector = selectors[i];
     const componentName = componentList[selector];
     const components = findAllDomShadow(selector);
-    const inventoryData = updateInventory(componentName, components);
+    const inventoryData = updateInventory(
+      componentName,
+      libraryName,
+      components
+    );
 
     if (inventoryData.length > 0) {
-      if (!inventory.all[componentName]) {
-        inventory.uniqueCount += 1; // add to the unique count
-        inventory.all[componentName] = inventoryData;
-      } else {
-        inventory.all[componentName].concat(inventoryData);
+      if (!inventory[libraryName]) {
+        // set the library in place if it doesn't exist yet
+        inventory[libraryName] = {};
+        inventory._results[libraryName] = {
+          unique: 0,
+          total: 0,
+        };
       }
 
-      inventory.totalCount += inventoryData.length; // add to the total count
+      if (!inventory[libraryName][componentName]) {
+        inventory._results.uniqueCount += 1; // add to the unique count
+        inventory._results[libraryName].unique += 1; // add to the unique count for the library
+        inventory[libraryName][componentName] = inventoryData;
+      } else {
+        inventory[libraryName][componentName].concat(inventoryData);
+      }
+
+      inventory._results.totalCount += inventoryData.length; // add to the total count
+      inventory._results[libraryName].total += inventoryData.length; // add to the total count for the library
     }
   }
 
   return inventory;
 }
 
-function updateInventory(componentName, components) {
+function updateInventory(componentName, libraryName, components) {
   const inventory = [];
 
   if (components.length > 0) {
@@ -225,6 +261,7 @@ function updateInventory(componentName, components) {
 
       if (push) {
         inventory.push({
+          library: libraryName,
           name: componentName,
           uniqueID: uniqueID,
           outerHTML: component.outerHTML,

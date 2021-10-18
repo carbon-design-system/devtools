@@ -21,4 +21,4 @@ const carbonReact = buildReactComponentList(
   filterByTheseComponents
 );
 
-export { carbonReact };
+export default { Carbon: carbonReact };

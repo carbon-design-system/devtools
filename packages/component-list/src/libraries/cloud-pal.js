@@ -41,4 +41,4 @@ setStats({
 
 cloudPal = { ...cloudPal, _stats };
 
-export { cloudPal };
+export default { 'Cloud pal': cloudPal };

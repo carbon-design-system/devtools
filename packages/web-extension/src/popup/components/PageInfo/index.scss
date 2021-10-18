@@ -35,5 +35,20 @@
       margin-right: carbon--mini-units(0.5);
       margin-bottom: carbon--mini-units(0.5);
     }
+
+    &__search {
+      margin-top: carbon--mini-units(2);
+    }
+
+    &__empty p {
+      @include carbon--type-style('body-long-01');
+
+      margin-top: carbon--mini-units(2);
+      color: $text-02;
+
+      span {
+        color: $text-01;
+      }
+    }
   }
 }

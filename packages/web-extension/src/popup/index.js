@@ -38,9 +38,7 @@ function Popup() {
 
   useEffect(() => {
     getMessage((msg) => {
-      if (msg.inventoryData) {
-        setInventoryData(msg.inventoryData);
-      }
+      setInventoryData(transformInventoryData(msg.inventoryData));
     });
   });
 
@@ -176,6 +174,23 @@ function Popup() {
       </section>
     </article>
   );
+}
+
+function transformInventoryData(data = {}) {
+  const allComponents = {};
+
+  const { _results, _totals, ...libraries } = data;
+
+  Object.keys(libraries).forEach((key) => {
+    Object.assign(allComponents, libraries[key]);
+  });
+
+  return {
+    _results,
+    _totals,
+    libraries,
+    allComponents,
+  };
 }
 
 function activePanel(stateName) {

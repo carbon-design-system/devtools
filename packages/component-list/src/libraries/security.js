@@ -47,4 +47,4 @@ const security = buildReactComponentList(
   filterByTheseComponents
 );
 
-export { security };
+export default { 'IBM security': security };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
 import {
@@ -11,6 +11,7 @@ import {
 import { InlineNotification } from 'carbon-components-react/es/components/Notification';
 import Link from 'carbon-components-react/es/components/Link';
 import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
+import Search from 'carbon-components-react/es/components/Search';
 import {
   formGeneralRows,
   formIBMRows,
@@ -22,30 +23,8 @@ import {
 
 const { prefix } = settings;
 
-//
-// empty state, no errors, no groups
-// search query not found empty state
-//
-// TO DO: ability to search
-//
-//
-// const searchTerm = e.val;
-// Object.keys(groups).forEach(groupKey => {
-//
-//   const rows = groups[groupKey].rows.filter(({ name, value }) => (name.indexOf(searchTerm) > -1 || value.indexOf(searchTerm) > -1));
-//
-//   if (rows.length) {
-//     // render group
-//   } else {
-//     // don't render group
-//   }
-// });
-//
-
 function PageInfo({ initialMsg, _inventoryData }) {
   const groups = {};
-
-  console.log(_inventoryData);
 
   groups.general = {
     title: '',
@@ -59,7 +38,7 @@ function PageInfo({ initialMsg, _inventoryData }) {
 
   groups.libraries = {
     title: 'Libraries',
-    rows: formLibraryRows(initialMsg.pageInfo),
+    rows: formLibraryRows(initialMsg.pageInfo, _inventoryData),
   };
 
   groups.dates = {
@@ -77,16 +56,82 @@ function PageInfo({ initialMsg, _inventoryData }) {
     rows: formServicesRows(initialMsg.pageInfo),
   };
 
+  const [filteredGroups, setFilteredGroups] = useState(groups);
+  const [searchValue, setSearchValue] = useState('');
+
+  function searchPageInfo(val) {
+    val = val.toLowerCase().trim();
+
+    const filteredGroupResults = JSON.parse(JSON.stringify(groups));
+
+    if (val) {
+      const groupKeys = Object.keys(groups);
+
+      for (let i = 0; i < groupKeys.length; i++) {
+        const groupKey = groupKeys[i];
+        const group = filteredGroupResults[groupKey];
+
+        group.rows = group.rows.filter(
+          ({
+            title = '',
+            titleTitle = '',
+            value = '',
+            subtitle = '',
+            subtitleTitle = '',
+            href = '',
+          }) => {
+            const searchableValue = String(value);
+
+            return (
+              title.toLowerCase().indexOf(val) > -1 ||
+              titleTitle.toLowerCase().indexOf(val) > -1 ||
+              subtitle.toLowerCase().indexOf(val) > -1 ||
+              subtitleTitle.toLowerCase().indexOf(val) > -1 ||
+              href.toLowerCase().indexOf(val) > -1 ||
+              searchableValue.toLowerCase().indexOf(val) > -1
+            );
+          }
+        );
+
+        if (!group.rows.length) {
+          delete filteredGroupResults[groupKey];
+        }
+      }
+    }
+
+    setFilteredGroups(filteredGroupResults);
+    setSearchValue(val);
+  }
+
   return (
     <div className={`${prefix}--row ${prefix}--page-info`}>
       {handleErrors(initialMsg.pageInfo)}
-      {Object.keys(groups).map((groupKey) => {
-        const group = groups[groupKey];
+      <Search
+        onChange={(e) => searchPageInfo(e.target.value, e)}
+        className={`${prefix}--page-info__search`}
+        placeholder="Search page info"
+      />
+      {Object.keys(filteredGroups).length
+        ? Object.keys(filteredGroups).map((groupKey) => {
+            const group = filteredGroups[groupKey];
 
-        if (group.rows.length) {
-          return renderGroup(group.title, group.rows);
-        }
-      })}
+            if (group.rows.length) {
+              return renderGroup(group.title, group.rows);
+            }
+          })
+        : emptyState(searchValue)}
+    </div>
+  );
+}
+
+function emptyState(val) {
+  return (
+    <div className={`${prefix}--col ${prefix}--page-info__empty`}>
+      <p>
+        {`Sorry, this page doesn't have information matching “`}
+        <span>{val.trim()}</span>
+        {`”.`}
+      </p>
     </div>
   );
 }
@@ -94,17 +139,19 @@ function PageInfo({ initialMsg, _inventoryData }) {
 function renderGroup(groupTitle, rows) {
   return !rows.length ? null : (
     <StructuredListWrapper className={`${prefix}--page-info__group`}>
-      <StructuredListHead>
-        <StructuredListRow head tabIndex={0}>
-          <StructuredListCell
-            className={`${prefix}--page-info__group-title`}
-            head
-          >
-            {groupTitle}
-          </StructuredListCell>
-          <StructuredListCell></StructuredListCell>
-        </StructuredListRow>
-      </StructuredListHead>
+      {groupTitle ? (
+        <StructuredListHead>
+          <StructuredListRow head tabIndex={0}>
+            <StructuredListCell
+              className={`${prefix}--page-info__group-title`}
+              head
+            >
+              {groupTitle}
+            </StructuredListCell>
+            <StructuredListCell></StructuredListCell>
+          </StructuredListRow>
+        </StructuredListHead>
+      ) : null}
       <StructuredListBody>
         {rows.map((row) => (
           <StructuredListRow key={'row' + row.title} tabIndex={0}>
@@ -116,7 +163,10 @@ function renderGroup(groupTitle, rows) {
                 {row.title}
               </p>
               {row.subtitle && (
-                <p className={`${prefix}--page-info__row-subtitle`}>
+                <p
+                  className={`${prefix}--page-info__row-subtitle`}
+                  title={row.subtitleTitle || row.subtitle}
+                >
                   {row.subtitle}
                 </p>
               )}
@@ -145,7 +195,7 @@ function renderByType(row) {
     case 'code':
       formattedValue = values.map((value) => (
         <CodeSnippet key={key + value} type="inline" hideCopyButton={true}>
-          {value}
+          {String(value)}
         </CodeSnippet>
       ));
       break;

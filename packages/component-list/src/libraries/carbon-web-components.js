@@ -21,4 +21,4 @@ try {
   console.log(e);
 }
 
-export { carbonWebComponents };
+export default { 'Carbon web components': carbonWebComponents };
