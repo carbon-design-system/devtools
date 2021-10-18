@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import {
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListRow,
-  StructuredListCell,
-  StructuredListBody,
-} from 'carbon-components-react/es/components/StructuredList';
 import { InlineNotification } from 'carbon-components-react/es/components/Notification';
 import Link from 'carbon-components-react/es/components/Link';
 import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
@@ -138,51 +131,67 @@ function emptyState(val) {
 
 function renderGroup(groupTitle, rows) {
   return !rows.length ? null : (
-    <StructuredListWrapper className={`${prefix}--page-info__group`}>
-      {groupTitle ? (
-        <StructuredListHead>
-          <StructuredListRow head tabIndex={0}>
-            <StructuredListCell
-              className={`${prefix}--page-info__group-title`}
-              head
-            >
+    <>
+      <div className={`${prefix}--col`}>
+        {groupTitle ? (
+          <div className={`${prefix}--row`}>
+            <div className={`${prefix}--col ${prefix}--page-info__group-title`}>
               {groupTitle}
-            </StructuredListCell>
-            <StructuredListCell></StructuredListCell>
-          </StructuredListRow>
-        </StructuredListHead>
-      ) : null}
-      <StructuredListBody>
-        {rows.map((row) => (
-          <StructuredListRow key={'row' + row.title} tabIndex={0}>
-            <StructuredListCell>
-              <p
-                className={`${prefix}--page-info__row-title`}
-                title={row.titleTitle || row.title}
+            </div>
+          </div>
+        ) : null}
+      </div>
+      <div className={`${prefix}--col`}>
+        {rows.map((row) => {
+          let layoutTitle = '-sm-2';
+          let layoutValue = '-sm-2';
+
+          if (row.layout === 'full') {
+            layoutTitle = '';
+            layoutValue = '';
+          } else if (row.layout === 'third') {
+            layoutTitle = '-sm-1';
+            layoutValue = '-sm-3';
+          }
+
+          return (
+            <div
+              className={`${prefix}--row ${prefix}--page-info__row`}
+              key={'row' + row.title}
+            >
+              <div
+                className={`${prefix}--col${layoutTitle} ${prefix}--page-info__row-title`}
               >
-                {row.title}
-              </p>
-              {row.subtitle && (
                 <p
-                  className={`${prefix}--page-info__row-subtitle`}
-                  title={row.subtitleTitle || row.subtitle}
+                  className={`${prefix}--page-info__row-title__main`}
+                  title={row.titleTitle || row.title}
                 >
-                  {row.subtitle}
+                  {row.title}
                 </p>
-              )}
-            </StructuredListCell>
-            <StructuredListCell>
-              <span
-                title={row.valueTitle || row.value}
-                className={`${prefix}--page-info__row-value`}
+                {row.subtitle && (
+                  <p
+                    className={`${prefix}--page-info__row-title__sub`}
+                    title={row.subtitleTitle || row.subtitle}
+                  >
+                    {row.subtitle}
+                  </p>
+                )}
+              </div>
+              <div
+                className={`${prefix}--col${layoutValue} ${prefix}--page-info__row-value`}
               >
-                {renderByType(row)}
-              </span>
-            </StructuredListCell>
-          </StructuredListRow>
-        ))}
-      </StructuredListBody>
-    </StructuredListWrapper>
+                <span
+                  title={row.valueTitle || row.value}
+                  className={`${prefix}--page-info__row-value`}
+                >
+                  {renderByType(row)}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 
@@ -194,7 +203,7 @@ function renderByType(row) {
   switch (row.type) {
     case 'code':
       formattedValue = values.map((value) => (
-        <CodeSnippet key={key + value} type="inline" hideCopyButton={true}>
+        <CodeSnippet key={key + value} type="inline">
           {String(value)}
         </CodeSnippet>
       ));

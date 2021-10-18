@@ -36,7 +36,6 @@ $feature-flags: (
 @import '~carbon-components/scss/components/content-switcher/content-switcher';
 @import '~carbon-components/scss/components/button/button';
 @import '~carbon-components/scss/components/search/search';
-@import '~carbon-components/scss/components/structured-list/structured-list';
 @import '~carbon-components/scss/components/code-snippet/code-snippet';
 @import '~carbon-components/scss/components/notification/inline-notification';
 
@@ -216,6 +215,10 @@ body {
 
 .#{$prefix}--col-sm-2 {
   @include carbon--make-col(2, 4);
+}
+
+.#{$prefix}--col-sm-3 {
+  @include carbon--make-col(3, 4);
 }
 
 // allows nesting accordions

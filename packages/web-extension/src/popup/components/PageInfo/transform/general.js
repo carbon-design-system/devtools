@@ -3,6 +3,7 @@ function formGeneralRows(data) {
 
   if (data.title) {
     rows.push({
+      layout: 'full',
       title: 'Title',
       value: data.title,
     });
@@ -10,6 +11,7 @@ function formGeneralRows(data) {
 
   if (data.description) {
     rows.push({
+      layout: 'full',
       title: 'Description',
       value: data.description,
     });
@@ -17,6 +19,7 @@ function formGeneralRows(data) {
 
   if (data.keywords && data.keywords.length) {
     rows.push({
+      layout: 'full',
       title: `Keyword${data.keywords.length > 1 ? 's' : ''}`,
       type: 'code',
       value: data.keywords,
