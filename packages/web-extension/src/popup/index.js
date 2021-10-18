@@ -34,7 +34,7 @@ function Popup() {
   const [onCarbon, setOnCarbon] = useState(carbonStatus); // eslint-disable-line no-unused-vars
   const [initialMsg, setInitialMsg] = useState();
   const [panelState, setPanelState] = useState(defaults.popup.panelState);
-  const [inventoryData, setInventoryData] = useState();
+  const [inventoryData, setInventoryData] = useState(undefined);
 
   useEffect(() => {
     getMessage((msg) => {
@@ -176,7 +176,7 @@ function Popup() {
   );
 }
 
-function transformInventoryData(data = {}) {
+function transformInventoryData(data) {
   const allComponents = {};
 
   const { _results, _totals, ...libraries } = data;

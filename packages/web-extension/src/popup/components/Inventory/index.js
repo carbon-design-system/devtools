@@ -22,14 +22,14 @@ const { prefix } = settings;
 
 function Inventory({ _inventoryData }) {
   const _inventorySource = safeObj('allComponents', _inventoryData);
-  const _uniqueCount = safeObj('_results.uniqueCount', _inventoryData);
-  const _totalCount = safeObj('_results.totalCount', _inventoryData);
+  const _uniqueCount = safeObj('_results.uniqueCount', _inventoryData) || 0;
+  const _totalCount = safeObj('_results.totalCount', _inventoryData) || 0;
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredInventory, setFilteredInventory] = useState(_inventorySource);
   const [filteredUnique, setFilteredUnique] = useState(_uniqueCount);
   const [filteredTotal, setFilteredTotal] = useState(_totalCount);
-  const [inventorySource, setInventorySource] = useState(_inventorySource);
+  const [inventorySource, setInventorySource] = useState(undefined);
   const [uniqueCount, setUniqueCount] = useState(_uniqueCount);
   const [totalCount, setTotalCount] = useState(_totalCount);
 
@@ -41,9 +41,9 @@ function Inventory({ _inventoryData }) {
 
   useEffect(() => {
     setFilteredInventory(_inventorySource);
+    setInventorySource(_inventorySource);
     setFilteredUnique(_uniqueCount);
     setFilteredTotal(_totalCount);
-    setInventorySource(_inventorySource);
     setUniqueCount(_uniqueCount);
     setTotalCount(_totalCount);
   }, [_inventorySource, _uniqueCount, _totalCount]);
@@ -136,8 +136,8 @@ function Inventory({ _inventoryData }) {
       gaNavigationEvent('search', e.type, diffInUnique && 1);
     }, moderate02);
   }
-
-  return !Object.keys(inventorySource).length ? (
+  console.log(inventorySource);
+  return !inventorySource ? (
     loadingInventory()
   ) : (
     <>
@@ -169,7 +169,7 @@ function Inventory({ _inventoryData }) {
           </p>
         </div>
       </div>
-      {uniqueCount > 0 ? (
+      {uniqueCount > 0 && Object.keys(inventorySource).length ? (
         <Search
           onChange={(e) => searchComponentList(e.target.value, e)}
           className={`${prefix}--inventory__search`}
@@ -177,7 +177,7 @@ function Inventory({ _inventoryData }) {
           size="sm"
         />
       ) : null}
-      {filteredUnique > 0
+      {filteredUnique > 0 && Object.keys(inventorySource).length
         ? inventoryList(filteredInventory, uniqueCount)
         : emptyInventory(searchTerm)}
     </>
