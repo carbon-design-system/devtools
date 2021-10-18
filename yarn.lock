@@ -1323,9 +1323,9 @@
     color "^3.1.2"
 
 "@carbon/themes@^10.40.0":
-  version "10.44.0"
-  resolved "https://registry.yarnpkg.com/@carbon/themes/-/themes-10.44.0.tgz#29b34566c85ca2df3ef99ffaff2fa022aa48bb4b"
-  integrity sha512-tmOqH+/ocChLeeuEwWPfEliqDYMi58/sibLpzfS2WQsCPhqZN1B78g6UiwB0hYCiSUFWnBWNEIjTHx/Fbh62bw==
+  version "10.45.0"
+  resolved "https://registry.yarnpkg.com/@carbon/themes/-/themes-10.45.0.tgz#941f3d13fbbff9f3097a5fa9c3b0e04adfdfc16e"
+  integrity sha512-BXjYKJO52oGEIiPt52WHldmOhZevxj6XalAhvlS4Cqo87pZyHnimlwFdf2hYYDF92eCrWvV3t1MFzujUZu+W5w==
   dependencies:
     "@carbon/colors" "^10.33.0"
     "@carbon/layout" "^10.33.0"
