@@ -5,6 +5,8 @@ import { InlineNotification } from 'carbon-components-react/es/components/Notifi
 import Link from 'carbon-components-react/es/components/Link';
 import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
 import Search from 'carbon-components-react/es/components/Search';
+import { moderate02 } from '@carbon/motion';
+import { gaNavigationEvent } from '@carbon/devtools-utilities/src/ga';
 import {
   formGeneralRows,
   formIBMRows,
@@ -51,49 +53,60 @@ function PageInfo({ initialMsg, _inventoryData }) {
 
   const [filteredGroups, setFilteredGroups] = useState(groups);
   const [searchValue, setSearchValue] = useState('');
+  let waitForTypingToStop;
 
-  function searchPageInfo(val) {
-    val = val.toLowerCase().trim();
+  function searchPageInfo(val = '', e) {
+    window.clearTimeout(waitForTypingToStop);
 
-    const filteredGroupResults = JSON.parse(JSON.stringify(groups));
+    waitForTypingToStop = window.setTimeout(() => {
+      val = val.toLowerCase().trim();
 
-    if (val) {
-      const groupKeys = Object.keys(groups);
+      const filteredGroupResults = JSON.parse(JSON.stringify(groups));
+      let count = 0;
 
-      for (let i = 0; i < groupKeys.length; i++) {
-        const groupKey = groupKeys[i];
-        const group = filteredGroupResults[groupKey];
+      if (val) {
+        const groupKeys = Object.keys(groups);
 
-        group.rows = group.rows.filter(
-          ({
-            title = '',
-            titleTitle = '',
-            value = '',
-            subtitle = '',
-            subtitleTitle = '',
-            href = '',
-          }) => {
-            const searchableValue = String(value);
+        for (let i = 0; i < groupKeys.length; i++) {
+          const groupKey = groupKeys[i];
+          const group = filteredGroupResults[groupKey];
 
-            return (
-              title.toLowerCase().indexOf(val) > -1 ||
-              titleTitle.toLowerCase().indexOf(val) > -1 ||
-              subtitle.toLowerCase().indexOf(val) > -1 ||
-              subtitleTitle.toLowerCase().indexOf(val) > -1 ||
-              href.toLowerCase().indexOf(val) > -1 ||
-              searchableValue.toLowerCase().indexOf(val) > -1
-            );
+          group.rows = group.rows.filter(
+            ({
+              title = '',
+              titleTitle = '',
+              value = '',
+              subtitle = '',
+              subtitleTitle = '',
+              href = '',
+            }) => {
+              const searchableValue = String(value);
+
+              if (
+                title.toLowerCase().indexOf(val) > -1 ||
+                titleTitle.toLowerCase().indexOf(val) > -1 ||
+                subtitle.toLowerCase().indexOf(val) > -1 ||
+                subtitleTitle.toLowerCase().indexOf(val) > -1 ||
+                href.toLowerCase().indexOf(val) > -1 ||
+                searchableValue.toLowerCase().indexOf(val) > -1
+              ) {
+                count += 1;
+                return true;
+              }
+            }
+          );
+
+          if (!group.rows.length) {
+            delete filteredGroupResults[groupKey];
           }
-        );
-
-        if (!group.rows.length) {
-          delete filteredGroupResults[groupKey];
         }
       }
-    }
 
-    setFilteredGroups(filteredGroupResults);
-    setSearchValue(val);
+      setFilteredGroups(filteredGroupResults);
+      setSearchValue(val);
+
+      gaNavigationEvent('search', e.type, count && 1);
+    }, moderate02);
   }
 
   return (

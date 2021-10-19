@@ -28,6 +28,7 @@ function formGeneralRows(data) {
 
   if (data.location) {
     rows.push({
+      layout: 'full',
       title: `URL`,
       type: 'link',
       value: data.location.origin + data.location.pathname,
