@@ -248,3 +248,18 @@ body {
     }
   }
 }
+
+// temporary
+// inline notification override
+// fixes accessible links in notification
+.bx--inline-notification {
+  a.bx--link {
+    &:hover {
+      color: $highlight;
+    }
+
+    &:hover:active {
+      color: $inverse-link;
+    }
+  }
+}
