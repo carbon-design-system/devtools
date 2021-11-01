@@ -1067,12 +1067,12 @@
     "@carbon/layout" "^10.33.0"
 
 "@carbon/grid@^10.33.0":
-  version "10.38.0"
-  resolved "https://registry.yarnpkg.com/@carbon/grid/-/grid-10.38.0.tgz#cecce1fd857052f85e61df6e168a0be8cbfdd500"
-  integrity sha512-LmWPrCmdcKC/juG6eGvKCpDCbXPlZmzLcdHb/m7EfyEEfYjzQTkmPXfNzmnSz9NJZ13XUJNUhde7mc4HwJ4hQg==
+  version "10.39.0"
+  resolved "https://registry.yarnpkg.com/@carbon/grid/-/grid-10.39.0.tgz#601b3a824e47b137c4dc5240d2e606fd50cdd550"
+  integrity sha512-WYxfmUPZaf9s4/ZB4+GlYlAKjScGXy2hfracIH/+2LtP6HTG1aLV+Bg9TA3AeyTGTliVoNfaVRmYOkoFKmQaqA==
   dependencies:
     "@carbon/import-once" "^10.6.0"
-    "@carbon/layout" "^10.33.0"
+    "@carbon/layout" "^10.34.0"
 
 "@carbon/ibm-cloud-cognitive@^0.96.0":
   version "0.96.0"
