@@ -1252,10 +1252,15 @@
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.31.0.tgz#117ca71411629939fc66c8685234a9abb800ea3e"
   integrity sha512-KLRuFF4k5z4U5kfiuNnnXLPkA96eDYeijyZJBJaeOIWNx11XFp1Xp8jO9QBErX3z5lWklnSZ2u9c3NYiXjYD7A==
 
-"@carbon/layout@10.33.0", "@carbon/layout@^10.29.0", "@carbon/layout@^10.31.0", "@carbon/layout@^10.33.0":
+"@carbon/layout@10.33.0":
   version "10.33.0"
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.33.0.tgz#15fa1db6f80f02f76c84aa1665c67751bb0ec472"
   integrity sha512-3yHf/5tPVkvGUYC4ueUSoo5Tw1UxpKxAmigVZCf7MRe9dc06z68xyxrz+mZ5bIPBzbbfLYfz/y6FaD3Toeo30g==
+
+"@carbon/layout@^10.29.0", "@carbon/layout@^10.31.0", "@carbon/layout@^10.33.0", "@carbon/layout@^10.34.0":
+  version "10.34.0"
+  resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.34.0.tgz#83dd68303f6ad29e6b4964b88da7bb2942e3e8d2"
+  integrity sha512-+PAQfV/bEXM9zRcjDWtuCjl/62mqdN6vpaal+6wnFi0FADr+uHYhNi+9W6QUpa29nbUqgIla+jlr59gAYidGLw==
 
 "@carbon/motion@10.23.0":
   version "10.23.0"
@@ -1330,13 +1335,21 @@
     "@carbon/import-once" "^10.6.0"
     "@carbon/layout" "^10.31.0"
 
-"@carbon/type@10.37.0", "@carbon/type@^10.33.0", "@carbon/type@^10.35.0", "@carbon/type@^10.37.0":
+"@carbon/type@10.37.0":
   version "10.37.0"
   resolved "https://registry.yarnpkg.com/@carbon/type/-/type-10.37.0.tgz#639e2bfebb73eb847e1ca653575e3fe60022dfaf"
   integrity sha512-OT8W9ySdj8PX/EuydcKRV02gdre3qcGVY2uUcXYTj/sIUTnx8f8xQKJLfeo1eLKCah2qF5VklKHFrB2eJs0KHA==
   dependencies:
     "@carbon/import-once" "^10.6.0"
     "@carbon/layout" "^10.33.0"
+
+"@carbon/type@^10.33.0", "@carbon/type@^10.35.0", "@carbon/type@^10.37.0":
+  version "10.38.0"
+  resolved "https://registry.yarnpkg.com/@carbon/type/-/type-10.38.0.tgz#ffd3135b27e3494aece0a4ea5a2cda4aa37ec2f8"
+  integrity sha512-I1Xc9s7LPdAX4KRrOZl8sIv+c0uFnIdVBSwBnBODB3ZJ+EiZgaNdvWKOlkoYRA07Vn1VUcptwkBDuXXO1vHL0A==
+  dependencies:
+    "@carbon/import-once" "^10.6.0"
+    "@carbon/layout" "^10.34.0"
 
 "@choojs/findup@^0.2.1":
   version "0.2.1"
