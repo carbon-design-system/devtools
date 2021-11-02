@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import { InlineNotification } from 'carbon-components-react/es/components/Notification';
 import Link from 'carbon-components-react/es/components/Link';
 import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
 import Search from 'carbon-components-react/es/components/Search';
@@ -15,6 +14,7 @@ import {
   formTaxonomyRows,
   formServicesRows,
 } from './transform';
+import { ValidationErrors } from '../ValidationErrors';
 
 const { prefix } = settings;
 
@@ -111,7 +111,7 @@ function PageInfo({ initialMsg, _inventoryData }) {
 
   return (
     <div className={`${prefix}--row ${prefix}--page-info`}>
-      {handleErrors(initialMsg.pageInfo)}
+      <ValidationErrors data={initialMsg} />
       <Search
         onChange={(e) => searchPageInfo(e.target.value, e)}
         className={`${prefix}--page-info__search`}
@@ -233,120 +233,6 @@ function renderByType(row) {
   }
 
   return formattedValue;
-}
-
-function handleErrors(data) {
-  let errorMsg;
-  const errorMessages = {
-    digitalData: {
-      kind: 'warning',
-      title: 'Missing',
-      subtitle: (
-        <Link
-          href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html"
-          target="_blank"
-        >
-          digitalData
-        </Link>
-      ),
-    },
-    'digitalData.page': {
-      kind: 'warning',
-      title: 'Missing',
-      subtitle: (
-        <Link
-          href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#11-page-category"
-          target="_blank"
-        >
-          digitalData.page
-        </Link>
-      ),
-    },
-    'digitalData.page.pageInfo': {
-      kind: 'warning',
-      title: 'Missing',
-      subtitle: (
-        <Link
-          href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#15-page-information"
-          target="_blank"
-        >
-          digitalData.page.pageInfo
-        </Link>
-      ),
-    },
-    'digitalData.page.pageInfo.ibm': {
-      kind: 'warning',
-      title: 'Missing',
-      subtitle: (
-        <Link
-          href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#16-ibm-specific-page-information"
-          target="_blank"
-        >
-          digitalData.page.pageInfo.ibm
-        </Link>
-      ),
-    },
-    'digitalData.page.category': {
-      kind: 'warning',
-      title: 'Missing',
-      subtitle: (
-        <Link
-          href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#11-page-category"
-          target="_blank"
-        >
-          digitalData.page.category
-        </Link>
-      ),
-    },
-    'digitalData.page.category.ibm': {
-      kind: 'warning',
-      title: 'Missing',
-      subtitle: (
-        <Link
-          href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#12-global-brand-table-categories-for-page"
-          target="_blank"
-        >
-          digitalData.page.category.ibm
-        </Link>
-      ),
-    },
-  };
-
-  // TODO: loop through digital data errors?
-  // TODO: multiple errors?
-
-  switch (true) {
-    case !data.digitalData:
-      errorMsg = errorMessages['digitalData'];
-      break;
-    case !data.digitalData.page:
-      errorMsg = errorMessages['digitalData.page'];
-      break;
-    case !data.digitalData.page.pageInfo:
-      errorMsg = errorMessages['digitalData.page.pageInfo'];
-      break;
-    case !data.digitalData.page.pageInfo.ibm:
-      errorMsg = errorMessages['digitalData.page.pageInfo.ibm'];
-      break;
-    case !data.digitalData.page.category:
-      errorMsg = errorMessages['digitalData.page.category'];
-      break;
-    case !data.digitalData.page.category.ibm:
-      errorMsg = errorMessages['digitalData.page.category.ibm'];
-      break;
-    default:
-      errorMsg = null;
-  }
-
-  return (
-    errorMsg && (
-      <InlineNotification
-        {...errorMsg}
-        className={`${prefix}--page-info__notification`}
-        hideCloseButton={true}
-      />
-    )
-  );
 }
 
 PageInfo.propTypes = {

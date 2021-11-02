@@ -1,6 +1,6 @@
 {
   "name": "@carbon/devtools-component-list",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "description": "Generates a list of components and their selectors across all of the Carbon libraries.",
   "main": "./dist/index.json",
   "scripts": {

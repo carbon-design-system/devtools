@@ -16,14 +16,18 @@ injectScript(
 
   function bxDevGetLibraries () {
     const libraries = {
+      "IBM Analytics": window._ibmAnalytics || document.querySelector('script[src*="common/stats/ibm-common.js"]'),
       w3DS: window.w3ds && true,
+      React: window.React,
+      Angular: window.angular,
       jQuery: window.jQuery || window.$,
       Dojo: window.dojo,
-      Angular: window.angular,
       Bootstrap: window.bootstrap,
-      React: window.React,
-      Vue: window.Vue
+      Vue: window.Vue,
+      Kaltura: (window.kWidget || window.KWidget) && true,
     };
+
+  console.log(libraries);
 
     const pageInfo = {
       digitalData: window.digitalData,
@@ -80,6 +84,15 @@ injectScript(
         } else {
           libraries.Angular= true;
         }
+      }
+    }
+
+    if (libraries["IBM Analytics"]) {
+      const analytics = libraries["IBM Analytics"];
+      if (analytics.ver) {
+        libraries["IBM Analytics"] = analytics.ver.libraryVersion || true;
+      } else {
+        libraries["IBM Analytics"] = true;
       }
     }
 

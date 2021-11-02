@@ -8,3 +8,4 @@ export * from './Grid';
 export * from './Specs';
 export * from './ResizeBrowser';
 export * from './PageInfo';
+export * from './ValidationErrors';
