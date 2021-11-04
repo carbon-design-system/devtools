@@ -1075,9 +1075,9 @@
     "@carbon/layout" "^10.34.0"
 
 "@carbon/ibm-cloud-cognitive@^0.97.0":
-  version "0.97.0"
-  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.97.0.tgz#bae98b505a1fca28fc085f72ee97ff4940575692"
-  integrity sha512-XjZ17zHJROjsxPGvqOr23WdA87TAE61dJXWWG3HtLwmI2T54Kzn0Jbg2nfm3WxH7ho3I8R72DwI5d+v2WfchHw==
+  version "0.97.1"
+  resolved "https://registry.yarnpkg.com/@carbon/ibm-cloud-cognitive/-/ibm-cloud-cognitive-0.97.1.tgz#b9dfe9bca6946612ea28694beafaf926a6b5dca0"
+  integrity sha512-mCzOmO3sA0mixzP1tOXRXP8QxJjaVl7vmLQi1T4xLpPXpfu2kJQQxhX8Zj40x+t+i0lejo7JTo8yaprS2CIa1Q==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@carbon/telemetry" "^0.0.0-alpha.6"
