@@ -1,6 +1,6 @@
 {
   "name": "@carbon/devtools-token-server",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "private": true,
   "description": "A distribution server that maintains and versions Carbon tokens separately.",
   "main": "index.js",

@@ -16,7 +16,8 @@ injectScript(
 
   function bxDevGetLibraries () {
     const libraries = {
-      "IBM Analytics": window._ibmAnalytics || document.querySelector('script[src*="common/stats/ibm-common.js"]'),
+      "IBM Analytics": window._ibmAnalytics || document.querySelector('script[src*="common/stats/ibm-common.js"]') || undefined,
+      Kaltura: (window.kWidget || window.KWidget) && true,
       w3DS: window.w3ds && true,
       React: window.React,
       Angular: window.angular,
@@ -24,10 +25,7 @@ injectScript(
       Dojo: window.dojo,
       Bootstrap: window.bootstrap,
       Vue: window.Vue,
-      Kaltura: (window.kWidget || window.KWidget) && true,
     };
-
-  console.log(libraries);
 
     const pageInfo = {
       digitalData: window.digitalData,
