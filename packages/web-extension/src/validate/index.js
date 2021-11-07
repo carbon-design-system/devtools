@@ -4,12 +4,6 @@ import { prefixSelectors } from '../globals/prefixSelectors';
 
 const scriptId = 'bx-dev--window-var';
 
-// TODO: Material design
-// TODO: analytics
-// TODO: individual libraries, carbon, carbon for ibm.com, security...
-// TODO: W3 publisher/system library?
-// TODO: services?
-
 injectScript(
   `
   bxDevGetLibraries();
