@@ -4307,9 +4307,9 @@ carbon-components-react@7.45.0:
     window-or-global "^1.0.1"
 
 carbon-components-react@^7.41.0, carbon-components-react@^7.45.0:
-  version "7.47.1"
-  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.47.1.tgz#894c83612f90a606425db1b2e39a3f65032e4a26"
-  integrity sha512-wvgJoCpnuo7AJHdBydLLHKcG76zgXH0itB3ey9pH89FN4ei3RZO/i7qSsc6xCraPjZONhR24Jw6TNKtciL3gMg==
+  version "7.47.2"
+  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.47.2.tgz#671d83fc1d2b3d0fd21b6beac702e8599a3999fe"
+  integrity sha512-Ilrw2a6onQtxIOw0llpIjXLztyDRpe1Z2wV62yvUG5+CjhHNiJ8skIhkBPm+uUIsFppt97+yXuT9BcWSC72Lxg==
   dependencies:
     "@babel/runtime" "^7.14.6"
     "@carbon/feature-flags" "^0.6.0"
