@@ -33,17 +33,20 @@
     "test": "yarn format && yarn lint"
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
     "@carbon/ibmdotcom-react": "^1.26.0",
     "@carbon/ibmdotcom-styles": "^1.26.0",
     "@carbon/ibmdotcom-web-components": "^1.11.0",
     "@carbon/icons-react": "^10.37.0",
     "@carbon/pictograms-react": "^11.17.0",
+    "eslint-config-carbon": "^2.1.0",
+    "stylelint-config-carbon": "^1.2.0"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.2.6",
     "@zeit/next-sass": "^1.0.1",
     "autoprefixer": "9.8.6",
     "dotenv": "^8.2.0",
     "eslint": "^7.12.0",
-    "eslint-config-carbon": "^2.1.0",
     "express": "^4.17.1",
     "fast-sass-loader": "1.5.0",
     "lit-element": "^2.5.1",
@@ -57,7 +60,6 @@
     "react-dom": "^16.13.1",
     "rtlcss": "^2.6.0",
     "stylelint": "^13.13.1",
-    "stylelint-config-carbon": "^1.2.0",
     "webpack": "^4.43.0"
   },
   "resolutions": {
