@@ -11,11 +11,6 @@
     "email": "james.dow@us.ibm.com"
   },
   "homepage": "https://github.com/carbon-design-system/devtools#readme",
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
   "keywords": [
     "IBM",
     "Carbon",
