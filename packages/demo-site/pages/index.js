@@ -20,7 +20,7 @@ import React, { useState, useEffect } from 'react';
 import ContentBlock from '@carbon/ibmdotcom-react/lib/components/ContentBlock/ContentBlock';
 import ContentGroup from '@carbon/ibmdotcom-react/lib/components/ContentGroup/ContentGroup';
 import ContentItem from '@carbon/ibmdotcom-react/lib/components/ContentItem/ContentItem';
-import ContentSection from '@carbon/ibmdotcom-react/lib/internal/components/ContentSection/ContentSection';
+import ContentSection from '@carbon/ibmdotcom-react/lib/components/ContentSection/ContentSection';
 import { loremIpsum } from 'lorem-ipsum';
 
 // [ ] lead space block
