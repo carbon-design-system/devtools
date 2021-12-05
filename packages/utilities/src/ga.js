@@ -8,10 +8,12 @@ import {
 } from '../';
 import { defaults } from '../../web-extension/src/globals/defaults';
 
-const gaId = 'UA-28030649-4';
+const gaUniversalId = 'UA-28030649-4';
+const ga4Id = 'G-6XT1J9FV92';
+const ga4API = 'AE_MzhBNSh2Ft9C6Csjc4Q';
 let setPath, setTitle;
 
-function sendGaResponse(data) {
+function sendGaResponse(universalData = {}) {
   activeTab((tab) => {
     getStorage(
       [
@@ -33,48 +35,195 @@ function sendGaResponse(data) {
         generalNonCarbon = defaults.ga.generalNonCarbon,
       }) => {
         // building default responses
-        data.v = 1; // version number
-        data.tid = gaId; // ga property id
-        data.cid = clientId; // client id
-        data.uid = clientId; // client id
-        data.ul = window.navigator.language.toLowerCase(); // user language
-        data.dp = setPath; // Document Path
-        data.dt = setTitle; // Document Title
-        data.cd1 = process.env.NODE_ENV; // development or production
-        data.cd2 = version; // extension version
-        data.cd3 = gridVersion; // grid version
-        data.cd4 = String(generalExperimental); // boolean experimental
-        data.cd5 = String(generalNonCarbon); // boolean ignore validation
-        data.cd6 = generalTheme; // theme
-        data.cd8 = isIBMer; // IBMer from ddo
+        universalData.v = 1; // universal: version number
+        universalData.cid = clientId; // universal: client id
+        universalData.uid = clientId; // universal: user id
+        universalData.ul = window.navigator.language.toLowerCase(); // universal: user language
+        universalData.dp = setPath; // universal: Document Path
+        universalData.dt = setTitle; // universal: Document Title
+        universalData.cd1 = process.env.NODE_ENV; // universal: development or production
+        universalData.cd2 = version; // universal: extension version
+        universalData.cd3 = gridVersion; // universal: grid version
+        universalData.cd4 = String(generalExperimental); // universal: boolean experimental
+        universalData.cd5 = String(generalNonCarbon); // universal: boolean ignore validation
+        universalData.cd6 = generalTheme; // universal: theme
+        universalData.cd8 = isIBMer; // universal: IBMer from ddo
 
         if (tab) {
           if (tab.width && tab.height) {
-            data.vp = `${tab.width}x${tab.height}`; // viewport
-            data.cd7 = getActiveBreakpoint(tab.width).active; // breakpoint
+            universalData.vp = `${tab.width}x${tab.height}`; // universal: viewport
+            universalData.cd7 = getActiveBreakpoint(tab.width).active; // universal: breakpoint
           }
 
           if (tab.url) {
-            if (data.ec && data.ec === 'dom') {
+            if (universalData.ec && universalData.ec === 'dom') {
               const tabURL = url.parse(tab.url);
 
-              data.dt = tab.title; // Document Title
-              data.dl = tab.url; // document url
-              data.dh = tabURL.host; // document host
-              data.dp = tabURL.path; // Document Path
+              universalData.dt = tab.title; // universal: Document Title
+              universalData.dl = tab.url; // universal: document url
+              universalData.dh = tabURL.host; // universal: document host
+              universalData.dp = tabURL.path; // universal: Document Path
             } else {
-              data.dr = tab.url; // tab url
+              universalData.dr = tab.url; // universal: tab url
             }
           }
         }
 
+        // legacy universal
         fetch('https://www.google-analytics.com/collect', {
           method: 'POST',
-          body: buildGaResponse(data),
+          body: buildGaResponse(universalData, gaUniversalId),
         });
+
+        sendGa4Response(universalData);
       }
     );
   });
+}
+
+function sendGa4Response(data) {
+  // testing and starting to push data to ga4 since old data from universal won't transfer
+  // this function transforms the data to the new GA4 google analytics data structure to be recorded
+
+  const ga4Data = {
+    client_id: 'c-' + data.cid,
+    user_id: 'u-' + data.uid,
+    user_properties: {
+      // user params
+      language: {
+        value: data.ul, // user language
+      },
+      environment: {
+        value: data.cd1, // development or production
+      },
+      carbon_grid_version: {
+        value: data.cd3, // grid version
+      },
+      app_version: {
+        value: data.cd2, // extension version
+      },
+      experimental: {
+        value: data.cd4, // boolean experimental
+      },
+      validate_carbon_off: {
+        value: data.cd5, // boolean ignore validation
+      },
+      carbon_theme: {
+        value: data.cd6, // theme
+      },
+      ibmer: {
+        value: data.cd8, // is IBMer from DDO // group_id // join group event
+      },
+    },
+    events: [
+      {
+        name: 'generic_event',
+        params: {
+          page_title: data.dt, // page title
+          page_location: window.location.href, // the full URL
+          page_referrer: data.dr || data.dl, // referrer full url
+          screen_resolution: window.screen.width + 'x' + window.screen.height, // screen resolution
+          viewport: data.vp, // viewport
+          carbon_breakpoint: data.cd7, // breakpoint
+        },
+      },
+    ],
+  };
+
+  // additional events to consider?
+  // app_remove?
+  // notification_dismiss?
+  // notification_receive || notification_open || notification_send?
+
+  switch (
+    data.t // data.t = hit type
+  ) {
+    case 'event':
+      // data.ec = category;
+      // data.ea = action;
+      // data.el = label;
+      // data.ev = value;
+
+      switch (
+        data.ec // event category
+      ) {
+        case 'dom':
+          ga4Data.events[0].name = data.ea; // using action as event name
+          ga4Data.events[0].params.event_type = data.ec;
+          ga4Data.events[0].params.event_label = data.el;
+          ga4Data.events[0].params.event_value = data.ev;
+
+          break;
+        case 'search':
+          ga4Data.events[0].name = 'search';
+          ga4Data.events[0].params.search_term = data.search_term;
+          ga4Data.events[0].params.event_type = data.el;
+          ga4Data.events[0].params.event_value = data.ev;
+
+          break;
+        case 'navigation':
+          switch (
+            data.ea // event action
+          ) {
+            case 'click':
+              ga4Data.events[0].name = 'click';
+              ga4Data.events[0].params.link_url = data.link_url;
+              ga4Data.events[0].params.outbound = data.outbound;
+
+              break;
+            default:
+              // set custom event name to event action
+              ga4Data.events[0].name = data.ea; // toggle, panel
+              ga4Data.events[0].params.event_type = data.ec;
+              ga4Data.events[0].params.event_label = data.el;
+              ga4Data.events[0].params.event_value = data.ev;
+          }
+
+          break;
+        default:
+          // set custom event name to event category
+          ga4Data.events[0].name = data.ec; // configuration // dom
+          ga4Data.events[0].params.event_action = data.ea;
+          ga4Data.events[0].params.event_label = data.el;
+          ga4Data.events[0].params.event_value = data.ev;
+      }
+
+      break;
+    case 'pageview':
+      ga4Data.events[0].name = 'page_view';
+
+      // additional events to push here?
+      // first_visit? // when user id or client id is set for the first time
+      // first_open? // first open after download, reinstall // no stored data? new app version?
+      // custom: chrome updated? || app_update // version different from last stored
+
+      // if (first_visit) {
+      //   ga4Data.events.push({
+      //     name: first_visit
+      //   })
+      // }
+      // defined in setClientId(callback)?
+
+      break;
+    case 'exception':
+      ga4Data.events[0].name = 'app_exception';
+      ga4Data.events[0].params.fatal = data.exf;
+      ga4Data.events[0].params.description = data.exd;
+
+      break;
+    case 'session':
+      ga4Data.events[0].name = 'session_start';
+
+      break;
+  }
+
+  fetch(
+    `https://www.google-analytics.com/mp/collect?measurement_id=${ga4Id}&api_secret=${ga4API}`,
+    {
+      method: 'POST',
+      body: JSON.stringify(ga4Data),
+    }
+  );
 }
 
 function setClientId(callback) {
@@ -116,8 +265,11 @@ function setIBMer(ddoValue = 0) {
   });
 }
 
-function buildGaResponse(data) {
+function buildGaResponse(data, tid) {
+  data.tid = tid; // ga property id
+
   const keys = Object.keys(data);
+
   let key,
     value,
     response = ``;
@@ -150,14 +302,14 @@ function gaEvent(category, action, label, value = null, moreData = {}) {
   // value: true (1), false (0)
   // ---
 
-  const data = { ...moreData };
-  data.t = 'event';
-  data.ec = category;
-  data.ea = action;
-  data.el = label;
-  data.ev = value;
+  const universalData = { ...moreData };
+  universalData.t = 'event';
+  universalData.ec = category;
+  universalData.ea = action;
+  universalData.el = label;
+  universalData.ev = value;
 
-  sendGaResponse(data);
+  sendGaResponse(universalData);
 }
 
 function gaException(description, fatal = 0) {
@@ -181,7 +333,7 @@ function gaSession(control) {
 
 function gaNavigationEvent(action, label, value, moreData) {
   // category: navigation
-  // action: toggle | click
+  // action: toggle (toggle accordion, or menu) | click (navigates away from app) | panel (aside slide over)
   // label: gridoverlay | code repository
   // value: open (1) | close (0)
 

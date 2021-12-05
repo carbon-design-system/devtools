@@ -5,7 +5,7 @@ import Link from 'carbon-components-react/es/components/Link';
 import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
 import Search from 'carbon-components-react/es/components/Search';
 import { moderate02 } from '@carbon/motion';
-import { gaNavigationEvent } from '@carbon/devtools-utilities/src/ga';
+import { gaSearchEvent } from '@carbon/devtools-utilities/src/ga';
 import {
   formGeneralRows,
   formIBMRows,
@@ -105,7 +105,7 @@ function PageInfo({ initialMsg, _inventoryData }) {
       setFilteredGroups(filteredGroupResults);
       setSearchValue(val);
 
-      gaNavigationEvent('search', e.type, count && 1);
+      gaSearchEvent('search', e.type, count && 1, { search_term: searchValue });
     }, moderate02);
   }
 

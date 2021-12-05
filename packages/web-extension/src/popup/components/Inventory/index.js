@@ -14,6 +14,7 @@ import {
   gaNavigationEvent,
   gaDomEvent,
   gaException,
+  gaSearchEvent,
 } from '@carbon/devtools-utilities/src/ga';
 import { moderate02 } from '@carbon/motion';
 import packageJSON from '../../../../package.json';
@@ -133,7 +134,9 @@ function Inventory({ _inventoryData }) {
       setFilteredTotal(filteredTotalCount);
       setSearchTerm(val.trim());
 
-      gaNavigationEvent('search', e.type, diffInUnique && 1);
+      gaSearchEvent('search', e.type, diffInUnique && 1, {
+        search_term: searchTerm,
+      });
     }, moderate02);
   }
 
