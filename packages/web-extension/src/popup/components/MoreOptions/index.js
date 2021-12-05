@@ -29,14 +29,24 @@ function MoreOptions() {
         href={packageJSON.bugs.url}
         target="_blank"
         itemText="Report an issue"
-        onClick={() => gaNavigationEvent('click', 'report-an-issue')}
+        onClick={() =>
+          gaNavigationEvent('click', 'report-an-issue', 1, {
+            link_url: packageJSON.bugs.url,
+            outbound: true,
+          })
+        }
       />
       <OverflowMenuItem
         hasDivider={false}
         href={packageJSON.repository.url}
         target="_blank"
         itemText="Go to GitHub"
-        onClick={() => gaNavigationEvent('click', 'go-to-github')}
+        onClick={() =>
+          gaNavigationEvent('click', 'go-to-github', 1, {
+            link_url: packageJSON.repository.url,
+            outbound: true,
+          })
+        }
       />
       <OverflowMenuItem
         onClick={openChromeExtensionOptions}

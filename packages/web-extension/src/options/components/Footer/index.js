@@ -51,7 +51,12 @@ function Footer() {
 
         <li>
           <Link
-            onClick={() => gaNavigationEvent('click', 'code-repository')}
+            onClick={() =>
+              gaNavigationEvent('click', 'code-repository', 1, {
+                link_url: repository.url,
+                outbound: true,
+              })
+            }
             href={repository.url}
             target="_blank"
           >
@@ -60,7 +65,12 @@ function Footer() {
         </li>
         <li>
           <Link
-            onClick={() => gaNavigationEvent('click', 'submit-an-issue')}
+            onClick={() =>
+              gaNavigationEvent('click', 'submit-an-issue', 1, {
+                link_url: bugs.url,
+                outbound: true,
+              })
+            }
             href={bugs.url}
             target="_blank"
           >
