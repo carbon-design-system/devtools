@@ -1147,7 +1147,7 @@
     "@carbon/type" "10.38.0"
     carbon-components "10.47.0"
 
-"@carbon/ibmdotcom-utilities@1.27.0", "@carbon/ibmdotcom-utilities@^1.27.0":
+"@carbon/ibmdotcom-utilities@1.27.0":
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.27.0.tgz#fc50a7b0dd40274900fb1608f0e44dd89ae0ad39"
   integrity sha512-4W9AZMnCcukegn3EM4duDcBLm8rEA/TxesVVlms/ES8gWN3+YW+Ahe/AhPl7TTE4R/QdKxQK9nvP7+cxkERtJQ==
@@ -1155,6 +1155,19 @@
     "@carbon/telemetry" "0.0.0-alpha.6"
     axios "^0.21.1"
     carbon-components "10.47.0"
+    isomorphic-dompurify "0.4.0"
+    js-cookie "^2.2.1"
+    marked "1.1.0"
+    window-or-global "^1.0.1"
+
+"@carbon/ibmdotcom-utilities@^1.27.0":
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.29.0.tgz#06332b06d4ac2a6987e8a26d192de02849576054"
+  integrity sha512-zlt5uI05JpsMlhYmzoZR3dGi47FX2qFqkUQDG1KkorjNMWEBvnnMNyDkufGLmaNPtEkNQADyc+kO4RKJAIBReA==
+  dependencies:
+    "@carbon/telemetry" "0.0.0-alpha.6"
+    axios "^0.21.1"
+    carbon-components "10.48.0"
     isomorphic-dompurify "0.4.0"
     js-cookie "^2.2.1"
     marked "1.1.0"
