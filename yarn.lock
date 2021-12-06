@@ -1132,7 +1132,7 @@
     axios "^0.21.1"
     window-or-global "^1.0.1"
 
-"@carbon/ibmdotcom-styles@1.27.0", "@carbon/ibmdotcom-styles@^1.27.0":
+"@carbon/ibmdotcom-styles@1.27.0":
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-styles/-/ibmdotcom-styles-1.27.0.tgz#eb367a8b30b2411fca995f2aa883e73560650ae3"
   integrity sha512-AtEDDG57jPwAYscBa6xFEf2tg+1i86iplAu1C+vOKq0PG52NPXqRM7T+SWOuldvcz5WNapM9Gql7tiXe3BTuqA==
@@ -1146,6 +1146,21 @@
     "@carbon/themes" "10.46.0"
     "@carbon/type" "10.38.0"
     carbon-components "10.47.0"
+
+"@carbon/ibmdotcom-styles@^1.27.0":
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-styles/-/ibmdotcom-styles-1.29.0.tgz#a0fbf7eecf823a4cb61e06ff72c2d67808f1bfdf"
+  integrity sha512-03fiBxs3Tkgrpbl4nx9Q3+Mum/a745UEeE6q5jtW8qAvP4oJDrHfHvhh0yK5wqABzP22yvY/eF1lwiXpQ3m3Lw==
+  dependencies:
+    "@carbon/grid" "10.39.0"
+    "@carbon/icons-react" "10.43.0"
+    "@carbon/import-once" "10.6.0"
+    "@carbon/layout" "10.34.0"
+    "@carbon/motion" "10.26.0"
+    "@carbon/telemetry" "0.0.0-alpha.6"
+    "@carbon/themes" "10.47.0"
+    "@carbon/type" "10.38.0"
+    carbon-components "10.48.0"
 
 "@carbon/ibmdotcom-utilities@1.27.0", "@carbon/ibmdotcom-utilities@^1.27.0":
   version "1.27.0"
@@ -1208,7 +1223,7 @@
     "@carbon/telemetry" "0.0.0-alpha.6"
     prop-types "^15.7.2"
 
-"@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.42.0":
+"@carbon/icons-react@10.43.0", "@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.42.0":
   version "10.43.0"
   resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.43.0.tgz#dc5cfa2dc423910f95c42d768b05cb44064df9ad"
   integrity sha512-BtRX3/wMqH3BrP1O32CKwz2DmuE351NVkk0gYuASIfDBOOf4BsZ30hBo7p6rUJ3JdjG0wXzbJgXD2XbvvHQIYw==
@@ -1304,7 +1319,7 @@
     "@carbon/type" "^10.38.0"
     color "^3.1.2"
 
-"@carbon/themes@^10.40.0":
+"@carbon/themes@10.47.0", "@carbon/themes@^10.40.0":
   version "10.47.0"
   resolved "https://registry.yarnpkg.com/@carbon/themes/-/themes-10.47.0.tgz#c83d666d270e7c21f27b297557ad98e8f29e360b"
   integrity sha512-/HDFq5JeQbxADhV8yCcNpTN2sNMlgTjaEBtgPDdmLlqU2hj5cl7NwHXGcixVfZa9Kp+Nha+njx9+shM19nd7ag==
