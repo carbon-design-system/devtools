@@ -1,6 +1,6 @@
 {
   "name": "@carbon/devtools-utilities",
-  "version": "2.7.5",
+  "version": "2.7.6",
   "description": "Common utilities and functions used across throughout Carbon Devtools.",
   "main": "index.js",
   "scripts": {

@@ -99,7 +99,7 @@ function sendGa4Response(data) {
       carbon_grid_version: {
         value: data.cd3, // grid version
       },
-      app_version: {
+      carbon_devtools_version: {
         value: data.cd2, // extension version
       },
       experimental: {
