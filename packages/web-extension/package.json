@@ -1,6 +1,6 @@
 {
   "name": "carbon-devtools",
-  "version": "2.7.4",
+  "version": "2.7.5",
   "private": true,
   "description": "A basic set of tools for teams building live Carbon pages.",
   "main": "dist/manifest.json",
