@@ -1208,10 +1208,10 @@
     "@carbon/telemetry" "0.0.0-alpha.6"
     prop-types "^15.7.2"
 
-"@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.42.0":
-  version "10.43.0"
-  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.43.0.tgz#dc5cfa2dc423910f95c42d768b05cb44064df9ad"
-  integrity sha512-BtRX3/wMqH3BrP1O32CKwz2DmuE351NVkk0gYuASIfDBOOf4BsZ30hBo7p6rUJ3JdjG0wXzbJgXD2XbvvHQIYw==
+"@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.42.0", "@carbon/icons-react@^10.44.0":
+  version "10.44.0"
+  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.44.0.tgz#40f411ea162ecbb86fea0756f954bcd43c5bfaf0"
+  integrity sha512-1M8J0/vMHYj5Bd4GmgkMP+tCsAD1gRCoiZYHNhohJb6ed40c2yaLa7DQ89PLStocZR9ZNtvc3akR00Ro3uiNWA==
   dependencies:
     "@carbon/icon-helpers" "^10.25.0"
     "@carbon/telemetry" "0.0.0-alpha.6"
@@ -4283,13 +4283,13 @@ carbon-components-react@7.47.0:
     window-or-global "^1.0.1"
 
 carbon-components-react@^7.41.0, carbon-components-react@^7.45.0:
-  version "7.47.2"
-  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.47.2.tgz#671d83fc1d2b3d0fd21b6beac702e8599a3999fe"
-  integrity sha512-Ilrw2a6onQtxIOw0llpIjXLztyDRpe1Z2wV62yvUG5+CjhHNiJ8skIhkBPm+uUIsFppt97+yXuT9BcWSC72Lxg==
+  version "7.50.0"
+  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.50.0.tgz#b26a327991e980866d19b49447c4e40845d31014"
+  integrity sha512-HM7cj1AHQ/v385+eenbt2A0/RaFYMCahSsemEHG8jyf/4ESjpad3hCgP6BQ0UhZAS0X5EsX5LX6OHSSKywWdeA==
   dependencies:
     "@babel/runtime" "^7.14.6"
     "@carbon/feature-flags" "^0.6.0"
-    "@carbon/icons-react" "^10.42.0"
+    "@carbon/icons-react" "^10.44.0"
     "@carbon/layout" "^10.34.0"
     "@carbon/telemetry" "0.0.0-alpha.6"
     classnames "2.3.1"
@@ -4302,7 +4302,7 @@ carbon-components-react@^7.41.0, carbon-components-react@^7.45.0:
     lodash.isequal "^4.5.0"
     lodash.omit "^4.5.0"
     lodash.throttle "^4.1.1"
-    react-is "^16.8.6"
+    react-is "^17.0.2"
     use-resize-observer "^6.0.0"
     wicg-inert "^3.1.1"
     window-or-global "^1.0.1"
