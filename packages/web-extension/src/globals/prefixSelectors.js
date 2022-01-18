@@ -1,4 +1,4 @@
-import pkg from '@carbon/ibm-cloud-cognitive/es/global/js/package-settings';
+import pkg from '@carbon/ibm-products/es/global/js/package-settings';
 import dotcomSettings from '@carbon/ibmdotcom-utilities/es/utilities/settings/settings';
 import { getComponentNamespace as getSecurityPrefix } from '@carbon/ibm-security/es/globals/namespace';
 import carbonSettings from 'carbon-components/es/globals/js/settings';
