@@ -16,7 +16,7 @@ function getMajorVersion(dependency) {
   return getVersion(dependency).split('.')[0];
 }
 
-const CLOUD_COGNITIVE = '@carbon/ibm-cloud-cognitive';
+const CLOUD_COGNITIVE = '@carbon/ibm-products';
 
 const packages = [
   { name, version },

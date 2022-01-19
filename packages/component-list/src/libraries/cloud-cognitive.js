@@ -1,4 +1,4 @@
-import * as _CloudCognitive from '@carbon/ibm-cloud-cognitive';
+import * as _CloudCognitive from '@carbon/ibm-products';
 import { _initStats } from '../helpers.js';
 
 const { _stats, success } = new _initStats();
@@ -27,7 +27,7 @@ cloudCognitive = Object.values(cloudCognitive).reduce(
 );
 
 cloudCognitive = {
-  name: 'IBM cloud cognitive',
+  name: 'Carbon for IBM Products',
   components: cloudCognitive,
   _stats,
 };
