@@ -987,17 +987,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.14.8", "@babel/runtime@^7.16.3", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.0", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.1", "@babel/runtime@^7.9.2":
-  version "7.16.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
-  integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.16.5":
-  version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
-  integrity sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ==
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.14.8", "@babel/runtime@^7.16.3", "@babel/runtime@^7.16.5", "@babel/runtime@^7.16.7", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.0", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.1", "@babel/runtime@^7.9.2":
+  version "7.17.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.0.tgz#b8d142fc0f7664fb3d9b5833fd40dcbab89276c0"
+  integrity sha512-etcO/ohMNaNA2UBdaXBBSX/3aEzFMRrVfaPv8Ptc0k+cWpWW0QFiGZ2XnVqQZI1Cf734LbPGmqBKWESfW4x/dQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -1056,6 +1049,11 @@
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@carbon/feature-flags/-/feature-flags-0.6.0.tgz#9452194af71b56dab0f2b9c75db3ddf6196453f1"
   integrity sha512-Y1jQC30PBEzfVLoZF6Fj4sTez2XqPCY+kVsaXjYWDysTc64+GFVkfGqvcBS+vZB9QTCSlGouaMKppfakdNwUqw==
+
+"@carbon/feature-flags@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@carbon/feature-flags/-/feature-flags-0.7.0.tgz#fe8068b482439ae7af519ccdbf627f31373bb646"
+  integrity sha512-nxVvnSMC6Ia/xn0j02FHPATfB/Iv6nnkZAQ6GrEdPLivSF1T2oaTvgawUsXBO8RBX7wQBq5l7uW8qH/0WfjIFw==
 
 "@carbon/grid@10.35.0":
   version "10.35.0"
@@ -1197,6 +1195,11 @@
   resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-10.25.0.tgz#bfe2465e165bb78477c77494610552064fcab09f"
   integrity sha512-jvDUKz3NLopiDf7BROLDAT4NoswMpeXg4+ulbkLlFHdgY3v7gaxT/MJ7f9DZeEIiYUBhQSjTmcB3agIIO1jOdw==
 
+"@carbon/icon-helpers@^10.26.0":
+  version "10.26.0"
+  resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-10.26.0.tgz#fe8277836e7b758ae48c93fbab8aab444b2f3b70"
+  integrity sha512-zrWRGn40whcKddYlj9MFsPMWwM5sLK2yfYpUbqKv2QFxlMyT60d/4Jd+yS81JVSQ39JO3vvlfb+Vl93O5Zl+dw==
+
 "@carbon/icons-react@10.38.0":
   version "10.38.0"
   resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.38.0.tgz#fd5050f3a630a20a2d46a21ba2b141adcd65c548"
@@ -1215,12 +1218,12 @@
     "@carbon/telemetry" "0.0.0-alpha.6"
     prop-types "^15.7.2"
 
-"@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.42.0":
-  version "10.43.0"
-  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.43.0.tgz#dc5cfa2dc423910f95c42d768b05cb44064df9ad"
-  integrity sha512-BtRX3/wMqH3BrP1O32CKwz2DmuE351NVkk0gYuASIfDBOOf4BsZ30hBo7p6rUJ3JdjG0wXzbJgXD2XbvvHQIYw==
+"@carbon/icons-react@^10.37.0", "@carbon/icons-react@^10.38.0", "@carbon/icons-react@^10.42.0", "@carbon/icons-react@^10.45.0":
+  version "10.45.0"
+  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.45.0.tgz#662b3667c74193fd51722e99ee00df72a3b9ac99"
+  integrity sha512-bQfAxq19VnNkvaqYvBtF1H1WrINQK0JCA0wR0t8YLDPuC+WmlOPAyJIkAGlYukFJuHVP4p+CpSWIO6+/8PXsqw==
   dependencies:
-    "@carbon/icon-helpers" "^10.25.0"
+    "@carbon/icon-helpers" "^10.26.0"
     "@carbon/telemetry" "0.0.0-alpha.6"
     prop-types "^15.7.2"
 
@@ -1251,10 +1254,15 @@
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.31.0.tgz#117ca71411629939fc66c8685234a9abb800ea3e"
   integrity sha512-KLRuFF4k5z4U5kfiuNnnXLPkA96eDYeijyZJBJaeOIWNx11XFp1Xp8jO9QBErX3z5lWklnSZ2u9c3NYiXjYD7A==
 
-"@carbon/layout@10.34.0", "@carbon/layout@^10.29.0", "@carbon/layout@^10.31.0", "@carbon/layout@^10.34.0":
+"@carbon/layout@10.34.0":
   version "10.34.0"
   resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.34.0.tgz#83dd68303f6ad29e6b4964b88da7bb2942e3e8d2"
   integrity sha512-+PAQfV/bEXM9zRcjDWtuCjl/62mqdN6vpaal+6wnFi0FADr+uHYhNi+9W6QUpa29nbUqgIla+jlr59gAYidGLw==
+
+"@carbon/layout@^10.29.0", "@carbon/layout@^10.31.0", "@carbon/layout@^10.34.0", "@carbon/layout@^10.35.0":
+  version "10.35.0"
+  resolved "https://registry.yarnpkg.com/@carbon/layout/-/layout-10.35.0.tgz#ab62fbb7464fc4086bce84a5ab72553de6adcb54"
+  integrity sha512-UKMOVN+fNnvNbIOPpSg3BlO5/tT+rd4O+exEWrPAb416WehHP2y/kf9l+EI2bD784gF4TtXVqwbr+SV7GGLjtw==
 
 "@carbon/motion@10.23.0":
   version "10.23.0"
@@ -4290,14 +4298,14 @@ carbon-components-react@7.47.0:
     window-or-global "^1.0.1"
 
 carbon-components-react@^7.41.0, carbon-components-react@^7.45.0:
-  version "7.47.2"
-  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.47.2.tgz#671d83fc1d2b3d0fd21b6beac702e8599a3999fe"
-  integrity sha512-Ilrw2a6onQtxIOw0llpIjXLztyDRpe1Z2wV62yvUG5+CjhHNiJ8skIhkBPm+uUIsFppt97+yXuT9BcWSC72Lxg==
+  version "7.52.0"
+  resolved "https://registry.yarnpkg.com/carbon-components-react/-/carbon-components-react-7.52.0.tgz#d8c1caea7d777f9608ec4524d36bd075540c549e"
+  integrity sha512-VBstCYnqGiekqkObwiN9x18opdTnYmEbIP1+YrA4uXQCmWFEMnUiIaeI1vqRVAl9TLOMSLIVv1BNl6KfUxIWfg==
   dependencies:
-    "@babel/runtime" "^7.14.6"
-    "@carbon/feature-flags" "^0.6.0"
-    "@carbon/icons-react" "^10.42.0"
-    "@carbon/layout" "^10.34.0"
+    "@babel/runtime" "^7.16.7"
+    "@carbon/feature-flags" "^0.7.0"
+    "@carbon/icons-react" "^10.45.0"
+    "@carbon/layout" "^10.35.0"
     "@carbon/telemetry" "0.0.0-alpha.6"
     classnames "2.3.1"
     copy-to-clipboard "^3.3.1"
@@ -4309,7 +4317,8 @@ carbon-components-react@^7.41.0, carbon-components-react@^7.45.0:
     lodash.isequal "^4.5.0"
     lodash.omit "^4.5.0"
     lodash.throttle "^4.1.1"
-    react-is "^16.8.6"
+    prop-types "^15.7.2"
+    react-is "^17.0.2"
     use-resize-observer "^6.0.0"
     wicg-inert "^3.1.1"
     window-or-global "^1.0.1"
