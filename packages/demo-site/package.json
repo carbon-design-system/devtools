@@ -51,7 +51,7 @@
     "fast-sass-loader": "1.5.0",
     "lit-element": "^2.5.1",
     "lorem-ipsum": "^2.0.3",
-    "next": "10.2.0",
+    "next": "12.1.0",
     "next-compose-plugins": "^2.2.0",
     "node-sass": "^6.0.1",
     "prettier": "^2.1.2",
