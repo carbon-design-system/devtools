@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $highlight-opacity: 0.5;
 
 .#{$prefix}--highlight {
@@ -21,7 +23,7 @@ $highlight-opacity: 0.5;
 
       display: inline-block;
       margin: auto;
-      color: map-get(map-get($carbon--colors, 'magenta'), 10);
+      color: map.get(map.get($carbon--colors, 'magenta'), 10);
     }
   }
 

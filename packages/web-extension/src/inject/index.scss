@@ -1,4 +1,5 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
+@use 'sass:map';
 
 $prefix: 'bx-dev';
 $carbonPrefix: 'bx';
@@ -27,9 +28,9 @@ $feature-flags: (
 
 $transition-in: $duration--moderate-02 carbon--motion(standard, productive);
 $transition-fade: $duration--fast-02 carbon--motion(standard, productive);
-$grid-color: map-get(map-get($carbon--colors, 'blue'), 60);
-$inventory-color: map-get(map-get($carbon--colors, 'purple'), 50);
-$specs-color: map-get(map-get($carbon--colors, 'magenta'), 50);
+$grid-color: map.get(map.get($carbon--colors, 'blue'), 60);
+$inventory-color: map.get(map.get($carbon--colors, 'purple'), 50);
+$specs-color: map.get(map.get($carbon--colors, 'magenta'), 50);
 
 $themes: (
   'white': $carbon--theme--white,
@@ -63,7 +64,7 @@ $themes: (
   @each $theme in map-keys($themes) {
     .#{$prefix}--#{$theme} & {
       @include carbon--theme(
-        map-get($themes, $theme),
+        map.get($themes, $theme),
         $emit-custom-properties: true
       );
     }

@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @import 'carbon-components/scss/components/tooltip/tooltip';
 
 .#{$prefix}--tooltip {
@@ -108,7 +110,7 @@
 
     li#{&}__warning {
       @include carbon--type-style('helper-text-01');
-      $yellow: map-get(map-get($carbon--colors, 'yellow'), 30);
+      $yellow: map.get(map.get($carbon--colors, 'yellow'), 30);
 
       padding-left: carbon--mini-units(1);
       border-left: 3px solid $yellow;

@@ -1,4 +1,6 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
+/* stylelint-disable a11y/media-prefers-reduced-motion */
+@use 'sass:map';
 
 $feature-flags: (
   enable-css-custom-properties: true,
@@ -75,7 +77,7 @@ body {
 
 .#{$prefix}--popup {
   overflow: hidden;
-  width: map-get(map-get($carbon--grid-breakpoints, 'sm'), 'width');
+  width: map.get(map.get($carbon--grid-breakpoints, 'sm'), 'width');
   padding-top: carbon--mini-units(5);
 
   &__header {
