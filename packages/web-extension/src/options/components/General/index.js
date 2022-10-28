@@ -58,8 +58,7 @@ function General({
               configuration('general-theme', { generalTheme: e.target.value })
             }
             labelText="Choose a theme"
-            className={`${prefix}--options__select`}
-          >
+            className={`${prefix}--options__select`}>
             <SelectItem
               value={'system'}
               text={'system'}

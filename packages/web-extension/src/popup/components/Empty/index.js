@@ -21,8 +21,7 @@ function Empty() {
               link_url: packageJSON.bugs.url,
               outbound: true,
             })
-          }
-        >
+          }>
           submit an issue
         </Link>
         .

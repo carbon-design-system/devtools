@@ -191,8 +191,7 @@ function Main({ initialMsg, _inventoryData, _panelControls }) {
               </div>
             </div>
           )
-        }
-      >
+        }>
         <Content
           initialMsg={initialMsg}
           _inventoryData={_inventoryData}

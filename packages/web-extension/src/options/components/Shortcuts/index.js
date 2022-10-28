@@ -39,8 +39,7 @@ function Shortcuts() {
               <StructuredListRow key={i}>
                 <StructuredListCell>{description}</StructuredListCell>
                 <StructuredListCell
-                  className={`${prefix}--options-shortcuts__keys`}
-                >
+                  className={`${prefix}--options-shortcuts__keys`}>
                   <span className={`${prefix}--options-shortcuts__key`}>
                     <MacShift width="32" aria-label="Shift" />
                   </span>
@@ -57,8 +56,7 @@ function Shortcuts() {
           <StructuredListRow>
             <StructuredListCell>Toggle columns on click</StructuredListCell>
             <StructuredListCell
-              className={`${prefix}--options-shortcuts__keys`}
-            >
+              className={`${prefix}--options-shortcuts__keys`}>
               <span className={`${prefix}--options-shortcuts__key`}>
                 <MacShift width="32" aria-label="Shift" />
               </span>

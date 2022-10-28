@@ -105,8 +105,7 @@ function Grid2xOptions({ disabled }) {
               changes['toggle2xPosition'] = e.name;
               setToggle2xGridOptions(changes);
               gaConfigurationEvent('2x-grid-change', '2x-position', e.name);
-            }}
-          >
+            }}>
             {Object.keys(positions).map((position) => {
               const Icon = positions[position];
               return (

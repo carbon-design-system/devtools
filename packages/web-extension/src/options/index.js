@@ -48,8 +48,7 @@ function Options() {
               onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'general-settings')
               }
-              open={false}
-            >
+              open={false}>
               <General {...data} />
             </AccordionItem>
             <AccordionItem
@@ -57,8 +56,7 @@ function Options() {
               onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'grid-settings')
               }
-              open={false}
-            >
+              open={false}>
               <Grid {...data} />
             </AccordionItem>
             <AccordionItem
@@ -66,8 +64,7 @@ function Options() {
               onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'shortcut-settings')
               }
-              open={false}
-            >
+              open={false}>
               <Shortcuts {...data} />
             </AccordionItem>
             <AccordionItem
@@ -75,8 +72,7 @@ function Options() {
               onHeadingClick={() =>
                 gaNavigationEvent('toggle', 'reset-settings')
               }
-              open={false}
-            >
+              open={false}>
               <Reset {...data} />
             </AccordionItem>
           </Accordion>

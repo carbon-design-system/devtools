@@ -170,33 +170,27 @@ function renderGroup(groupTitle, rows) {
           return (
             <div
               className={`${prefix}--row ${prefix}--page-info__row`}
-              key={'row' + row.title}
-            >
+              key={'row' + row.title}>
               <div
-                className={`${prefix}--col${layoutTitle} ${prefix}--page-info__row-title`}
-              >
+                className={`${prefix}--col${layoutTitle} ${prefix}--page-info__row-title`}>
                 <p
                   className={`${prefix}--page-info__row-title__main`}
-                  title={row.titleTitle || row.title}
-                >
+                  title={row.titleTitle || row.title}>
                   {row.title}
                 </p>
                 {row.subtitle && (
                   <p
                     className={`${prefix}--page-info__row-title__sub`}
-                    title={row.subtitleTitle || row.subtitle}
-                  >
+                    title={row.subtitleTitle || row.subtitle}>
                     {row.subtitle}
                   </p>
                 )}
               </div>
               <div
-                className={`${prefix}--col${layoutValue} ${prefix}--page-info__row-value`}
-              >
+                className={`${prefix}--col${layoutValue} ${prefix}--page-info__row-value`}>
                 <span
                   title={row.valueTitle || row.value}
-                  className={`${prefix}--page-info__row-value`}
-                >
+                  className={`${prefix}--page-info__row-value`}>
                   {renderByType(row)}
                 </span>
               </div>
