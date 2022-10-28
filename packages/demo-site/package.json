@@ -53,12 +53,12 @@
     "lorem-ipsum": "^2.0.3",
     "next": "10.2.0",
     "next-compose-plugins": "^2.2.0",
-    "node-sass": "^6.0.1",
     "prettier": "^2.1.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rtlcss": "^2.6.0",
+    "sass": "1.32.8",
     "stylelint": "^13.13.1",
     "webpack": "^4.43.0"
   },
