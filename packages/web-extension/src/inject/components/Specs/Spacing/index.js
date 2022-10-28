@@ -228,7 +228,7 @@ function positionSpacer(
       spacer.style.width = setPx(value);
       break;
     default: //  top - offset container + top border
-    // left + left padding + left border
+      // left + left padding + left border
       // top
       spacer.style.top = setPx(
         boundingBox.top -
