@@ -1518,7 +1518,7 @@
     "@carbon/type" "10.45.0"
     carbon-components "10.58.4"
 
-"@carbon/ibmdotcom-utilities@1.27.0", "@carbon/ibmdotcom-utilities@^1.27.0":
+"@carbon/ibmdotcom-utilities@1.27.0":
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.27.0.tgz#fc50a7b0dd40274900fb1608f0e44dd89ae0ad39"
   integrity sha512-4W9AZMnCcukegn3EM4duDcBLm8rEA/TxesVVlms/ES8gWN3+YW+Ahe/AhPl7TTE4R/QdKxQK9nvP7+cxkERtJQ==
@@ -1531,7 +1531,7 @@
     marked "1.1.0"
     window-or-global "^1.0.1"
 
-"@carbon/ibmdotcom-utilities@1.40.0":
+"@carbon/ibmdotcom-utilities@1.40.0", "@carbon/ibmdotcom-utilities@^1.27.0":
   version "1.40.0"
   resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.40.0.tgz#16c72b5ea0b915dd4f6a35601a212ce09b6ad6c7"
   integrity sha512-b9iAz9/c/rXnWt+ZFt+UlN65AEf9kekEYTl8vF/rlLw1hJexf0YiMojxn+7tM3IJjV8T5oSo92SddDzAb872hQ==
@@ -4936,7 +4936,7 @@ carbon-components@10.47.0:
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
-carbon-components@10.48.0, carbon-components@^10.41.0:
+carbon-components@10.48.0:
   version "10.48.0"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.48.0.tgz#e1c31b7b5d27cf12299fd86f6c9b8f0546bb6b43"
   integrity sha512-kz6WlB4sVyOW/fUZLQ+f83cS2AAvcNRXkMi6au1guUHMdoTtIBz62AGKGxq54Xy2hQZK0Ca6aH01NopxOV4wUw==
@@ -4956,7 +4956,7 @@ carbon-components@10.52.0:
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
-carbon-components@10.58.4:
+carbon-components@10.58.4, carbon-components@^10.41.0:
   version "10.58.4"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.58.4.tgz#b3da1c7cbdcb680044897141ac50c1066ed11ef2"
   integrity sha512-Gr4qYvHRH3YqqK0lUUi0IPjiTLZjJ1P7ffkteiDNRFcWFF0lKR2wh5SC4mJTYxBy+h5qcZSb75e/nzgEXDUsgg==
