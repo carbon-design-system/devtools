@@ -1,42 +1,44 @@
 name: Publish web-extension
 
 on:
- release:
-   types: [created]
+  release:
+    types: [created]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: "12.x"
-    - name: Install dependencies
-      run: |
-        yarn install
-    - name: Build component-list
-      run: |
-        cd packages/component-list
-        yarn build
-    - name: Build web-extension
-      run: |
-        cd packages/web-extension
-        yarn build
-    - name: Publish to Chrome
-      uses: trmcnvn/chrome-addon@v2
-      with:
-        extension: ${{ secrets.GWE_EXTENSION_ID }}
-        zip: packages/web-extension/dist/web-extension.zip
-        client-id: ${{ secrets.GWE_PUBLISH_CLIENT_ID }}
-        client-secret: ${{ secrets.GWE_PUBLISH_CLIENT_SECRET }}
-        refresh-token: ${{ secrets.GWE_PUBLISH_REFRESH_TOKEN }}
-    - name: Publish to Firefox
-      uses: trmcnvn/firefox-addon@v1
-      with:
-        uuid: ${{ secrets.FWE_UUID }}
-        xpi: packages/web-extension/dist/web-extension.zip
-        manifest: packages/web-extension/dist/manifest.json
-        api-key: ${{ secrets.FWE_API_KEY }}
-        api-secret: ${{ secrets.FWE_PUBLISH_SECRET }}
+      - uses: actions/checkout@v1
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Install dependencies
+        run: |
+          yarn install
+      - name: Build component-list
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
+        run: |
+          cd packages/component-list
+          yarn build
+      - name: Build web-extension
+        run: |
+          cd packages/web-extension
+          yarn build
+      - name: Publish to Chrome
+        uses: trmcnvn/chrome-addon@v2
+        with:
+          extension: ${{ secrets.GWE_EXTENSION_ID }}
+          zip: packages/web-extension/dist/web-extension.zip
+          client-id: ${{ secrets.GWE_PUBLISH_CLIENT_ID }}
+          client-secret: ${{ secrets.GWE_PUBLISH_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.GWE_PUBLISH_REFRESH_TOKEN }}
+      - name: Publish to Firefox
+        uses: trmcnvn/firefox-addon@v1
+        with:
+          uuid: ${{ secrets.FWE_UUID }}
+          xpi: packages/web-extension/dist/web-extension.zip
+          manifest: packages/web-extension/dist/manifest.json
+          api-key: ${{ secrets.FWE_API_KEY }}
+          api-secret: ${{ secrets.FWE_PUBLISH_SECRET }}
