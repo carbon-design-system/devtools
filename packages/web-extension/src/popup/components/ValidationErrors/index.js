@@ -17,8 +17,7 @@ function ValidationErrors({ data }) {
       subtitle: (
         <Link
           href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html"
-          target="_blank"
-        >
+          target="_blank">
           digitalData
         </Link>
       ),
@@ -29,8 +28,7 @@ function ValidationErrors({ data }) {
       subtitle: (
         <Link
           href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#11-page-category"
-          target="_blank"
-        >
+          target="_blank">
           digitalData.page
         </Link>
       ),
@@ -41,8 +39,7 @@ function ValidationErrors({ data }) {
       subtitle: (
         <Link
           href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#15-page-information"
-          target="_blank"
-        >
+          target="_blank">
           digitalData.page.pageInfo
         </Link>
       ),
@@ -53,8 +50,7 @@ function ValidationErrors({ data }) {
       subtitle: (
         <Link
           href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#16-ibm-specific-page-information"
-          target="_blank"
-        >
+          target="_blank">
           digitalData.page.pageInfo.ibm
         </Link>
       ),
@@ -65,8 +61,7 @@ function ValidationErrors({ data }) {
       subtitle: (
         <Link
           href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#11-page-category"
-          target="_blank"
-        >
+          target="_blank">
           digitalData.page.category
         </Link>
       ),
@@ -77,8 +72,7 @@ function ValidationErrors({ data }) {
       subtitle: (
         <Link
           href="https://pages.github.ibm.com/digital-behavior/docs/stds-ddo.html#12-global-brand-table-categories-for-page"
-          target="_blank"
-        >
+          target="_blank">
           digitalData.page.category.ibm
         </Link>
       ),
@@ -134,8 +128,7 @@ function isNorthstar(data, errorMsgs) {
         <>
           <Link
             href="https://www.ibm.com/standards/web/carbon-for-ibm-dotcom/about/"
-            target="_blank"
-          >
+            target="_blank">
             Northstar
           </Link>
           {` in ${northstar} file${northstar > 1 ? 's' : ''}`}

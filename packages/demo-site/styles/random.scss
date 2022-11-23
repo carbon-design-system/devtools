@@ -6,7 +6,7 @@ $feature-flags: (
 );
 
 // @import "~@carbon/type/scss/font-face/sans";
-@import '~@carbon/layout/scss/_breakpoint.scss';
+@import '~@carbon/layout/scss/breakpoint';
 @import '~@carbon/type/scss/styles';
 @import '~@carbon/grid/scss/mixins';
 @import '~@carbon/themes/scss/themes';
@@ -44,10 +44,9 @@ $feature-flags: (
 @import '~@carbon/ibmdotcom-styles/scss/components/leadspace-block/leadspace-block';
 
 /* animations */
-@import '~@carbon/ibmdotcom-styles/scss/components/scroll-into-view/_scroll-into-view.scss';
+@import '~@carbon/ibmdotcom-styles/scss/components/scroll-into-view/scroll-into-view';
 
 /* overrides */
-
 .random [data-autoid='dds--card-group'] {
   .bx--card {
     margin: 0;
@@ -330,7 +329,6 @@ $feature-flags: (
   // &__gradient {
   //   z-index: 1;
   // }
-
   &--content__container.bx--leadspace--content__container {
     @include carbon--make-col-ready();
   }

@@ -58,8 +58,7 @@ function Footer() {
               })
             }
             href={repository.url}
-            target="_blank"
-          >
+            target="_blank">
             code repository
           </Link>
         </li>
@@ -72,8 +71,7 @@ function Footer() {
               })
             }
             href={bugs.url}
-            target="_blank"
-          >
+            target="_blank">
             submit an issue
           </Link>
         </li>

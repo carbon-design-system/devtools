@@ -171,18 +171,18 @@ function sendGa4Response(data) {
               ga4Data.events[0].params.outbound = data.outbound;
 
               break;
-            default:
+            default: // toggle, panel
               // set custom event name to event action
-              ga4Data.events[0].name = data.ea; // toggle, panel
+              ga4Data.events[0].name = data.ea;
               ga4Data.events[0].params.event_type = data.ec;
               ga4Data.events[0].params.event_label = data.el;
               ga4Data.events[0].params.event_value = data.ev;
           }
 
           break;
-        default:
+        default: // configuration // dom
           // set custom event name to event category
-          ga4Data.events[0].name = data.ec; // configuration // dom
+          ga4Data.events[0].name = data.ec;
           ga4Data.events[0].params.event_action = data.ea;
           ga4Data.events[0].params.event_label = data.el;
           ga4Data.events[0].params.event_value = data.ev;

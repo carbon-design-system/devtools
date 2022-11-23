@@ -227,18 +227,19 @@ function positionSpacer(
       spacer.style.maxHeight = setPx(maxHeight);
       spacer.style.width = setPx(value);
       break;
-    default:
+    default: //  top - offset container + top border
+      // left + left padding + left border
       // top
       spacer.style.top = setPx(
         boundingBox.top -
           offset +
           (ignoreBorders ? 0 : spacingStyles.top.border)
-      ); //  top - offset container + top border
+      );
       spacer.style.left = setPx(
         boundingBox.left +
           spacingStyles.left.padding +
           (ignoreBorders ? 0 : spacingStyles.left.border)
-      ); // left + left padding + left border
+      );
       spacer.style.height = setPx(value);
       spacer.style.width = setPx(value);
       spacer.style.minWidth = setPx(16);

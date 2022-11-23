@@ -33,11 +33,11 @@
     "test": "yarn format && yarn lint"
   },
   "dependencies": {
-    "@carbon/ibmdotcom-react": "^1.27.0",
-    "@carbon/ibmdotcom-styles": "^1.27.0",
-    "@carbon/ibmdotcom-web-components": "^1.12.0",
+    "@carbon/ibmdotcom-react": "^1.40.0",
+    "@carbon/ibmdotcom-styles": "^1.40.0",
+    "@carbon/ibmdotcom-web-components": "^1.25.0",
     "@carbon/icons-react": "^10.37.0",
-    "@carbon/pictograms-react": "^11.17.0",
+    "@carbon/pictograms-react": "^11.34.0",
     "eslint-config-carbon": "^2.1.0",
     "stylelint-config-carbon": "^1.2.0"
   },
@@ -50,16 +50,16 @@
     "express": "^4.17.1",
     "fast-sass-loader": "1.5.0",
     "lit-element": "^2.5.1",
-    "lorem-ipsum": "^2.0.3",
+    "lorem-ipsum": "^2.0.8",
     "next": "10.2.0",
-    "next-compose-plugins": "^2.2.0",
-    "node-sass": "^6.0.1",
-    "prettier": "^2.1.2",
-    "prop-types": "^15.7.2",
+    "next-compose-plugins": "^2.2.1",
+    "prettier": "^2.7.1",
+    "prop-types": "^15.8.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rtlcss": "^2.6.0",
-    "stylelint": "^13.13.1",
+    "sass": "1.32.8",
+    "stylelint": "^14.15.0",
     "webpack": "^4.43.0"
   },
   "resolutions": {

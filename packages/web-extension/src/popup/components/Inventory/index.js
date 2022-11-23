@@ -147,13 +147,11 @@ function Inventory({ _inventoryData }) {
       <div
         className={`${prefix}--row ${prefix}--inventory__meta ${
           uniqueCount === 0 && prefix + `--inventory__meta--none`
-        }`}
-      >
+        }`}>
         <div
           className={`${prefix}--col-sm-1 ${prefix}--inventory__meta-item ${
             diffInTotal && diffMetaClass
-          }`}
-        >
+          }`}>
           <h3 className={`${prefix}--inventory__meta__title`}>Total</h3>
           <p className={`${prefix}--inventory__meta__value`}>
             {filteredTotal}
@@ -163,8 +161,7 @@ function Inventory({ _inventoryData }) {
         <div
           className={`${prefix}--col-sm-1 ${prefix}--inventory__meta-item ${
             diffInUnique && diffMetaClass
-          }`}
-        >
+          }`}>
           <h3 className={`${prefix}--inventory__meta__title`}>{`Unique`}</h3>
           <p className={`${prefix}--inventory__meta__value`}>
             {filteredUnique}
@@ -209,8 +206,7 @@ function inventoryList(filteredInventory, uniqueCount) {
             </>
           }
           className={`${prefix}--inventory__item`}
-          key={key + i}
-        >
+          key={key + i}>
           {filteredInventory[key].map(
             ({ uniqueID, innerText, tag, id, classes, library, name }) => (
               <ClickableTile
@@ -229,8 +225,7 @@ function inventoryList(filteredInventory, uniqueCount) {
                 }}
                 onBlur={(e) => {
                   componentMouseOut(e);
-                }}
-              >
+                }}>
                 {!innerText ? null : (
                   <p className={`${prefix}--inventory__sub-item__text`}>
                     <span>{innerText}</span>
@@ -276,8 +271,7 @@ function buildName(tag, id, classes) {
       classes.map((classname, i) => (
         <span
           className={`${prefix}--inventory__sub-item__name__class`}
-          key={classname + i}
-        >
+          key={classname + i}>
           {classname}
         </span>
       ))
@@ -345,8 +339,7 @@ function emptyInventory(search) {
             link_url: packageJSON.bugs.url,
             outbound: true,
           })
-        }
-      >
+        }>
         submit an issue
       </Link>
       .

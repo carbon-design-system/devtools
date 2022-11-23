@@ -2,11 +2,10 @@ name: PR Check
 
 on:
   pull_request:
-    branches: [ base ]
+    branches: [base]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -14,15 +13,17 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-  
-    - name: Install dependencies
-      run: yarn
-    - name: Test packages
-      run: yarn test
-    - name: Build packages
-      run: yarn build
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn
+      - name: Test packages
+        run: yarn test
+      - name: Build packages
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
+        run: yarn build

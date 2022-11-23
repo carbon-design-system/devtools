@@ -9,8 +9,7 @@ function ComingSoon() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-      }}
-    >
+      }}>
       <div style={{ textAlign: 'center' }}>
         <p>
           <Sprout width="32" style={{ fill: 'currentColor' }} />

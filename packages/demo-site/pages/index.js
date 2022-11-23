@@ -134,8 +134,7 @@ const Random = () => {
               searchParams.get('singleType')
                 ? searchParams.get('singleType')
                 : searchParams.get(selector + 'Type') || 'slide-up'
-            }
-          >
+            }>
             {content}
           </ScrollAnimations>
         );
@@ -291,8 +290,7 @@ function randomLeadspaceBlock() {
       type="2-1"
       nested={true}
       border={Boolean(randomNum(0, 1))}
-      key={Math.random()}
-    >
+      key={Math.random()}>
       <div>
         <a name={data.title.replace(/ /g, '-')} data-title={data.title} />
         <LeadSpaceBlock {...data} key={Math.random()} />
@@ -322,8 +320,7 @@ function randomSection() {
             ? ` random--${themes[randomNum(0, themes.length - 1)]}`
             : '',
           'random--themed-section',
-        ].join(' ')}
-      >
+        ].join(' ')}>
         {item}
       </div>
     );
@@ -417,8 +414,7 @@ function randomContentBlock() {
       type="2-1"
       nested={true}
       border={data.layoutBorder}
-      key={Math.random()}
-    >
+      key={Math.random()}>
       <div>
         <a name={data.heading.replace(/ /g, '-')} data-title={data.heading} />
         <ContentBlock {...data} />

@@ -1,3 +1,4 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
 .#{$specs-prefix} {
   &.#{$specs-prefix}--outline body > *:not([class*='#{$prefix}--']) {
     &,
