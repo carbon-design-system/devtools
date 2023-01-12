@@ -5,8 +5,8 @@ tool for browsers that provides designers, developers, QA teams and anyone
 collaborating to build and validate Carbon pages with a simple set of tools.
 
 - [Features](#features)
-- [Install on Chrome](#chrome-web-store)
-- [Install on Firefox](#firefox-browser-add-ons)
+- [Install on Chrome](#install-on-chrome)
+- [Install on Firefox](#install-on-firefox)
 - [Local development](#local-development)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -57,7 +57,7 @@ resize your browser to see how your page responds at various supported
 
 ## Install on Firefox
 
-1. Go to [Carbon Devtools](http://ibm.biz/carbon-devtools-firefox) on the
+1. Go to [Carbon Devtools](https://addons.mozilla.org/en-US/firefox/addon/carbondevtools/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) on the
    Firefox browser add-ons.
 2. Click the "+ Add to Firefox" button.
 3. Once installed you can click to open it from your toolbar.
