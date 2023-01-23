@@ -1518,7 +1518,7 @@
     "@carbon/type" "10.45.0"
     carbon-components "10.58.4"
 
-"@carbon/ibmdotcom-utilities@1.27.0", "@carbon/ibmdotcom-utilities@^1.27.0":
+"@carbon/ibmdotcom-utilities@1.27.0":
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.27.0.tgz#fc50a7b0dd40274900fb1608f0e44dd89ae0ad39"
   integrity sha512-4W9AZMnCcukegn3EM4duDcBLm8rEA/TxesVVlms/ES8gWN3+YW+Ahe/AhPl7TTE4R/QdKxQK9nvP7+cxkERtJQ==
@@ -1540,6 +1540,20 @@
     axios "^0.27.2"
     carbon-components "10.58.4"
     isomorphic-dompurify "0.23.0"
+    js-cookie "^2.2.1"
+    marked "^4.0.10"
+    striptags "^3.2.0"
+    window-or-global "^1.0.1"
+
+"@carbon/ibmdotcom-utilities@^1.27.0":
+  version "1.42.0"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.42.0.tgz#42b0b26133c3e8ec34f38d031e1eefadcf13d6f4"
+  integrity sha512-VaGdKky/T8/r55pgxnCXrG0OwKv66F9CqQAOsO4rfK92MXJwsPxPw99cE+hrCYWy1pLHAxgff9AXt0fFXgmwMg==
+  dependencies:
+    "@carbon/telemetry" "0.1.0"
+    axios "^0.27.2"
+    carbon-components "10.58.5"
+    isomorphic-dompurify "0.24.0"
     js-cookie "^2.2.1"
     marked "^4.0.10"
     striptags "^3.2.0"
@@ -4936,7 +4950,7 @@ carbon-components@10.47.0:
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
-carbon-components@10.48.0, carbon-components@^10.41.0:
+carbon-components@10.48.0:
   version "10.48.0"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.48.0.tgz#e1c31b7b5d27cf12299fd86f6c9b8f0546bb6b43"
   integrity sha512-kz6WlB4sVyOW/fUZLQ+f83cS2AAvcNRXkMi6au1guUHMdoTtIBz62AGKGxq54Xy2hQZK0Ca6aH01NopxOV4wUw==
@@ -4960,6 +4974,16 @@ carbon-components@10.58.4:
   version "10.58.4"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.58.4.tgz#b3da1c7cbdcb680044897141ac50c1066ed11ef2"
   integrity sha512-Gr4qYvHRH3YqqK0lUUi0IPjiTLZjJ1P7ffkteiDNRFcWFF0lKR2wh5SC4mJTYxBy+h5qcZSb75e/nzgEXDUsgg==
+  dependencies:
+    "@carbon/telemetry" "0.1.0"
+    flatpickr "4.6.1"
+    lodash.debounce "^4.0.8"
+    warning "^3.0.0"
+
+carbon-components@10.58.5, carbon-components@^10.41.0:
+  version "10.58.5"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.58.5.tgz#5d27740c745d7a5f1f786ca2210d833f079a3746"
+  integrity sha512-7NdteXZZ5lAR45FXwb7K2ZMlqBxS3TAt8uRs6U0ARaFE/WRJtgOeSQqkwRXczqSmXctElKNtoXgLXzubTMmPMQ==
   dependencies:
     "@carbon/telemetry" "0.1.0"
     flatpickr "4.6.1"
@@ -6691,6 +6715,11 @@ dompurify@^2.4.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.1.tgz#f9cb1a275fde9af6f2d0a2644ef648dd6847b631"
   integrity sha512-ewwFzHzrrneRjxzmK6oVz/rZn9VWspGFRDb4/rRtIsM1n36t9AKma/ye8syCpcw+XJ25kOK/hOG7t1j2I2yBqA==
+
+dompurify@^2.4.1:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.3.tgz#f4133af0e6a50297fc8874e2eaedc13a3c308c03"
+  integrity sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==
 
 domutils@^1.7.0:
   version "1.7.0"
@@ -9721,6 +9750,15 @@ isomorphic-dompurify@0.23.0:
   dependencies:
     "@types/dompurify" "^2.3.4"
     dompurify "^2.4.0"
+    jsdom "^20.0.1"
+
+isomorphic-dompurify@0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.24.0.tgz#d8f2b677fbef8b04b54ba7dae62c468cbc5fe781"
+  integrity sha512-YePhHHQAVsU1CYkL3gKQmga+fTAh66eWg+RVQOVFRNfzoLkd+gFhFY5S+g80f8b0v2JBMYg+npqdZI1vOxTOBQ==
+  dependencies:
+    "@types/dompurify" "^2.3.4"
+    dompurify "^2.4.1"
     jsdom "^20.0.1"
 
 isomorphic-dompurify@0.4.0:
