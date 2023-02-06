@@ -1518,7 +1518,7 @@
     "@carbon/type" "10.45.0"
     carbon-components "10.58.4"
 
-"@carbon/ibmdotcom-utilities@1.27.0", "@carbon/ibmdotcom-utilities@^1.27.0":
+"@carbon/ibmdotcom-utilities@1.27.0":
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.27.0.tgz#fc50a7b0dd40274900fb1608f0e44dd89ae0ad39"
   integrity sha512-4W9AZMnCcukegn3EM4duDcBLm8rEA/TxesVVlms/ES8gWN3+YW+Ahe/AhPl7TTE4R/QdKxQK9nvP7+cxkERtJQ==
@@ -1540,6 +1540,20 @@
     axios "^0.27.2"
     carbon-components "10.58.4"
     isomorphic-dompurify "0.23.0"
+    js-cookie "^2.2.1"
+    marked "^4.0.10"
+    striptags "^3.2.0"
+    window-or-global "^1.0.1"
+
+"@carbon/ibmdotcom-utilities@^1.27.0":
+  version "1.43.0"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.43.0.tgz#318b5266a49565f05d7778138999b715212da58a"
+  integrity sha512-bBqtXGAz4vzeB/pdWnY9PCYsycT4SIYFT+8YNO3jATdBPOdBxBUsDihDc4pRJv+GfneXv6PM5YYaw/frYX800w==
+  dependencies:
+    "@carbon/telemetry" "0.1.0"
+    axios "^0.27.2"
+    carbon-components "10.58.5"
+    isomorphic-dompurify "0.26.0"
     js-cookie "^2.2.1"
     marked "^4.0.10"
     striptags "^3.2.0"
@@ -4936,7 +4950,7 @@ carbon-components@10.47.0:
     lodash.debounce "^4.0.8"
     warning "^3.0.0"
 
-carbon-components@10.48.0, carbon-components@^10.41.0:
+carbon-components@10.48.0:
   version "10.48.0"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.48.0.tgz#e1c31b7b5d27cf12299fd86f6c9b8f0546bb6b43"
   integrity sha512-kz6WlB4sVyOW/fUZLQ+f83cS2AAvcNRXkMi6au1guUHMdoTtIBz62AGKGxq54Xy2hQZK0Ca6aH01NopxOV4wUw==
@@ -4960,6 +4974,16 @@ carbon-components@10.58.4:
   version "10.58.4"
   resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.58.4.tgz#b3da1c7cbdcb680044897141ac50c1066ed11ef2"
   integrity sha512-Gr4qYvHRH3YqqK0lUUi0IPjiTLZjJ1P7ffkteiDNRFcWFF0lKR2wh5SC4mJTYxBy+h5qcZSb75e/nzgEXDUsgg==
+  dependencies:
+    "@carbon/telemetry" "0.1.0"
+    flatpickr "4.6.1"
+    lodash.debounce "^4.0.8"
+    warning "^3.0.0"
+
+carbon-components@10.58.5, carbon-components@^10.41.0:
+  version "10.58.5"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.58.5.tgz#5d27740c745d7a5f1f786ca2210d833f079a3746"
+  integrity sha512-7NdteXZZ5lAR45FXwb7K2ZMlqBxS3TAt8uRs6U0ARaFE/WRJtgOeSQqkwRXczqSmXctElKNtoXgLXzubTMmPMQ==
   dependencies:
     "@carbon/telemetry" "0.1.0"
     flatpickr "4.6.1"
@@ -6696,6 +6720,11 @@ dompurify@^2.4.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.1.tgz#f9cb1a275fde9af6f2d0a2644ef648dd6847b631"
   integrity sha512-ewwFzHzrrneRjxzmK6oVz/rZn9VWspGFRDb4/rRtIsM1n36t9AKma/ye8syCpcw+XJ25kOK/hOG7t1j2I2yBqA==
+
+dompurify@^2.4.1:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.3.tgz#f4133af0e6a50297fc8874e2eaedc13a3c308c03"
+  integrity sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==
 
 domutils@^1.7.0:
   version "1.7.0"
@@ -9743,6 +9772,15 @@ isomorphic-dompurify@0.23.0:
     dompurify "^2.4.0"
     jsdom "^20.0.1"
 
+isomorphic-dompurify@0.26.0:
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.26.0.tgz#1848bfffc2c5911449e150c20af650acf1d4256c"
+  integrity sha512-70gPadd/NJPTBuTtM5PsWimmc7S4fcBENzOFMHfBtIPacaygUvI9n63qFkUTc91WDDC9yB68mtmluW9/NhhTJw==
+  dependencies:
+    "@types/dompurify" "^2.3.4"
+    dompurify "^2.4.1"
+    jsdom "^21.0.0"
+
 isomorphic-dompurify@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.4.0.tgz#89397349a6f67648ca94d02ffa41f2299b7474e2"
@@ -9850,6 +9888,38 @@ jsdom@^20.0.1:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-20.0.3.tgz#886a41ba1d4726f67a8858028c99489fed6ad4db"
   integrity sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ==
+  dependencies:
+    abab "^2.0.6"
+    acorn "^8.8.1"
+    acorn-globals "^7.0.0"
+    cssom "^0.5.0"
+    cssstyle "^2.3.0"
+    data-urls "^3.0.2"
+    decimal.js "^10.4.2"
+    domexception "^4.0.0"
+    escodegen "^2.0.0"
+    form-data "^4.0.0"
+    html-encoding-sniffer "^3.0.0"
+    http-proxy-agent "^5.0.0"
+    https-proxy-agent "^5.0.1"
+    is-potential-custom-element-name "^1.0.1"
+    nwsapi "^2.2.2"
+    parse5 "^7.1.1"
+    saxes "^6.0.0"
+    symbol-tree "^3.2.4"
+    tough-cookie "^4.1.2"
+    w3c-xmlserializer "^4.0.0"
+    webidl-conversions "^7.0.0"
+    whatwg-encoding "^2.0.0"
+    whatwg-mimetype "^3.0.0"
+    whatwg-url "^11.0.0"
+    ws "^8.11.0"
+    xml-name-validator "^4.0.0"
+
+jsdom@^21.0.0:
+  version "21.1.0"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-21.1.0.tgz#d56ba4a84ed478260d83bd53dc181775f2d8e6ef"
+  integrity sha512-m0lzlP7qOtthD918nenK3hdItSd2I+V3W9IrBcB36sqDwG+KnUs66IF5GY7laGWUnlM9vTsD0W1QwSEBYWWcJg==
   dependencies:
     abab "^2.0.6"
     acorn "^8.8.1"
@@ -11272,13 +11342,6 @@ node-fetch@^2.5.0, node-fetch@^2.6.7:
   version "2.6.7"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
-  dependencies:
-    whatwg-url "^5.0.0"
-
-node-fetch@^2.6.1:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.6.tgz#1751a7c01834e8e1697758732e9efb6eeadfaf89"
-  integrity sha512-Z8/6vRlTUChSdIgMa51jxQ4lrw/Jy5SOW10ObaA47/RElsAN2c5Pn8bTgFGWn/ibwzXTE8qwr1Yzx28vsecXEA==
   dependencies:
     whatwg-url "^5.0.0"
 
