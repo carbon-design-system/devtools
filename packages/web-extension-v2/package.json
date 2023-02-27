@@ -1,0 +1,116 @@
+{
+  "name": "carbon-devtools-v2",
+  "version": "2.7.7",
+  "private": true,
+  "description": "A basic set of tools for teams building live Carbon pages.",
+  "main": "dist/manifest.json",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "watch": "webpack --watch --config webpack.dev.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "clean": "rimraf dist && rimraf node_modules",
+    "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint . --ext .js",
+    "lint:css": "stylelint 'src/**/*.{css,scss}' --report-needless-disables --report-invalid-scope-disables",
+    "test": "yarn format && yarn lint"
+  },
+  "dependencies": {
+    "@carbon/colors": "^10.30.0",
+    "@carbon/grid": "^10.33.0",
+    "@carbon/ibm-products": "^1.2.4",
+    "@carbon/ibm-security": "^1.31.0",
+    "@carbon/ibmdotcom-react": "^1.27.0",
+    "@carbon/ibmdotcom-utilities": "^1.27.0",
+    "@carbon/icons": "^10.37.0",
+    "@carbon/layout": "^10.29.0",
+    "@carbon/motion": "^10.22.0",
+    "@carbon/themes": "^10.40.0",
+    "@carbon/type": "^10.33.0",
+    "carbon-components": "^10.41.0",
+    "carbon-components-react": "^7.41.0",
+    "color": "^3.1.2",
+    "node-fetch": "^3.1.1",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "@carbon/icons-react": "^10.37.0",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^6.2.1",
+    "css-loader": "^4.2.2",
+    "cssnano": "^4.1.10",
+    "dotenv-webpack": "^2.0.0",
+    "eslint": "^7.12.0",
+    "eslint-config-carbon": "^2.1.0",
+    "html-loader": "^1.3.0",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss": "^8.4.18",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-rem-to-pixel": "^4.1.2",
+    "preact": "^10.4.8",
+    "prettier": "^2.7.1",
+    "prettier-config-carbon": "^0.8.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-svg-loader": "^3.0.3",
+    "rimraf": "^3.0.2",
+    "sass": "1.32.8",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "stylelint": "^14.3.0",
+    "stylelint-config-carbon": "^1.2.0",
+    "terser-webpack-plugin": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.3",
+    "webpack-visualizer-plugin": "^0.1.11",
+    "zip-webpack-plugin": "^3.0.0"
+  },
+  "sideEffects": false,
+  "keywords": [
+    "IBM",
+    "Dotcom",
+    "IBM.com",
+    "Carbon",
+    "Tools",
+    "Development"
+  ],
+  "author": "James Dow",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carbon-design-system/devtools"
+  },
+  "bugs": {
+    "url": "https://github.com/carbon-design-system/devtools/issues/new",
+    "email": "james.dow@us.ibm.com"
+  },
+  "homepage": "https://github.com/carbon-design-system/devtools#readme",
+  "eslintConfig": {
+    "extends": [
+      "carbon"
+    ],
+    "globals": {
+      "chrome": "readonly"
+    }
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-carbon"
+    ],
+    "rules": {
+      "max-nesting-depth": 3
+    }
+  }
+}
