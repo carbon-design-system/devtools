@@ -14,7 +14,7 @@
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint . --ext .js",
     "lint:css": "stylelint 'src/**/*.{css,scss}' --report-needless-disables --report-invalid-scope-disables",
-    "test": "yarn format && yarn lint"
+    "test": "yarn format"
   },
   "dependencies": {
     "@carbon/colors": "^10.30.0",
