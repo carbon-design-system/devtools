@@ -1,20 +1,31 @@
 {
   "name": "{package_name}",
   "version": "{package_version}",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "{package_description}",
   "author": "{package_author}",
   "permissions": [
     "activeTab",
     "storage",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
     "https://*.mybluemix.net/*",
     "https://*.carbondesignsystem.com/*"
   ],
   "background": {
-    "scripts": ["/background/index.js"],
-    "persistent": false
+    "service_worker": "/background/index.js"
   },
-  "web_accessible_resources": ["/inject/index.css"],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "/inject/index.css",
+        "/validate/validationScript.js"
+      ],
+      "matches": ["*://*/*"]
+    }
+  ],
   "icons": {
     "16": "/media/16x16-mid.png",
     "32": "/media/32x32-mid.png",
@@ -22,7 +33,7 @@
     "64": "/media/64x64-mid.png",
     "128": "/media/128x128-mid.png"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "/popup/index.html"
   },
   "options_ui": {

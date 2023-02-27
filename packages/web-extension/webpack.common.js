@@ -127,6 +127,10 @@ module.exports = {
             return syncManifestPackage(content.toString());
           },
         },
+        {
+          from: './src/validate/validationScript.js',
+          to: './validate',
+        },
       ],
     }),
     new Visualizer(),
