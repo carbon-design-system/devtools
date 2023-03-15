@@ -4,4 +4,9 @@ function activeTab(callback) {
   );
 }
 
-export { activeTab };
+async function activeTabAsync() {
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  return tabs[0];
+}
+
+export { activeTab, activeTabAsync };

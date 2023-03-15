@@ -22,9 +22,13 @@ jobs:
         run: |
           cd packages/component-list
           yarn build
-      - name: Build web-extension
+      - name: Build web-extension v3 (Chrome)
         run: |
           cd packages/web-extension
+          yarn build
+      - name: Build web-extension v2 (Firefox)
+        run: |
+          cd packages/web-extension-v2
           yarn build
       - name: Publish to Chrome
         uses: trmcnvn/chrome-addon@v2
@@ -38,7 +42,7 @@ jobs:
         uses: trmcnvn/firefox-addon@v1
         with:
           uuid: ${{ secrets.FWE_UUID }}
-          xpi: packages/web-extension/dist/web-extension.zip
+          xpi: packages/web-extension-v2/dist/web-extension.zip
           manifest: packages/web-extension/dist/manifest.json
           api-key: ${{ secrets.FWE_API_KEY }}
           api-secret: ${{ secrets.FWE_PUBLISH_SECRET }}

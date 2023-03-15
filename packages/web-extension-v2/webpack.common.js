@@ -15,22 +15,21 @@ module.exports = {
   },
   entry: {
     popup: [
-      // './src/setPrefix.js',
-      './src/popup/index.js',
+      path.resolve(__dirname, '../web-extension/src/popup/index.js'),
+      path.resolve(__dirname, '../web-extension/src/popup/index.scss'),
     ],
     options: [
-      // './src/setPrefix.js',
-      './src/options/index.js',
+      path.resolve(__dirname, '../web-extension/src/options/index.js'),
+      path.resolve(__dirname, '../web-extension/src/options/index.scss'),
     ],
     background: [
-      // './src/setPrefix.js',
-      './src/background/index.js',
+      path.resolve(__dirname, '../web-extension/src/background/index.js'),
     ],
-    validate: [
-      // './src/setPrefix.js',
-      './src/validate/index.js',
+    validate: ['./src/validate/index.js'],
+    inject: [
+      path.resolve(__dirname, '../web-extension/src/globals/setPrefix.js'),
+      path.resolve(__dirname, '../web-extension/src/inject/index.js'),
     ],
-    inject: ['./src/globals/setPrefix.js', './src/inject/index.js'],
   },
   module: {
     rules: [
@@ -56,7 +55,7 @@ module.exports = {
             options: {
               sourceMap: true,
               sassOptions: {
-                includePaths: ['./node_modules'],
+                includePaths: ['../web-extension/node_modules'],
               },
             },
           },
@@ -68,6 +67,12 @@ module.exports = {
         sideEffects: false,
         use: {
           loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { modules: false }],
+              '@babel/preset-react',
+            ],
+          },
         },
       },
       {
@@ -117,7 +122,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: './src/media',
+          from: path.resolve(__dirname, '../web-extension/src/media'),
           to: './media',
         },
         {
@@ -126,10 +131,6 @@ module.exports = {
           transform(content) {
             return syncManifestPackage(content.toString());
           },
-        },
-        {
-          from: './src/validate/validationScript.js',
-          to: './validate',
         },
       ],
     }),

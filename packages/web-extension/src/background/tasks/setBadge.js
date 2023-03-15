@@ -4,6 +4,7 @@ import {
 } from '@carbon/devtools-utilities/src/experimental';
 import { magenta } from '@carbon/colors';
 import { defaults } from '../../globals/defaults';
+import { isManifestV3 } from '@carbon/devtools-utilities/src/isManifestV3';
 
 let iconColor = '#888D94';
 let experimental = defaults.generalSettings.experimental;
@@ -34,37 +35,49 @@ function updateBadgeByRules() {
 }
 
 function createBadge(text, color) {
-  chrome.browserAction.setBadgeText({ text: text });
-  chrome.browserAction.setBadgeBackgroundColor({ color: color });
+  if (isManifestV3()) {
+    chrome.action.setBadgeText({ text: text });
+    chrome.action.setBadgeBackgroundColor({ color: color });
+  } else {
+    chrome.browserAction.setBadgeText({ text: text });
+    chrome.browserAction.setBadgeBackgroundColor({ color: color });
+  }
 }
 
+// https://github.com/w3c/ServiceWorker/issues/1577
 function manageIcon() {
-  if (window.matchMedia) {
-    let manualListener;
+  if (!isManifestV3()) {
+    if (window.matchMedia) {
+      let manualListener;
 
-    setIcon(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setIcon(window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-    window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', (e) => {
-        window.clearInterval(manualListener);
-        manualListener = true;
-        setIcon(e.matches);
-      });
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', (e) => {
+          window.clearInterval(manualListener);
+          manualListener = true;
+          setIcon(e.matches);
+        });
 
-    if (!manualListener) {
-      manualListener = window.setInterval(() => {
-        setIcon(window.matchMedia('(prefers-color-scheme: dark)').matches);
-      }, 1000);
+      if (!manualListener) {
+        manualListener = window.setInterval(() => {
+          setIcon(window.matchMedia('(prefers-color-scheme: dark)').matches);
+        }, 1000);
+      }
     }
   }
 }
 
 function setIcon(darkTheme) {
-  if (darkTheme) {
-    chrome.browserAction.setIcon({ path: '/media/16x16-dark.png' });
+  if (isManifestV3()) {
+    darkTheme
+      ? chrome.action.setIcon({ path: '/media/16x16-dark.png' })
+      : chrome.action.setIcon({ path: '/media/16x16-light.png' });
   } else {
-    chrome.browserAction.setIcon({ path: '/media/16x16-light.png' });
+    darkTheme
+      ? chrome.browserAction.setIcon({ path: '/media/16x16-dark.png' })
+      : chrome.browserAction.setIcon({ path: '/media/16x16-light.png' });
   }
 
   updateBadgeByRules();
