@@ -35,7 +35,7 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@carbon/icons-react": "^10.37.0",
+    "@carbon/icons-react": "^11.18.0",
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",

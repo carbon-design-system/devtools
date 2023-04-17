@@ -36,7 +36,7 @@
     "@carbon/ibmdotcom-react": "^1.40.0",
     "@carbon/ibmdotcom-styles": "^1.40.0",
     "@carbon/ibmdotcom-web-components": "^1.25.0",
-    "@carbon/icons-react": "^10.37.0",
+    "@carbon/icons-react": "^11.18.0",
     "@carbon/pictograms-react": "^11.34.0",
     "eslint-config-carbon": "^2.1.0",
     "stylelint-config-carbon": "^1.2.0"
