@@ -30,15 +30,16 @@
     "@carbon/type": "^10.33.0",
     "carbon-components": "^10.41.0",
     "carbon-components-react": "^7.41.0",
+    "carbon-devtools": "^2.7.7",
     "color": "^3.1.2",
     "node-fetch": "^3.1.1",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@carbon/icons-react": "^10.37.0",
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "@carbon/icons-react": "^10.37.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.2.1",
