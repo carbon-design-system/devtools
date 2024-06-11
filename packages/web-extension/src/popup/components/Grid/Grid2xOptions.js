@@ -9,7 +9,6 @@ import Switch from 'carbon-components-react/es/components/Switch';
 import FormLabel from 'carbon-components-react/es/components/FormLabel';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
-import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../../../globals/defaults';
 import { positions } from '../../../globals/options';
 import { labelMaker } from './labelMaker';
@@ -55,7 +54,6 @@ function Grid2xOptions({ disabled }) {
               const changes = { ...toggle2xGridOptions };
               changes['toggle2xColumns'] = e;
               setToggle2xGridOptions(changes);
-              gaConfigurationEvent('2x-grid-change', '2x-columns', e);
             }}
           />
         </div>
@@ -69,7 +67,6 @@ function Grid2xOptions({ disabled }) {
               const changes = { ...toggle2xGridOptions };
               changes['toggle2xGutters'] = e;
               setToggle2xGridOptions(changes);
-              gaConfigurationEvent('2x-grid-change', '2x-gutters', e);
             }}
           />
         </div>
@@ -83,7 +80,6 @@ function Grid2xOptions({ disabled }) {
               const changes = { ...toggle2xGridOptions };
               changes['toggle2xBorders'] = e;
               setToggle2xGridOptions(changes);
-              gaConfigurationEvent('2x-grid-change', '2x-borders', e);
             }}
           />
         </div>
@@ -104,7 +100,6 @@ function Grid2xOptions({ disabled }) {
               const changes = { ...toggle2xGridOptions };
               changes['toggle2xPosition'] = e.name;
               setToggle2xGridOptions(changes);
-              gaConfigurationEvent('2x-grid-change', '2x-position', e.name);
             }}>
             {Object.keys(positions).map((position) => {
               const Icon = positions[position];
@@ -138,11 +133,6 @@ function Grid2xOptions({ disabled }) {
               const changes = { ...toggle2xGridOptions };
               changes['toggle2xLeftInfluencer'] = e.imaginaryTarget.value || 0;
               setToggle2xGridOptions(changes);
-              gaConfigurationEvent(
-                '2x-grid-change',
-                '2x-left-influencer',
-                changes['toggle2xLeftInfluencer']
-              );
             }}
           />
         </div>
@@ -159,11 +149,6 @@ function Grid2xOptions({ disabled }) {
               const changes = { ...toggle2xGridOptions };
               changes['toggle2xRightInfluencer'] = e.imaginaryTarget.value || 0;
               setToggle2xGridOptions(changes);
-              gaConfigurationEvent(
-                '2x-grid-change',
-                '2x-right-influencer',
-                changes['toggle2xRightInfluencer']
-              );
             }}
           />
         </div>

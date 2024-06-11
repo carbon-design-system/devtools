@@ -5,7 +5,6 @@ import Checkbox from 'carbon-components-react/es/components/Checkbox';
 import FormGroup from 'carbon-components-react/es/components/FormGroup';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
-import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../../../globals/defaults';
 import { labelMaker } from './labelMaker';
 
@@ -48,11 +47,6 @@ function GridMiniUnitOptions({ disabled }) {
               const changes = { ...toggleMiniUnitGridOptions };
               changes['miniUnitVerticalBorders'] = e;
               setToggleMiniUnitGridOptions(changes);
-              gaConfigurationEvent(
-                'mini-unit-grid-change',
-                'mini-unit-vertical-borders',
-                e
-              );
             }}
           />
         </div>
@@ -66,11 +60,6 @@ function GridMiniUnitOptions({ disabled }) {
               const changes = { ...toggleMiniUnitGridOptions };
               changes['miniUnitHorizontalBorders'] = e;
               setToggleMiniUnitGridOptions(changes);
-              gaConfigurationEvent(
-                'mini-unit-grid-change',
-                'mini-unit-horizontal-borders',
-                e
-              );
             }}
           />
         </div>
@@ -84,11 +73,6 @@ function GridMiniUnitOptions({ disabled }) {
               const changes = { ...toggleMiniUnitGridOptions };
               changes['miniUnitCells'] = e;
               setToggleMiniUnitGridOptions(changes);
-              gaConfigurationEvent(
-                'mini-unit-grid-change',
-                'mini-unit-cells',
-                e
-              );
             }}
           />
         </div>
@@ -102,7 +86,6 @@ function GridMiniUnitOptions({ disabled }) {
               const changes = { ...toggleMiniUnitGridOptions };
               changes['miniUnitFix'] = e;
               setToggleMiniUnitGridOptions(changes);
-              gaConfigurationEvent('mini-unit-grid-change', 'mini-unit-fix', e);
             }}
           />
         </div>

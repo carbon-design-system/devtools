@@ -5,7 +5,6 @@ import settings from 'carbon-components/es/globals/js/settings';
 
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
-import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../../../globals/defaults';
 
 import Checkbox from 'carbon-components-react/es/components/Checkbox';
@@ -58,7 +57,6 @@ function Specs({ disabled }) {
               const changes = { ...toggleSpecs };
               changes.outline = e;
               setToggleSpecs(changes);
-              gaConfigurationEvent('specs-change', 'outline', e);
             }}
           />
         </div>
@@ -73,7 +71,6 @@ function Specs({ disabled }) {
               const changes = { ...toggleSpecs };
               changes.type = e;
               setToggleSpecs(changes);
-              gaConfigurationEvent('specs-change', e);
             }}>
             <RadioTile
               disabled={disabled}

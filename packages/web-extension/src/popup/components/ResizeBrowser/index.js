@@ -8,7 +8,6 @@ import { breakpoints } from '@carbon/layout';
 import { remtopx } from '@carbon/devtools-utilities/src/remtopx';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
-import { gaConfigurationEvent } from '@carbon/devtools-utilities/src/ga';
 import { labelMaker } from '../Grid/labelMaker'; // needs to go in a utility or something
 
 const { prefix } = settings;
@@ -70,11 +69,6 @@ function ResizeBrowser({ windowWidth = 0 }) {
               checked={toggleBreakpointLabel}
               onChange={(e) => {
                 setToggleBreakpointLabel(e);
-                gaConfigurationEvent(
-                  '2x-grid-change',
-                  '2x-breapoints-label',
-                  e
-                );
               }}
             />
           </div>
@@ -103,10 +97,9 @@ function getBreakpointIndex(windowWidth) {
   }
 }
 
-function resizeBrowser({ text, name: width }) {
+function resizeBrowser({ name: width }) {
   // should this be a utility?
   chrome.windows.update(-2, { width: width });
-  gaConfigurationEvent('browser-resize-change', text, width);
 }
 
 ResizeBrowser.propTypes = {
