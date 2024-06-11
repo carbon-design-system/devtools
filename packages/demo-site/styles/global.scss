@@ -1,0 +1,6 @@
+@import '~@carbon/type/scss/font-face/mono';
+@import '~@carbon/type/scss/font-face/sans';
+@import '~@carbon/ibmdotcom-styles/scss/components/dotcom-shell/dotcom-shell';
+
+@include carbon--font-face-mono();
+@include carbon--font-face-sans();

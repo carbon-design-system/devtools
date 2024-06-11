@@ -1,0 +1,6 @@
+.idea
+node_modules
+.next
+settings.json
+out
+.env

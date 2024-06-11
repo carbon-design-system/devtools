@@ -1,0 +1,25 @@
+{
+  "page": {
+    "category": {
+      "primaryCategory": ""
+    },
+    "pageInfo": {
+      "effectiveDate": "",
+      "expiryDate": "",
+      "language": "",
+      "publishDate": "",
+      "publisher": "",
+      "version": "Carbon for IBM.com",
+      "ibm": {
+        "contentDelivery": "",
+        "contentProducer": "",
+        "country": "",
+        "industry": "",
+        "owner": "",
+        "siteID": "",
+        "subject": "",
+        "type": ""
+      }
+    }
+  }
+}
