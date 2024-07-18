@@ -1,6 +1,6 @@
 {
   "name": "@carbon/devtools-component-list",
-  "version": "2.7.7",
+  "version": "2.7.8",
   "description": "Generates a list of components and their selectors across all of the Carbon libraries.",
   "main": "./dist/index.json",
   "scripts": {
@@ -74,7 +74,7 @@
     "Tools",
     "Development"
   ],
-  "author": "James Dow",
+  "author": "IBM",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -82,7 +82,7 @@
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/devtools/issues/new",
-    "email": "james.dow@us.ibm.com"
+    "email": "carbon@us.ibm.com"
   },
   "homepage": "https://github.com/carbon-design-system/devtools#readme"
 }

@@ -1,6 +1,6 @@
 {
-  "name": "carbon-devtools",
-  "version": "2.7.7",
+  "name": "carbon-devtools-v10",
+  "version": "2.7.8",
   "private": true,
   "description": "A basic set of tools for teams building live Carbon pages.",
   "main": "dist/manifest.json",
@@ -91,7 +91,7 @@
     "Tools",
     "Development"
   ],
-  "author": "James Dow",
+  "author": "IBM",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -99,7 +99,7 @@
   },
   "bugs": {
     "url": "https://github.com/carbon-design-system/devtools/issues/new",
-    "email": "james.dow@us.ibm.com"
+    "email": "carbon@us.ibm.com"
   },
   "homepage": "https://github.com/carbon-design-system/devtools#readme",
   "eslintConfig": {
