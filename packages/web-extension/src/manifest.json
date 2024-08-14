@@ -4,7 +4,7 @@
   "manifest_version": 3,
   "description": "{package_description}",
   "author": "{package_author}",
-  "permissions": ["activeTab", "storage", "scripting", "tabs"],
+  "permissions": ["activeTab", "storage", "scripting"],
   "host_permissions": [
     "https://*.mybluemix.net/*",
     "https://*.carbondesignsystem.com/*"
