@@ -3202,7 +3202,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carbon/icon-helpers@npm:^10.28.4":
+"@carbon/icon-helpers@npm:^10.50.0":
   version: 10.50.0
   resolution: "@carbon/icon-helpers@npm:10.50.0"
   dependencies:
@@ -3250,16 +3250,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carbon/icons-react@npm:^10.49.5":
-  version: 10.49.5
-  resolution: "@carbon/icons-react@npm:10.49.5"
+"@carbon/icons-react@npm:^11.46.0":
+  version: 11.46.0
+  resolution: "@carbon/icons-react@npm:11.46.0"
   dependencies:
-    "@carbon/icon-helpers": "npm:^10.28.4"
+    "@carbon/icon-helpers": "npm:^10.50.0"
     "@ibm/telemetry-js": "npm:^1.5.0"
     prop-types: "npm:^15.7.2"
   peerDependencies:
     react: ">=16"
-  checksum: 10c0/0ee5f3a4deba4ae11e21274b66b358221d43e3c8c58a5e3eb9e2b801efb14909bdf3340e9de234bebe075e218870ca6eb0d4619d21ac4d67603c4eab347a829f
+  checksum: 10c0/b5259a325dbfef7bde7cdb4259a36b980471cf325b274b4bc1430f3934ce7e4fad301b4a107e840bedae357f796c4be0cc271cfbd00c75cdd9813b1ceec6808b
   languageName: node
   linkType: hard
 
@@ -7722,7 +7722,7 @@ __metadata:
     "@carbon/ibmdotcom-react": "npm:^1.27.0"
     "@carbon/ibmdotcom-utilities": "npm:^1.27.0"
     "@carbon/icons": "npm:^10.37.0"
-    "@carbon/icons-react": "npm:^10.49.5"
+    "@carbon/icons-react": "npm:^11.46.0"
     "@carbon/layout": "npm:^10.29.0"
     "@carbon/motion": "npm:^10.22.0"
     "@carbon/themes": "npm:^10.40.0"
