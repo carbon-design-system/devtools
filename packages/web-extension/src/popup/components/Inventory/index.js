@@ -10,12 +10,6 @@ import Link from 'carbon-components-react/es/components/Link';
 import Search from 'carbon-components-react/es/components/Search';
 import { sendTabMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
-import {
-  gaNavigationEvent,
-  gaDomEvent,
-  gaException,
-  gaSearchEvent,
-} from '@carbon/devtools-utilities/src/ga';
 import { moderate02 } from '@carbon/motion';
 import packageJSON from '../../../../package.json';
 
@@ -35,7 +29,6 @@ function Inventory({ _inventoryData }) {
   const [totalCount, setTotalCount] = useState(_totalCount);
 
   let waitForTypingToStop;
-  let startPerfCheck = performance.now(); // check performance;
   let diffInTotal = totalCount - filteredTotal;
   let diffInUnique = uniqueCount - filteredUnique;
   let diffMetaClass = `${prefix}--inventory__meta-item--active`;
@@ -50,10 +43,6 @@ function Inventory({ _inventoryData }) {
   }, [_inventorySource, _uniqueCount, _totalCount]);
 
   useEffect(() => {
-    perfCheck(startPerfCheck);
-  }, [startPerfCheck]);
-
-  useEffect(() => {
     document
       .querySelectorAll(`.${prefix}--accordion__heading`)
       .forEach((comp) => {
@@ -64,7 +53,7 @@ function Inventory({ _inventoryData }) {
       });
   });
 
-  function searchComponentList(val = '', e) {
+  function searchComponentList(val = '', _e) {
     clearTimeout(waitForTypingToStop);
 
     waitForTypingToStop = setTimeout(() => {
@@ -133,10 +122,6 @@ function Inventory({ _inventoryData }) {
       setFilteredUnique(Object.keys(filteredList).length);
       setFilteredTotal(filteredTotalCount);
       setSearchTerm(val.trim());
-
-      gaSearchEvent('search', e.type, diffInUnique && 1, {
-        search_term: searchTerm,
-      });
     }, moderate02);
   }
 
@@ -191,9 +176,6 @@ function inventoryList(filteredInventory, uniqueCount) {
     <Accordion align="start" className={`${prefix}--inventory`}>
       {allKeys.map((key, i) => (
         <AccordionItem
-          onHeadingClick={(val) =>
-            gaNavigationEvent('toggle', 'inventory-item', val.isOpen)
-          }
           data-identifier={filteredInventory[key].map(
             ({ uniqueID }) => uniqueID
           )}
@@ -286,7 +268,6 @@ function componentClick(e) {
   e.preventDefault();
   const id = e.currentTarget.dataset.identifier.split(',');
   sendTabMessage(-1, { inventoryComponentClicked: id }); // single string
-  gaNavigationEvent('click', 'inventory-sub-item');
 }
 
 function componentMouseOver(e) {
@@ -331,15 +312,7 @@ function emptyInventory(search) {
     <>
       {`We could not find any components that matched our records. If you believe
           this to be in error please `}
-      <Link
-        href={packageJSON.bugs.url}
-        target="_blank"
-        onClick={() =>
-          gaNavigationEvent('click', 'submit-an-issue', 1, {
-            link_url: packageJSON.bugs.url,
-            outbound: true,
-          })
-        }>
+      <Link href={packageJSON.bugs.url} target="_blank">
         submit an issue
       </Link>
       .
@@ -355,17 +328,6 @@ function emptyInventory(search) {
 
 function loadingInventory() {
   return <AccordionSkeleton align="start" open={false} count={3} />;
-}
-
-function perfCheck(startTime) {
-  const time = performance.now() - startTime;
-  const timeToCheck = 1000;
-
-  gaDomEvent('inventory', 'audit', Math.round(time));
-
-  if (time > timeToCheck) {
-    gaException(`Slow inventory audit: ${time}ms`, 0);
-  }
 }
 
 Inventory.propTypes = {

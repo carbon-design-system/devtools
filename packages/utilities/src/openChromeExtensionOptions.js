@@ -1,4 +1,3 @@
-import { gaNavigationEvent } from './ga';
 import { isManifestV3 } from './isManifestV3';
 
 function openChromeExtensionOptions() {
@@ -14,8 +13,6 @@ function openChromeExtensionOptions() {
       });
     }
   }
-
-  gaNavigationEvent('click', 'settings');
 }
 
 export { openChromeExtensionOptions };

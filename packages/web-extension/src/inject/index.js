@@ -9,32 +9,16 @@ import {
   injectHighlights,
   initBreakpointLabel,
 } from './components';
-import { isManifestV3 } from '@carbon/devtools-utilities/src/isManifestV3';
 
-if (isManifestV3()) {
-  if (!self.carbonDevtoolsInjected) {
-    injectHighlights();
-    initGrid();
-    initSpecs();
-    initTooltip();
-    initInventory();
-    initShortcuts();
-    initBreakpointLabel();
+if (!self.carbonDevtoolsInjected) {
+  injectHighlights();
+  initGrid();
+  initSpecs();
+  initTooltip();
+  initInventory();
+  initShortcuts();
+  initBreakpointLabel();
 
-    self.carbonDevtoolsInjected = true;
-    sendMessage({ carbonDevtoolsInjected: true });
-  }
-} else {
-  if (!window.carbonDevtoolsInjected) {
-    injectHighlights();
-    initGrid();
-    initSpecs();
-    initTooltip();
-    initInventory();
-    initShortcuts();
-    initBreakpointLabel();
-
-    window.carbonDevtoolsInjected = true;
-    sendMessage({ carbonDevtoolsInjected: true });
-  }
+  self.carbonDevtoolsInjected = true;
+  sendMessage({ carbonDevtoolsInjected: true });
 }

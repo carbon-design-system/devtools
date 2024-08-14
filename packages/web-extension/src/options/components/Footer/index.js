@@ -1,4 +1,3 @@
-import { gaNavigationEvent } from '@carbon/devtools-utilities/src/ga';
 import settings from 'carbon-components/es/globals/js/settings';
 import Link from 'carbon-components-react/es/components/Link';
 import React from 'react';
@@ -50,28 +49,12 @@ function Footer() {
         ))}
 
         <li>
-          <Link
-            onClick={() =>
-              gaNavigationEvent('click', 'code-repository', 1, {
-                link_url: repository.url,
-                outbound: true,
-              })
-            }
-            href={repository.url}
-            target="_blank">
+          <Link href={repository.url} target="_blank">
             code repository
           </Link>
         </li>
         <li>
-          <Link
-            onClick={() =>
-              gaNavigationEvent('click', 'submit-an-issue', 1, {
-                link_url: bugs.url,
-                outbound: true,
-              })
-            }
-            href={bugs.url}
-            target="_blank">
+          <Link href={bugs.url} target="_blank">
             submit an issue
           </Link>
         </li>

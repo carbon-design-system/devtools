@@ -13,13 +13,6 @@ import {
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import { formInventoryData } from '@carbon/devtools-utilities/src/formInventoryData';
-import {
-  gaPageview,
-  gaDomEvent,
-  gaNavigationEvent,
-  gaException,
-  setIBMer,
-} from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../globals/defaults';
 import { Loading, Empty, Main, MoreOptions } from './components';
 
@@ -28,8 +21,6 @@ import './index.scss';
 const { prefix } = settings;
 
 let carbonStatus = defaults.popup.carbonStatus;
-
-gaPageview('/popup', document.title);
 
 function Popup() {
   const [onCarbon, setOnCarbon] = useState(carbonStatus); // eslint-disable-line no-unused-vars
@@ -51,7 +42,6 @@ function Popup() {
           open: true,
           children: children,
         });
-        gaNavigationEvent('panel', name, 1);
       },
       close: (name) => {
         setPanelState({
@@ -59,13 +49,10 @@ function Popup() {
           open: false,
           children: panelState.children,
         });
-        gaNavigationEvent('panel', name, 0);
       },
     };
 
   useEffect(() => {
-    let startPerfCheck = performance.now();
-
     sendMessage({ popup: true });
 
     getStorage(['generalTheme'], ({ generalTheme }) => {
@@ -81,16 +68,6 @@ function Popup() {
         sendTabMessage(-1, { requestInventory: true });
       }
 
-      if (
-        msg.digitalData &&
-        msg.digitalData.user &&
-        msg.digitalData.user.segment
-      ) {
-        setIBMer(msg.digitalData.user.segment.isIBMer);
-      } else {
-        setIBMer(3); // unknown, but probably not
-      }
-
       if (msg.runningCarbon) {
         carbonStatus = true;
         setOnCarbon(true);
@@ -103,8 +80,6 @@ function Popup() {
         carbonStatus = false;
         setOnCarbon(false);
       }
-
-      perfCheck(startPerfCheck, msg);
     });
   }, []);
 
@@ -178,28 +153,6 @@ function activePanel(stateName) {
   }
 
   return '';
-}
-
-function perfCheck(startTime, msg) {
-  const time = performance.now() - startTime;
-  const timeToCheck = 1000;
-  let status = 'non-carbon';
-
-  if (!msg.carbonDevtoolsInjected) {
-    if (msg.ignoreValidation) {
-      status = 'ignored';
-    } else {
-      if (msg.runningCarbon) {
-        status = 'carbon';
-      }
-    }
-
-    gaDomEvent('validate', status, Math.round(time));
-
-    if (time > timeToCheck) {
-      gaException(`Slow validation: ${time}ms`, 0);
-    }
-  }
 }
 
 const body = document.querySelector('body');

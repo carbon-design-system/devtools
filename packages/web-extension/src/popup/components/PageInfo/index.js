@@ -5,7 +5,6 @@ import Link from 'carbon-components-react/es/components/Link';
 import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
 import Search from 'carbon-components-react/es/components/Search';
 import { moderate02 } from '@carbon/motion';
-import { gaSearchEvent } from '@carbon/devtools-utilities/src/ga';
 import {
   formGeneralRows,
   formIBMRows,
@@ -55,14 +54,13 @@ function PageInfo({ initialMsg, _inventoryData }) {
   const [searchValue, setSearchValue] = useState('');
   let waitForTypingToStop;
 
-  function searchPageInfo(val = '', e) {
+  function searchPageInfo(val = '', _e) {
     window.clearTimeout(waitForTypingToStop);
 
     waitForTypingToStop = window.setTimeout(() => {
       val = val.toLowerCase().trim();
 
       const filteredGroupResults = JSON.parse(JSON.stringify(groups));
-      let count = 0;
 
       if (val) {
         const groupKeys = Object.keys(groups);
@@ -90,7 +88,6 @@ function PageInfo({ initialMsg, _inventoryData }) {
                 href.toLowerCase().indexOf(val) > -1 ||
                 searchableValue.toLowerCase().indexOf(val) > -1
               ) {
-                count += 1;
                 return true;
               }
             }
@@ -104,8 +101,6 @@ function PageInfo({ initialMsg, _inventoryData }) {
 
       setFilteredGroups(filteredGroupResults);
       setSearchValue(val);
-
-      gaSearchEvent('search', e.type, count && 1, { search_term: searchValue });
     }, moderate02);
   }
 

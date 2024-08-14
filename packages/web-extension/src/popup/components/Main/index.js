@@ -11,10 +11,6 @@ import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';
 import { openChromeExtensionOptions } from '@carbon/devtools-utilities/src/openChromeExtensionOptions';
-import {
-  gaNavigationEvent,
-  gaConfigurationEvent,
-} from '@carbon/devtools-utilities/src/ga';
 import { defaults } from '../../../globals/defaults';
 import { Inventory, Specs, Grid, ResizeBrowser, PageInfo } from '../';
 // import * as Panels from '../';
@@ -156,7 +152,6 @@ function Main({ initialMsg, _inventoryData, _panelControls }) {
 
   function renderAccordionItem(title, Content) {
     const id = title.replace(' ', '').toLowerCase();
-    const codename = title.replace(' ', '-').toLowerCase();
 
     return !onLoad ? null : (
       <AccordionItem
@@ -166,7 +161,6 @@ function Main({ initialMsg, _inventoryData, _panelControls }) {
           const changes = { ...globalToggleStates };
           changes[id] = val.isOpen;
           setIsOpenStates(changes);
-          gaNavigationEvent('toggle', codename, val.isOpen);
         }}
         title={
           ['componentlist'].indexOf(id) > -1 ? (
@@ -185,7 +179,6 @@ function Main({ initialMsg, _inventoryData, _panelControls }) {
                     changes[id] = e;
                     setGlobalToggleStates(changes);
                     setIsOpenStates(changes);
-                    gaConfigurationEvent('global-change', codename, e);
                   }}
                 />
               </div>

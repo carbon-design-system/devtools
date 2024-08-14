@@ -4,25 +4,18 @@
   "manifest_version": 3,
   "description": "{package_description}",
   "author": "{package_author}",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "scripting",
-    "tabs"
-  ],
+  "permissions": ["activeTab", "storage", "scripting", "tabs"],
   "host_permissions": [
     "https://*.mybluemix.net/*",
     "https://*.carbondesignsystem.com/*"
   ],
   "background": {
-    "service_worker": "/background/index.js"
+    "service_worker": "/background/index.js",
+    "scripts": ["/background/index.js"]
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "/inject/index.css",
-        "/validate/validationScript.js"
-      ],
+      "resources": ["/inject/index.css", "/validate/validationScript.js"],
       "matches": ["*://*/*"]
     }
   ],

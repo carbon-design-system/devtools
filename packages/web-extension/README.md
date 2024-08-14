@@ -57,36 +57,31 @@ resize your browser to see how your page responds at various supported
 
 ## Install on Firefox
 
-1. Go to [Carbon Devtools](https://addons.mozilla.org/en-US/firefox/addon/carbondevtools/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) on the
-   Firefox browser add-ons.
+1. Go to
+   [Carbon Devtools](https://addons.mozilla.org/en-US/firefox/addon/carbondevtools/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+   on the Firefox browser add-ons.
 2. Click the "+ Add to Firefox" button.
 3. Once installed you can click to open it from your toolbar.
 
 ## Local development
 
+1. Use node v16
+2. From the repository's root dir, run `yarn install`
+3. From this package's dir, run `yarn build` to build once or `yarn watch` to
+   build on every filesave
+4. Launch the local build with one of the below:
+
+- `yarn launch:chrome` to open https://ibm.com in chrome
+- `yarn launch:firefox` to open https://ibm.com in firefox
+- `yarn launch:firefox:dev` to open firefox to the extension's debugging page.
+
+Note: You may need to re-launch the extension for some changes (e.g. changes to
+the manifest file).
+
 #### Build extension
 
 1. `fork`, `clone` and `yarn install` dependencies
 2. `yarn build` or `yarn watch` to build extension
-
-#### Install locally to browser
-
-`/extension`
-
-- Google
-  [getting started](https://developer.chrome.com/extensions/getstarted#manifest)
-- Firefox
-  [your first web extension](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Trying_it_out)
-
-#### Continue local development
-
-Once you have your local version of the extension built and installed how do we
-continue working as we update the extension?
-
-1. `yarn watch` or `yarn build` works in most cases and automatically updates
-   the extension.
-2. Every once in a while you might need to refresh the extension using the
-   refresh button.
 
 ## 🙌 Contributing
 
