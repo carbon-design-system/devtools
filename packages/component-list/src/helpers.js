@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 configure({ adapter: new Adapter() });
 
@@ -59,7 +59,7 @@ function buildReactComponentList(
       // 1. try a simple shallow render
       try {
         shallowComp = shallow(<Comp {...mockedProps} />);
-      } catch (e) {
+      } catch (_e) {
         // 2. try it with children
         try {
           shallowComp = shallow(
@@ -67,13 +67,13 @@ function buildReactComponentList(
               <li>...</li>
             </Comp>
           );
-        } catch (e) {
+        } catch (_e) {
           for (let i = 0; i < customShallowComps.length; i++) {
             // 3. try any custom shallow renders
             try {
               shallowComp = shallow(customShallowComps[i](Comp));
               break;
-            } catch (e) {
+            } catch (_e) {
               // do nothing if it fails until a little later
             }
           }
@@ -81,7 +81,7 @@ function buildReactComponentList(
       }
 
       attr = shallowComp.props();
-      className = attr && attr.className;
+      className = attr?.className;
 
       if (!className) {
         // try cheerio
@@ -105,7 +105,7 @@ function buildReactComponentList(
         console.log(`${prefix}${compKey}: Failed to find a unique identifier.`);
         fail();
       }
-    } catch (error) {
+    } catch (_error) {
       console.log(`${prefix}${compKey}: Failed to render.`);
       fail();
     }

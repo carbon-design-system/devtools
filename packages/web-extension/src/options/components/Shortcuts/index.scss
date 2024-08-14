@@ -10,9 +10,9 @@
 
     display: flex;
     padding: carbon--mini-units(0.5) carbon--mini-units(1);
+    border-radius: carbon--mini-units(0.25);
     margin-right: carbon--mini-units(0.5);
     background-color: $ui-01;
-    border-radius: carbon--mini-units(0.25);
     color: $text-01;
 
     &s {

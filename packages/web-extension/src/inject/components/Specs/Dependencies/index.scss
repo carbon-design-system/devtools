@@ -35,9 +35,9 @@
       &-item {
         display: inline-block;
         padding: 0 carbon--mini-units(1);
+        border-radius: 3px;
         margin-right: $carbon--grid-gutter--condensed * 2;
         margin-bottom: $carbon--grid-gutter--condensed * 2;
-        border-radius: 3px;
       }
 
       &-item::before {

@@ -1,5 +1,4 @@
 {
-  "version": "2.3.3",
-  "npmClient": "yarn",
-  "useWorkspaces": true
+  "version": "8.1.8",
+  "npmClient": "yarn"
 }
