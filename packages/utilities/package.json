@@ -7,7 +7,7 @@
     "format": "prettier --write '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
     "format:diff": "prettier --list-different '*.{js,json,md,scss,ts}' '**/*.{js,json,md,scss,ts}' '!**/{dist,build,es,lib,storybook,ts,umd}/**' '!**/*.{jpg,jpeg,gif,png}'",
     "lint": "yarn lint:js",
-    "lint:js": "eslint . --ext .js",
+    "lint:js": "eslint src/",
     "test": "yarn format && yarn lint"
   },
   "keywords": [
@@ -35,10 +35,10 @@
     "@carbon/layout": "^10.29.0"
   },
   "devDependencies": {
-    "eslint": "^7.12.0",
-    "eslint-config-carbon": "^2.1.0",
-    "prettier": "^2.7.1",
-    "prettier-config-carbon": "^0.8.0"
+    "eslint": "^9.9.0",
+    "eslint-config-carbon": "^3.14.0",
+    "prettier": "^2.8.8",
+    "prettier-config-carbon": "^0.11.0"
   },
   "eslintConfig": {
     "extends": [

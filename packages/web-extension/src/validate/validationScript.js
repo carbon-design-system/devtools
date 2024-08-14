@@ -38,7 +38,7 @@ function bxDevGetLibraries() {
       });
 
       libraries.jQuery = versions.length ? versions : true;
-    } catch (e) {
+    } catch (_e) {
       libraries.jQuery = libraries.jQuery().jquery || true;
     }
   }

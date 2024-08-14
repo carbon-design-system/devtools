@@ -14,15 +14,15 @@
     "test": "lerna run test --stream"
   },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "husky": "^4.3.0",
-    "lerna": "^3.22.1",
-    "lint-staged": "^10.4.2",
-    "rimraf": "^3.0.2"
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.1.4",
+    "lerna": "^8.1.8",
+    "lint-staged": "^15.2.9",
+    "rimraf": "^6.0.1"
   },
   "engines": {
-    "node": ">=12.x"
+    "node": ">=18.x"
   },
   "license": "Apache-2.0",
   "author": "IBM",
@@ -97,5 +97,6 @@
     "!(*sass).md": [
       "prettier --write"
     ]
-  }
+  },
+  "packageManager": "yarn@4.4.0"
 }

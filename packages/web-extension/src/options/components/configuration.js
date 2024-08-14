@@ -1,6 +1,6 @@
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 
-function configuration(label, data) {
+function configuration(_label, data) {
   if (data) {
     setStorage(data);
   }
