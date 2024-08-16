@@ -8,7 +8,7 @@
     "reset": "yarn cache clean && yarn clean && yarn install && yarn build",
     "format": "lerna run format --stream",
     "format:diff": "lerna run format:diff --stream",
-    "lint": "lerna run lint --stream",
+    "lint": "lerna run lint",
     "lint:js": "lerna run lint:js --stream",
     "lint:css": "lerna run lint:css --stream",
     "test": "lerna run test --stream"
