@@ -26,7 +26,7 @@
     "@carbon/ibm-products": "^1.2.4",
     "@carbon/ibm-security": "^1.31.0",
     "@carbon/ibmdotcom-react": "^1.27.0",
-    "@carbon/ibmdotcom-utilities": "^1.27.0",
+    "@carbon/ibmdotcom-utilities": "^2.11.1",
     "@carbon/icons": "^10.37.0",
     "@carbon/layout": "^10.29.0",
     "@carbon/motion": "^10.22.0",
