@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "TESTING HUSKY"
+. "$(dirname -- "$0")/_/husky.sh"
