@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Accordion, {
   AccordionItem,
 } from 'carbon-components-react/es/components/Accordion';
@@ -15,7 +15,7 @@ import { defaults } from '../../../globals/defaults';
 import { Inventory, Specs, Grid, ResizeBrowser, PageInfo } from '../';
 // import * as Panels from '../';
 
-const { prefix } = settings;
+
 
 function Main({ initialMsg, _inventoryData, _panelControls }) {
   const [globalToggleStates, setGlobalToggleStates] = useState(defaults.global);

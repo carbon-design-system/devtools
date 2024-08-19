@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Tag from 'carbon-components-react/es/components/Tag';
 import Button from 'carbon-components-react/es/components/Button';
 import ChevronLeft from '@carbon/icons/svg/32/chevron--left.svg';
@@ -18,7 +18,7 @@ import { Loading, Empty, Main, MoreOptions } from './components';
 
 import './index.scss';
 
-const { prefix } = settings;
+
 
 let carbonStatus = defaults.popup.carbonStatus;
 

@@ -1,7 +1,7 @@
 import pkg from '@carbon/ibm-products/es/global/js/package-settings';
 import dotcomSettings from '@carbon/ibmdotcom-utilities/es/utilities/settings/settings';
 import { getComponentNamespace as getSecurityPrefix } from '@carbon/ibm-security/es/globals/namespace';
-import carbonSettings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 
 const {
   devtoolsAttribute: cloudCognitiveDevtoolsAttribute,
@@ -13,7 +13,7 @@ const {
   in setPrefix.js we set the prefix to carbonPrefix. This gets run on the first pass so the grid gets a prefix unique to devtools. This gets overwritten on the second pass which is why we go back to prefix if it's undefined. Maybe there is a solution for this in the future, but adding this note here so we don't forget for now why it's like this...
 */
 
-const carbonPrefix = carbonSettings.carbonPrefix || carbonSettings.prefix;
+const carbonPrefix = prefix;
 const { stablePrefix: dotcomPrefix } = dotcomSettings;
 const securityPrefix = getSecurityPrefix('');
 const cloudPalPrefix = 'pal'; // static hardcoded

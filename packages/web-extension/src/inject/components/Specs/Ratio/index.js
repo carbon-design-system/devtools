@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { addHighlight } from '../../Highlight';
 import { getComponentName } from '@carbon/devtools-utilities/src/getComponentName';
 import { aspectRatios, svgMarkup } from '../../../../globals/options';
@@ -8,7 +8,7 @@ import {
   updateTooltipContent,
 } from '../../Tooltip';
 
-const { prefix } = settings;
+
 
 const aspectRatiosCalc = aspectRatios.map((ratio) => {
   const vals = ratio.split(':');

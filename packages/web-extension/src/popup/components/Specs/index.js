@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
@@ -18,7 +18,7 @@ import VirtualColumn from '@carbon/icons/svg/32/virtual-column.svg';
 import ParentChild from '@carbon/icons/svg/32/parent-child.svg';
 import Scale from '@carbon/icons/svg/32/scale.svg';
 
-const { prefix } = settings;
+
 
 function Specs({ disabled }) {
   const [toggleSpecs, setToggleSpecs] = useState(defaults.specs);

@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
@@ -12,7 +12,7 @@ import { setPx } from '@carbon/devtools-utilities/src/setPx';
 import { removeLeadingZero } from '@carbon/devtools-utilities/src/removeLeadingZero';
 import { rem, spacing, layout } from '@carbon/layout';
 
-const { prefix } = settings;
+
 
 const spacersClass = `${prefix}--spacers`;
 const spacerBoxClass = `${spacersClass}__box`;

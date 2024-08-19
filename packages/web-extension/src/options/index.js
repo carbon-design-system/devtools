@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Accordion, {
   AccordionItem,
 } from 'carbon-components-react/es/components/Accordion';
@@ -10,7 +10,7 @@ import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 
 import './index.scss';
 
-const { prefix } = settings;
+
 
 function Options() {
   const [data, setData] = useState({});

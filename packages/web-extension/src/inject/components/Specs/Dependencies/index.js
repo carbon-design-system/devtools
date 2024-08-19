@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
@@ -8,7 +8,7 @@ import {
 import { findAllDomShadow } from '@carbon/devtools-utilities/src/shadowDom';
 import { formInventoryData } from '@carbon/devtools-utilities/src/formInventoryData';
 import componentList from '@carbon/devtools-component-list/dist/index.json';
-const { prefix } = settings;
+
 const { allComponents } = formInventoryData(componentList);
 const selectors = Object.keys(allComponents).join(',');
 

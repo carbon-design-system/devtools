@@ -1,3 +1,3 @@
-import settings from 'carbon-components/es/globals/js/settings';
-settings.carbonPrefix = settings.prefix;
-settings.prefix = 'bx-dev';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
+settings.carbonPrefix = prefix;
+settings.prefix = `${prefix}-dev`;

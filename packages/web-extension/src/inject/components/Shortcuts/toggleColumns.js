@@ -1,6 +1,6 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 
-const { prefix } = settings;
+
 const devtoolClass = `${prefix}--devtools`;
 const interactionModifier = `${devtoolClass}--interact`;
 const shift = 16;

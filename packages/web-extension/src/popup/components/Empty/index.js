@@ -1,9 +1,9 @@
 import React from 'react';
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import packageJSON from '../../../../package.json';
 import Link from 'carbon-components-react/es/components/Link';
 
-const { prefix } = settings;
+
 
 function Empty() {
   return (

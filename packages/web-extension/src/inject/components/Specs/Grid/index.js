@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { breakpoints, rem } from '@carbon/layout';
 import { carbonPrefix } from '../../../../globals';
 import { addHighlight } from '../../Highlight';
@@ -8,7 +8,7 @@ import {
   updateTooltipContent,
 } from '../../Tooltip';
 
-const { prefix } = settings;
+
 
 const gridSelector = `${carbonPrefix}--grid`;
 const rowSelector = `${carbonPrefix}--row`;

@@ -1,9 +1,7 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
 // import { defaults } from '../../../globals/defaults';
-
-const { prefix } = settings;
 
 function initBreakpointLabel() {
   getStorage('toggleBreakpointLabel', ({ toggleBreakpointLabel }) =>

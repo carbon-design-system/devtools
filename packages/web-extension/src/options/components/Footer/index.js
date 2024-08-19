@@ -1,10 +1,10 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Link from 'carbon-components-react/es/components/Link';
 import React from 'react';
 
 import packageJSON from '../../../../package.json';
 
-const { prefix } = settings;
+
 const { name, version, bugs, repository, dependencies } = packageJSON;
 
 function getVersion(dependency) {

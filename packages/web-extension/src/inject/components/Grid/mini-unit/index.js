@@ -1,8 +1,6 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
-
-const { prefix } = settings;
 
 const html = document.querySelector('html');
 const body = document.body;

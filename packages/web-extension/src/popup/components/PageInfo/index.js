@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Link from 'carbon-components-react/es/components/Link';
 import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
 import Search from 'carbon-components-react/es/components/Search';
@@ -15,7 +15,7 @@ import {
 } from './transform';
 import { ValidationErrors } from '../ValidationErrors';
 
-const { prefix } = settings;
+
 
 function PageInfo({ initialMsg, _inventoryData }) {
   const groups = {};

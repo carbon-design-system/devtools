@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Select from 'carbon-components-react/es/components/Select';
 import SelectItem from 'carbon-components-react/es/components/SelectItem';
 import Toggle from 'carbon-components-react/es/components/Toggle';
@@ -9,7 +9,7 @@ import { configuration } from '../';
 import { themes } from '@carbon/themes';
 import { defaults } from '../../../globals/defaults';
 
-const { prefix } = settings;
+
 const themeList = Object.keys(themes);
 
 function General({

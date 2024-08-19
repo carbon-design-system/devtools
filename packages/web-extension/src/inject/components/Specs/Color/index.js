@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,
@@ -16,7 +16,7 @@ import { themeKeys } from './themeKeys';
 import { getThemeName } from './getThemeName';
 import Color from 'color';
 
-const { prefix } = settings;
+
 
 function highlightSpecsColor(target) {
   if (target) {

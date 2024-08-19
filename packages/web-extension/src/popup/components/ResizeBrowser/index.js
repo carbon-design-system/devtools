@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import ContentSwitcher from 'carbon-components-react/es/components/ContentSwitcher';
 import Switch from 'carbon-components-react/es/components/Switch';
 import Checkbox from 'carbon-components-react/es/components/Checkbox';
@@ -10,7 +10,7 @@ import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { labelMaker } from '../Grid/labelMaker'; // needs to go in a utility or something
 
-const { prefix } = settings;
+
 const breakpointKeys = Object.keys(breakpoints);
 
 function ResizeBrowser({ windowWidth = 0 }) {

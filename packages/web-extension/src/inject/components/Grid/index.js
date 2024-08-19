@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { gridVersions } from '../../../globals/options';
@@ -11,7 +11,6 @@ import {
 } from './mini-unit';
 import { themes } from '@carbon/themes';
 
-const { prefix } = settings;
 const html = document.querySelector('html');
 const gridVersionsList = Object.keys(gridVersions);
 const themeList = [...Object.keys(themes), 'system'];

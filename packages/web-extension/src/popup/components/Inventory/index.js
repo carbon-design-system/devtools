@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
+import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Accordion, {
   AccordionItem,
   AccordionSkeleton,
@@ -13,7 +13,7 @@ import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
 import { moderate02 } from '@carbon/motion';
 import packageJSON from '../../../../package.json';
 
-const { prefix } = settings;
+
 
 function Inventory({ _inventoryData }) {
   const _inventorySource = safeObj('allComponents', _inventoryData);
