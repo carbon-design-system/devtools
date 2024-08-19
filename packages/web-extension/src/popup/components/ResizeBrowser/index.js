@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import ContentSwitcher from 'carbon-components-react/es/components/ContentSwitcher';
-import Switch from 'carbon-components-react/es/components/Switch';
-import Checkbox from 'carbon-components-react/es/components/Checkbox';
+import ContentSwitcher from '@carbon/react/es/components/ContentSwitcher';
+import Switch from '@carbon/react/es/components/Switch';
+import Checkbox from '@carbon/react/es/components/Checkbox';
 import { breakpoints } from '@carbon/layout';
 import { remtopx } from '@carbon/devtools-utilities/src/remtopx';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';

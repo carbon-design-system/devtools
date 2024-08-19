@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Link from 'carbon-components-react/es/components/Link';
+import Link from '@carbon/react/es/components/Link';
 import { InlineNotification } from 'carbon-components-react/es/components/Notification';
 import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
 

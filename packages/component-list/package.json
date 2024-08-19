@@ -20,9 +20,9 @@
     "@carbon/ibm-products": "^2.47.0",
     "@carbon/ibm-security": "^2.15.0",
     "@carbon/ibmdotcom-web-components": "^2.11.1",
+    "@carbon/react": "^1.64.1",
     "@carbon/web-components": "^2.11.1",
-    "carbon-components": "^11.63.0",
-    "carbon-components-react": "^8.64.0"
+    "carbon-components": "^11.63.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

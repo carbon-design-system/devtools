@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Link from 'carbon-components-react/es/components/Link';
-import CodeSnippet from 'carbon-components-react/es/components/CodeSnippet';
-import Search from 'carbon-components-react/es/components/Search';
+import Link from '@carbon/react/es/components/Link';
+import CodeSnippet from '@carbon/react/es/components/CodeSnippet';
+import Search from '@carbon/react/es/components/Search';
 import { moderate02 } from '@carbon/motion';
 import {
   formGeneralRows,

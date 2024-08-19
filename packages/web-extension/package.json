@@ -29,10 +29,10 @@
     "@carbon/icons": "^11.47.0",
     "@carbon/layout": "^11.24.0",
     "@carbon/motion": "^11.20.0",
+    "@carbon/react": "^1.64.1",
     "@carbon/themes": "^11.38.0",
     "@carbon/type": "^11.29.0",
     "carbon-components": "^11.63.0",
-    "carbon-components-react": "^8.64.0",
     "color": "^4.2.3",
     "node-fetch": "^3.3.2",
     "url": "^0.11.4"

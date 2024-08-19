@@ -3,7 +3,7 @@ import { carbonPrefix } from '../../../web-extension/src/globals/prefixSelectors
 import { _initStats, camelCase } from '../helpers.js';
 
 const _carbonWebComponentsDir =
-  '../../node_modules/carbon-web-components/es/components';
+  '../../node_modules/@carbon/web-components/es/components';
 const { _stats, success } = new _initStats();
 const carbonWebComponents = {
   name: 'Carbon web components',

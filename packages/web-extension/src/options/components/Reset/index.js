@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Button from 'carbon-components-react/es/components/Button';
+import Button from '@carbon/react/es/components/Button';
 import CheckmarkOutline from '@carbon/icons/svg/32/checkmark--outline.svg';
 import { configuration } from '../';
 

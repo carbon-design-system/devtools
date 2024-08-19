@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Tag from 'carbon-components-react/es/components/Tag';
-import Button from 'carbon-components-react/es/components/Button';
+import Tag from '@carbon/react/es/components/Tag';
+import Button from '@carbon/react/es/components/Button';
 import ChevronLeft from '@carbon/icons/svg/32/chevron--left.svg';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import {

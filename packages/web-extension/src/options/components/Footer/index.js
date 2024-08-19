@@ -1,5 +1,6 @@
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Link from 'carbon-components-react/es/components/Link';
+import Link from '@carbon/react/es/components/Link';
+import {  } from "@carbon/react/es/components/Link";
 import React from 'react';
 
 import packageJSON from '../../../../package.json';

@@ -1,4 +1,4 @@
-import * as componentList from 'carbon-components-react';
+import * as componentList from '@carbon/react';
 import { carbonPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
 import { buildReactComponentList } from '../helpers.js';
 

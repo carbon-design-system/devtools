@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Select from 'carbon-components-react/es/components/Select';
-import SelectItem from 'carbon-components-react/es/components/SelectItem';
+import Select from '@carbon/react/es/components/Select';
+import SelectItem from '@carbon/react/es/components/SelectItem';
 import { configuration } from '../';
 import { gridVersions } from '../../../globals/options';
 import { defaults } from '../../../globals/defaults';

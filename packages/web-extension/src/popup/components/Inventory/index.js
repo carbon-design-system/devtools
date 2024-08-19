@@ -6,8 +6,8 @@ import Accordion, {
   AccordionSkeleton,
 } from 'carbon-components-react/es/components/Accordion';
 import { ClickableTile } from 'carbon-components-react/es/components/Tile';
-import Link from 'carbon-components-react/es/components/Link';
-import Search from 'carbon-components-react/es/components/Search';
+import Link from '@carbon/react/es/components/Link';
+import Search from '@carbon/react/es/components/Search';
 import { sendTabMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
 import { moderate02 } from '@carbon/motion';
