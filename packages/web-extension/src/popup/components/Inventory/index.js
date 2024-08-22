@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
 import Accordion from '@carbon/react/lib/components/Accordion/Accordion';
 import AccordionItem from '@carbon/react/lib/components/Accordion/AccordionItem';
-import AccordionSkeleton from '@carbon/react/lib/components/Accordion/AccordionSkeleton';
+import AccordionSkeleton from '@carbon/react/lib/components/Accordion/Accordion.Skeleton';
 import ClickableTile from '@carbon/react/lib/components/Tile/Tile';
 import Link from '@carbon/react/es/components/Link/Link';
 import Search from '@carbon/react/es/components/Search/Search';
