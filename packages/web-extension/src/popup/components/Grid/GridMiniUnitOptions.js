@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Checkbox from '@carbon/react/es/components/Checkbox';
-import FormGroup from '@carbon/react/es/components/FormGroup';
+import Checkbox from '@carbon/react/es/components/Checkbox/Checkbox';
+import FormGroup from '@carbon/react/es/components/FormGroup/FormGroup';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { defaults } from '../../../globals/defaults';
 import { labelMaker } from './labelMaker';
-
-
 
 function GridMiniUnitOptions({ disabled }) {
   const [toggleMiniUnitGridOptions, setToggleMiniUnitGridOptions] = useState(

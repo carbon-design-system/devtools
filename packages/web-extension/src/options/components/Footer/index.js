@@ -1,6 +1,5 @@
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Link from '@carbon/react/es/components/Link';
-import {  } from "@carbon/react/es/components/Link";
+import Link from '@carbon/react/es/components/Link/Link';
 import React from 'react';
 
 import packageJSON from '../../../../package.json';
@@ -22,7 +21,7 @@ const packages = [
   { name, version },
   {
     name: 'carbon',
-    version: getMajorVersion('carbon-components'),
+    version: getMajorVersion('@carbon/react'),
   },
   {
     name: CLOUD_COGNITIVE,

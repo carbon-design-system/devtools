@@ -1,19 +1,24 @@
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/theme/theme';
+@use '@carbon/styles/scss/type';
+
 @mixin resize-browser {
   .#{$prefix}--popup-resize-browser {
     &__container {
-      margin-top: $carbon--spacing-07;
+      margin-top: spacing.$spacing-07;
     }
 
     &,
     &__container {
-      margin-bottom: $carbon--spacing-05;
+      margin-bottom: spacing.$spacing-05;
     }
 
     .#{$prefix}--popup-resize-browser__label {
-      @include carbon--type-style('label-01');
+      @include type.type-style('label-01');
 
-      margin-bottom: $carbon--spacing-03;
-      color: $text-02;
+      margin-bottom: spacing.$spacing-03;
+      color: theme.$text-secondary;
     }
 
     .#{$prefix}--content-switcher-btn {

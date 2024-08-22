@@ -1,3 +1,12 @@
+@use '../vars.scss';
+@forward '../vars.scss';
+
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/theme/theme';
+@use '@carbon/styles/scss/type';
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/spacing';
+
 $specs-prefix: '#{$prefix}--specs';
 
 @import 'Color';

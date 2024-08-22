@@ -1,12 +1,16 @@
-@import '~carbon-components/scss/components/accordion/accordion';
-@import '~carbon-components/scss/components/link/link';
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/theme/theme';
+@use '@carbon/styles/scss/type';
+@use '@carbon/styles/scss/components/accordion';
+@use '@carbon/styles/scss/components/link';
 
 .#{$prefix}--options__meta {
-  margin-top: $carbon--spacing-07;
-  color: $text-05;
+  margin-top: spacing.$spacing-07;
+  color: theme.$text-helper;
 
   &,
   .#{$prefix}--link {
-    @include carbon--type-style('helper-text-01');
+    @include type.type-style('helper-text-01');
   }
 }

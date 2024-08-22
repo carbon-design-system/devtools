@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Accordion, {
-  AccordionItem,
-} from 'carbon-components-react/es/components/Accordion';
+import Accordion from '@carbon/react/lib/components/Accordion/Accordion';
+import AccordionItem from '@carbon/react/lib/components/Accordion/AccordionItem';
 import { Footer, General, Grid, Shortcuts, Reset } from './components';
 import { storageChanged } from '@carbon/devtools-utilities/src/storageChanged';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';

@@ -1,27 +1,27 @@
 .#{$specs-prefix} {
   &-grid-tooltip {
-    max-width: carbon--mini-units(34);
-    margin-bottom: -1 * carbon--mini-units(0.5);
+    max-width: calc(34 * spacing.$spacing-03);
+    margin-bottom: calc(-1 * spacing.$spacing-02);
 
     &__title {
-      @include carbon--type-style('productive-heading-01');
+      @include type.type-style('heading-compact-01');
 
-      margin-bottom: carbon--mini-units(0.5);
+      margin-bottom: spacing.$spacing-02;
     }
 
     &__title,
     &__classlist li {
       display: inline-block;
-      margin-right: carbon--mini-units(0.5);
+      margin-right: spacing.$spacing-02;
     }
 
     &__classlist {
-      @include carbon--type-style('code-01');
+      @include type.type-style('code-01');
 
       display: inline-block;
       padding: 0;
       margin: 0;
-      margin-bottom: carbon--mini-units(0.5);
+      margin-bottom: spacing.$spacing-02;
       list-style-type: none;
 
       li {
@@ -29,8 +29,8 @@
         padding: 0;
         border-radius: 3px;
         margin: 0;
-        margin-right: carbon--mini-units(0.5);
-        margin-bottom: carbon--mini-units(0.5);
+        margin-right: spacing.$spacing-02;
+        margin-bottom: spacing.$spacing-02;
       }
 
       li::before {
@@ -61,12 +61,12 @@
     // tooltip theme
     @mixin grid-tooltip--theme {
       &__title {
-        color: $text-01;
+        color: theme.$text-primary;
       }
 
       &__classlist--active {
-        background-color: $ui-02;
-        color: $text-01;
+        background-color: theme.$layer-02;
+        color: theme.$text-primary;
       }
     }
 

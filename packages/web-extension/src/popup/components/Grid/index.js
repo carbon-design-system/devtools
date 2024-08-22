@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Toggle from '@carbon/react/es/components/Toggle';
+import Toggle from '@carbon/react/es/components/Toggle/Toggle';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { gridVersions } from '../../../globals/options';

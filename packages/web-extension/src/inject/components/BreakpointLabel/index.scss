@@ -1,8 +1,17 @@
+@use '../vars.scss';
+@forward '../vars.scss';
+
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/breakpoint';
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/type';
+@use '@carbon/styles/scss/theme/theme';
+
 /* stylelint-disable a11y/media-prefers-reduced-motion */
 @mixin label-maker($breakpoints) {
   &::after {
     @each $breakpoint in map-keys($breakpoints) {
-      @include carbon--breakpoint($breakpoint) {
+      @include breakpoint.breakpoint($breakpoint) {
         content: 'breakpoint: #{$breakpoint}';
       }
     }
@@ -11,30 +20,30 @@
 
 @mixin breakpoint-label--theme {
   // breakpoint label theme
-  $border-style: 1px solid $ui-03;
+  $border-style: 1px solid theme.$layer-accent-01;
 
   border-top: $border-style;
   border-left: $border-style;
-  background: $ui-01;
-  color: $text-01;
+  background: theme.$layer-01;
+  color: theme.$text-primary;
 }
 
 .#{$prefix}--devtools {
-  @include label-maker($carbon--grid-breakpoints);
+  @include label-maker($grid-breakpoints);
 
   // breakpoint label
   &::after {
-    @include carbon--type-style('code-01');
-    @include carbon--font-family('mono');
+    @include type.type-style('code-01');
+    @include type.font-family('mono');
     @include breakpoint-label--theme;
 
     position: fixed;
     z-index: 4;
     right: 0;
     bottom: -33px;
-    padding: carbon--mini-units(1) ($carbon--grid-gutter / 2);
+    padding: carbon--mini-units(1) (grid.$grid-gutter / 2);
     border-bottom: 0;
-    transition: bottom $transition-in;
+    transition: bottom vars.$transition-in;
 
     .#{$prefix}--breakpoint-label & {
       bottom: 0;

@@ -1,5 +1,5 @@
 /* stylelint-disable a11y/media-prefers-reduced-motion */
-$grid-mini-unit-color: $grid-color;
+$grid-mini-unit-color: vars.$grid-color;
 $grid-mini-unit-opacity: $grid-opacity;
 $grid-mini-unit-border-size: $grid-border-size;
 $grid-mini-unit-border-color: $grid-border-color;
@@ -30,7 +30,7 @@ $grid-mini-unit-border-opacity: $grid-opacity;
     content: '';
     opacity: 0;
     pointer-events: none;
-    transition: opacity $transition-fade;
+    transition: opacity vars.$transition-fade;
   }
 
   &--show {

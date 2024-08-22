@@ -1,66 +1,56 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/fonts';
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/theme/theme';
+@use '@carbon/styles/scss/type';
 
-$feature-flags: (
-  enable-css-custom-properties: true,
-);
+@use '@carbon/styles/scss/components/form';
+@use '@carbon/styles/scss/components/select';
+@use '@carbon/styles/scss/components/toggle';
+@use '@carbon/styles/scss/components/structured-list';
+@use '@carbon/styles/scss/components/button';
 
-@import '@carbon/grid/scss/prefix';
-@import '@carbon/layout/scss/breakpoint';
-@import '@carbon/layout/scss/spacing';
-@import '@carbon/type/scss/font-family';
-@import '@carbon/type/scss/styles';
-@import '@carbon/type/scss/font-face/sans';
-@import '@carbon/grid/scss/grid';
-@import '@carbon/themes/scss/themes';
-@import '~carbon-components/scss/components/form/form';
-@import '~carbon-components/scss/components/select/select';
-@import '~carbon-components/scss/components/toggle/toggle';
-@import '~carbon-components/scss/components/structured-list/structured-list';
-@import '~carbon-components/scss/components/button/button';
+$carbon--theme: themes.$white;
 
-$carbon--theme: $carbon--theme--white;
-
-@include carbon--font-face-sans;
-@include carbon--theme;
-
-@import './components/Footer';
-@import './components/Shortcuts';
-@import './components/Reset';
+@use './components/Footer';
+@use './components/Shortcuts';
+@use './components/Reset';
 
 body {
-  background: $ui-background;
-  color: $text-01;
+  @include theme.theme;
+
+  background: theme.$background;
+  color: theme.$text-primary;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    @include carbon--theme(
-      $theme: $carbon--theme--g100,
-      $emit-custom-properties: true
-    );
+    @include theme.theme(themes.$g100);
   }
 }
 
 .#{$prefix}--options {
-  margin-top: $carbon--spacing-05;
-  margin-bottom: $carbon--spacing-07;
+  margin-top: spacing.$spacing-05;
+  margin-bottom: spacing.$spacing-07;
 
   .#{$prefix}--accordion {
     width: auto;
-    margin-right: -($carbon--grid-gutter/2);
-    margin-left: -($carbon--grid-gutter/2);
+    margin-right: -(grid.$grid-gutter);
+    margin-left: -(grid.$grid-gutter);
 
     &__content {
-      margin-top: $carbon--spacing-05;
+      margin-top: spacing.$spacing-05;
     }
   }
 
   &__title,
   .#{$prefix}--form-item {
-    margin-bottom: $carbon--spacing-05;
+    margin-bottom: spacing.$spacing-05;
   }
 
   &__title {
-    @include carbon--type-style('productive-heading-04');
+    @include type.type-style('productive-heading-04');
   }
 }

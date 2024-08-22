@@ -1,6 +1,11 @@
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/grid';
+@use '../vars.scss';
+@forward '../vars.scss';
+
 $grid-opacity: 0.5;
 $grid-border-size: 1px;
-$grid-border-color: $grid-color;
+$grid-border-color: vars.$grid-color;
 $grid-border-opacity: 1;
 
 @import '2x';
@@ -8,7 +13,7 @@ $grid-border-opacity: 1;
 
 .#{$prefix}--devtools {
   position: absolute;
-  z-index: $zindex;
+  z-index: vars.$zindex;
   top: 0;
   right: 0;
   // bottom: 0;
@@ -17,7 +22,7 @@ $grid-border-opacity: 1;
   height: auto;
   opacity: 1;
   pointer-events: none;
-  transition: opacity $transition-fade;
+  transition: opacity vars.$transition-fade;
 
   * {
     box-sizing: border-box;

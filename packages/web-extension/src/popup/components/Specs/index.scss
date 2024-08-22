@@ -1,17 +1,23 @@
+@use 'sass:math';
+
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/spacing';
+
 @mixin specs {
   .#{$prefix}--popup__specs {
-    margin-right: -($carbon--grid-gutter / 2);
+    margin-right: math.div(grid.$grid-gutter, -2);
 
     &-outline {
-      margin-top: $carbon--spacing-03;
-      margin-bottom: $carbon--spacing-03;
+      margin-top: spacing.$spacing-03;
+      margin-bottom: spacing.$spacing-03;
     }
 
     &-icon {
       width: 20px;
       height: 20px;
       margin-top: -2px;
-      margin-right: $carbon--spacing-03;
+      margin-right: spacing.$spacing-03;
       fill: currentColor;
       float: left;
     }

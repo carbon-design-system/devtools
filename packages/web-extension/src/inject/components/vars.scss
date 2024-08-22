@@ -1,0 +1,16 @@
+@use '@carbon/styles/scss/colors';
+@use '@carbon/styles/scss/motion';
+
+$prefix: 'cds-dev';
+$carbonPrefix: 'cds';
+$zindex: 9999999999;
+
+$feature-flags: (
+  enable-css-custom-properties: true,
+);
+
+$transition-in: motion.$duration-moderate-02 motion.motion(standard, productive);
+$transition-fade: motion.$duration-fast-02 motion.motion(standard, productive);
+$grid-color: colors.$blue-60;
+$inventory-color: colors.$purple-50;
+$specs-color: colors.$magenta-50;

@@ -7,9 +7,9 @@ import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { defaults } from '../../../globals/defaults';
 
-import Checkbox from '@carbon/react/es/components/Checkbox';
-import TileGroup from '@carbon/react/es/components/TileGroup';
-import RadioTile from '@carbon/react/es/components/RadioTile';
+import Checkbox from '@carbon/react/es/components/Checkbox/Checkbox';
+import TileGroup from '@carbon/react/es/components/TileGroup/TileGroup';
+import RadioTile from '@carbon/react/es/components/RadioTile/RadioTile';
 
 import ColorPalette from '@carbon/icons/svg/32/color-palette.svg';
 import TextScale from '@carbon/icons/svg/32/text--scale.svg';

@@ -1,6 +1,11 @@
+@use 'sass:math';
+
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/grid';
+
 @mixin more-options {
   .#{$prefix}--more-options {
-    margin-right: -$carbon--grid-gutter / 2;
+    margin-right: math.div(grid.$grid-gutter, -2);
     float: right;
 
     svg {

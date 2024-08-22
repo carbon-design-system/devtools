@@ -1,7 +1,17 @@
+@use '@carbon/styles/scss/config' as *;
+// @use '@carbon/styles/scss/breakpoint';
+// @use '@carbon/styles/scss/grid';
+// @use '@carbon/styles/scss/fonts';
+// @use '@carbon/styles/scss/motion';
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/theme/theme';
+// @use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/type';
+
 @mixin page-info {
   .#{$prefix}--page-info {
     &__group {
-      margin-bottom: carbon--mini-units(6);
+      margin-bottom: spacing.$spacing-09;
 
       &:last-child {
         margin-bottom: 0;
@@ -14,44 +24,44 @@
     }
 
     &__group-title {
-      @include carbon--type-style('productive-heading-02');
+      @include type.type-style('productive-heading-02');
 
-      padding-bottom: carbon--mini-units(1);
-      border-bottom: 1px solid $ui-03;
-      margin-top: carbon--mini-units(5);
-      color: $text-01;
+      padding-bottom: spacing.$spacing-03;
+      border-bottom: 1px solid theme.$layer-accent-01;
+      margin-top: spacing.$spacing-08;
+      color: theme.$text-primary;
     }
 
     &__row {
-      @include carbon--type-style('body-long-01');
+      @include type.type-style('body-long-01');
 
-      padding-bottom: carbon--mini-units(3);
-      border-bottom: 1px solid $ui-03;
-      color: $text-02;
+      padding-bottom: spacing.$spacing-06;
+      border-bottom: 1px solid theme.$layer-accent-01;
+      color: theme.$text-secondary;
     }
 
     &__row-title,
     &__row-value {
-      margin-top: carbon--mini-units(2);
-      // margin-bottom: carbon--mini-units(1);
+      margin-top: spacing.$spacing-05;
+      // margin-bottom: spacing.$spacing-05;
     }
 
     &__row-title {
       &__main {
-        @include carbon--type-style('productive-heading-01');
+        @include type.type-style('productive-heading-01');
       }
 
       &__sub {
-        @include carbon--type-style('helper-text-01');
+        @include type.type-style('helper-text-01');
 
-        margin-top: carbon--mini-units(0.25);
+        margin-top: spacing.$spacing-01;
       }
     }
 
     .#{$prefix}--snippet {
       max-width: 100%;
-      margin-right: carbon--mini-units(0.5);
-      margin-bottom: carbon--mini-units(0.5);
+      margin-right: spacing.$spacing-02;
+      margin-bottom: spacing.$spacing-02;
       font-size: 0;
 
       code {
@@ -67,17 +77,17 @@
     }
 
     &__search {
-      margin-top: carbon--mini-units(2);
+      margin-top: spacing.$spacing-05;
     }
 
     &__empty p {
-      @include carbon--type-style('body-long-01');
+      @include type.type-style('body-long-01');
 
-      margin-top: carbon--mini-units(2);
-      color: $text-02;
+      margin-top: spacing.$spacing-05;
+      color: theme.$text-secondary;
 
       span {
-        color: $text-01;
+        color: theme.$text-primary;
       }
     }
   }

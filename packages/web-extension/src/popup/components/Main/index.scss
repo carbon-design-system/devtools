@@ -1,12 +1,22 @@
+@use 'sass:math';
+
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/motion';
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/theme/theme';
+@use '@carbon/styles/scss/type';
+@use '@carbon/styles/scss/utilities/convert';
+
 /* stylelint-disable a11y/media-prefers-reduced-motion */
 @mixin main {
   .#{$prefix}--popup-main {
     width: initial;
-    margin-right: -($carbon--grid-gutter / 2);
-    margin-left: -($carbon--grid-gutter / 2);
+    margin-right: math.div(grid.$grid-gutter, -2);
+    margin-left: math.div(grid.$grid-gutter, -2);
 
     &__item > .#{$prefix}--accordion__heading {
-      height: carbon--mini-units(6);
+      height: spacing.$spacing-09;
 
       .#{$prefix}--popup:not(.#{$prefix}--popup--experimental) &:hover:before {
         // temporary until we add more accordion items
@@ -15,7 +25,7 @@
 
       .#{$prefix}--accordion {
         &__title {
-          @include carbon--type-style('body-long-02');
+          @include type.type-style('body-long-02');
 
           .#{$prefix}--row {
             position: absolute;
@@ -57,7 +67,7 @@
     }
 
     legend.#{$prefix}--label {
-      margin-bottom: $carbon--spacing-05;
+      margin-bottom: spacing.$spacing-05;
     }
 
     &__info {
@@ -68,15 +78,16 @@
       margin: 0;
       margin-left: carbon--mini-units(1);
       background: transparent;
-      color: $text-01;
+      color: theme.$text-primary;
       cursor: pointer;
       opacity: 0;
       outline: none;
-      transition: all $duration--fast-02 carbon--motion(standard, productive);
+      transition: all motion.$duration-fast-02
+        carbon--motion(standard, productive);
       visibility: hidden;
 
       &:focus {
-        box-shadow: 0 0 0 1px $focus;
+        box-shadow: 0 0 0 1px theme.$focus;
       }
 
       svg {
@@ -94,31 +105,31 @@
       $border-width: carbon--rem(2px);
 
       position: relative;
-      padding-top: $carbon--spacing-03 + $border-width;
-      padding-right: $carbon--grid-gutter / 2;
-      padding-left: $carbon--grid-gutter / 2;
-      margin-top: $carbon--spacing-06;
-      margin-bottom: $carbon--spacing-09;
+      padding-top: spacing.$spacing-03 + $border-width;
+      padding-right: math.div(grid.$grid-gutter, 2);
+      padding-left: math.div(grid.$grid-gutter, 2);
+      margin-top: spacing.$spacing-06;
+      margin-bottom: spacing.$spacing-09;
 
       &:last-child {
-        margin-bottom: $carbon--spacing-06;
+        margin-bottom: spacing.$spacing-06;
       }
 
       &::before {
         position: absolute;
         top: 0;
-        left: $carbon--grid-gutter / 2;
+        left: math.div(grid.$grid-gutter, 2);
         width: 100%;
         max-width: carbon--mini-units(4);
         height: $border-width;
-        background-color: $ui-03;
+        background-color: theme.$layer-accent;
         content: '';
       }
 
       &-title {
-        @include carbon--type-style('productive-heading-02');
-        // margin-bottom: $carbon--spacing-03;
-        color: $text-01;
+        @include type.type-style('productive-heading-02');
+        // margin-bottom: spacing.$spacing-03;
+        color: theme.$text-primary;
       }
 
       &-toggle {

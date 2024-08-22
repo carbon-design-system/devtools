@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Accordion, {
-  AccordionItem,
-  AccordionSkeleton,
-} from 'carbon-components-react/es/components/Accordion';
-import { ClickableTile } from 'carbon-components-react/es/components/Tile';
-import Link from '@carbon/react/es/components/Link';
-import Search from '@carbon/react/es/components/Search';
+import Accordion from '@carbon/react/lib/components/Accordion/Accordion';
+import AccordionItem from '@carbon/react/lib/components/Accordion/AccordionItem';
+import AccordionSkeleton from '@carbon/react/lib/components/Accordion/AccordionSkeleton';
+import ClickableTile from '@carbon/react/lib/components/Tile/Tile';
+import Link from '@carbon/react/es/components/Link/Link';
+import Search from '@carbon/react/es/components/Search/Search';
 import { sendTabMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
 import { moderate02 } from '@carbon/motion';
 import packageJSON from '../../../../package.json';
-
-
 
 function Inventory({ _inventoryData }) {
   const _inventorySource = safeObj('allComponents', _inventoryData);

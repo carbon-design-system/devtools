@@ -1,25 +1,37 @@
 @use 'sass:map';
 
-@import 'carbon-components/scss/components/tooltip/tooltip';
+@use '../vars.scss';
+@forward '../vars.scss';
+
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/type';
+@use '@carbon/styles/scss/colors';
+@use '@carbon/styles/scss/breakpoint';
+@use '@carbon/styles/scss/grid';
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/theme/theme';
+
+@use '@carbon/styles/scss/components/tooltip';
 
 .#{$prefix}--tooltip {
-  @include carbon--type-style('helper-text-01');
+  @include type.type-style('helper-text-01');
 
   position: fixed;
-  z-index: $zindex;
+  z-index: vars.$zindex;
   display: block;
   min-width: initial;
   max-width: 100vw;
-  padding: carbon--mini-units(1);
+  padding: spacing.$spacing-03;
   margin-top: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2),
     inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   opacity: 0;
-  transition: opacity $transition-fade, visibility $transition-fade;
+  transition: opacity vars.$transition-fade, visibility vars.$transition-fade;
   visibility: hidden;
 
   &[data-floating-menu-direction='top'] {
-    margin-top: -1 * carbon--mini-units(1);
+    margin-top: -1 * spacing.$spacing-03;
   }
 
   &__content {
@@ -33,7 +45,7 @@
   }
 
   &--primary {
-    margin-right: carbon--mini-units(2);
+    margin-right: spacing.$spacing-05;
     font-weight: bold;
   }
 
@@ -43,24 +55,24 @@
     flex-wrap: wrap;
 
     &__eyebrow {
-      @include carbon--type-style('label-01');
+      @include type.type-style('label-01');
     }
 
     &__title {
-      @include carbon--type-style('productive-heading-01');
+      @include type.type-style('productive-heading-01');
 
       margin-right: 8px;
-      margin-bottom: carbon--mini-units(1);
+      margin-bottom: spacing.$spacing-03;
       float: left;
     }
 
     &__group {
       width: 50%;
-      min-width: carbon--mini-units(30);
-      padding: carbon--mini-units(1);
-      padding-right: carbon--mini-units(2);
+      min-width: calc(30 * #{spacing.$spacing-03});
+      padding: spacing.$spacing-03;
+      padding-right: spacing.$spacing-05;
 
-      @include carbon--breakpoint('md') {
+      @include breakpoint.breakpoint('md') {
         width: 25%;
       }
 
@@ -95,63 +107,62 @@
     }
 
     &__prop {
-      @include carbon--type-style('code-01');
+      @include type.type-style('code-01');
 
-      margin-top: carbon--mini-units(0.25);
-      margin-right: carbon--mini-units(1);
+      margin-top: spacing.$spacing-01;
+      margin-right: spacing.$spacing-03;
       font-weight: 500;
     }
 
     p#{&}__value {
-      @include carbon--type-style('code-01');
+      @include type.type-style('code-01');
 
-      margin-top: carbon--mini-units(0.25);
+      margin-top: spacing.$spacing-01;
     }
 
     li#{&}__warning {
-      @include carbon--type-style('helper-text-01');
-      $yellow: map.get(map.get($carbon--colors, 'yellow'), 30);
+      @include type.type-style('helper-text-01');
 
-      padding-left: carbon--mini-units(1);
-      border-left: 3px solid $yellow;
-      margin-bottom: carbon--mini-units(1);
+      padding-left: spacing.$spacing-03;
+      border-left: 3px solid colors.$yellow-30;
+      margin-bottom: spacing.$spacing-03;
       font-weight: 500;
     }
   }
 
   // tooltip theme
   @mixin tooltip--theme {
-    background: $ui-01;
-    color: $text-01;
+    background: theme.$layer-01;
+    color: theme.$text-primary;
 
     .#{$prefix}--tooltip__caret {
-      border-bottom-color: $ui-01;
+      border-bottom-color: theme.$layer-01;
     }
 
     &--secondary {
-      color: $text-02;
+      color: theme.$text-secondary;
     }
 
     &-specs {
       &__group {
-        border-right: $carbon--grid-gutter--condensed solid $ui-01;
-        border-bottom: $carbon--grid-gutter--condensed solid $ui-01;
-        background-color: $ui-background;
+        border-right: grid.$grid-gutter solid theme.$layer-01;
+        border-bottom: grid.$grid-gutter solid theme.$layer-01;
+        background-color: theme.$background;
       }
 
       &__warning {
-        background-color: $ui-01;
-        color: $text-01;
+        background-color: theme.$layer-01;
+        color: theme.$text-primary;
       }
 
       &__title,
       &__prop {
-        color: $text-01;
+        color: theme.$text-primary;
       }
 
       &__name,
       &__value {
-        color: $text-02;
+        color: theme.$text-secondary;
       }
     }
   }

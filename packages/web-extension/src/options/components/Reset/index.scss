@@ -1,23 +1,28 @@
+@use '@carbon/styles/scss/config' as *;
+@use '@carbon/styles/scss/spacing';
+@use '@carbon/styles/scss/theme/theme';
+@use '@carbon/styles/scss/type';
+
 .#{$prefix}--options-reset {
   &__title {
-    @include carbon--type-style('productive-heading-01');
+    @include type.type-style('productive-heading-01');
 
-    margin-bottom: carbon--mini-units(2);
-    color: $text-01;
+    margin-bottom: spacing.$spacing-05;
+    color: theme.$text-primary;
   }
 
   &__helper {
-    @include carbon--type-style('helper-text-01');
+    @include type.type-style('helper-text-01');
 
-    margin-bottom: carbon--mini-units(2);
-    color: $text-02;
+    margin-bottom: spacing.$spacing-05;
+    color: theme.$text-secondary;
   }
 
   &__status {
-    @include carbon--type-style('helper-text-01');
+    @include type.type-style('helper-text-01');
 
-    margin-top: carbon--mini-units(2);
-    color: $support-02;
+    margin-top: spacing.$spacing-05;
+    color: theme.$support-success;
 
     svg {
       margin-bottom: -3px; /* offsets icon */

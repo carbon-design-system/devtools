@@ -1,5 +1,5 @@
-@import 'Tooltip';
-@import 'Highlight';
-@import 'Grid';
-@import 'Specs';
-@import 'BreakpointLabel';
+@use 'Tooltip' as *;
+@use 'Highlight' as *;
+@use 'Grid' as *;
+@use 'Specs' as *;
+@use 'BreakpointLabel' as *;

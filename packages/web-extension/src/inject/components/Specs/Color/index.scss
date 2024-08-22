@@ -23,7 +23,7 @@
     // tooltip theme
     @mixin color-tooltip--theme {
       &__color {
-        border: 1px solid $ui-04;
+        border: 1px solid theme.$toggle-off;
       }
     }
 

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { prefix } from '@carbon/web-components/es/globals/settings.js';
-import Accordion, {
-  AccordionItem,
-} from 'carbon-components-react/es/components/Accordion';
-import { InlineNotification } from 'carbon-components-react/es/components/Notification';
-import Link from '@carbon/react/es/components/Link';
-import Toggle from '@carbon/react/es/components/Toggle';
+import Accordion from '@carbon/react/lib/components/Accordion/Accordion';
+import AccordionItem from '@carbon/react/lib/components/Accordion/AccordionItem';
+import { InlineNotification } from '@carbon/react/lib/components/Notification/Notification';
+import Link from '@carbon/react/es/components/Link/Link';
+import Toggle from '@carbon/react/es/components/Toggle/Toggle';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';

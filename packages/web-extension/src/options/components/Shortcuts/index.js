@@ -6,7 +6,7 @@ import {
   StructuredListBody,
   StructuredListRow,
   StructuredListCell,
-} from 'carbon-components-react/es/components/StructuredList';
+} from '@carbon/react/lib/components/StructuredList/StructuredList';
 import MacShift from '@carbon/icons/svg/32/mac--shift.svg';
 import Cursor_1 from '@carbon/icons/svg/32/cursor--1.svg';
 
