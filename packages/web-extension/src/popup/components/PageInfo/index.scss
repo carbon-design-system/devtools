@@ -1,7 +1,11 @@
+@use "@carbon/react/scss/config" as *;
+@use "@carbon/react/scss/theme";
+@use "@carbon/react/scss/type";
+
 @mixin page-info {
   .#{$prefix}--page-info {
     &__group {
-      margin-bottom: carbon--mini-units(6);
+      margin-bottom: calc(0.5rem * 6);
 
       &:last-child {
         margin-bottom: 0;
@@ -14,35 +18,35 @@
     }
 
     &__group-title {
-      @include carbon--type-style('productive-heading-02');
+      @include type.type-style('productive-heading-02');
 
-      padding-bottom: carbon--mini-units(1);
-      border-bottom: 1px solid $ui-03;
-      margin-top: carbon--mini-units(5);
-      color: $text-01;
+      padding-bottom: calc(0.5rem * 1);
+      border-bottom: 1px solid theme.$border-subtle-01;
+      margin-top: calc(0.5rem * 5);
+      color: theme.$text-primary;
     }
 
     &__row {
-      @include carbon--type-style('body-long-01');
+      @include type.type-style('body-long-01');
 
-      padding-bottom: carbon--mini-units(3);
-      border-bottom: 1px solid $ui-03;
-      color: $text-02;
+      padding-bottom: calc(0.5rem * 3);
+      border-bottom: 1px solid theme.$border-subtle-01;
+      color: theme.$text-secondary;
     }
 
     &__row-title,
     &__row-value {
-      margin-top: carbon--mini-units(2);
-      // margin-bottom: carbon--mini-units(1);
+      margin-top: calc(0.5rem * 2);
+      // margin-bottom: calc(0.5rem * 1);
     }
 
     &__row-title {
       &__main {
-        @include carbon--type-style('productive-heading-01');
+        @include type.type-style('heading-compact-01');
       }
 
       &__sub {
-        @include carbon--type-style('helper-text-01');
+        @include type.type-style('helper-text-01');
 
         margin-top: carbon--mini-units(0.25);
       }
@@ -67,18 +71,20 @@
     }
 
     &__search {
-      margin-top: carbon--mini-units(2);
+      margin-top: calc(0.5rem * 2);
     }
 
     &__empty p {
-      @include carbon--type-style('body-long-01');
+      @include type.type-style('body-long-01');
 
-      margin-top: carbon--mini-units(2);
-      color: $text-02;
+      margin-top: calc(0.5rem * 2);
+      color: theme.$text-secondary;
 
       span {
-        color: $text-01;
+        color: theme.$text-primary;
       }
     }
   }
 }
+
+@include page-info;

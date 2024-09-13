@@ -1,7 +1,10 @@
+@use "@carbon/react/scss/config" as *;
+@use "@carbon/react/scss/spacing";
+
 @mixin grid {
   .#{$prefix}--number {
     &.#{$prefix}--number--sm {
-      margin-top: $carbon--spacing-03;
+      margin-top: spacing.$spacing-03;
 
       input[type='number'] {
         min-width: initial;
@@ -20,3 +23,5 @@
     pointer-events: none;
   }
 }
+
+@include grid;

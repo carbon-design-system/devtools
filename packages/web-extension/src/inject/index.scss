@@ -1,72 +1,45 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
 @use 'sass:map';
 
-$prefix: 'bx-dev';
-$carbonPrefix: 'bx';
-$zindex: 9999999999;
+@use "./vars.scss" as *;
+@use "@carbon/react/scss/colors";
+@use '@carbon/react/scss/breakpoint';
+@use '@carbon/react/scss/fonts';
+@use "@carbon/react/scss/grid";
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
 
-$feature-flags: (
-  enable-css-custom-properties: true,
-);
-
-// cleanup imports
-// are all these imports still being used?
-@import '@carbon/type/scss/type';
-@import '@carbon/type/scss/styles';
-@import '@carbon/type/scss/font-face/mono';
-@import '@carbon/grid/scss/prefix';
-@import '@carbon/layout/scss/breakpoint';
-@import '@carbon/layout/scss/mini-unit';
-@import '@carbon/grid/scss/grid';
-@import '@carbon/colors/scss/colors';
-@import '@carbon/themes/scss/themes';
-@import '@carbon/motion/scss/motion';
-@import 'carbon-components/src/globals/scss/motion';
-
-@include carbon--type-reset();
-@include carbon--font-face-mono();
-
-$transition-in: $duration--moderate-02 carbon--motion(standard, productive);
-$transition-fade: $duration--fast-02 carbon--motion(standard, productive);
-$grid-color: map.get(map.get($carbon--colors, 'blue'), 60);
-$inventory-color: map.get(map.get($carbon--colors, 'purple'), 50);
-$specs-color: map.get(map.get($carbon--colors, 'magenta'), 50);
+@use 'components/Tooltip/index.scss' as *;
+@use 'components/Highlight/index.scss' as *;
+@use 'components/Grid/index.scss' as *;
+@use 'components/Specs/index.scss' as *;
+@use 'components/Specs/Color/index.scss' as *;
+@use 'components/Specs/Dependencies/index.scss' as *;
+@use 'components/Specs/Grid/index.scss' as *;
+@use 'components/Specs/Outline/index.scss' as *;
+@use 'components/Specs/Spacing/index.scss' as *;
+@use 'components/BreakpointLabel/index.scss' as *;
 
 $themes: (
-  'white': $carbon--theme--white,
-  'g10': $carbon--theme--g10,
-  'g80': $carbon--theme--g80,
-  'g100': $carbon--theme--g100,
-  'v9': $carbon--theme--v9,
+  'white': themes.$white,
+  'g10': themes.$g10,
+  'g80': themes.$g90,
+  'g100': themes.$g100,
 );
 
-@import 'components';
-
-.#{$prefix}--grid--carbon-v9 {
-  @import '@carbon/grid/scss/12';
-}
-
 .#{$prefix}--devtools {
-  @include carbon--theme(
-    $theme: $carbon--theme--g90,
-    $emit-custom-properties: true
-  );
+  @include theme.theme(themes.$g90);
 
   @media (prefers-color-scheme: light) {
-    .#{$prefix}--system & {
-      @include carbon--theme(
-        $theme: $carbon--theme--g10,
-        $emit-custom-properties: true
-      );
-    }
+    @include theme.theme(themes.$white);
   }
 
   @each $theme in map-keys($themes) {
     .#{$prefix}--#{$theme} & {
-      @include carbon--theme(
-        map.get($themes, $theme),
-        $emit-custom-properties: true
-      );
+      @include theme.theme(map.get($themes, $theme));
     }
   }
 }

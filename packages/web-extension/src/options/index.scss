@@ -1,66 +1,63 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
+@use "sass:math";
 
-$feature-flags: (
-  enable-css-custom-properties: true,
-);
+// Import Carbon Tokens
+@use "@carbon/react/scss/config" as *;
+@use '@carbon/react/scss/breakpoint';
+@use '@carbon/react/scss/fonts';
+@use "@carbon/react/scss/grid";
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
 
-@import '@carbon/grid/scss/prefix';
-@import '@carbon/layout/scss/breakpoint';
-@import '@carbon/layout/scss/spacing';
-@import '@carbon/type/scss/font-family';
-@import '@carbon/type/scss/styles';
-@import '@carbon/type/scss/font-face/sans';
-@import '@carbon/grid/scss/grid';
-@import '@carbon/themes/scss/themes';
-@import '~carbon-components/scss/components/form/form';
-@import '~carbon-components/scss/components/select/select';
-@import '~carbon-components/scss/components/toggle/toggle';
-@import '~carbon-components/scss/components/structured-list/structured-list';
-@import '~carbon-components/scss/components/button/button';
+// Import Carbon Components
+@use '@carbon/react/scss/components/form';
+@use '@carbon/react/scss/components/select';
+@use '@carbon/react/scss/components/toggle';
+@use '@carbon/react/scss/components/structured-list';
+@use '@carbon/react/scss/components/button';
 
-$carbon--theme: $carbon--theme--white;
+// Import Devtools Components
+@use './components/Footer';
+@use './components/Shortcuts';
+@use './components/Reset';
 
-@include carbon--font-face-sans;
-@include carbon--theme;
-
-@import './components/Footer';
-@import './components/Shortcuts';
-@import './components/Reset';
-
-body {
-  background: $ui-background;
-  color: $text-01;
+:root {
+  @include theme.theme(themes.$g90);
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    @include carbon--theme(
-      $theme: $carbon--theme--g100,
-      $emit-custom-properties: true
-    );
+@media (prefers-color-scheme: light) {
+  :root {
+    @include theme.theme(themes.$white);
   }
 }
 
+body {
+  background: theme.$background;
+  color: theme.$text-primary;
+}
+
 .#{$prefix}--options {
-  margin-top: $carbon--spacing-05;
-  margin-bottom: $carbon--spacing-07;
+  margin-top: spacing.$spacing-05;
+  margin-bottom: spacing.$spacing-07;
 
   .#{$prefix}--accordion {
     width: auto;
-    margin-right: -($carbon--grid-gutter/2);
-    margin-left: -($carbon--grid-gutter/2);
+    margin-right: math.div(grid.$grid-gutter, -2);
+    margin-left: math.div(grid.$grid-gutter, -2);
 
     &__content {
-      margin-top: $carbon--spacing-05;
+      margin-top: spacing.$spacing-05;
     }
   }
 
   &__title,
   .#{$prefix}--form-item {
-    margin-bottom: $carbon--spacing-05;
+    margin-bottom: spacing.$spacing-05;
   }
 
   &__title {
-    @include carbon--type-style('productive-heading-04');
+    @include type.type-style('heading-04');
   }
 }

@@ -1,8 +1,14 @@
+@use "sass:math";
+@use "@carbon/react/scss/config" as *;
+@use "@carbon/react/scss/grid";
+
 @mixin loading {
   .#{$prefix}--popup-loading {
     width: initial;
     height: 120px;
-    margin-right: -$carbon--grid-gutter / 2;
-    margin-left: -$carbon--grid-gutter / 2;
+    margin-right: math.div(grid.$grid-gutter, -2);
+    margin-left: math.div(grid.$grid-gutter, -2);
   }
 }
+
+@include loading;

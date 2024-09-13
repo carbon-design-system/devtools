@@ -2,83 +2,75 @@
 /* stylelint-disable a11y/media-prefers-reduced-motion */
 @use 'sass:map';
 
-$feature-flags: (
-  enable-css-custom-properties: true,
-);
+// Import Carbon Tokens
+@use "@carbon/react/scss/config" as *;
+@use '@carbon/react/scss/breakpoint';
+@use '@carbon/react/scss/fonts';
+@use '@carbon/react/scss/grid';
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
 
-@import '@carbon/grid/scss/prefix';
-@import '@carbon/layout/scss/breakpoint';
-@import '@carbon/layout/scss/spacing';
-@import '@carbon/themes/scss/themes';
-@import '@carbon/type/scss/font-family';
-@import '@carbon/type/scss/styles';
-@import '@carbon/type/scss/font-face/sans';
-@import '@carbon/grid/scss/mixins';
+// Import Carbon Components
+@use '@carbon/react/scss/components/overflow-menu' as *;
+@use '@carbon/react/scss/components/toggle' as *;
+@use '@carbon/react/scss/components/accordion' as *;
+@use '@carbon/react/scss/components/skeleton-styles' as *;
+@use '@carbon/react/scss/components/link' as *;
+@use '@carbon/react/scss/components/checkbox' as *;
+@use '@carbon/react/scss/components/number-input' as *;
+@use '@carbon/react/scss/components/form' as *;
+@use '@carbon/react/scss/components/tooltip' as *;
+@use '@carbon/react/scss/components/tag' as *;
+@use '@carbon/react/scss/components/tile' as *;
+@use '@carbon/react/scss/components/content-switcher' as *;
+@use '@carbon/react/scss/components/button' as *;
+@use '@carbon/react/scss/components/search' as *;
+@use '@carbon/react/scss/components/code-snippet' as *;
+@use '@carbon/react/scss/components/notification' as *;
+
+// // Import Devtools Components
+@use 'components/MoreOptions';
+@use 'components/Loading';
+@use 'components/Empty';
+@use 'components/Main';
+@use 'components/Inventory';
+@use 'components/Grid';
+@use 'components/Specs';
+@use 'components/ResizeBrowser';
+@use 'components/PageInfo';
+
+// @include more-options;
+// @include loading;
+// @include empty;
+// @include main;
+// @include inventory;
+// @include grid;
+// @include specs;
+// @include resize-browser;
+// @include page-info;
 
 :root {
-  @include carbon--theme(
-    $theme: $carbon--theme--g90,
-    $emit-custom-properties: true
-  );
-}
-
-@include carbon--font-face-sans;
-
-@import 'carbon-components/scss/components/overflow-menu/overflow-menu';
-@import '~carbon-components/scss/components/toggle/toggle';
-@import '~carbon-components/scss/components/accordion/accordion';
-@import '~carbon-components/scss/components/skeleton/skeleton';
-@import '~carbon-components/scss/components/link/link';
-@import '~carbon-components/scss/components/checkbox/checkbox';
-@import '~carbon-components/scss/components/number-input/number-input';
-@import '~carbon-components/scss/components/form/form';
-@import '~carbon-components/scss/components/tooltip/tooltip';
-@import '~carbon-components/scss/components/tag/tag';
-@import '~carbon-components/scss/components/tile/tile';
-@import '~carbon-components/scss/components/content-switcher/content-switcher';
-@import '~carbon-components/scss/components/button/button';
-@import '~carbon-components/scss/components/search/search';
-@import '~carbon-components/scss/components/code-snippet/code-snippet';
-@import '~carbon-components/scss/components/notification/inline-notification';
-
-@import 'components/MoreOptions';
-@import 'components/Loading';
-@import 'components/Empty';
-@import 'components/Main';
-@import 'components/Inventory';
-@import 'components/Grid';
-@import 'components/Specs';
-@import 'components/ResizeBrowser';
-@import 'components/PageInfo';
-
-@include more-options;
-@include loading;
-@include empty;
-@include main;
-@include inventory;
-@include grid;
-@include specs;
-@include resize-browser;
-@include page-info;
-
-body {
-  background: $ui-background;
-  color: $text-01;
+  @include theme.theme(themes.$g90);
 }
 
 @media (prefers-color-scheme: light) {
-  .#{$prefix}--popup--system {
-    @include carbon--theme(
-      $theme: $carbon--theme--g10,
-      $emit-custom-properties: true
-    );
+  :root {
+    @include theme.theme(themes.$white);
   }
+}
+
+body {
+  background: theme.$background;
+  color: theme.$text-primary;
 }
 
 .#{$prefix}--popup {
   overflow: hidden;
-  width: map.get(map.get($carbon--grid-breakpoints, 'sm'), 'width');
-  padding-top: carbon--mini-units(5);
+  width: map.get(map.get(grid.$grid-breakpoints, 'sm'), 'width');
+  padding-top: calc(0.5rem * 5);
 
   &__header {
     position: fixed;
@@ -86,12 +78,12 @@ body {
     top: 0;
     display: flex;
     width: 100%;
-    background-color: $ui-01;
-    box-shadow: inset 0 1px 0 0 $ui-background;
+    background-color: theme.$layer-01;
+    box-shadow: inset 0 1px 0 0 theme.$background;
   }
 
   &__heading {
-    @include carbon--type-style('productive-heading-01');
+    @include type.type-style('heading-compact-01');
 
     display: flex;
     height: 100%;
@@ -101,12 +93,12 @@ body {
   &__experimental-tag {
     min-height: initial;
     padding: 0;
-    margin-left: carbon--mini-units(1);
+    margin-left: calc(0.5rem * 1);
     font-size: 10px;
   }
 
   &__panel {
-    $panel-transition: $duration--moderate-02
+    $panel-transition: motion.$duration-moderate-02
       carbon--motion(standard, productive);
 
     width: 50%;
@@ -155,76 +147,41 @@ body {
     }
 
     &-title {
-      @include carbon--type-style('productive-heading-04');
+      @include type.type-style('productive-heading-04');
 
-      margin-top: carbon--mini-units(1);
+      margin-top: calc(0.5rem * 1);
     }
 
     &-content {
-      margin-top: carbon--mini-units(3);
-      margin-bottom: carbon--mini-units(6);
+      margin-top: calc(0.5rem * 3);
+      margin-bottom: calc(0.5rem * 6);
     }
   }
-
-  &--white {
-    @include carbon--theme(
-      $theme: $carbon--theme--white,
-      $emit-custom-properties: true
-    );
-  }
-
-  &--g10 {
-    @include carbon--theme(
-      $theme: $carbon--theme--g10,
-      $emit-custom-properties: true
-    );
-  }
-
-  &--g80 {
-    @include carbon--theme(
-      $theme: $carbon--theme--g80,
-      $emit-custom-properties: true
-    );
-  }
-
-  &--g100 {
-    @include carbon--theme(
-      $theme: $carbon--theme--g100,
-      $emit-custom-properties: true
-    );
-  }
-
-  &--v9 {
-    @include carbon--theme(
-      $theme: $carbon--theme--v9,
-      $emit-custom-properties: true
-    );
-  }
 }
 
-.#{$prefix}--grid {
-  @include carbon--make-container;
-}
+// .#{$prefix}--grid {
+//   @include carbon--make-container;
+// }
 
-.#{$prefix}--row {
-  @include carbon--make-row;
-}
+// .#{$prefix}--row {
+//   @include carbon--make-row;
+// }
 
-[class*='#{$prefix}--col'] {
-  @include carbon--make-col-ready;
-}
+// [class*='#{$prefix}--col'] {
+//   @include carbon--make-col-ready;
+// }
 
-.#{$prefix}--col-sm-1 {
-  @include carbon--make-col(1, 4);
-}
+// .#{$prefix}--col-sm-1 {
+//   @include carbon--make-col(1, 4);
+// }
 
-.#{$prefix}--col-sm-2 {
-  @include carbon--make-col(2, 4);
-}
+// .#{$prefix}--col-sm-2 {
+//   @include carbon--make-col(2, 4);
+// }
 
-.#{$prefix}--col-sm-3 {
-  @include carbon--make-col(3, 4);
-}
+// .#{$prefix}--col-sm-3 {
+//   @include carbon--make-col(3, 4);
+// }
 
 // allows nesting accordions
 .#{$prefix}--accordion {
@@ -257,11 +214,11 @@ body {
 .bx--inline-notification {
   a.bx--link {
     &:hover {
-      color: $highlight;
+      color: theme.$highlight;
     }
 
     &:hover:active {
-      color: $inverse-link;
+      color: theme.$link-inverse;
     }
   }
 }

@@ -1,19 +1,23 @@
+@use '@carbon/react/scss/config' as *;
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
+
 .#{$prefix}--options-shortcuts {
   p {
-    @include carbon--type-style('helper-text-01');
+    @include type.type-style('helper-text-01');
 
-    color: $text-02;
+    color: theme.$text-secondary;
   }
 
   &__key {
-    @include carbon--type-style('code-01');
+    @include type.type-style('code-01');
 
     display: flex;
-    padding: carbon--mini-units(0.5) carbon--mini-units(1);
-    border-radius: carbon--mini-units(0.25);
-    margin-right: carbon--mini-units(0.5);
-    background-color: $ui-01;
-    color: $text-01;
+    padding: calc(0.5 * 0.5rem) calc(1  * 0.5rem);
+    border-radius: calc(0.25 * 0.5rem);
+    margin-right: calc(0.5 * 0.5rem);
+    background-color: theme.$layer-01;
+    color: theme.$text-primary;
 
     &s {
       display: flex;
@@ -21,8 +25,8 @@
     }
 
     svg {
-      width: carbon--mini-units(2);
-      height: carbon--mini-units(2);
+      width: calc(2 * 0.5rem);
+      height: calc(2 * 0.5rem);
       fill: currentColor;
     }
   }

@@ -1,9 +1,11 @@
-/* stylelint-disable a11y/media-prefers-reduced-motion */
+@use '../../../vars.scss' as *;
+@use '@carbon/react/scss/type';
+
 .#{$prefix}--spacers {
   pointer-events: all;
 
   &__box {
-    @include carbon--type-style('code-01');
+    @include type.type-style('code-01');
 
     position: fixed;
     z-index: $zindex / 2;

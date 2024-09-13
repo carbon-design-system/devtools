@@ -1,4 +1,7 @@
 @use 'sass:map';
+@use '../../vars.scss' as *;
+@use '@carbon/react/scss/colors';
+@use '@carbon/react/scss/type';
 
 $highlight-opacity: 0.5;
 
@@ -19,11 +22,11 @@ $highlight-opacity: 0.5;
     opacity: 1;
 
     span {
-      @include carbon--type-style('expressive-paragraph-01');
+      // @include type.type-style('fluid-paragraph-01');
 
       display: inline-block;
       margin: auto;
-      color: map.get(map.get($carbon--colors, 'magenta'), 10);
+      color: colors.$magenta-10;
     }
   }
 

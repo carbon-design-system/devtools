@@ -1,3 +1,4 @@
+@use '../../vars.scss' as *;
 $specs-prefix: '#{$prefix}--specs';
 
 @import 'Color';

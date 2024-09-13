@@ -1,34 +1,40 @@
-/* stylelint-disable a11y/media-prefers-reduced-motion */
+@use 'sass:math';
+@use "@carbon/react/scss/config" as *;
+@use "@carbon/react/scss/grid";
+@use "@carbon/react/scss/motion";
+@use "@carbon/react/scss/theme";
+@use "@carbon/react/scss/type";
+
 @mixin inventory {
   .#{$prefix}--inventory {
     &,
     &__search {
       width: initial;
-      margin-right: -($carbon--grid-gutter / 2);
+      margin-right: math.div(grid.$grid-gutter, -2);
     }
 
     &__meta {
       justify-content: flex-end;
-      margin-bottom: carbon--mini-units(2);
+      margin-bottom: calc(0.5rem * 2);
 
       &--none {
         justify-content: flex-start;
       }
 
       .#{$prefix}--inventory__meta-item {
-        $transition-values: $moderate-01
+        $transition-values: motion.$duration-moderate-01
           carbon--motion('standard', 'productive');
 
-        transition: max-width $transition-values $moderate-02,
-          flex $transition-values $moderate-02;
+        transition: max-width $transition-values motion.$duration-moderate-02,
+          flex $transition-values motion.$duration-moderate-02;
 
         sub {
-          @include carbon--type-style('body-short-01');
+          @include type.type-style('body-short-01');
 
           position: absolute;
           // to align with bottom of value text
           bottom: 5px;
-          margin-left: carbon--mini-units(2);
+          margin-left: calc(0.5rem * 2);
           opacity: 0;
           transition: opacity $transition-values, visibility $transition-values,
             margin-left $transition-values;
@@ -44,77 +50,77 @@
         &--active sub {
           margin-left: carbon--mini-units(0.5);
           opacity: 1;
-          transition: opacity $transition-values $fast-02,
-            visibility $transition-values $fast-02,
-            margin-left $transition-values $fast-02;
+          transition: opacity $transition-values motion.$fast-02,
+            visibility $transition-values motion.$fast-02,
+            margin-left $transition-values motion.$fast-02;
           visibility: visible;
         }
       }
 
       &__title {
-        color: $text-02;
-        @include carbon--type-style('helper-text-01');
+        color: theme.$text-secondary;
+        @include type.type-style('helper-text-01');
       }
 
       &__value {
         position: relative;
-        color: $text-01;
+        color: theme.$text-primary;
         font-weight: bold;
-        @include carbon--type-style('productive-heading-05');
+        @include type.type-style('productive-heading-05');
       }
     }
 
     &__empty {
-      margin-top: carbon--mini-units(2);
-      margin-bottom: carbon--mini-units(2);
-      color: $text-02;
+      margin-top: calc(0.5rem * 2);
+      margin-bottom: calc(0.5rem * 2);
+      color: theme.$text-secondary;
 
       span {
-        color: $text-01;
+        color: theme.$text-primary;
       }
     }
 
     &__item {
       &,
       &:last-child {
-        border-color: $ui-01;
+        border-color: theme.$layer-01;
       }
 
       &-count {
-        @include carbon--type-style('helper-text-01');
+        @include type.type-style('helper-text-01');
 
-        color: $text-02;
+        color: theme.$text-secondary;
         float: right;
       }
 
       .#{$prefix}--accordion__heading {
-        padding-right: $carbon--grid-gutter / 2;
+        padding-right: math.div(grid.$grid-gutter, 2);
       }
 
       .#{$prefix}--accordion__title,
       .#{$prefix}--accordion__arrow {
-        color: $text-02;
+        color: theme.$text-secondary;
         fill: currentColor;
       }
     }
 
     &__sub-item {
-      padding: $carbon--grid-gutter / 2;
-      margin-right: -($carbon--grid-gutter / 2);
-      margin-bottom: $carbon--grid-gutter--condensed;
-      margin-left: -($carbon--grid-gutter / 2);
+      padding: math.div(grid.$grid-gutter, 2);
+      margin-right: math.div(grid.$grid-gutter, -2);
+      margin-bottom: grid.$grid-gutter-condensed;
+      margin-left: math.div(grid.$grid-gutter, -2);
 
       &__name {
-        @include carbon--type-style('code-01');
+        @include type.type-style('code-01');
 
-        padding-top: carbon--mini-units(1);
-        padding-bottom: carbon--mini-units(1);
-        padding-left: carbon--mini-units(2);
-        border-left: 3px solid $ui-03;
-        margin-bottom: carbon--mini-units(3);
+        padding-top: calc(0.5rem * 1);
+        padding-bottom: calc(0.5rem * 1);
+        padding-left: calc(0.5rem * 2);
+        border-left: 3px solid theme.$border-subtle-01;
+        margin-bottom: calc(0.5rem * 3);
 
         &__tag {
-          color: $text-04;
+          color: theme.$text-on-color;
           font-weight: bold;
         }
 
@@ -127,7 +133,7 @@
         }
 
         &__id {
-          color: $text-02;
+          color: theme.$text-secondary;
           font-style: italic;
         }
 
@@ -136,7 +142,7 @@
         }
 
         &__class {
-          color: $text-01;
+          color: theme.$text-primary;
         }
 
         &__class::before {
@@ -145,13 +151,13 @@
       }
 
       &__text {
-        @include carbon--type-style('body-short-01');
+        @include type.type-style('body-short-01');
 
         position: relative;
         display: flex;
-        margin-bottom: carbon--mini-units(2);
+        margin-bottom: calc(0.5rem * 2);
         // font-style: italic;
-        color: $text-01;
+        color: theme.$text-primary;
         font-weight: bold;
 
         > span {
@@ -174,9 +180,9 @@
       }
 
       &__unique-id {
-        @include carbon--type-style('helper-text-01');
+        @include type.type-style('helper-text-01');
 
-        color: $text-03;
+        color: theme.$text-placeholder;
         text-align: right;
       }
     }
@@ -187,8 +193,10 @@
       }
 
       .#{$prefix}--search-input {
-        padding-left: carbon--mini-units(5);
+        padding-left: calc(0.5rem * 5);
       }
     }
   }
 }
+
+@include inventory;
