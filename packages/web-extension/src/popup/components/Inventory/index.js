@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import Accordion, {
+import {
+  Accordion,
   AccordionItem,
   AccordionSkeleton,
-} from 'carbon-components-react/es/components/Accordion';
-import { ClickableTile } from 'carbon-components-react/es/components/Tile';
-import Link from 'carbon-components-react/es/components/Link';
-import Search from 'carbon-components-react/es/components/Search';
+  ClickableTile,
+  Link,
+  Search
+} from '@carbon/react';
 import { sendTabMessage } from '@carbon/devtools-utilities/src/sendMessage';
 import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
 import { moderate02 } from '@carbon/motion';

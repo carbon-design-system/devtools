@@ -1,7 +1,9 @@
-import AlignHorizontalLeft from '@carbon/icons/svg/32/align--horizontal-left.svg';
-import AlignHorizontalCenter from '@carbon/icons/svg/32/align--horizontal-center.svg';
-import AlignHorizontalRight from '@carbon/icons/svg/32/align--horizontal-right.svg';
-import FitToWidth from '@carbon/icons/svg/32/fit-to-width.svg';
+import {
+  AlignHorizontalLeft,
+  AlignHorizontalCenter,
+  AlignHorizontalRight,
+  FitToWidth
+} from "@carbon/icons-react";
 
 const positions = {
   'Full width': FitToWidth,

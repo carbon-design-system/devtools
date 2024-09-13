@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import Checkbox from 'carbon-components-react/es/components/Checkbox';
-import FormGroup from 'carbon-components-react/es/components/FormGroup';
+import {
+  Checkbox,
+  FormGroup,
+} from '@carbon/react';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { defaults } from '../../../globals/defaults';

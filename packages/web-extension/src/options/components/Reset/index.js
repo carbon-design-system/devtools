@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import Button from 'carbon-components-react/es/components/Button';
-import CheckmarkOutline from '@carbon/icons/svg/32/checkmark--outline.svg';
+import { Button } from "@carbon/react";
+import { CheckmarkOutline } from "@carbon/icons-react";
 import { configuration } from '../';
 
 const { prefix } = settings;

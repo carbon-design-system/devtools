@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import settings from 'carbon-components/es/globals/js/settings';
-import Tag from 'carbon-components-react/es/components/Tag';
-import Button from 'carbon-components-react/es/components/Button';
-import ChevronLeft from '@carbon/icons/svg/32/chevron--left.svg';
+import {
+  Tag,
+  Button
+} from "@carbon/react";
+import { ChevronLeft } from "@carbon/icons-react";
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import {
   sendMessage,
@@ -157,4 +159,8 @@ function activePanel(stateName) {
 
 const body = document.querySelector('body');
 body.innerHTML = '<div id="app"></div>' + body.innerHTML;
-ReactDOM.render(<Popup />, document.getElementById('app'));
+createRoot(document.getElementById('app')).render(
+  <StrictMode>
+    <Popup/>
+  </StrictMode>,
+)

@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import Link from 'carbon-components-react/es/components/Link';
-import { InlineNotification } from 'carbon-components-react/es/components/Notification';
+import {
+  Link,
+  InlineNotification
+} from "@carbon/react";
 import { safeObj } from '@carbon/devtools-utilities/src/safeObj';
 
 const { prefix } = settings;

@@ -7,16 +7,19 @@ import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { defaults } from '../../../globals/defaults';
 
-import Checkbox from 'carbon-components-react/es/components/Checkbox';
-import TileGroup from 'carbon-components-react/es/components/TileGroup';
-import RadioTile from 'carbon-components-react/es/components/RadioTile';
-
-import ColorPalette from '@carbon/icons/svg/32/color-palette.svg';
-import TextScale from '@carbon/icons/svg/32/text--scale.svg';
-import Grid from '@carbon/icons/svg/32/grid.svg';
-import VirtualColumn from '@carbon/icons/svg/32/virtual-column.svg';
-import ParentChild from '@carbon/icons/svg/32/parent-child.svg';
-import Scale from '@carbon/icons/svg/32/scale.svg';
+import {
+  Checkbox,
+  TileGroup,
+  RadioTile
+} from "@carbon/react";
+import {
+  ColorPalette,
+  TextScale,
+  Grid,
+  VirtualColumn,
+  ParentChild,
+  Scale
+} from "@carbon/icons-react";
 
 const { prefix } = settings;
 

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import settings from 'carbon-components/es/globals/js/settings';
-import Accordion, {
+import {
+  Accordion,
   AccordionItem,
-} from 'carbon-components-react/es/components/Accordion';
-import { InlineNotification } from 'carbon-components-react/es/components/Notification';
-import Link from 'carbon-components-react/es/components/Link';
-import Toggle from 'carbon-components-react/es/components/Toggle';
+  InlineNotification,
+  Link,
+  Toggle
+} from '@carbon/react';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { experimentalFlag } from '@carbon/devtools-utilities/src/experimental';

@@ -6,9 +6,11 @@ import {
   StructuredListBody,
   StructuredListRow,
   StructuredListCell,
-} from 'carbon-components-react/es/components/StructuredList';
-import MacShift from '@carbon/icons/svg/32/mac--shift.svg';
-import Cursor_1 from '@carbon/icons/svg/32/cursor--1.svg';
+} from '@carbon/react';
+import {
+  MacShift,
+  Cursor_1
+} from "@carbon/icons-react";
 
 const { prefix } = settings;
 
