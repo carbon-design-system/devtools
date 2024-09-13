@@ -17,13 +17,12 @@
     "test": "yarn format && yarn lint"
   },
   "dependencies": {
-    "@carbon/ibm-products": "^1.2.4",
-    "@carbon/ibm-security": "^1.31.0",
-    "@carbon/ibmdotcom-react": "^1.27.0",
-    "@carbon/ibmdotcom-web-components": "^1.12.0",
-    "carbon-components": "^10.41.0",
-    "carbon-components-react": "^7.45.0",
-    "carbon-web-components": "^1.16.2"
+    "@carbon/ibm-products": "^2.48.0",
+    "@carbon/ibm-security": "^2.15.0",
+    "@carbon/ibmdotcom-utilities": "^2.12.0",
+    "@carbon/ibmdotcom-web-components": "^2.12.0",
+    "@carbon/react": "^1.65.0",
+    "@carbon/web-components": "^2.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
