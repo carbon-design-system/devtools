@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
-import {
-  Link,
-  CodeSnippet,
-  Search
-} from "@carbon/react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { Link, CodeSnippet, Search } from '@carbon/react';
 import { moderate02 } from '@carbon/motion';
 import {
   formGeneralRows,

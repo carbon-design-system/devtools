@@ -1,6 +1,6 @@
 import React from 'react';
-import settings from 'carbon-components/es/globals/js/settings';
-import { SkeletonPlaceholder } from "@carbon/react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { SkeletonPlaceholder } from '@carbon/react';
 
 const { prefix } = settings;
 

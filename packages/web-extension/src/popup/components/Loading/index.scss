@@ -1,6 +1,6 @@
-@use "sass:math";
-@use "@carbon/react/scss/config" as *;
-@use "@carbon/react/scss/grid";
+@use 'sass:math';
+@use '@carbon/react/scss/config' as *;
+@use '@carbon/react/scss/grid';
 
 @mixin loading {
   .#{$prefix}--popup-loading {

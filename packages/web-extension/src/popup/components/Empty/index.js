@@ -1,7 +1,7 @@
 import React from 'react';
-import settings from 'carbon-components/es/globals/js/settings';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 import packageJSON from '../../../../package.json';
-import { Link } from "@carbon/react";
+import { Link } from '@carbon/react';
 
 const { prefix } = settings;
 

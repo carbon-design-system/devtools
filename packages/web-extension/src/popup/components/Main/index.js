@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 import {
   Accordion,
   AccordionItem,
   InlineNotification,
   Link,
-  Toggle
+  Toggle,
 } from '@carbon/react';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';

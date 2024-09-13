@@ -2,8 +2,8 @@ import {
   AlignHorizontalLeft,
   AlignHorizontalCenter,
   AlignHorizontalRight,
-  FitToWidth
-} from "@carbon/icons-react";
+  FitToWidth,
+} from '@carbon/icons-react';
 
 const positions = {
   'Full width': FitToWidth,

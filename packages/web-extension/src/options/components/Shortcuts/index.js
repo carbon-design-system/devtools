@@ -1,5 +1,5 @@
 import React from 'react';
-import settings from 'carbon-components/es/globals/js/settings';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 import {
   StructuredListWrapper,
   StructuredListHead,
@@ -7,10 +7,7 @@ import {
   StructuredListRow,
   StructuredListCell,
 } from '@carbon/react';
-import {
-  MacShift,
-  Cursor_1
-} from "@carbon/icons-react";
+import { MacShift, Cursor_1 } from '@carbon/icons-react';
 
 const { prefix } = settings;
 

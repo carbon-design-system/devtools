@@ -1,19 +1,18 @@
 import React from 'react';
-// import settings from 'carbon-components/es/globals/js/settings';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 
-// const { prefix } = settings;
+const { prefix } = settings;
 
 function labelMaker(labelText) {
   return (
     <>
       {labelText}
-      {/*<button 
-                className={`${prefix}--popup-main__info`}
-                onClick={e => {
-                    e.stopPropagation();
-                }}
-            >
-            </button>*/}
+      <button
+        type="button"
+        className={`${prefix}--popup-main__info`}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}></button>
     </>
   );
 }

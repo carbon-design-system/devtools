@@ -1,9 +1,10 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
 @use 'sass:math';
-@use "@carbon/react/scss/config" as *;
-@use "@carbon/react/scss/grid";
-@use "@carbon/react/scss/motion";
-@use "@carbon/react/scss/theme";
-@use "@carbon/react/scss/type";
+@use '@carbon/react/scss/config' as *;
+@use '@carbon/react/scss/grid';
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
 
 @mixin inventory {
   .#{$prefix}--inventory {

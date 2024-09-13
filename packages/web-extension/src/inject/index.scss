@@ -1,11 +1,10 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
 @use 'sass:map';
 
-@use "./vars.scss" as *;
-@use "@carbon/react/scss/colors";
+@use './vars.scss' as *;
+@use '@carbon/react/scss/colors';
 @use '@carbon/react/scss/breakpoint';
 @use '@carbon/react/scss/fonts';
-@use "@carbon/react/scss/grid";
+@use '@carbon/react/scss/grid';
 @use '@carbon/react/scss/motion';
 @use '@carbon/react/scss/spacing';
 @use '@carbon/react/scss/themes';

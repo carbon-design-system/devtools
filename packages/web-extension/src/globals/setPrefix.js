@@ -1,3 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+/* eslint-disable no-import-assign */
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 settings.carbonPrefix = settings.prefix;
-settings.prefix = 'bx-dev';
+settings.prefix = `${settings.prefix}-dev`;

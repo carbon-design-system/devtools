@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
-import {
-  Select,
-  SelectItem,
-  Toggle
-} from "@carbon/react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { Select, SelectItem, Toggle } from '@carbon/react';
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { configuration } from '../';
 import { themes } from '@carbon/themes';

@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import settings from 'carbon-components/es/globals/js/settings';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 
 import { setStorage } from '@carbon/devtools-utilities/src/setStorage';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { defaults } from '../../../globals/defaults';
 
-import {
-  Checkbox,
-  TileGroup,
-  RadioTile
-} from "@carbon/react";
+import { Checkbox, TileGroup, RadioTile } from '@carbon/react';
 import {
   ColorPalette,
   TextScale,
   Grid,
   VirtualColumn,
   ParentChild,
-  Scale
-} from "@carbon/icons-react";
+  Scale,
+} from '@carbon/icons-react';
 
 const { prefix } = settings;
 

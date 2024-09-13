@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout } from "@carbon/icons-react";
+import { Sprout } from '@carbon/icons-react';
 
 function ComingSoon() {
   return (

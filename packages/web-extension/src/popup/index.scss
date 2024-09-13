@@ -1,9 +1,8 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
 /* stylelint-disable a11y/media-prefers-reduced-motion */
 @use 'sass:map';
 
 // Import Carbon Tokens
-@use "@carbon/react/scss/config" as *;
+@use '@carbon/react/scss/config' as *;
 @use '@carbon/react/scss/breakpoint';
 @use '@carbon/react/scss/fonts';
 @use '@carbon/react/scss/grid';
@@ -41,16 +40,6 @@
 @use 'components/Specs';
 @use 'components/ResizeBrowser';
 @use 'components/PageInfo';
-
-// @include more-options;
-// @include loading;
-// @include empty;
-// @include main;
-// @include inventory;
-// @include grid;
-// @include specs;
-// @include resize-browser;
-// @include page-info;
 
 :root {
   @include theme.theme(themes.$g90);

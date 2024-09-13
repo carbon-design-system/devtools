@@ -1,9 +1,6 @@
 import React from 'react';
-import settings from 'carbon-components/es/globals/js/settings';
-import {
-  OverflowMenu,
-  OverflowMenuItem
-} from "@carbon/react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { OverflowMenu, OverflowMenuItem } from '@carbon/react';
 import { openChromeExtensionOptions } from '@carbon/devtools-utilities/src/openChromeExtensionOptions';
 import packageJSON from '../../../../package.json';
 

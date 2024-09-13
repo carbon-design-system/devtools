@@ -2999,7 +2999,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@carbon/devtools-utilities@workspace:packages/utilities"
   dependencies:
-    "@carbon/layout": "npm:^10.29.0"
+    "@carbon/layout": "npm:^11.26.0"
     eslint: "npm:^9.9.0"
     eslint-config-carbon: "npm:^3.14.0"
     prettier: "npm:^2.8.8"
@@ -3341,13 +3341,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carbon/layout@npm:^10.29.0":
-  version: 10.34.0
-  resolution: "@carbon/layout@npm:10.34.0"
-  checksum: 10c0/5cd76810a61e439e0904766283cf89406eda615d06124e89f7dedd24b0bd821e16ed13430ec3f5da6d2117b606598f2090ad396e4b31abb8b1146de2a37d2d15
-  languageName: node
-  linkType: hard
-
 "@carbon/layout@npm:^10.37.2, @carbon/layout@npm:^10.37.4":
   version: 10.37.4
   resolution: "@carbon/layout@npm:10.37.4"
@@ -3363,6 +3356,15 @@ __metadata:
   dependencies:
     "@ibm/telemetry-js": "npm:^1.5.0"
   checksum: 10c0/5b09c55114ccff6c0423e0ccc2e6fbe38db720ec01f575a2d736ada4ece90bb6a0e8d8323740407154f34174ee63d2b39cc91e57b18da24e1da0251128a1cec7
+  languageName: node
+  linkType: hard
+
+"@carbon/layout@npm:^11.26.0":
+  version: 11.26.0
+  resolution: "@carbon/layout@npm:11.26.0"
+  dependencies:
+    "@ibm/telemetry-js": "npm:^1.5.0"
+  checksum: 10c0/0ce765c2e2195aedcae078305eb42669d1d897e884b12db650da4bb5844734503d198993422666743cd86715f6f6f99157185a5dbbd0290bf58b13186d4c9a75
   languageName: node
   linkType: hard
 

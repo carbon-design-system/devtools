@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
-import {
-  Select,
-  SelectItem
-} from "@carbon/react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { Select, SelectItem } from '@carbon/react';
 import { configuration } from '../';
 import { gridVersions } from '../../../globals/options';
 import { defaults } from '../../../globals/defaults';

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as securityComponentList from '@carbon/ibm-security';
-import * as carbonComponentList from 'carbon-components-react';
+import * as carbonComponentList from '@carbon/react';
 import { getSecurityPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
 import { buildReactComponentList } from '../helpers.js';
 

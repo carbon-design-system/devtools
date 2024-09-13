@@ -1,5 +1,5 @@
-import settings from 'carbon-components/es/globals/js/settings';
-import { Link } from "@carbon/react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { Link } from '@carbon/react';
 import React from 'react';
 
 import packageJSON from '../../../../package.json';
@@ -21,7 +21,7 @@ const packages = [
   { name, version },
   {
     name: 'carbon',
-    version: getMajorVersion('carbon-components'),
+    version: getMajorVersion('@carbon/react'),
   },
   {
     name: CLOUD_COGNITIVE,
@@ -30,7 +30,7 @@ const packages = [
 
   {
     name: 'ibm.com library',
-    version: getMajorVersion('@carbon/ibmdotcom-react'),
+    version: getMajorVersion('@carbon/ibmdotcom-web-components'),
   },
   {
     name: 'ibm security',

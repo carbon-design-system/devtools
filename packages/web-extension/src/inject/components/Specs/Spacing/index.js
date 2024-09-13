@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 import { addHighlight } from '../../Highlight';
 import {
   positionTooltip,

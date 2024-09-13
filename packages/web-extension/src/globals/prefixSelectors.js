@@ -1,7 +1,7 @@
 import pkg from '@carbon/ibm-products/es/global/js/package-settings';
 import dotcomSettings from '@carbon/ibmdotcom-utilities/es/utilities/settings/settings';
 import { getComponentNamespace as getSecurityPrefix } from '@carbon/ibm-security/es/globals/namespace';
-import carbonSettings from 'carbon-components/es/globals/js/settings';
+import carbonSettings from '@carbon/web-components/es/globals/settings';
 
 const {
   devtoolsAttribute: cloudCognitiveDevtoolsAttribute,

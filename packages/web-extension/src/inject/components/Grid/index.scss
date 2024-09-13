@@ -1,3 +1,4 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
 @use 'sass:math';
 @use '../../vars.scss' as *;
 @use '@carbon/react/scss/colors';
@@ -122,9 +123,10 @@
     // gutter
     &--outer {
       [class*='#{$prefix}--col-']::before {
-        box-shadow:
-          math.div(grid.$grid-gutter, 2) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-          math.div(grid.$grid-gutter, -2) 0 0 rgba($grid-outer-color, $grid-outer-opacity);
+        box-shadow: math.div(grid.$grid-gutter, 2) 0 0
+            rgba($grid-outer-color, $grid-outer-opacity),
+          math.div(grid.$grid-gutter, -2) 0 0
+            rgba($grid-outer-color, $grid-outer-opacity);
       }
     }
 
@@ -141,11 +143,14 @@
     // gutter + column border
     &--outer.#{$prefix}--grid-2x--inner-border {
       [class*='#{$prefix}--col-']::before {
-        box-shadow:
-          math.div(grid.$grid-gutter, 2) 0 0 rgba($grid-outer-color, $grid-outer-opacity),
-          math.div(grid.$grid-gutter, -2) 0 0  rgba($grid-outer-color, $grid-outer-opacity),
-          $grid-inner-border-size 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity),
-          ($grid-inner-border-size * -1) 0 0 rgba($grid-inner-border-color, $grid-inner-border-opacity);
+        box-shadow: math.div(grid.$grid-gutter, 2) 0 0
+            rgba($grid-outer-color, $grid-outer-opacity),
+          math.div(grid.$grid-gutter, -2) 0 0
+            rgba($grid-outer-color, $grid-outer-opacity),
+          $grid-inner-border-size 0 0
+            rgba($grid-inner-border-color, $grid-inner-border-opacity),
+          ($grid-inner-border-size * -1) 0 0
+            rgba($grid-inner-border-color, $grid-inner-border-opacity);
       }
     }
 

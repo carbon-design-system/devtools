@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import settings from 'carbon-components/es/globals/js/settings';
-import {
-  ContentSwitcher,
-  Switch,
-  Checkbox
-} from "@carbon/react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { ContentSwitcher, Switch, Checkbox } from '@carbon/react';
 import { breakpoints } from '@carbon/layout';
 import { remtopx } from '@carbon/devtools-utilities/src/remtopx';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';

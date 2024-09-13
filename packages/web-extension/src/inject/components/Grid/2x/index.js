@@ -1,4 +1,4 @@
-import settings from 'carbon-components/es/globals/js/settings';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
 import { storageItemChanged } from '@carbon/devtools-utilities/src/storageItemChanged';
 import { positions } from '../../../../globals/options';

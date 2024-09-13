@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import settings from 'carbon-components/es/globals/js/settings';
-import {
-  Accordion,
-  AccordionItem
-} from '@carbon/react';
+import React, { useState, useEffect, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { Accordion, AccordionItem } from '@carbon/react';
 import { Footer, General, Grid, Shortcuts, Reset } from './components';
 import { storageChanged } from '@carbon/devtools-utilities/src/storageChanged';
 import { getStorage } from '@carbon/devtools-utilities/src/getStorage';
@@ -60,4 +57,8 @@ function Options() {
 
 const body = document.querySelector('body');
 body.innerHTML = '<div id="app"></div>' + body.innerHTML;
-ReactDOM.render(<Options />, document.getElementById('app'));
+createRoot(document.getElementById('app')).render(
+  <StrictMode>
+    <Options />
+  </StrictMode>
+);

@@ -1,6 +1,6 @@
-@use "@carbon/react/scss/config" as *;
-@use "@carbon/react/scss/spacing";
-@use "@carbon/react/scss/type";
+@use '@carbon/react/scss/config' as *;
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/type';
 
 @mixin empty {
   .#{$prefix}--popup-empty {

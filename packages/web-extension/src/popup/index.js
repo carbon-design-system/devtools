@@ -1,12 +1,9 @@
 import React, { useState, useEffect, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import settings from 'carbon-components/es/globals/js/settings';
-import {
-  Tag,
-  Button
-} from "@carbon/react";
-import { ChevronLeft } from "@carbon/icons-react";
+import * as settings from '@carbon/web-components/es/globals/settings.js';
+import { Tag, Button } from '@carbon/react';
+import { ChevronLeft } from '@carbon/icons-react';
 import { getMessage } from '@carbon/devtools-utilities/src/getMessage';
 import {
   sendMessage,
@@ -161,6 +158,6 @@ const body = document.querySelector('body');
 body.innerHTML = '<div id="app"></div>' + body.innerHTML;
 createRoot(document.getElementById('app')).render(
   <StrictMode>
-    <Popup/>
-  </StrictMode>,
-)
+    <Popup />
+  </StrictMode>
+);

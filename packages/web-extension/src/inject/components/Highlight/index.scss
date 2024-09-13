@@ -22,7 +22,7 @@ $highlight-opacity: 0.5;
     opacity: 1;
 
     span {
-      // @include type.type-style('fluid-paragraph-01');
+      @include type.type-style('fluid-paragraph-01', true);
 
       display: inline-block;
       margin: auto;

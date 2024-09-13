@@ -1,10 +1,11 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
 @use 'sass:math';
-@use "@carbon/react/scss/config" as *;
-@use "@carbon/react/scss/grid";
-@use "@carbon/react/scss/motion";
-@use "@carbon/react/scss/spacing";
-@use "@carbon/react/scss/theme";
-@use "@carbon/react/scss/type";
+@use '@carbon/react/scss/config' as *;
+@use '@carbon/react/scss/grid';
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
 
 @mixin main {
   .#{$prefix}--popup-main {
@@ -79,7 +80,8 @@
       cursor: pointer;
       opacity: 0;
       outline: none;
-      transition: all motion.$duration-fast-02 carbon--motion(standard, productive);
+      transition: all motion.$duration-fast-02
+        carbon--motion(standard, productive);
       visibility: hidden;
 
       &:focus {
