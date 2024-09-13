@@ -27,7 +27,7 @@ and submit a pull request.
 
 > 💡 Thinking about maintenance, it's best to find a way to build this data from
 > your component library. See how
-> [cloud-cognitive](https://github.com/carbon-design-system/devtools/tree/base/packages/component-list/src/library/cloud-cognitive.js)
+> [ibm-products](https://github.com/carbon-design-system/devtools/tree/base/packages/component-list/src/library/ibm-products.js)
 > set up their components to scale.
 
 5. Add your new library file to the build file

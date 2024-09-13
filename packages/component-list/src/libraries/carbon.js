@@ -1,8 +1,7 @@
-import * as componentList from 'carbon-components-react';
-import { carbonPrefix } from '../../../web-extension/src/globals/prefixSelectors.js';
+import * as componentList from '@carbon/react';
 import { buildReactComponentList } from '../helpers.js';
 
-const prefix = carbonPrefix + '--';
+const prefix = 'cds--';
 
 const mockedProps = {
   pageSizes: [0],
