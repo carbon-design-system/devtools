@@ -1,0 +1,67 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
+@use 'sass:map';
+
+// Import Carbon Tokens
+@use '@carbon/react/scss/config' as *;
+@use '@carbon/react/scss/breakpoint';
+@use '@carbon/react/scss/fonts';
+@use '@carbon/react/scss/grid';
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
+
+// Import Carbon Components
+@use '@carbon/react/scss/components/overflow-menu' as *;
+@use '@carbon/react/scss/components/toggle' as *;
+@use '@carbon/react/scss/components/accordion' as *;
+@use '@carbon/react/scss/components/skeleton-styles' as *;
+@use '@carbon/react/scss/components/link' as *;
+@use '@carbon/react/scss/components/checkbox' as *;
+@use '@carbon/react/scss/components/number-input' as *;
+@use '@carbon/react/scss/components/form' as *;
+@use '@carbon/react/scss/components/tooltip' as *;
+@use '@carbon/react/scss/components/tag' as *;
+@use '@carbon/react/scss/components/tile' as *;
+@use '@carbon/react/scss/components/content-switcher' as *;
+@use '@carbon/react/scss/components/button' as *;
+@use '@carbon/react/scss/components/search' as *;
+@use '@carbon/react/scss/components/code-snippet' as *;
+@use '@carbon/react/scss/components/notification' as *;
+
+:root {
+  @include theme.theme(themes.$g90);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include theme.theme(themes.$white);
+  }
+}
+
+body {
+  background: theme.$background;
+  color: theme.$text-primary;
+  margin: 0;
+  padding: 0;
+  width: map.get(map.get(grid.$grid-breakpoints, 'sm'), 'width');
+}
+
+header {
+  background-color: theme.$layer-01;
+  display: flex;
+  justify-content: space-between;
+  gap: spacing.$spacing-03;
+
+  h1 {
+    @include type.type-style('productive-heading-02');
+
+    margin: 0;
+    margin: spacing.$spacing-03
+  }
+}
+
+main {
+  min-height: map.get(map.get(grid.$grid-breakpoints, 'sm'), 'width');
+}

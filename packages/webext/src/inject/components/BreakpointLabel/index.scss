@@ -1,0 +1,52 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
+@use 'sass:map';
+@use 'sass:math';
+@use '@carbon/react/scss/breakpoint';
+@use '@carbon/react/scss/grid';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
+@use '../../vars.scss' as *;
+
+@mixin label-maker($breakpoints) {
+  &::after {
+    @each $breakpoint in map-keys($breakpoints) {
+      @include breakpoint.breakpoint($breakpoint) {
+        content: 'breakpoint: #{$breakpoint}';
+      }
+    }
+  }
+}
+
+@mixin breakpoint-label--theme {
+  // breakpoint label theme
+  $border-style: 1px solid theme.$border-subtle-01;
+
+  border-top: $border-style;
+  border-left: $border-style;
+  background: theme.$layer-01;
+  color: theme.$text-primary;
+}
+
+.#{$prefix}--devtools {
+  @include label-maker(grid.$grid-breakpoints);
+
+  // breakpoint label
+  &::after {
+    @include type.type-style('code-01');
+    @include type.font-family('mono');
+    @include breakpoint-label--theme;
+
+    position: fixed;
+    z-index: 4;
+    right: 0;
+    bottom: -33px;
+    padding: spacing.$spacing-05 math.div(grid.$grid-gutter, 2);
+    border-bottom: 0;
+    transition: bottom $transition-in;
+
+    .#{$prefix}--breakpoint-label & {
+      bottom: 0;
+    }
+  }
+}

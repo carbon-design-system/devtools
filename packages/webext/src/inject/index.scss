@@ -1,0 +1,44 @@
+@use 'sass:map';
+
+@use './vars.scss' as *;
+@use '@carbon/react/scss/colors';
+@use '@carbon/react/scss/breakpoint';
+@use '@carbon/react/scss/fonts';
+@use '@carbon/react/scss/grid';
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
+
+@use 'components/Tooltip/index.scss' as *;
+@use 'components/Highlight/index.scss' as *;
+@use 'components/Grid/index.scss' as *;
+@use 'components/Specs/index.scss' as *;
+@use 'components/Specs/Color/index.scss' as *;
+@use 'components/Specs/Dependencies/index.scss' as *;
+@use 'components/Specs/Grid/index.scss' as *;
+@use 'components/Specs/Outline/index.scss' as *;
+@use 'components/Specs/Spacing/index.scss' as *;
+@use 'components/BreakpointLabel/index.scss' as *;
+
+$themes: (
+  'white': themes.$white,
+  'g10': themes.$g10,
+  'g80': themes.$g90,
+  'g100': themes.$g100,
+);
+
+.#{$prefix}--devtools {
+  @include theme.theme(themes.$g90);
+
+  @media (prefers-color-scheme: light) {
+    @include theme.theme(themes.$white);
+  }
+
+  @each $theme in map-keys($themes) {
+    .#{$prefix}--#{$theme} & {
+      @include theme.theme(map.get($themes, $theme));
+    }
+  }
+}

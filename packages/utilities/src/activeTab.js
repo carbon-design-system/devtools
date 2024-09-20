@@ -1,11 +1,11 @@
 function activeTab(callback) {
-  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) =>
+  chrome.tabs.query({ active: true }, (tabs) =>
     callback(tabs[0])
   );
 }
 
 async function activeTabAsync() {
-  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  const tabs = await chrome.tabs.query({ active: true });
   return tabs[0];
 }
 

@@ -1,0 +1,80 @@
+@use '../../../vars.scss' as *;
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
+
+.#{$specs-prefix} {
+  &-grid-tooltip {
+    max-width: calc(#{spacing.$spacing-03} * 34);
+    margin-bottom: calc(#{spacing.$spacing-03} * -0.5);
+
+    &__title {
+      @include type.type-style('heading-compact-01');
+
+      margin-bottom: calc(#{spacing.$spacing-03} * 0.5);
+    }
+
+    &__title,
+    &__classlist li {
+      display: inline-block;
+      margin-right: calc(#{spacing.$spacing-03} * 0.5);
+    }
+
+    &__classlist {
+      @include type.type-style('code-01');
+
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+      margin-bottom: calc(#{spacing.$spacing-03} * 0.5);
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+        padding: 0;
+        border-radius: 3px;
+        margin: 0;
+        margin-right: calc(#{spacing.$spacing-03} * 0.5);
+        margin-bottom: calc(#{spacing.$spacing-03} * 0.5);
+      }
+
+      li::before {
+        display: none;
+      }
+
+      li::after {
+        content: ',';
+      }
+
+      li:last-child {
+        margin-right: 0;
+      }
+
+      li:last-child::after {
+        content: '';
+      }
+
+      li#{&}--active {
+        padding: 0 calc(#{spacing.$spacing-03} * 1);
+      }
+
+      li#{&}--active::after {
+        display: none;
+      }
+    }
+
+    // tooltip theme
+    @mixin grid-tooltip--theme {
+      &__title {
+        color: theme.$text-primary;
+      }
+
+      &__classlist--active {
+        background-color: theme.$layer-02;
+        color: theme.$text-primary;
+      }
+    }
+
+    @include grid-tooltip--theme;
+  }
+}

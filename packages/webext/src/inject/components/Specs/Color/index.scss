@@ -1,0 +1,36 @@
+@use '../../../vars.scss' as *;
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/theme';
+
+.#{$specs-prefix} {
+  &-color-tooltip {
+    &__color {
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-bottom: spacing.$spacing-03;
+      background: repeating-linear-gradient(
+        90deg,
+        #ffffff,
+        #ffffff 8px,
+        #000000 8px,
+        #000000 16px
+      );
+
+      span {
+        display: block;
+        width: spacing.$spacing-05;
+        height: spacing.$spacing-05;
+      }
+    }
+
+    // tooltip theme
+    @mixin color-tooltip--theme {
+      &__color {
+        border: 1px solid theme.$border-strong-01;
+      }
+    }
+
+    @include color-tooltip--theme;
+  }
+}

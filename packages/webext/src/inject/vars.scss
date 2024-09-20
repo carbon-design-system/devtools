@@ -1,0 +1,37 @@
+@use '@carbon/react/scss/config';
+@use '@carbon/react/scss/motion';
+@use '@carbon/react/scss/colors';
+
+$prefix: '#{config.$prefix}-dev';
+$carbonPrefix: config.$prefix;
+$specs-prefix: '#{$prefix}--specs';
+$zindex: 9999999999;
+
+$transition-in: motion.$duration-moderate-02 motion.motion(standard, productive);
+$transition-fade: motion.$duration-fast-02 motion.motion(standard, productive);
+$grid-color: colors.$blue-60;
+$inventory-color: colors.$purple-50;
+$specs-color: colors.$magenta-50;
+
+$grid-opacity: 0.5;
+$grid-border-size: 1px;
+$grid-border-color: $grid-color;
+$grid-border-opacity: 1;
+
+$grid-inner-color: $grid-color;
+$grid-inner-opacity: $grid-opacity;
+$grid-inner-border-size: $grid-border-size;
+$grid-inner-border-color: $grid-border-color;
+$grid-inner-border-opacity: $grid-border-opacity;
+
+$grid-outer-color: $grid-color;
+$grid-outer-opacity: $grid-inner-opacity / 2;
+$grid-outer-border-size: $grid-border-size;
+$grid-outer-border-color: $grid-border-color;
+$grid-outer-border-opacity: $grid-border-opacity;
+
+$grid-mini-unit-color: $grid-color;
+$grid-mini-unit-opacity: $grid-opacity;
+$grid-mini-unit-border-size: $grid-border-size;
+$grid-mini-unit-border-color: $grid-border-color;
+$grid-mini-unit-border-opacity: $grid-opacity;

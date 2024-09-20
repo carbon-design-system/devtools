@@ -1,0 +1,60 @@
+@use 'sass:map';
+@use '../../vars.scss' as *;
+@use '@carbon/react/scss/colors';
+@use '@carbon/react/scss/type';
+
+$highlight-opacity: 0.5;
+
+.#{$prefix}--highlight {
+  position: absolute;
+  opacity: 0;
+  transition: opacity $transition-fade, background-color $transition-fade,
+    box-shadow $transition-fade;
+
+  &--grid,
+  &--specs,
+  &--inventory {
+    --highlight-color-type-border: transparent;
+    --highlight-color-type-background: transparent;
+
+    display: grid;
+    background-color: var(--highlight-color-type-background);
+    opacity: 1;
+
+    span {
+      @include type.type-style('fluid-paragraph-01', true);
+
+      display: inline-block;
+      margin: auto;
+      color: colors.$magenta-10;
+    }
+  }
+
+  &--outline {
+    background: none;
+    box-shadow: inset 0 0 0 1px var(--highlight-color-type-border);
+    opacity: 1;
+  }
+
+  &--inventory {
+    --highlight-color-type-border: #{$inventory-color};
+    --highlight-color-type-background: #{rgba(
+        $inventory-color,
+        $highlight-opacity
+      )};
+  }
+
+  &--specs {
+    --highlight-color-type-border: #{$specs-color};
+    --highlight-color-type-background: #{rgba($specs-color, $highlight-opacity)};
+  }
+
+  &--grid {
+    --highlight-color-type-border: #{$grid-color};
+    --highlight-color-type-background: #{rgba($grid-color, $highlight-opacity)};
+  }
+
+  body:active & {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,27 @@
+/* stylelint-disable a11y/media-prefers-reduced-motion */
+@use '../../../vars.scss' as *;
+@use '@carbon/react/scss/type';
+
+.#{$prefix}--spacers {
+  pointer-events: all;
+
+  &__box {
+    @include type.type-style('code-01');
+
+    position: fixed;
+    z-index: $zindex / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($specs-color, 0.9);
+    box-shadow: inset 0 0 0 1px $specs-color;
+    color: #ffffff;
+    opacity: 0;
+    transition: opacity $transition-fade, visibility $transition-fade;
+    visibility: hidden;
+
+    * {
+      pointer-events: none;
+    }
+  }
+}

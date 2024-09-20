@@ -1,0 +1,167 @@
+@use 'sass:map';
+
+@use '../../vars.scss' as *;
+@use '@carbon/react/scss/breakpoint';
+@use '@carbon/react/scss/colors';
+@use '@carbon/react/scss/grid';
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/theme';
+@use '@carbon/react/scss/type';
+@use '@carbon/react/scss/components/tooltip';
+
+.#{$prefix}--tooltip {
+  @include type.type-style('helper-text-01');
+
+  position: fixed;
+  z-index: $zindex;
+  display: block;
+  min-width: initial;
+  max-width: 100vw;
+  padding: spacing.$spacing-05;
+  margin-top: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity $transition-fade, visibility $transition-fade;
+  visibility: hidden;
+
+  &[data-floating-menu-direction='top'] {
+    margin-top: calc(-1 * #{spacing.$spacing-03});
+  }
+
+  &__content {
+    display: flex;
+    width: 100%;
+  }
+
+  &--shown {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &--primary {
+    margin-right: spacing.$spacing-05;
+    font-weight: bold;
+  }
+
+  // spec detail groups
+  &-specs {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__eyebrow {
+      @include type.type-style('label-01');
+    }
+
+    &__title {
+      @include type.type-style('heading-compact-01');
+
+      margin-right: 8px;
+      margin-bottom: calc(#{spacing.$spacing-03} * 1);
+      float: left;
+    }
+
+    &__group {
+      width: 50%;
+      min-width: calc(#{spacing.$spacing-03} * 30);
+      padding: calc(#{spacing.$spacing-03} * 1);
+      padding-right: calc(#{spacing.$spacing-03} * 2);
+
+      @include breakpoint.breakpoint('md') {
+        width: 25%;
+      }
+
+      &--single {
+        width: 100%;
+      }
+
+      &--duo {
+        width: 50%;
+      }
+
+      ul {
+        padding: 0;
+        margin: 0;
+        clear: both;
+        list-style-type: none;
+      }
+
+      li {
+        display: flex;
+        padding: 0;
+        margin: 0;
+      }
+
+      li::before {
+        display: none;
+      }
+
+      li:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    &__prop {
+      @include type.type-style('code-01');
+
+      margin-top: calc(#{spacing.$spacing-03} * 0.25);
+      margin-right: calc(#{spacing.$spacing-03} * 1);
+      font-weight: 500;
+    }
+
+    p#{&}__value {
+      @include type.type-style('code-01');
+
+      margin-top: calc(#{spacing.$spacing-03} * 0.25);
+    }
+
+    li#{&}__warning {
+      @include type.type-style('helper-text-01');
+      $yellow: colors.$yellow-30;
+
+      padding-left: calc(#{spacing.$spacing-03} * 1);
+      border-left: 3px solid $yellow;
+      margin-bottom: calc(#{spacing.$spacing-03} * 1);
+      font-weight: 500;
+    }
+  }
+
+  // tooltip theme
+  @mixin tooltip--theme {
+    background: theme.$layer-01;
+    color: theme.$text-primary;
+
+    .#{$prefix}--tooltip__caret {
+      border-bottom-color: theme.$layer-01;
+    }
+
+    &--secondary {
+      color: theme.$text-secondary;
+    }
+
+    &-specs {
+      &__group {
+        border-right: grid.$grid-gutter-condensed solid theme.$layer-01;
+        border-bottom: grid.$grid-gutter-condensed solid theme.$layer-01;
+        background-color: theme.$background;
+      }
+
+      &__warning {
+        background-color: theme.$layer-01;
+        color: theme.$text-primary;
+      }
+
+      &__title,
+      &__prop {
+        color: theme.$text-primary;
+      }
+
+      &__name,
+      &__value {
+        color: theme.$text-secondary;
+      }
+    }
+  }
+
+  @include tooltip--theme;
+}
