@@ -32,11 +32,11 @@
   },
   "homepage": "https://github.com/carbon-design-system/devtools#readme",
   "dependencies": {
-    "@carbon/layout": "^10.29.0"
+    "@carbon/layout": "^10.37.5"
   },
   "devDependencies": {
     "eslint": "^9.9.0",
-    "eslint-config-carbon": "^3.14.0",
+    "eslint-config-carbon": "^3.18.0",
     "prettier": "^2.8.8",
     "prettier-config-carbon": "^0.11.0"
   },
