@@ -45,8 +45,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "rimraf": "^6.0.1",
-    "stylelint": "^16.8.1",
-    "stylelint-config-carbon": "^1.20.0",
+    "stylelint": "^15.0.0",
+    "stylelint-config-carbon": "1.17.0",
     "webpack": "^5.93.0",
     "webpack-cli": "^5.1.4"
   },
