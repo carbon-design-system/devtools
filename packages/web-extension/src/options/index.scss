@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 /* stylelint-disable no-invalid-position-at-import-rule */
 
 $feature-flags: (
@@ -47,8 +49,8 @@ body {
 
   .#{$prefix}--accordion {
     width: auto;
-    margin-right: -($carbon--grid-gutter/2);
-    margin-left: -($carbon--grid-gutter/2);
+    margin-right: math.div($carbon--grid-gutter, 2) * -1;
+    margin-left: math.div($carbon--grid-gutter, 2) * -1;
 
     &__content {
       margin-top: $carbon--spacing-05;

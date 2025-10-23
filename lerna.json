@@ -1,4 +1,5 @@
 {
   "version": "8.1.8",
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "useNx": false
 }

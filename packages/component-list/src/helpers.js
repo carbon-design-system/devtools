@@ -41,11 +41,13 @@ function buildReactComponentList(
   prefix,
   mockedProps = {},
   customShallowComps = [],
-  scopeByKey = []
+  scopeByKey = [],
+  ignoredComponents = []
 ) {
   const compKeys = Object.keys(components);
   const { fail, success, _stats } = new _initStats();
   const list = { _stats };
+  const ignored = new Set(ignoredComponents);
 
   compKeys.forEach((compKey) => {
     if (scopeByKey.length && scopeByKey.indexOf(compKey) === -1) {
@@ -53,7 +55,19 @@ function buildReactComponentList(
     }
 
     const Comp = components[compKey];
-    let $, attr, className, shallowComp, identifier;
+    const compName = Comp?.displayName || Comp?.name || compKey;
+
+    if (ignored.has(compKey) || ignored.has(compName)) {
+      return false;
+    }
+
+    if (Comp == null) {
+      console.log(`${prefix}${compKey}: Component is undefined.`);
+      fail();
+      return;
+    }
+
+    let $, attr, className, shallowComp;
 
     try {
       // 1. try a simple shallow render
@@ -90,15 +104,28 @@ function buildReactComponentList(
       }
 
       if (className) {
-        identifier = cleanupSelector(className, prefix);
+        const candidates = [
+          cleanupSelector(className, prefix),
+          cleanupSelector(className, prefix, { includeModifiers: true }),
+        ].filter((candidate, index, arr) => candidate && arr.indexOf(candidate) === index);
 
-        if (identifier && !list[identifier]) {
-          list[identifier] = compKey;
-          success();
-        } else {
-          console.log(
-            `${prefix}${compKey}: Failed to find a unique identifier.`
-          );
+        let matched = false;
+
+        for (const identifier of candidates) {
+          if (!identifier) {
+            continue;
+          }
+
+          if (!list[identifier] || list[identifier] === compKey) {
+            list[identifier] = compKey;
+            success();
+            matched = true;
+            break;
+          }
+        }
+
+        if (!matched) {
+          console.log(`${prefix}${compKey}: Failed to find a unique identifier.`);
           fail();
         }
       } else {
@@ -144,31 +171,42 @@ function findClassName($, comp) {
   return selectors.filter((d) => d).join('+');
 }
 
-function cleanupSelector(fullSelector, prefix) {
-  fullSelector = fullSelector.trim().split('+');
+function cleanupSelector(fullSelector, prefix, options = {}) {
+  const { includeModifiers = false } = options;
 
-  fullSelector = fullSelector
+  const selectors = fullSelector
+    .trim()
+    .split('+')
     .map((selector) => {
-      selector = selector
-        .replace(/[^\w\d-_\s]/g, '') // stripping out undesirable characters
+      const normalised = selector
+        .replace(/\[object Object\]--/g, prefix)
+        .replace(/[^\w\d-_\s]/g, '')
         .split(' ')
-        .filter((singleClassName) => {
-          const filterModifier =
-            singleClassName.replace(`${prefix}`, '').indexOf('--') === -1;
-          return filterModifier;
-        });
+        .filter(
+          (singleClassName) =>
+            singleClassName &&
+            singleClassName.startsWith(prefix) &&
+            singleClassName.trim().length > 0
+        );
 
-      if (selector.length) {
-        return '.' + selector.join('.');
+      if (!normalised.length) {
+        return '';
       }
 
-      return '';
+      const filtered = includeModifiers
+        ? normalised
+        : normalised.filter((singleClassName) => {
+            const withoutPrefix = singleClassName.replace(`${prefix}`, '');
+            return withoutPrefix.indexOf('--') === -1;
+          });
+
+      const classes = filtered.length ? filtered : normalised;
+
+      return classes.length ? `.${classes.join('.')}` : '';
     })
     .filter((s) => s);
 
-  fullSelector = fullSelector.join('+');
-
-  return fullSelector;
+  return selectors.join('+');
 }
 
 function camelCase(str) {
