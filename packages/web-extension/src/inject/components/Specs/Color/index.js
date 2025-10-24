@@ -18,6 +18,15 @@ import Color from 'color';
 
 const { prefix } = settings;
 
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function highlightSpecsColor(target) {
   if (target) {
     const styles = window.getComputedStyle(target);
@@ -62,7 +71,7 @@ function highlightSpecsColor(target) {
       updateTooltipContent(
         __specsContainer(tooltipGroups).replace(
           /<!--componentnameplaceholder-->/g,
-          getComponentName(target)
+          escapeHTML(getComponentName(target))
         )
       );
       addHighlight(target, { type: 'specs' });
