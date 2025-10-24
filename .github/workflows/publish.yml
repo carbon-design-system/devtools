@@ -1,4 +1,6 @@
 name: Publish web-extension
+permissions:
+  contents: read
 
 on:
   release:
