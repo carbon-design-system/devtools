@@ -163,24 +163,33 @@ function showHideTooltip(show) {
   }
 }
 
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function __specValueItem(type, value) {
   let html;
 
   if (type === 'warning') {
     html = `
             <li class="${prefix}--tooltip-specs__warning">
-                ${value}
+                ${escapeHTML(value)}
             </li>
         `;
   } else {
     html = `<li>`;
 
     if (type) {
-      html += `<h3 class="${prefix}--tooltip-specs__prop">${type}</h3>`;
+      html += `<h3 class="${prefix}--tooltip-specs__prop">${escapeHTML(type)}</h3>`;
     }
 
     if (value) {
-      html += `<p class="${prefix}--tooltip-specs__value">${value}</p>`;
+      html += `<p class="${prefix}--tooltip-specs__value">${escapeHTML(value)}</p>`;
     }
 
     html += `</li>`;
@@ -203,11 +212,11 @@ function __specsContainer(groups) {
     groupsContent += `<div class="${prefix}--tooltip-specs__group ${groupLayoutClass}">`;
 
     if (eyebrow) {
-      groupsContent += `<h1 class="${prefix}--tooltip-specs__eyebrow">${eyebrow}</h1>`;
+      groupsContent += `<h1 class="${prefix}--tooltip-specs__eyebrow">${escapeHTML(eyebrow)}</h1>`;
     }
 
     if (title) {
-      groupsContent += `<h2 class="${prefix}--tooltip-specs__title">${title}</h2>`;
+      groupsContent += `<h2 class="${prefix}--tooltip-specs__title">${escapeHTML(title)}</h2>`;
     }
 
     if (content) {
