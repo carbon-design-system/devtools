@@ -14,11 +14,11 @@
     "test": "lerna run test --stream"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "husky": "^9.1.4",
-    "lerna": "^8.1.8",
-    "lint-staged": "^15.2.9",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7",
+    "lerna": "^8.2.4",
+    "lint-staged": "^15.5.2",
     "rimraf": "^6.0.1"
   },
   "engines": {
@@ -98,5 +98,5 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.4.0"
+  "packageManager": "yarn@4.15.0"
 }

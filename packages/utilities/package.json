@@ -35,8 +35,8 @@
     "@carbon/layout": "^10.37.5"
   },
   "devDependencies": {
-    "eslint": "^9.9.0",
-    "eslint-config-carbon": "^3.18.0",
+    "eslint": "^9.39.4",
+    "eslint-config-carbon": "^3.25.0",
     "prettier": "^2.8.8",
     "prettier-config-carbon": "^0.11.0"
   },
