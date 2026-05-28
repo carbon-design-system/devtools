@@ -165,11 +165,16 @@ function positionSpacer(
   spacer.dataset.component = componentName;
 
   if (value >= 16) {
-    spacer.innerHTML = `<span class="value">${value}</span>`;
+    // Create span element safely
+    const span = document.createElement('span');
+    span.className = 'value';
+    span.textContent = value;
+    spacer.textContent = '';
+    spacer.appendChild(span);
 
     if (value < spacer.querySelector('.value').offsetWidth) {
       // if the text doesn't fit in the box then let's remove the text
-      spacer.innerHTML = '';
+      spacer.textContent = '';
     }
   }
 
@@ -300,7 +305,7 @@ function resetAllSpacers() {
 }
 
 function resetSpacer(spacer) {
-  spacer.innerHTML = ``;
+  spacer.textContent = '';
   spacer.style.width = null;
   spacer.style.height = null;
   spacer.style.minHeight = null;

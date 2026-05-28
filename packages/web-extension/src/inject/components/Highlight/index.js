@@ -80,8 +80,12 @@ function addHighlight(component, options = {}) {
       comp.width >= contentMax &&
       comp.height >= contentMax
     ) {
-      highlight.innerHTML = `<span>${options.content}</span>`;
-      setContenSize(highlight, highlight.querySelector('span'));
+      // Create span element safely
+      const span = document.createElement('span');
+      span.textContent = options.content;
+      highlight.textContent = '';
+      highlight.appendChild(span);
+      setContenSize(highlight, span);
     }
   }
 }
@@ -113,7 +117,7 @@ function removeHighlight(component) {
   component.setAttribute('class', '');
   component.setAttribute('style', '');
   component.setAttribute('data-highlightid', '');
-  component.innerHTML = '';
+  component.textContent = '';
 }
 
 function removeAllHighlights() {

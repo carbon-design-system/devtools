@@ -19,10 +19,19 @@ function initTooltip() {
     const tooltipHTML = document.createElement('div');
     tooltipHTML.classList.add(tooltipClass);
     tooltipHTML.setAttribute('data-floating-menu-direction', 'top');
-    tooltipHTML.innerHTML = `
-                  <span class="${tooltipClass}__caret"></span>
-                  <div class="${tooltipClass}__content" tabindex="-1" role="dialog"></div>
-              `;
+
+    // Create caret span
+    const caret = document.createElement('span');
+    caret.classList.add(`${tooltipClass}__caret`);
+
+    // Create content div
+    const content = document.createElement('div');
+    content.classList.add(`${tooltipClass}__content`);
+    content.setAttribute('tabindex', '-1');
+    content.setAttribute('role', 'dialog');
+
+    tooltipHTML.appendChild(caret);
+    tooltipHTML.appendChild(content);
     devtoolsContainer.appendChild(tooltipHTML);
   }
 }
@@ -30,7 +39,11 @@ function initTooltip() {
 function updateTooltipContent(content) {
   const tooltipContent = body.querySelector('.' + tooltipContentClass);
 
-  tooltipContent.innerHTML = content;
+  // Use template element for HTML parsing; callers must escape untrusted dynamic text.
+  const template = document.createElement('template');
+  template.innerHTML = String(content);
+  tooltipContent.textContent = '';
+  tooltipContent.appendChild(template.content);
 }
 
 function positionTooltip(component) {
@@ -150,24 +163,33 @@ function showHideTooltip(show) {
   }
 }
 
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function __specValueItem(type, value) {
   let html;
 
   if (type === 'warning') {
     html = `
             <li class="${prefix}--tooltip-specs__warning">
-                ${value}
+                ${escapeHTML(value)}
             </li>
         `;
   } else {
     html = `<li>`;
 
     if (type) {
-      html += `<h3 class="${prefix}--tooltip-specs__prop">${type}</h3>`;
+      html += `<h3 class="${prefix}--tooltip-specs__prop">${escapeHTML(type)}</h3>`;
     }
 
     if (value) {
-      html += `<p class="${prefix}--tooltip-specs__value">${value}</p>`;
+      html += `<p class="${prefix}--tooltip-specs__value">${escapeHTML(value)}</p>`;
     }
 
     html += `</li>`;
@@ -190,11 +212,11 @@ function __specsContainer(groups) {
     groupsContent += `<div class="${prefix}--tooltip-specs__group ${groupLayoutClass}">`;
 
     if (eyebrow) {
-      groupsContent += `<h1 class="${prefix}--tooltip-specs__eyebrow">${eyebrow}</h1>`;
+      groupsContent += `<h1 class="${prefix}--tooltip-specs__eyebrow">${escapeHTML(eyebrow)}</h1>`;
     }
 
     if (title) {
-      groupsContent += `<h2 class="${prefix}--tooltip-specs__title">${title}</h2>`;
+      groupsContent += `<h2 class="${prefix}--tooltip-specs__title">${escapeHTML(title)}</h2>`;
     }
 
     if (content) {

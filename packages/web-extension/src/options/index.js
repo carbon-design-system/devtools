@@ -58,5 +58,10 @@ function Options() {
 }
 
 const body = document.querySelector('body');
-body.innerHTML = '<div id="app"></div>' + body.innerHTML;
+
+// Create app div safely without innerHTML
+const appDiv = document.createElement('div');
+appDiv.id = 'app';
+body.insertBefore(appDiv, body.firstChild);
+
 ReactDOM.render(<Options />, document.getElementById('app'));

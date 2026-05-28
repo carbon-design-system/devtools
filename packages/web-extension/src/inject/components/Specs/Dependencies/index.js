@@ -14,6 +14,19 @@ const selectors = Object.keys(allComponents).join(',');
 
 const specsDependenciesClass = `${prefix}--specs-dependencies-tooltip`;
 
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, (char) => {
+    const escapeMap = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    };
+    return escapeMap[char];
+  });
+}
+
 function highlightSpecsDependencies(target) {
   let componentName;
   let componentIdentified = false;
@@ -32,7 +45,7 @@ function highlightSpecsDependencies(target) {
     componentName = siblings.pop(); // pull off the last item for point name
     dependencies = findAllDomShadow(selectors, target); // get dependencies
 
-    tooltipContent += `<h2 class="${specsDependenciesClass}__title">${componentName}</h2>`;
+    tooltipContent += `<h2 class="${specsDependenciesClass}__title">${escapeHTML(componentName)}</h2>`;
 
     // manage siblings
     if (siblings.length) {
@@ -84,7 +97,7 @@ function highlightSpecsDependencies(target) {
 
             if (dependencyName && unique.indexOf(dependencyName) < 0) {
               unique.push(dependencyName);
-              tooltipContent += `<li class="${specsDependenciesClass}__list-item">${dependencyName}</li>`;
+              tooltipContent += `<li class="${specsDependenciesClass}__list-item">${escapeHTML(dependencyName)}</li>`;
             }
           }
 
@@ -97,7 +110,7 @@ function highlightSpecsDependencies(target) {
       if (unique.length > 0) {
         tooltipContent = tooltipContent.replace(
           /<!--dependencycount-->/g,
-          `<span>${unique.length}</span> `
+          `<span>${escapeHTML(unique.length)}</span> `
         );
       }
     }

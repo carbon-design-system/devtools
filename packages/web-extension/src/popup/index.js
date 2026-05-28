@@ -93,7 +93,8 @@ function Popup() {
     <article
       className={`${prefix}--popup ${experimentalFlag(
         () => `${prefix}--popup--experimental`
-      )}`}>
+      )}`}
+    >
       <header className={`${prefix}--popup__header`}>
         <div className={`${prefix}--col-sm-3`}>
           <h1 className={`${prefix}--popup__heading`}>
@@ -101,7 +102,8 @@ function Popup() {
             {experimentalFlag(() => (
               <Tag
                 type="magenta"
-                className={`${prefix}--popup__experimental-tag`}>
+                className={`${prefix}--popup__experimental-tag`}
+              >
                 Exp
               </Tag>
             ))}
@@ -114,7 +116,8 @@ function Popup() {
       <section
         className={`${prefix}--popup__panel-container ${activePanel(
           panelState
-        )}`}>
+        )}`}
+      >
         <main className={`${prefix}--grid ${prefix}--popup__panel`}>
           <Content
             initialMsg={initialMsg}
@@ -126,14 +129,16 @@ function Popup() {
           <Button
             className={`${prefix}--popup__panel-close`}
             kind="ghost"
-            onClick={() => panelControls.close(panelState.name)}>
+            onClick={() => panelControls.close(panelState.name)}
+          >
             <ChevronLeft height="16" />
             Back
           </Button>
           <div className={`${prefix}--grid`}>
             <div className={`${prefix}--row`}>
               <h1
-                className={`${prefix}--popup__panel-title ${prefix}--col-sm-3`}>
+                className={`${prefix}--popup__panel-title ${prefix}--col-sm-3`}
+              >
                 {panelState.name}
               </h1>
             </div>
@@ -156,5 +161,10 @@ function activePanel(stateName) {
 }
 
 const body = document.querySelector('body');
-body.innerHTML = '<div id="app"></div>' + body.innerHTML;
+
+// Create app div safely without innerHTML
+const appDiv = document.createElement('div');
+appDiv.id = 'app';
+body.insertBefore(appDiv, body.firstChild);
+
 ReactDOM.render(<Popup />, document.getElementById('app'));
