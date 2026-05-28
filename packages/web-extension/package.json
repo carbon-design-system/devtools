@@ -15,8 +15,8 @@
     "lint:js": "eslint src/",
     "lint:css": "stylelint 'src/**/*.{css,scss}' --report-needless-disables --report-invalid-scope-disables",
     "test": "yarn format && yarn lint",
-    "launch:chrome": "web-ext run -t chromium --start-url \"https://www.ibm.com\" --source-dir ./dist/",
-    "launch:firefox": "web-ext run --start-url \"https://www.ibm.com\" --source-dir ./dist/",
+    "launch:chrome": "web-ext run -t chromium --start-url \"https://v10.carbondesignsystem.com\" --source-dir ./dist/",
+    "launch:firefox": "web-ext run --start-url \"https://v10.carbondesignsystem.com\" --source-dir ./dist/",
     "launch:firefox:dev": "web-ext run --start-url \"about:debugging#/runtime/this-firefox\" --source-dir ./dist/"
   },
   "dependencies": {
