@@ -10,6 +10,19 @@ import {
 
 const { prefix } = settings;
 
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, (char) => {
+    const escapeMap = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    };
+    return escapeMap[char];
+  });
+}
+
 const aspectRatiosCalc = aspectRatios.map((ratio) => {
   const vals = ratio.split(':');
   return vals[0] / vals[1];
@@ -42,7 +55,7 @@ function highlightSpecsRatio(target) {
       tooltipContent += `<span class="${prefix}--tooltip--primary">${width}x${height}</span>`;
     }
 
-    tooltipContent += `<span class="${prefix}--tooltip--secondary">${componentName}</span>`;
+    tooltipContent += `<span class="${prefix}--tooltip--secondary">${escapeHTML(componentName)}</span>`;
 
     addHighlight(target, { ...highlightOptions, type: 'specs' });
     updateTooltipContent(tooltipContent);

@@ -39,9 +39,9 @@ function initTooltip() {
 function updateTooltipContent(content) {
   const tooltipContent = body.querySelector('.' + tooltipContentClass);
 
-  // Use template element for safe HTML parsing
+  // Use template element for HTML parsing; callers must escape untrusted dynamic text.
   const template = document.createElement('template');
-  template.innerHTML = content;
+  template.innerHTML = String(content);
   tooltipContent.textContent = '';
   tooltipContent.appendChild(template.content);
 }
