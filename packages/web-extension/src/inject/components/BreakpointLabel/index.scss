@@ -1,7 +1,9 @@
+@use 'sass:map';
+
 /* stylelint-disable a11y/media-prefers-reduced-motion */
 @mixin label-maker($breakpoints) {
   &::after {
-    @each $breakpoint in map-keys($breakpoints) {
+    @each $breakpoint in map.keys($breakpoints) {
       @include carbon--breakpoint($breakpoint) {
         content: 'breakpoint: #{$breakpoint}';
       }
