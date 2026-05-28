@@ -61,7 +61,7 @@ $themes: (
     }
   }
 
-  @each $theme in map-keys($themes) {
+  @each $theme in map.keys($themes) {
     .#{$prefix}--#{$theme} & {
       @include carbon--theme(
         map.get($themes, $theme),
