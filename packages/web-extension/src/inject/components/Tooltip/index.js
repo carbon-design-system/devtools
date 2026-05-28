@@ -19,10 +19,19 @@ function initTooltip() {
     const tooltipHTML = document.createElement('div');
     tooltipHTML.classList.add(tooltipClass);
     tooltipHTML.setAttribute('data-floating-menu-direction', 'top');
-    tooltipHTML.innerHTML = `
-                  <span class="${tooltipClass}__caret"></span>
-                  <div class="${tooltipClass}__content" tabindex="-1" role="dialog"></div>
-              `;
+
+    // Create caret span
+    const caret = document.createElement('span');
+    caret.classList.add(`${tooltipClass}__caret`);
+
+    // Create content div
+    const content = document.createElement('div');
+    content.classList.add(`${tooltipClass}__content`);
+    content.setAttribute('tabindex', '-1');
+    content.setAttribute('role', 'dialog');
+
+    tooltipHTML.appendChild(caret);
+    tooltipHTML.appendChild(content);
     devtoolsContainer.appendChild(tooltipHTML);
   }
 }
@@ -30,7 +39,11 @@ function initTooltip() {
 function updateTooltipContent(content) {
   const tooltipContent = body.querySelector('.' + tooltipContentClass);
 
-  tooltipContent.innerHTML = content;
+  // Use template element for safe HTML parsing
+  const template = document.createElement('template');
+  template.innerHTML = content;
+  tooltipContent.textContent = '';
+  tooltipContent.appendChild(template.content);
 }
 
 function positionTooltip(component) {
