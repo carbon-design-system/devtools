@@ -34,7 +34,9 @@ $grid-outer-border-opacity: $grid-border-opacity;
     left: 0;
     width: 100%;
     height: 100vh;
-    transition: height $transition-in, padding $transition-fade;
+    transition:
+      height $transition-in,
+      padding $transition-fade;
 
     &--hide,
     .#{$prefix}--grid--hide & {
@@ -60,8 +62,11 @@ $grid-outer-border-opacity: $grid-border-opacity;
 
       &,
       &::before {
-        transition: height $transition-in, top $transition-in,
-          box-shadow $transition-in, opacity $transition-fade,
+        transition:
+          height $transition-in,
+          top $transition-in,
+          box-shadow $transition-in,
+          opacity $transition-fade,
           background-color $transition-fade;
       }
 
@@ -97,7 +102,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
     // gutter
     &--outer {
       [class*='#{$prefix}--col-']::before {
-        box-shadow: math.div($carbon--grid-gutter, 2) 0 0
+        box-shadow:
+          math.div($carbon--grid-gutter, 2) 0 0
             rgba($grid-outer-color, $grid-outer-opacity),
           math.div($carbon--grid-gutter, 2) * -1 0 0
             rgba($grid-outer-color, $grid-outer-opacity);
@@ -107,7 +113,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
     // column border
     &--inner-border {
       [class*='#{$prefix}--col-']::before {
-        box-shadow: $grid-inner-border-size 0 0
+        box-shadow:
+          $grid-inner-border-size 0 0
             rgba($grid-inner-border-color, $grid-inner-border-opacity),
           ($grid-inner-border-size * -1) 0 0
             rgba($grid-inner-border-color, $grid-inner-border-opacity);
@@ -117,7 +124,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
     // gutter + column border
     &--outer.#{$prefix}--grid-2x--inner-border {
       [class*='#{$prefix}--col-']::before {
-        box-shadow: math.div($carbon--grid-gutter, 2) 0 0
+        box-shadow:
+          math.div($carbon--grid-gutter, 2) 0 0
             rgba($grid-outer-color, $grid-outer-opacity),
           (math.div($carbon--grid-gutter, 2) * -1) 0 0
             rgba($grid-outer-color, $grid-outer-opacity),
@@ -131,7 +139,8 @@ $grid-outer-border-opacity: $grid-border-opacity;
     // gutter divider
     &--outer-border {
       [class*='#{$prefix}--col-'] {
-        box-shadow: $grid-outer-border-size 0 0
+        box-shadow:
+          $grid-outer-border-size 0 0
             rgba($grid-outer-border-color, $grid-outer-border-opacity),
           inset $grid-outer-border-size 0 0
             rgba($grid-outer-border-color, $grid-outer-border-opacity);

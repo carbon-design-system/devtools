@@ -135,13 +135,6 @@ function Main({ initialMsg, _inventoryData, _panelControls }) {
       <InlineNotification
         {...msg}
         className={`${prefix}--popup-main__notification`}
-        style={{
-          maxWidth: 'initial',
-          width: 'initial',
-          marginRight: '-16px',
-          marginLeft: '-16px',
-          marginTop: '0',
-        }}
       />
     );
   }

@@ -190,7 +190,16 @@ function inventoryList(filteredInventory, uniqueCount) {
           className={`${prefix}--inventory__item`}
           key={key + i}>
           {filteredInventory[key].map(
-            ({ uniqueID, innerText, tag, id, classes, library, name }) => (
+            ({
+              uniqueID,
+              innerText,
+              tag,
+              id,
+              classes,
+              library,
+              version,
+              name,
+            }) => (
               <ClickableTile
                 href="#"
                 className={`${prefix}--inventory__sub-item`}
@@ -217,7 +226,9 @@ function inventoryList(filteredInventory, uniqueCount) {
                   {buildName(tag, id, classes)}
                 </p>
                 <p className={`${prefix}--inventory__sub-item__unique-id`}>
-                  {`${library} :: ${name}`}
+                  {version
+                    ? `${library} (${version}) :: ${name}`
+                    : `${library} :: ${name}`}
                 </p>
                 <p className={`${prefix}--inventory__sub-item__unique-id`}>
                   {uniqueID}

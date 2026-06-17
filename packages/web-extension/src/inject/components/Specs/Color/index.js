@@ -11,9 +11,10 @@ import { getComponentName } from '@carbon/devtools-utilities/src/getComponentNam
 import { doesItHaveText } from '@carbon/devtools-utilities/src/doesItHaveText';
 import { colors } from '@carbon/colors';
 import { themes } from '@carbon/themes';
-import { searchCarbonTokens } from './searchCarbonTokens';
-import { themeKeys } from './themeKeys';
-import { getThemeName } from './getThemeName';
+import { themes as themesV11 } from '@carbon/themes-v11';
+import { searchCarbonTokens, prioritizeThemesV11 } from './searchCarbonTokens';
+import { themeKeys, themeKeysV11 } from './themeKeys';
+import { getThemeName, isCarbonV11Context } from './getThemeName';
 import Color from 'color';
 
 const { prefix } = settings;
@@ -30,9 +31,19 @@ function escapeHTML(str) {
 function highlightSpecsColor(target) {
   if (target) {
     const styles = window.getComputedStyle(target);
+    const isV11 = isCarbonV11Context(target);
+    const activeThemeKeys = isV11 ? themeKeysV11 : themeKeys;
+    const activeThemes = isV11 ? themesV11 : themes;
+    const activePrioritizeFn = isV11 ? prioritizeThemesV11 : undefined;
     const themeName = getThemeName(target);
-    const themes = themeName || themeKeys.theme; // do we know the current theme? If not give them all of them.
-    const borderColorGroups = combineBorderColors(styles, themes);
+    const themeScope = themeName || activeThemeKeys.theme; // do we know the current theme? If not give them all of them.
+    const borderColorGroups = combineBorderColors(
+      styles,
+      themeScope,
+      activeThemeKeys,
+      activeThemes,
+      activePrioritizeFn
+    );
 
     let tooltipGroups = [];
 
@@ -40,7 +51,12 @@ function highlightSpecsColor(target) {
       tooltipGroups.push({
         eyebrow: '<!--componentnameplaceholder-->',
         title: 'Type color',
-        content: tooltipContent(styles.color, themeKeys.text.concat(themes)),
+        content: tooltipContent(
+          styles.color,
+          activeThemeKeys.text.concat(themeScope),
+          activeThemes,
+          activePrioritizeFn
+        ),
       });
     }
 
@@ -50,7 +66,9 @@ function highlightSpecsColor(target) {
         title: 'Background color',
         content: tooltipContent(
           styles.backgroundColor,
-          themeKeys.background.concat(themes)
+          activeThemeKeys.background.concat(themeScope),
+          activeThemes,
+          activePrioritizeFn
         ),
       });
     }
@@ -59,7 +77,12 @@ function highlightSpecsColor(target) {
       tooltipGroups.push({
         eyebrow: '<!--componentnameplaceholder-->',
         title: 'Fill',
-        content: tooltipContent(styles.fill, themeKeys.icon.concat(themes)),
+        content: tooltipContent(
+          styles.fill,
+          activeThemeKeys.icon.concat(themeScope),
+          activeThemes,
+          activePrioritizeFn
+        ),
       });
     }
 
@@ -82,7 +105,13 @@ function highlightSpecsColor(target) {
   }
 }
 
-function combineBorderColors(styles, themes) {
+function combineBorderColors(
+  styles,
+  themeScope,
+  activeThemeKeys,
+  activeThemes,
+  activePrioritizeFn
+) {
   let borderGroups = [];
 
   const validate = {
@@ -117,7 +146,9 @@ function combineBorderColors(styles, themes) {
       title: 'Border color',
       content: tooltipContent(
         styles.borderTopColor,
-        themeKeys.border.concat(themes)
+        activeThemeKeys.border.concat(themeScope),
+        activeThemes,
+        activePrioritizeFn
       ),
     });
   } else {
@@ -127,7 +158,9 @@ function combineBorderColors(styles, themes) {
         title: 'Horizontal borders color',
         content: tooltipContent(
           styles.borderTopColor,
-          themeKeys.border.concat(themes)
+          activeThemeKeys.border.concat(themeScope),
+          activeThemes,
+          activePrioritizeFn
         ),
       });
     } else {
@@ -137,7 +170,9 @@ function combineBorderColors(styles, themes) {
           title: 'Border top color',
           content: tooltipContent(
             styles.borderTopColor,
-            themeKeys.border.concat(themes)
+            activeThemeKeys.border.concat(themeScope),
+            activeThemes,
+            activePrioritizeFn
           ),
         });
       }
@@ -148,7 +183,9 @@ function combineBorderColors(styles, themes) {
           title: 'Border bottom color',
           content: tooltipContent(
             styles.borderBottomColor,
-            themeKeys.border.concat(themes)
+            activeThemeKeys.border.concat(themeScope),
+            activeThemes,
+            activePrioritizeFn
           ),
         });
       }
@@ -160,7 +197,9 @@ function combineBorderColors(styles, themes) {
         title: 'Vertical borders color',
         content: tooltipContent(
           styles.borderRightColor,
-          themeKeys.border.concat(themes)
+          activeThemeKeys.border.concat(themeScope),
+          activeThemes,
+          activePrioritizeFn
         ),
       });
     } else {
@@ -170,7 +209,9 @@ function combineBorderColors(styles, themes) {
           title: 'Border right color',
           content: tooltipContent(
             styles.borderRightColor,
-            themeKeys.border.concat(themes)
+            activeThemeKeys.border.concat(themeScope),
+            activeThemes,
+            activePrioritizeFn
           ),
         });
       }
@@ -181,7 +222,9 @@ function combineBorderColors(styles, themes) {
           title: 'Border left color',
           content: tooltipContent(
             styles.borderLeftColor,
-            themeKeys.border.concat(themes)
+            activeThemeKeys.border.concat(themeScope),
+            activeThemes,
+            activePrioritizeFn
           ),
         });
       }
@@ -191,7 +234,12 @@ function combineBorderColors(styles, themes) {
   return borderGroups;
 }
 
-function tooltipContent(value, scopedKeys) {
+function tooltipContent(
+  value,
+  scopedKeys,
+  activeThemes = themes,
+  activePrioritizeFn = undefined
+) {
   let html = '';
 
   if (value) {
@@ -206,7 +254,13 @@ function tooltipContent(value, scopedKeys) {
     html += `<ul>`;
 
     if (idlToken) {
-      let carbonToken = searchCarbonTokens(themes, computedColor, scopedKeys);
+      let carbonToken = searchCarbonTokens(
+        activeThemes,
+        computedColor,
+        scopedKeys,
+        '',
+        activePrioritizeFn
+      );
 
       if (carbonToken) {
         // carbon theme token

@@ -39,9 +39,22 @@ function sendValidation() {
     language: html.getAttribute('lang'),
   };
 
+  const hasV10 = !!document.querySelector('[class*="bx--"]');
+  const hasV11 = !!document.querySelector('[class*="cds--"]');
+  let carbonVersion;
+
+  if (hasV10 && hasV11) {
+    carbonVersion = 'v10+v11';
+  } else if (hasV11) {
+    carbonVersion = 'v11';
+  } else if (hasV10) {
+    carbonVersion = 'v10';
+  }
+
   const msg = {
     windowWidth: window.outerWidth,
     carbonDevtoolsInjected: window.carbonDevtoolsInjected || false,
+    carbonVersion,
     pageInfo: {
       ...pageInfo,
       ...JSON.parse(body.dataset.pageInfo),

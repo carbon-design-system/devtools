@@ -175,6 +175,7 @@ _stats.total += manualAddedCount;
 
 const carbonReact = {
   name: 'Carbon',
+  version: 'v10',
   components,
   _stats,
 };

@@ -5,7 +5,9 @@ $highlight-opacity: 0.5;
 .#{$prefix}--highlight {
   position: absolute;
   opacity: 0;
-  transition: opacity $transition-fade, background-color $transition-fade,
+  transition:
+    opacity $transition-fade,
+    background-color $transition-fade,
     box-shadow $transition-fade;
 
   &--grid,

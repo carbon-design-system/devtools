@@ -41,6 +41,7 @@ $feature-flags: (
 @import '~carbon-components/scss/components/code-snippet/code-snippet';
 @import '~carbon-components/scss/components/notification/inline-notification';
 
+@import 'components/ComingSoon';
 @import 'components/MoreOptions';
 @import 'components/Loading';
 @import 'components/Empty';
@@ -51,6 +52,7 @@ $feature-flags: (
 @import 'components/ResizeBrowser';
 @import 'components/PageInfo';
 
+@include coming-soon;
 @include more-options;
 @include loading;
 @include empty;

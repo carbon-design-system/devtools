@@ -1,4 +1,4 @@
-import { prioritizeThemes } from './themeKeys';
+import { prioritizeThemes, prioritizeThemesV11 } from './themeKeys';
 
 /*
     as of right I can't be 100% sure I'm getting the correct token here on the
@@ -20,7 +20,13 @@ import { prioritizeThemes } from './themeKeys';
        that same theme.
 */
 
-function searchCarbonTokens(tokens, color, scopedKeys = [], base = '') {
+function searchCarbonTokens(
+  tokens,
+  color,
+  scopedKeys = [],
+  base = '',
+  prioritizeFn = prioritizeThemes
+) {
   let tokenValue = false;
 
   if (typeof tokens === 'object' && !Array.isArray(tokens)) {
@@ -43,7 +49,7 @@ function searchCarbonTokens(tokens, color, scopedKeys = [], base = '') {
             //   2. return values, and
             //   3. reorder theme list to make a better educated guess moving forward
             //   4. break loop so we don't go looking anymore.
-            prioritizeThemes(key, base.split('-')[0]);
+            prioritizeFn(key, base.split('-')[0]);
 
             tokenValue = {
               name: base + '-' + key, // token name
@@ -54,7 +60,13 @@ function searchCarbonTokens(tokens, color, scopedKeys = [], base = '') {
           }
         } else {
           // if it's not a string let's recursively check the next object
-          tokenValue = searchCarbonTokens(token, color, scopedKeys, base + key);
+          tokenValue = searchCarbonTokens(
+            token,
+            color,
+            scopedKeys,
+            base + key,
+            prioritizeFn
+          );
 
           if (tokenValue) {
             // if our search returned a result break the loop
@@ -68,4 +80,4 @@ function searchCarbonTokens(tokens, color, scopedKeys = [], base = '') {
   return tokenValue;
 }
 
-export { searchCarbonTokens };
+export { searchCarbonTokens, prioritizeThemesV11 };

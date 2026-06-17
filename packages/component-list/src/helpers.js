@@ -107,7 +107,10 @@ function buildReactComponentList(
         const candidates = [
           cleanupSelector(className, prefix),
           cleanupSelector(className, prefix, { includeModifiers: true }),
-        ].filter((candidate, index, arr) => candidate && arr.indexOf(candidate) === index);
+        ].filter(
+          (candidate, index, arr) =>
+            candidate && arr.indexOf(candidate) === index
+        );
 
         let matched = false;
 
@@ -125,7 +128,9 @@ function buildReactComponentList(
         }
 
         if (!matched) {
-          console.log(`${prefix}${compKey}: Failed to find a unique identifier.`);
+          console.log(
+            `${prefix}${compKey}: Failed to find a unique identifier.`
+          );
           fail();
         }
       } else {

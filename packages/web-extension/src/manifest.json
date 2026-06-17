@@ -19,7 +19,7 @@
       "strict_min_version": "121.0",
       "id": "{a12521e6-1ba2-4d48-9ec2-9286a37d82d1}",
       "data_collection_permissions": {
-        "required": false
+        "required": ["none"]
       }
     }
   },
