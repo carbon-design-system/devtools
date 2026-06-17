@@ -5,3 +5,4 @@ dist
 out
 .DS_Store
 .yarn/install-state.gz
+.instructions

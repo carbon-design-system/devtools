@@ -14,13 +14,15 @@ const {
 */
 
 const carbonPrefix = carbonSettings.carbonPrefix || carbonSettings.prefix;
+const carbonV11Prefix = 'cds'; // Carbon v11 uses the `cds` prefix
 const { stablePrefix: dotcomPrefix } = dotcomSettings;
 const securityPrefix = getSecurityPrefix('');
 const cloudPalPrefix = 'pal'; // static hardcoded
 const cloudCognitiveDevtoolsId = getCloudCognitiveDevtoolsId('');
 
 const prefixSelectors = [
-  `class*="${carbonPrefix}--"`, // Carbon
+  `class*="${carbonPrefix}--"`, // Carbon v10
+  `class*="${carbonV11Prefix}--"`, // Carbon v11
   `${cloudCognitiveDevtoolsAttribute}*="${cloudCognitiveDevtoolsId}"`, // Cloud & Cognitive — https://github.com/carbon-design-system/ibm-cloud-cognitive
   `data-autoid*="${dotcomPrefix}--"`, // IBM.com
   `data-auto-id*="${dotcomPrefix}--"`, // IBM.com
@@ -35,6 +37,7 @@ const prefixSelectors = [
 export {
   prefixSelectors,
   carbonPrefix,
+  carbonV11Prefix,
   dotcomPrefix,
   securityPrefix,
   cloudPalPrefix,

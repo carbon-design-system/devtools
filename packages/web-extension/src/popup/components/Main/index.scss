@@ -144,5 +144,13 @@
         }
       }
     }
+
+    &__notification {
+      width: initial;
+      max-width: initial;
+      margin-top: 0;
+      margin-right: -16px;
+      margin-left: -16px;
+    }
   }
 }

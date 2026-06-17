@@ -19,7 +19,8 @@
         $transition-values: $moderate-01
           carbon--motion('standard', 'productive');
 
-        transition: max-width $transition-values $moderate-02,
+        transition:
+          max-width $transition-values $moderate-02,
           flex $transition-values $moderate-02;
 
         sub {
@@ -30,7 +31,9 @@
           bottom: 5px;
           margin-left: carbon--mini-units(2);
           opacity: 0;
-          transition: opacity $transition-values, visibility $transition-values,
+          transition:
+            opacity $transition-values,
+            visibility $transition-values,
             margin-left $transition-values;
           visibility: hidden;
         }
@@ -38,13 +41,16 @@
         &--active {
           max-width: 50%;
           flex: 0 0 50%;
-          transition: max-width $transition-values, flex $transition-values;
+          transition:
+            max-width $transition-values,
+            flex $transition-values;
         }
 
         &--active sub {
           margin-left: carbon--mini-units(0.5);
           opacity: 1;
-          transition: opacity $transition-values $fast-02,
+          transition:
+            opacity $transition-values $fast-02,
             visibility $transition-values $fast-02,
             margin-left $transition-values $fast-02;
           visibility: visible;

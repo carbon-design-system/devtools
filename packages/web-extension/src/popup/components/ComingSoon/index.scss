@@ -1,0 +1,16 @@
+@mixin coming-soon {
+  .#{$prefix}--coming-soon {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    &__inner {
+      text-align: center;
+    }
+
+    &__icon {
+      fill: currentColor;
+    }
+  }
+}

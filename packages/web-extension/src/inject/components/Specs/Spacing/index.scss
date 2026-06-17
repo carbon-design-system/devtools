@@ -14,7 +14,9 @@
     box-shadow: inset 0 0 0 1px $specs-color;
     color: #ffffff;
     opacity: 0;
-    transition: opacity $transition-fade, visibility $transition-fade;
+    transition:
+      opacity $transition-fade,
+      visibility $transition-fade;
     visibility: hidden;
 
     * {

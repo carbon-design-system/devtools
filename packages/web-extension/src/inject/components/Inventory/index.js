@@ -188,15 +188,26 @@ function getInventory(reset = true) {
   for (let i = 0; i < libraryKeys.length; i++) {
     const libraryId = libraryKeys[i];
     const libraryName = libraries[libraryId].name;
+    const libraryVersion = libraries[libraryId].version;
     const librarySelectors = libraries[libraryId].components;
 
-    getInventoryCollection(libraryId, libraryName, librarySelectors);
+    getInventoryCollection(
+      libraryId,
+      libraryName,
+      libraryVersion,
+      librarySelectors
+    );
   }
 
   return inventory;
 }
 
-function getInventoryCollection(libraryId, libraryName, componentList) {
+function getInventoryCollection(
+  libraryId,
+  libraryName,
+  libraryVersion,
+  componentList
+) {
   // TODO: prefix check first?
   // document.querySelector('.bx--');
 
@@ -210,6 +221,7 @@ function getInventoryCollection(libraryId, libraryName, componentList) {
     const inventoryData = updateInventory(
       componentName,
       libraryName,
+      libraryVersion,
       components
     );
 
@@ -218,6 +230,7 @@ function getInventoryCollection(libraryId, libraryName, componentList) {
         // set the library in place if it doesn't exist yet
         inventory.libraries[libraryId] = {
           name: libraryName,
+          version: libraryVersion,
           components: {},
         };
         inventory._results[libraryId] = {
@@ -245,7 +258,12 @@ function getInventoryCollection(libraryId, libraryName, componentList) {
   return inventory;
 }
 
-function updateInventory(componentName, libraryName, components) {
+function updateInventory(
+  componentName,
+  libraryName,
+  libraryVersion,
+  components
+) {
   const inventory = [];
 
   if (components.length > 0) {
@@ -270,6 +288,7 @@ function updateInventory(componentName, libraryName, components) {
       if (push) {
         inventory.push({
           library: libraryName,
+          version: libraryVersion,
           name: componentName,
           uniqueID: uniqueID,
           outerHTML: component.outerHTML,
